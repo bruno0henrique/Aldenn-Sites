@@ -1,0 +1,19 @@
+# Segredos e configuração local
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependências e artefatos
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Ferramentas e sistema
+.DS_Store
+Thumbs.db
+*.log
+
