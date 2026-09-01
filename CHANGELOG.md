@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.7.0] - 2026-09-01
+
+### Alterado
+
+- Hero de tablet e desktop centralizado em um painel maior, arredondado e responsivo.
+- Arte abstrata passou a ocupar todo o fundo com tratamento de cor integrado ao painel principal.
+- Título, texto e ações ganharam maior presença visual em telas amplas.
+
 ## [0.6.2] - 2026-09-01
 
 ### Alterado
