@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://belleland-closet.souza-bruno-souza07.chatgpt.site/$1",
+      "permanent": false
+    }
+  ]
+}

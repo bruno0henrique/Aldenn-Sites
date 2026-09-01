@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.5.1] - 2026-09-01
+
+### Corrigido
+
+- Endereços antigos da Vercel agora redirecionam para o domínio ativo da Belleland.
+
 ## [0.5.0] - 2026-09-01
 
 ### Adicionado
