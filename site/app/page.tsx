@@ -54,12 +54,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-art" data-reveal>
-            <img
-              src="/brand/dear-belle-girl.jpeg"
-              alt="Manifesto Belleland: use a roupa que você ama"
-            />
-            <span className="spark spark-one">✦</span>
-            <span className="spark spark-two">✦</span>
+            <img src="/brand/hero-abstract.png" alt="" aria-hidden="true" />
           </div>
         </section>
         {products.length > 0 && (

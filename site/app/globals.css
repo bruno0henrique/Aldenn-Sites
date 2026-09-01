@@ -237,22 +237,6 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  mix-blend-mode: multiply;
-  filter: saturate(0.8) contrast(0.92);
-}
-.spark {
-  position: absolute;
-  color: #f4b827;
-  font-size: 26px;
-}
-.spark-one {
-  right: 10%;
-  top: 12%;
-}
-.spark-two {
-  left: 9%;
-  bottom: 17%;
-  color: var(--pink);
 }
 .category-strip {
   display: grid;

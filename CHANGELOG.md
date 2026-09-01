@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.3.1] - 2026-09-01
+
+### Alterado
+
+- Substituída a arte do hero pela nova composição abstrata rosa enviada pela cliente.
+- Removidos filtros e brilhos sobrepostos para preservar a imagem original.
+
 ## [0.3.0] - 2026-09-01
 
 ### Adicionado

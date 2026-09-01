@@ -18,15 +18,6 @@ export function MotionScene({ children }: { children: React.ReactNode }) {
         stagger: 0.09,
         ease: 'power3.out',
       });
-      gsap.to('.spark', {
-        rotate: 25,
-        scale: 1.18,
-        repeat: -1,
-        yoyo: true,
-        duration: 1.8,
-        ease: 'sine.inOut',
-        stagger: 0.35,
-      });
     },
     { scope },
   );
