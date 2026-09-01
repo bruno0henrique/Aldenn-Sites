@@ -1,6 +1,6 @@
-# Requisitos aprovados — Belleland Closet
+# Requisitos aprovados: Belleland Closet
 
-Versão: 0.3.0
+Versão: 0.5.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -12,9 +12,14 @@ Versão: 0.3.0
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
 - Não usar produtos fictícios. Sem itens publicados, exibir “Em breve, novos produtos”.
 - Proprietária entra com e-mail e senha via Supabase e revisa capturas antes de publicar.
+- Enquanto o site estiver em avaliação privada, o painel oferece modo demonstração sem login e sem acesso aos dados reais.
+- O modo demonstração permite testar revisão, edição, descarte, restauração e publicação com dados locais descartáveis.
+- A tela permite criar conta por e-mail no Supabase. Novas contas não recebem permissão de proprietária automaticamente.
+- Qualquer visitante pode criar conta e entrar. Somente uma conta pode ser cadastrada como proprietária em `staff_members`.
+- O cadastro promocional exige consentimento explícito para receber novidades, promoções e lançamentos por e-mail.
 - A publicação exige nome, preço maior que zero e exatamente uma foto principal.
 - Publicação é otimista e transacional; falha devolve a peça para revisão.
-- Login Google e contas de clientes ficam para uma etapa futura.
+- Login Google fica para uma etapa futura.
 - GSAP apenas em detalhes visuais e com respeito a `prefers-reduced-motion`.
 
 Os formulários originais contêm dados pessoais e não são versionados. Este documento registra somente requisitos necessários ao produto.
