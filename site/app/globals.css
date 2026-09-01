@@ -657,6 +657,16 @@ footer a:last-child {
   font-size: 0.84rem;
   margin-bottom: 14px;
 }
+.form-success {
+  display: block;
+  color: #276142;
+  background: #effaf3;
+  border: 1px solid #a8dbc0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.84rem;
+  margin-bottom: 14px;
+}
 .full {
   width: 100%;
 }
@@ -664,6 +674,17 @@ footer a:last-child {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
+}
+.auth-toggle {
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--pink-dark);
+  font-weight: 750;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .demo-login {
   margin-top: 13px;

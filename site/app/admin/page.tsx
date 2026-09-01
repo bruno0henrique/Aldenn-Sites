@@ -21,6 +21,32 @@ const tabs = [
   { id: 'ignored', label: 'Ignorados' },
 ];
 
+const demoCapture: Capture = {
+  id: -1,
+  instagram_shortcode: 'demo-belleland',
+  source_url: 'https://www.instagram.com/bellelandcloset/',
+  proposed_name: 'Peça de teste Belleland',
+  proposed_description:
+    'Captura de demonstração para testar a curadoria antes da conexão com o Supabase.',
+  proposed_category: 'Novidades',
+  price_cents: 11990,
+  status: 'pending_review',
+  capture_media: [
+    {
+      id: -11,
+      public_url: '/brand/dear-belle-girl.jpeg',
+      decision: 'primary',
+      source_position: 0,
+    },
+    {
+      id: -12,
+      public_url: '/brand/hero-abstract.png',
+      decision: 'secondary',
+      source_position: 1,
+    },
+  ],
+};
+
 export default function AdminPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -29,6 +55,11 @@ export default function AdminPage() {
   const [tab, setTab] = useState('pending_review');
   const [accessError, setAccessError] = useState('');
   const [publishing, setPublishing] = useState<Capture[]>([]);
+  const [demoPending, setDemoPending] = useState<Capture[]>([demoCapture]);
+  const [demoPublishing, setDemoPublishing] = useState<Capture[]>([]);
+  const [demoPublished, setDemoPublished] = useState<Capture[]>([]);
+  const [demoIgnored, setDemoIgnored] = useState<Capture[]>([]);
+  const [demoBusy, setDemoBusy] = useState(false);
   useEffect(() => {
     if (previewMode) return;
     assertOwner().catch((error) => {
@@ -46,7 +77,17 @@ export default function AdminPage() {
       tab === 'publishing' ? Promise.resolve(publishing) : listCaptures(tab),
     enabled: !accessError && !previewMode,
   });
-  const displayedCaptures = tab === 'publishing' ? publishing : captures;
+  const demoCaptures: Record<string, Capture[]> = {
+    pending_review: demoPending,
+    publishing: demoPublishing,
+    published: demoPublished,
+    ignored: demoIgnored,
+  };
+  const displayedCaptures = previewMode
+    ? demoCaptures[tab] || []
+    : tab === 'publishing'
+      ? publishing
+      : captures;
   const publish = useMutation({
     mutationFn: publishCapture,
     onMutate: async (capture) => {
@@ -89,6 +130,52 @@ export default function AdminPage() {
     await requireSupabase().auth.signOut();
     router.replace('/admin/login');
   }
+  function resetDemo() {
+    setDemoPending([demoCapture]);
+    setDemoPublishing([]);
+    setDemoPublished([]);
+    setDemoIgnored([]);
+    setDemoBusy(false);
+    setTab('pending_review');
+  }
+  function handlePublish(capture: Capture) {
+    if (!previewMode) {
+      publish.mutate(capture);
+      return;
+    }
+    setDemoBusy(true);
+    setDemoPending((items) => items.filter((item) => item.id !== capture.id));
+    setDemoPublishing([{ ...capture, status: 'publishing' }]);
+    setTab('publishing');
+    window.setTimeout(() => {
+      setDemoPublishing([]);
+      setDemoPublished([{ ...capture, status: 'published' }]);
+      setDemoBusy(false);
+      setTab('published');
+    }, 700);
+  }
+  function handleIgnore(id: number) {
+    if (!previewMode) {
+      status.mutate({ id, next: 'ignored' });
+      return;
+    }
+    const capture = demoPending.find((item) => item.id === id);
+    if (!capture) return;
+    setDemoPending((items) => items.filter((item) => item.id !== id));
+    setDemoIgnored([{ ...capture, status: 'ignored' }]);
+    setTab('ignored');
+  }
+  function handleRestore(id: number) {
+    if (!previewMode) {
+      status.mutate({ id, next: 'pending_review' });
+      return;
+    }
+    const capture = demoIgnored.find((item) => item.id === id);
+    if (!capture) return;
+    setDemoIgnored((items) => items.filter((item) => item.id !== id));
+    setDemoPending([{ ...capture, status: 'pending_review' }]);
+    setTab('pending_review');
+  }
   const current = displayedCaptures[0];
   return (
     <main className="admin-page">
@@ -112,14 +199,16 @@ export default function AdminPage() {
             <h1>Curadoria de peças</h1>
             {previewMode && (
               <p className="preview-badge">
-                Modo demonstração · sem dados reais
+                Modo demonstração: dados locais de teste
               </p>
             )}
           </div>
           <button
             className="refresh-button"
             onClick={() =>
-              queryClient.invalidateQueries({ queryKey: ['captures'] })
+              previewMode
+                ? resetDemo()
+                : queryClient.invalidateQueries({ queryKey: ['captures'] })
             }
           >
             <RefreshCw size={16} /> Atualizar
@@ -133,9 +222,13 @@ export default function AdminPage() {
               key={item.id}
             >
               {item.label}
-              {item.id === 'publishing' && publishing.length > 0 && (
-                <b>{publishing.length}</b>
-              )}
+              {item.id === 'publishing' &&
+                (previewMode ? demoPublishing.length : publishing.length) >
+                  0 && (
+                  <b>
+                    {previewMode ? demoPublishing.length : publishing.length}
+                  </b>
+                )}
             </button>
           ))}
         </nav>
@@ -147,22 +240,24 @@ export default function AdminPage() {
               : 'Falha ao carregar capturas.'}
           </div>
         )}
-        {isLoading ? (
+        {!previewMode && isLoading ? (
           <div className="admin-loading">Carregando capturas…</div>
         ) : current ? (
           tab === 'pending_review' ? (
             <ReviewCard
               key={current.id}
               initial={current}
-              busy={publish.isPending || status.isPending}
-              onPublish={(capture) => publish.mutate(capture)}
-              onIgnore={(id) => status.mutate({ id, next: 'ignored' })}
+              busy={
+                previewMode ? demoBusy : publish.isPending || status.isPending
+              }
+              onPublish={handlePublish}
+              onIgnore={handleIgnore}
             />
           ) : (
             <CaptureList
               captures={displayedCaptures}
               tab={tab}
-              onRestore={(id) => status.mutate({ id, next: 'pending_review' })}
+              onRestore={handleRestore}
             />
           )
         ) : (

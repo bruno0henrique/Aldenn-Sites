@@ -1,4 +1,4 @@
-# Arquitetura v0.3.0
+# Arquitetura v0.4.0
 
 ## Fluxo
 
@@ -16,15 +16,18 @@
 - A autorização de proprietária vem de `staff_members`, nunca de metadados editáveis do usuário.
 - A service role é exclusiva do script local e não possui prefixo `NEXT_PUBLIC_`.
 - O bucket é público por decisão aprovada. Caminhos têm UUID e listagem não é concedida, mas a URL exata de uma imagem capturada funciona antes da aprovação.
-- O site não coleta pagamento e não cria conta pública nesta versão.
+- O site não coleta pagamento.
+- O cadastro cria apenas a identidade no Supabase Auth. O acesso de proprietária continua dependente de liberação manual em `staff_members`.
+- O modo demonstração usa somente dados locais em memória e não consulta ou altera o Supabase.
 
 ## Operação inicial
 
 1. Criar o projeto Supabase e aplicar `npx supabase db push` após vinculá-lo.
-2. Desativar cadastro público no painel de Auth e criar manualmente a usuária proprietária.
-3. Inserir o UUID dela: `insert into public.staff_members (user_id, role) values ('UUID', 'owner');`.
-4. Copiar `.env.example` para `.env.local` e preencher as chaves.
-5. Instalar o sincronizador: `python -m pip install -r scripts/requirements.txt`.
-6. Rodar `python scripts/sync_instagram.py`; antes de releases, usar `--full`.
+2. Ativar cadastro por e-mail e confirmação de e-mail no painel de Auth.
+3. Cadastrar como URLs de redirecionamento o endereço local e os domínios publicados do site.
+4. Criar a conta pela tela e inserir o UUID autorizado: `insert into public.staff_members (user_id, role) values ('UUID', 'owner');`.
+5. Copiar `.env.example` para `.env.local` e preencher as chaves.
+6. Instalar o sincronizador: `python -m pip install -r scripts/requirements.txt`.
+7. Rodar `python scripts/sync_instagram.py`; antes de releases, usar `--full`.
 
 Se Instagram limitar ou bloquear a leitura, o script termina com erro e preserva banco e catálogo já publicados.

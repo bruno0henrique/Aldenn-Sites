@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.4.0] - 2026-09-01
+
+### Adicionado
+
+- Fluxo funcional de demonstração com captura local editável, publicação, descarte e restauração.
+- Criação de conta por e-mail e senha via Supabase Auth.
+
+### Segurança
+
+- Novas contas permanecem sem acesso de proprietária até a liberação manual em `staff_members`.
+- O modo demonstração continua isolado do Supabase e não altera dados reais.
+
 ## [0.3.2] - 2026-09-01
 
 ### Alterado
