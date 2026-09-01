@@ -1,8 +1,8 @@
 'use client';
 
 import { ArrowLeft, LockKeyhole } from 'lucide-react';
-import { SyntheticEvent, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { Suspense, SyntheticEvent, useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getSupabase, requireSupabase } from '@/lib/supabase';
 
 async function getSignedInDestination(userId: string) {
@@ -12,11 +12,22 @@ async function getSignedInDestination(userId: string) {
     .eq('user_id', userId)
     .maybeSingle();
   if (error) throw error;
-  return data?.role === 'owner' ? '/admin' : '/?conta=conectada';
+  return data?.role === 'owner' || data?.role === 'admin'
+    ? '/admin'
+    : '/?conta=conectada';
 }
 
 export default function AdminLogin() {
+  return (
+    <Suspense fallback={<main className="surface-page" />}>
+      <AdminLoginContent />
+    </Suspense>
+  );
+}
+
+function AdminLoginContent() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +68,7 @@ export default function AdminLogin() {
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/admin/login`,
+            emailRedirectTo: `${window.location.origin}/auth/confirm`,
             data: { marketing_opt_in: marketingOptIn },
           },
         });
@@ -103,6 +114,12 @@ export default function AdminLogin() {
         {error && (
           <div className="form-error" role="alert">
             {error}
+          </div>
+        )}
+        {searchParams.get('erro') === 'confirmacao' && !error && (
+          <div className="form-error" role="alert">
+            O link não pôde ser confirmado. Solicite um novo e-mail ou entre
+            com sua senha se a conta já estiver confirmada.
           </div>
         )}
         {message && <output className="form-success">{message}</output>}

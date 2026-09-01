@@ -2,7 +2,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { extname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const outputDirectory = fileURLToPath(new URL('../dist/', import.meta.url));
+const outputDirectory = fileURLToPath(new URL('../.next/', import.meta.url));
 const textExtensions = new Set([
   '.css',
   '.html',

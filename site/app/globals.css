@@ -97,11 +97,18 @@ a {
   box-shadow: 0 18px 40px rgba(91, 42, 60, 0.13);
   display: grid;
   gap: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-14px) scale(0.98);
+  transform-origin: top left;
 }
 .menu-panel a {
   padding: 12px 14px;
   border-radius: 12px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 9px;
 }
 .menu-panel a:hover {
   background: var(--pink-soft);
@@ -703,18 +710,55 @@ footer a:last-child {
   accent-color: var(--pink);
   flex: 0 0 auto;
 }
-.account-notice {
-  display: block;
-  width: min(540px, calc(100% - 32px));
-  margin: 14px auto 0;
-  padding: 10px 14px;
+.account-toast {
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  z-index: 80;
+  width: min(430px, calc(100% - 32px));
+  transform: translateX(-50%);
+  padding: 11px 12px 11px 15px;
   border: 1px solid #a8dbc0;
-  border-radius: 12px;
-  background: #effaf3;
+  border-radius: 14px;
+  background: rgba(239, 250, 243, 0.98);
   color: #276142;
-  text-align: center;
   font-size: 0.86rem;
   font-weight: 750;
+  box-shadow: 0 14px 38px rgba(44, 93, 65, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  animation: toast-in 0.35s ease both;
+}
+.account-toast span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.account-toast button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.account-toast button:hover {
+  background: rgba(39, 97, 66, 0.1);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
 }
 .demo-login {
   margin-top: 13px;
@@ -805,6 +849,157 @@ footer a:last-child {
   }
   .product-gallery-main {
     max-height: 680px;
+  }
+}
+
+.account-page {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(249, 219, 231, 0.72), transparent 30%),
+    radial-gradient(circle at 92% 80%, rgba(248, 232, 166, 0.42), transparent 25%),
+    #fffaf7;
+}
+.account-shell {
+  width: min(680px, calc(100% - 32px));
+  margin: 36px auto 70px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #ebdcd6;
+  border-radius: 26px;
+  padding: clamp(22px, 5vw, 38px);
+  box-shadow: 0 20px 55px rgba(91, 42, 60, 0.09);
+}
+.account-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.account-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  background: var(--pink-soft);
+  color: var(--pink-dark);
+}
+.account-heading p {
+  margin: 0;
+  color: var(--pink-dark);
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+.account-heading h1 {
+  margin: 2px 0 0;
+  color: var(--pink-dark);
+  font: 800 clamp(2rem, 8vw, 3rem) var(--font-playfair-display), serif;
+}
+.account-loading {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  color: #836c63;
+}
+.staff-shortcut {
+  margin-bottom: 20px;
+  padding: 13px 15px;
+  border-radius: 13px;
+  background: #fff0f6;
+  color: var(--pink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 850;
+}
+.account-consent {
+  padding: 14px;
+  border: 1px solid #ead8d1;
+  border-radius: 13px;
+  background: #fffaf7;
+}
+.account-logout {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: #8d5c50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.manual-trigger {
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 13px 16px;
+  border: 1px dashed var(--pink);
+  border-radius: 14px;
+  background: #fff9fb;
+  color: var(--pink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 850;
+  cursor: pointer;
+}
+.manual-product-form {
+  margin: 0 0 24px;
+  padding: clamp(18px, 4vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 32px rgba(91, 42, 60, 0.06);
+}
+.manual-product-form > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.manual-product-form header span {
+  color: var(--pink-dark);
+  font-size: 0.66rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.manual-product-form h2 {
+  margin: 3px 0 0;
+  font: 800 1.65rem var(--font-playfair-display), serif;
+}
+.manual-product-form header button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  color: var(--pink-dark);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.manual-product-form > p {
+  margin: 8px 0 22px;
+  color: #826a61;
+  font-size: 0.86rem;
+}
+.manual-image-field label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (min-width: 700px) {
+  .manual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 14px;
   }
 }
 

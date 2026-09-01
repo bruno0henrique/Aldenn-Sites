@@ -155,14 +155,24 @@ max_indexes = 5
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
-site_url = "https://belleland-closet.souza-bruno-souza07.chatgpt.site"
+site_url = "https://aldenn-sites.vercel.app"
 # The public URL that Auth serves on. Defaults to the API external URL with `/auth/v1` appended.
 # external_url = ""
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
 additional_redirect_urls = [
   "http://localhost:3000/admin/login",
+  "http://localhost:3000/auth/confirm",
+  "http://localhost:3000/conta",
   "http://127.0.0.1:3000/admin/login",
-  "https://belleland-closet.souza-bruno-souza07.chatgpt.site/admin/login",
+  "http://127.0.0.1:3000/auth/confirm",
+  "http://127.0.0.1:3000/conta",
+  "https://aldenn-sites.vercel.app/admin/login",
+  "https://aldenn-sites.vercel.app/auth/confirm",
+  "https://aldenn-sites.vercel.app/conta",
+  "https://aldenn-sites-bruno0henriques-projects.vercel.app/",
+  "https://aldenn-sites-bruno0henriques-projects.vercel.app/**",
+  "https://aldenn-*-sites-bruno0henriques-projects.vercel.app",
+  "https://aldenn-*-sites-bruno0henriques-projects.vercel.app/**",
 ]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600

@@ -2,11 +2,12 @@
 
 import { ArrowUpRight, LogOut, RefreshCw } from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ReviewCard } from '@/components/review-card';
+import { ManualProductForm } from '@/components/manual-product-form';
 import {
-  assertOwner,
+  assertStaff,
   listCaptures,
   publishCapture,
   setCaptureStatus,
@@ -48,6 +49,14 @@ const demoCapture: Capture = {
 };
 
 export default function AdminPage() {
+  return (
+    <Suspense fallback={<main className="admin-page" />}>
+      <AdminPageContent />
+    </Suspense>
+  );
+}
+
+function AdminPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const previewMode = searchParams.get('preview') === '1';
@@ -62,7 +71,7 @@ export default function AdminPage() {
   const [demoBusy, setDemoBusy] = useState(false);
   useEffect(() => {
     if (previewMode) return;
-    assertOwner().catch((error) => {
+    assertStaff().catch((error) => {
       setAccessError(error.message);
       setTimeout(() => router.replace('/admin/login'), 1500);
     });
@@ -195,8 +204,8 @@ export default function AdminPage() {
       <div className="admin-container">
         <div className="admin-title">
           <div>
-            <span>Painel da proprietária</span>
-            <h1>Curadoria de peças</h1>
+            <span>Painel administrativo</span>
+            <h1>Aprovações</h1>
             {previewMode && (
               <p className="preview-badge">
                 Modo demonstração: dados locais de teste
@@ -214,6 +223,14 @@ export default function AdminPage() {
             <RefreshCw size={16} /> Atualizar
           </button>
         </div>
+        {!previewMode && (
+          <ManualProductForm
+            onCreated={() => {
+              setTab('pending_review');
+              void queryClient.invalidateQueries({ queryKey: ['captures'] });
+            }}
+          />
+        )}
         <nav className="admin-tabs" aria-label="Estados da curadoria">
           {tabs.map((item) => (
             <button
@@ -306,9 +323,13 @@ function CaptureList({
             <h2>
               {capture.proposed_name || `Post ${capture.instagram_shortcode}`}
             </h2>
-            <a href={capture.source_url} target="_blank" rel="noreferrer">
-              Ver no Instagram
-            </a>
+            {capture.source_url ? (
+              <a href={capture.source_url} target="_blank" rel="noreferrer">
+                Ver no Instagram
+              </a>
+            ) : (
+              <small>Cadastro manual</small>
+            )}
           </div>
           {tab === 'ignored' && (
             <button

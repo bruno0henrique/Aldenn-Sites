@@ -1,5 +1,23 @@
 # Histórico de versões
 
+## [0.6.0] - 2026-09-01
+
+### Adicionado
+
+- Área de conta com nome, telefone, preferência promocional e encerramento de sessão.
+- Papel de administrador com acesso às aprovações, mantendo uma única proprietária.
+- Cadastro manual de peça com foto e envio para a fila de revisão.
+- Item `Aprovações` no menu para contas autorizadas.
+
+### Corrigido
+
+- Confirmação de e-mail direcionada ao domínio ativo do site.
+- Sessão autenticada refletida no menu e no rodapé.
+- Aviso de conta conectada convertido em notificação temporária com fechamento manual.
+- Abertura e fechamento do menu receberam animação GSAP com redução de movimento.
+- Aplicação migrada para execução direta na Vercel, removendo o redirecionamento para o ambiente privado.
+- URL principal do Supabase alterada para o domínio estável da Vercel.
+
 ## [0.5.1] - 2026-09-01
 
 ### Corrigido

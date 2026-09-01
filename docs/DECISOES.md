@@ -21,3 +21,25 @@
 - Motivo: Permitir cadastro imediato sem inventar credenciais ou remetente.
 - Impactos: O envio de campanhas promocionais ainda não faz parte desta entrega.
 - Substitui: Não se aplica.
+
+## DEC-003: Proprietária única e administradores adicionais
+
+- Data: 2026-09-01
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A operação terá mais de uma pessoa revisando e publicando peças, mas somente uma conta representa a proprietária.
+- Decisão: Manter uma única conta com papel `owner` e permitir múltiplas contas com papel `admin`. Os dois papéis acessam as aprovações.
+- Motivo: Permitir colaboração administrativa sem duplicar a identidade da proprietária.
+- Impactos: O menu mostra `Aprovações` somente para esses papéis. Contas comuns continuam limitadas à área pessoal.
+- Substitui: Complementa a DEC-001.
+
+## DEC-004: Vercel como ambiente oficial
+
+- Data: 2026-09-01
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O domínio privado de avaliação exigia autenticação externa e não deve receber visitantes ou links do Supabase.
+- Decisão: Publicar o aplicativo diretamente na Vercel e usar seu domínio estável como URL principal de autenticação.
+- Motivo: Manter o mesmo padrão de hospedagem dos demais projetos e evitar a barreira de acesso privada.
+- Impactos: Links de confirmação, área de conta e painel retornam ao domínio da Vercel.
+- Substitui: O uso do domínio privado como endereço principal.
