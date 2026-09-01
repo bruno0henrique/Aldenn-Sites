@@ -39,17 +39,33 @@ export async function saveCapture(capture: Capture) {
     })
     .eq('id', capture.id);
   if (error) throw error;
-  const mediaRows = capture.capture_media.map((media) => ({
-    id: media.id,
-    capture_id: capture.id,
-    decision: media.decision,
-    source_position: media.source_position,
-    public_url: media.public_url,
-  }));
-  const { error: mediaError } = await supabase
+  const primary = capture.capture_media.find(
+    (media) => media.decision === 'primary',
+  );
+  const { error: demoteError } = await supabase
     .from('capture_media')
-    .upsert(mediaRows);
-  if (mediaError) throw mediaError;
+    .update({ decision: 'secondary' })
+    .eq('capture_id', capture.id)
+    .eq('decision', 'primary');
+  if (demoteError) throw demoteError;
+  for (const media of capture.capture_media.filter(
+    (item) => item.id !== primary?.id,
+  )) {
+    const { error: mediaError } = await supabase
+      .from('capture_media')
+      .update({ decision: media.decision })
+      .eq('id', media.id)
+      .eq('capture_id', capture.id);
+    if (mediaError) throw mediaError;
+  }
+  if (primary) {
+    const { error: primaryError } = await supabase
+      .from('capture_media')
+      .update({ decision: 'primary' })
+      .eq('id', primary.id)
+      .eq('capture_id', capture.id);
+    if (primaryError) throw primaryError;
+  }
 }
 export async function publishCapture(capture: Capture) {
   await saveCapture(capture);

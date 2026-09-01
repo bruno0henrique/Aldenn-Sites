@@ -3,7 +3,7 @@
 import { ArrowLeft, Camera, MessageCircle } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { getProduct } from '@/lib/catalog';
 import { formatPrice } from '@/lib/format';
 import { whatsappUrl } from '@/lib/whatsapp';
@@ -15,6 +15,11 @@ export default function ProductPage() {
     queryFn: () => getProduct(params.slug),
   });
   const [selected, setSelected] = useState(0);
+  const pageUrl = useSyncExternalStore(
+    () => () => undefined,
+    () => window.location.href,
+    () => '',
+  );
   if (isLoading)
     return (
       <main className="surface-page">
@@ -46,7 +51,7 @@ export default function ProductPage() {
   const reserve = whatsappUrl({
     name: product.name,
     price: formatPrice(product.price_cents),
-    url: typeof window === 'undefined' ? '' : window.location.href,
+    url: pageUrl,
   });
   return (
     <main className="surface-page">

@@ -78,6 +78,9 @@ export default function AdminLogin() {
         <button className="button-pop button-primary full" disabled={loading}>
           {loading ? 'Entrando…' : 'Entrar'}
         </button>
+        <a className="demo-login" href="/admin?preview=1">
+          Entrar sem login <span>modo de teste</span>
+        </a>
       </form>
     </main>
   );

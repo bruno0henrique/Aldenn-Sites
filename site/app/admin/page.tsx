@@ -3,7 +3,7 @@
 import { ArrowUpRight, LogOut, RefreshCw } from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ReviewCard } from '@/components/review-card';
 import {
   assertOwner,
@@ -23,16 +23,19 @@ const tabs = [
 
 export default function AdminPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const previewMode = searchParams.get('preview') === '1';
   const queryClient = useQueryClient();
   const [tab, setTab] = useState('pending_review');
   const [accessError, setAccessError] = useState('');
   const [publishing, setPublishing] = useState<Capture[]>([]);
   useEffect(() => {
+    if (previewMode) return;
     assertOwner().catch((error) => {
       setAccessError(error.message);
       setTimeout(() => router.replace('/admin/login'), 1500);
     });
-  }, [router]);
+  }, [previewMode, router]);
   const {
     data: captures = [],
     isLoading,
@@ -41,8 +44,9 @@ export default function AdminPage() {
     queryKey: ['captures', tab],
     queryFn: () =>
       tab === 'publishing' ? Promise.resolve(publishing) : listCaptures(tab),
-    enabled: !accessError,
+    enabled: !accessError && !previewMode,
   });
+  const displayedCaptures = tab === 'publishing' ? publishing : captures;
   const publish = useMutation({
     mutationFn: publishCapture,
     onMutate: async (capture) => {
@@ -78,10 +82,14 @@ export default function AdminPage() {
     },
   });
   async function logout() {
+    if (previewMode) {
+      router.replace('/admin/login');
+      return;
+    }
     await requireSupabase().auth.signOut();
     router.replace('/admin/login');
   }
-  const current = captures[0];
+  const current = displayedCaptures[0];
   return (
     <main className="admin-page">
       <header className="admin-header">
@@ -102,6 +110,11 @@ export default function AdminPage() {
           <div>
             <span>Painel da proprietária</span>
             <h1>Curadoria de peças</h1>
+            {previewMode && (
+              <p className="preview-badge">
+                Modo demonstração · sem dados reais
+              </p>
+            )}
           </div>
           <button
             className="refresh-button"
@@ -147,7 +160,7 @@ export default function AdminPage() {
             />
           ) : (
             <CaptureList
-              captures={captures}
+              captures={displayedCaptures}
               tab={tab}
               onRestore={(id) => status.mutate({ id, next: 'pending_review' })}
             />

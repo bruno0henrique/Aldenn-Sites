@@ -65,6 +65,8 @@ a {
   width: 142px;
   height: 56px;
   object-fit: contain;
+  filter: invert(35%) sepia(77%) saturate(2644%) hue-rotate(314deg)
+    brightness(94%) contrast(92%);
 }
 .icon-button {
   width: 42px;
@@ -607,6 +609,8 @@ footer a:last-child {
   width: 132px;
   height: 54px;
   object-fit: contain;
+  filter: invert(35%) sepia(77%) saturate(2644%) hue-rotate(314deg)
+    brightness(94%) contrast(92%);
 }
 .back-link {
   display: inline-flex;
@@ -676,6 +680,24 @@ footer a:last-child {
   opacity: 0.55;
   cursor: not-allowed;
   transform: none;
+}
+.demo-login {
+  margin-top: 13px;
+  min-height: 44px;
+  border: 1px dashed var(--pink);
+  border-radius: 11px;
+  color: var(--pink-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 800;
+  font-size: 0.86rem;
+}
+.demo-login span {
+  color: #98766a;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 .product-detail {
   max-width: 1050px;
@@ -772,6 +794,8 @@ footer a:last-child {
   width: 124px;
   height: 56px;
   object-fit: contain;
+  filter: invert(35%) sepia(77%) saturate(2644%) hue-rotate(314deg)
+    brightness(94%) contrast(92%);
 }
 .admin-header > div {
   display: flex;
@@ -810,6 +834,16 @@ footer a:last-child {
     800 clamp(2rem, 6vw, 3rem)/1 var(--font-playfair-display),
     serif;
   margin: 5px 0 0;
+}
+.preview-badge {
+  display: inline-flex;
+  margin: 10px 0 0;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: #6d5522;
+  font-size: 0.7rem;
+  font-weight: 850;
 }
 .refresh-button,
 .undo-button {

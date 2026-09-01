@@ -8,6 +8,7 @@
 - Catálogo público, página individual de produto e reserva pelo WhatsApp.
 - Login Supabase por e-mail e senha para a proprietária.
 - Painel de curadoria com revisão de imagens, edição, preço, publicação otimista e restauração.
+- Modo demonstração sem login e sem acesso aos dados reais, disponível no site privado para avaliação do painel.
 - Migração PostgreSQL com RLS, Storage, auditoria e publicação transacional.
 - Sincronizador manual do Instagram por `#bellelandproduto`.
 - Animações GSAP acessíveis e microinterações inspiradas no Uiverse.

@@ -12,6 +12,7 @@ Versão: 0.3.0
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
 - Não usar produtos fictícios. Sem itens publicados, exibir “Em breve, novos produtos”.
 - Proprietária entra com e-mail e senha via Supabase e revisa capturas antes de publicar.
+- Enquanto o site estiver em avaliação privada, o painel oferece modo demonstração sem login e sem acesso aos dados reais.
 - A publicação exige nome, preço maior que zero e exatamente uma foto principal.
 - Publicação é otimista e transacional; falha devolve a peça para revisão.
 - Login Google e contas de clientes ficam para uma etapa futura.
