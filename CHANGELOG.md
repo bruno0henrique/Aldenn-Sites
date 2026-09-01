@@ -1,5 +1,19 @@
 # Histórico de versões
 
+## [0.8.0] - 2026-09-01
+
+### Adicionado
+
+- Categorias da página inicial agora filtram a coleção publicada.
+- Categorias vazias exibem uma mensagem contextual sobre próximas novidades.
+- Favicon, ícone para dispositivos Apple e imagem oficial de compartilhamento.
+- Metadados Open Graph e Twitter Card para prévias de links e WhatsApp.
+
+### Alterado
+
+- Arte abstrata removida do hero em telas mobile.
+- Categoria selecionada recebe destaque visual e pode ser desmarcada com um novo clique.
+
 ## [0.7.0] - 2026-09-01
 
 ### Alterado

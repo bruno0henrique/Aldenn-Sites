@@ -5,9 +5,11 @@ import { formatPrice } from '@/lib/format';
 export function ProductGrid({
   products,
   isLoading,
+  emptyCategory,
 }: {
   products: Product[];
   isLoading: boolean;
+  emptyCategory?: string | null;
 }) {
   if (isLoading)
     return (
@@ -23,8 +25,16 @@ export function ProductGrid({
         <span>
           <Sparkles />
         </span>
-        <h3>Em breve, novos produtos</h3>
-        <p>A primeira seleção Belleland está sendo preparada com carinho.</p>
+        <h3>
+          {emptyCategory
+            ? `Sem opções de ${emptyCategory} no momento`
+            : 'Em breve, novos produtos'}
+        </h3>
+        <p>
+          {emptyCategory
+            ? 'Em breve teremos novidades nessa categoria.'
+            : 'A primeira seleção Belleland está sendo preparada com carinho.'}
+        </p>
         <a
           href="https://instagram.com/bellelandcloset"
           target="_blank"

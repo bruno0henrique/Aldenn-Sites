@@ -234,6 +234,7 @@ a {
   background: white;
 }
 .hero-art {
+  display: none;
   height: clamp(72px, 20vw, 96px);
   min-height: 0;
   position: relative;
@@ -255,7 +256,7 @@ a {
   max-width: 1140px;
   margin: auto;
 }
-.category-strip a {
+.category-strip button {
   padding: 16px 10px;
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -265,6 +266,20 @@ a {
   gap: 9px;
   font-weight: 750;
   background: rgba(255, 250, 245, 0.5);
+  color: var(--cocoa);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.category-strip button:hover,
+.category-strip button.active {
+  border-color: var(--pink);
+  background: var(--pink-soft);
+  color: var(--pink-dark);
+  transform: translateY(-1px);
 }
 .category-strip span {
   color: var(--pink);
@@ -541,6 +556,7 @@ footer a:last-child {
     max-width: none;
   }
   .hero-art {
+    display: block;
     position: absolute;
     inset: 0;
     height: auto;

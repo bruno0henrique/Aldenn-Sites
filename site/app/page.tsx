@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
+import { Suspense, useMemo, useState } from 'react';
 import { BrandHeader } from '@/components/brand-header';
 import { AccountFooterLink } from '@/components/account-footer-link';
 import { AccountToast } from '@/components/account-toast';
@@ -17,6 +17,21 @@ import { MotionScene } from '@/components/motion-scene';
 import { ProductGrid } from '@/components/product-grid';
 import { getPublishedProducts } from '@/lib/catalog';
 import { whatsappUrl } from '@/lib/whatsapp';
+
+const categories = [
+  { label: 'Tops', icon: '♟', values: ['top', 'tops'] },
+  { label: 'Básicos', icon: '♥', values: ['basico', 'basicos'] },
+  { label: 'Conjuntos', icon: '✦', values: ['conjunto', 'conjuntos'] },
+  { label: 'Novidades', icon: '✿', values: ['novidade', 'novidades'] },
+];
+
+function normalizeCategory(value: string | null) {
+  return (value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+    .toLowerCase();
+}
 
 export default function Home() {
   return (
@@ -28,10 +43,21 @@ export default function Home() {
 
 function HomeContent() {
   const searchParams = useSearchParams();
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['published-products'],
     queryFn: getPublishedProducts,
   });
+  const filteredProducts = useMemo(() => {
+    if (!activeCategory) return products;
+    const selected = categories.find(
+      (category) => category.label === activeCategory,
+    );
+    if (!selected) return products;
+    return products.filter((product) =>
+      selected.values.includes(normalizeCategory(product.category)),
+    );
+  }, [activeCategory, products]);
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
       <BrandHeader />
@@ -71,18 +97,29 @@ function HomeContent() {
             <img src="/brand/hero-abstract.png" alt="" aria-hidden="true" />
           </div>
         </section>
-        {products.length > 0 && (
-          <nav className="category-strip" aria-label="Categorias" data-reveal>
-            {['Tops', 'Básicos', 'Conjuntos', 'Novidades'].map(
-              (category, index) => (
-                <a key={category} href="#colecao">
-                  <span>{['♟', '♥', '✦', '✿'][index]}</span>
-                  {category}
-                </a>
-              ),
-            )}
-          </nav>
-        )}
+        <nav className="category-strip" aria-label="Filtrar por categoria" data-reveal>
+          {categories.map((category) => {
+            const active = activeCategory === category.label;
+            return (
+              <button
+                key={category.label}
+                type="button"
+                className={active ? 'active' : ''}
+                aria-pressed={active}
+                aria-label={`Filtrar por ${category.label}`}
+                onClick={() => {
+                  setActiveCategory(active ? null : category.label);
+                  document
+                    .getElementById('colecao')
+                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+              >
+                <span>{category.icon}</span>
+                {category.label}
+              </button>
+            );
+          })}
+        </nav>
         <section
           className="collection"
           id="colecao"
@@ -92,9 +129,13 @@ function HomeContent() {
             seleção especial
           </p>
           <h2 id="collection-title" data-reveal>
-            First Drop
+            {activeCategory || 'First Drop'}
           </h2>
-          <ProductGrid products={products} isLoading={isLoading} />
+          <ProductGrid
+            products={filteredProducts}
+            isLoading={isLoading}
+            emptyCategory={activeCategory}
+          />
         </section>
         <section className="made-with-love" data-reveal>
           <div className="love-title">
