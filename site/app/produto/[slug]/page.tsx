@@ -67,7 +67,7 @@ export default function ProductPage() {
             <img
               className="product-gallery-main"
               src={images[selected]}
-              alt={`${product.name} — foto ${selected + 1}`}
+              alt={`${product.name}, foto ${selected + 1}`}
             />
             {images.length > 1 && (
               <div className="thumb-row">

@@ -95,7 +95,7 @@ export default function Home() {
             </p>
             <p>
               Cada detalhe é pensado com carinho para você se sentir linda,
-              confiante e autêntica — todos os dias.
+              confiante e autêntica todos os dias.
             </p>
           </div>
         </section>

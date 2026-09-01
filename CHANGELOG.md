@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.3.2] - 2026-09-01
+
+### Alterado
+
+- Removido o caractere de travessão de todo o conteúdo versionado do projeto.
+
 ## [0.3.1] - 2026-09-01
 
 ### Alterado

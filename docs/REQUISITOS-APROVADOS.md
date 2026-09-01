@@ -1,4 +1,4 @@
-# Requisitos aprovados — Belleland Closet
+# Requisitos aprovados: Belleland Closet
 
 Versão: 0.3.0
 

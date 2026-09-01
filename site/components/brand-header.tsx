@@ -16,7 +16,7 @@ export function BrandHeader() {
       >
         {open ? <X /> : <Menu />}
       </button>
-      <a href="/" aria-label="Belleland Closet — início">
+      <a href="/" aria-label="Belleland Closet, início">
         <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
       </a>
       <a

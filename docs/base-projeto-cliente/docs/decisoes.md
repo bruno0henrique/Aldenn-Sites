@@ -11,7 +11,7 @@ Não apagar decisões antigas. Quando uma regra mudar, marcar a anterior como `S
 
 ## Modelo
 
-### DEC-001 — [Título]
+### DEC-001: [Título]
 
 - Data: [AAAA-MM-DD]
 - Estado: [estado]
@@ -21,4 +21,3 @@ Não apagar decisões antigas. Quando uma regra mudar, marcar a anterior como `S
 - Motivo: [justificativa]
 - Impactos: [consequências]
 - Substitui: [decisão ou não se aplica]
-
