@@ -234,7 +234,7 @@ a {
   background: white;
 }
 .hero-art {
-  min-height: clamp(130px, 36vw, 170px);
+  min-height: clamp(72px, 20vw, 96px);
   position: relative;
   z-index: 1;
   margin-top: 8px;
@@ -248,8 +248,8 @@ a {
 .category-strip {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 24px 18px 0;
+  gap: 8px;
+  padding: 12px 14px 0;
   max-width: 1140px;
   margin: auto;
 }
@@ -269,7 +269,7 @@ a {
   font-size: 1.25rem;
 }
 .collection {
-  padding: 62px 18px 48px;
+  padding: 34px 14px 24px;
   max-width: 1140px;
   margin: auto;
 }
@@ -283,7 +283,7 @@ a {
   color: #b97966;
 }
 .collection > h2 {
-  margin: 3px 0 34px;
+  margin: 3px 0 20px;
   color: var(--pink);
   text-align: center;
   font-family: var(--font-playfair-display), serif;
@@ -334,7 +334,7 @@ a {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 10px;
 }
 .product-card {
   border: 1px solid #d7c5bd;
@@ -390,7 +390,7 @@ a {
   animation: shimmer 1.4s infinite;
 }
 .made-with-love {
-  margin: 0 18px 30px;
+  margin: 0 14px 14px;
   padding: 28px 25px;
   border: 1.5px solid var(--pink);
   border-radius: 22px;
@@ -426,7 +426,7 @@ a {
   margin: 0 0 13px;
 }
 .whatsapp-banner {
-  margin: 0 18px 30px;
+  margin: 0 14px 14px;
   padding: 25px 20px;
   border-radius: 25px;
   background: linear-gradient(135deg, #ee3c86, #e93d7c);
@@ -521,6 +521,12 @@ footer a:last-child {
   .category-strip {
     grid-template-columns: repeat(4, 1fr);
     padding-top: 32px;
+  }
+  .collection {
+    padding: 62px 18px 48px;
+  }
+  .collection > h2 {
+    margin-bottom: 34px;
   }
   .made-with-love {
     margin: 10px auto 36px;

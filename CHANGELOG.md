@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.6.2] - 2026-09-01
+
+### Alterado
+
+- Espaçamentos verticais entre hero, categorias, coleção e blocos finais ficaram mais compactos no mobile.
+- Grade de produtos recebeu menor distância entre os cards em telas pequenas.
+
 ## [0.6.1] - 2026-09-01
 
 ### Alterado
