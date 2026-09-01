@@ -3,10 +3,12 @@
 import { useGSAP } from '@gsap/react';
 import { useQuery } from '@tanstack/react-query';
 import {
+  Camera,
   ClipboardCheck,
   LogIn,
   Menu,
   MessageCircle,
+  Sparkles,
   UserRound,
   X,
 } from 'lucide-react';
@@ -77,7 +79,7 @@ export function BrandHeader() {
         aria-label="Menu principal"
       >
         <a href="/#colecao" onClick={() => setOpen(false)}>
-          First Drop
+          <Sparkles size={18} /> First Drop
         </a>
         {account?.user ? (
           <a href="/conta" onClick={() => setOpen(false)}>
@@ -99,7 +101,7 @@ export function BrandHeader() {
           rel="noreferrer"
           onClick={() => setOpen(false)}
         >
-          Instagram
+          <Camera size={18} /> Instagram
         </a>
         <a
           href={whatsappUrl()}
@@ -107,7 +109,7 @@ export function BrandHeader() {
           rel="noreferrer"
           onClick={() => setOpen(false)}
         >
-          WhatsApp
+          <MessageCircle size={18} /> WhatsApp
         </a>
       </nav>
     </header>

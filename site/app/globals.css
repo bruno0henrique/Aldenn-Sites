@@ -234,7 +234,7 @@ a {
   background: white;
 }
 .hero-art {
-  min-height: 230px;
+  min-height: clamp(130px, 36vw, 170px);
   position: relative;
   z-index: 1;
   margin-top: 8px;

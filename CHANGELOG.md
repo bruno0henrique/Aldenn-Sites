@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.6.1] - 2026-09-01
+
+### Alterado
+
+- Faixa abstrata entre a abertura e as categorias ficou mais compacta no mobile.
+- Todos os itens do menu principal agora possuem ícones consistentes.
+
 ## [0.6.0] - 2026-09-01
 
 ### Adicionado
