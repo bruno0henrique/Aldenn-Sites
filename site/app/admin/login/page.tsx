@@ -5,20 +5,41 @@ import { SyntheticEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSupabase, requireSupabase } from '@/lib/supabase';
 
+async function getSignedInDestination(userId: string) {
+  const { data, error } = await requireSupabase()
+    .from('staff_members')
+    .select('role')
+    .eq('user_id', userId)
+    .maybeSingle();
+  if (error) throw error;
+  return data?.role === 'owner' ? '/admin' : '/?conta=conectada';
+}
+
 export default function AdminLogin() {
   const router = useRouter();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [marketingOptIn, setMarketingOptIn] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     void getSupabase()
-      ?.auth.getSession()
+      ?.auth.getUser()
       .then(({ data }) => {
-        if (data.session) router.replace('/admin');
+        if (data.user) {
+          void getSignedInDestination(data.user.id)
+            .then((destination) => router.replace(destination))
+            .catch((cause) =>
+              setError(
+                cause instanceof Error
+                  ? cause.message
+                  : 'Não foi possível verificar a conta.',
+              ),
+            );
+        }
       });
   }, [router]);
   async function submit(event: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
@@ -35,23 +56,25 @@ export default function AdminLogin() {
         const { data, error: authError } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/admin/login` },
+          options: {
+            emailRedirectTo: `${window.location.origin}/admin/login`,
+            data: { marketing_opt_in: marketingOptIn },
+          },
         });
         if (authError) throw authError;
         if (data.session) await supabase.auth.signOut();
         setPassword('');
         setConfirmPassword('');
+        setMarketingOptIn(false);
         setMode('login');
         setMessage(
-          'Conta criada. Confirme seu e-mail e aguarde a liberação do acesso de proprietária.',
+          'Conta criada. Confirme seu e-mail para concluir o cadastro e receber novidades da Belleland.',
         );
       } else {
-        const { error: authError } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+        const { data, error: authError } =
+          await supabase.auth.signInWithPassword({ email, password });
         if (authError) throw authError;
-        router.replace('/admin');
+        router.replace(await getSignedInDestination(data.user.id));
       }
     } catch (cause) {
       setError(
@@ -71,11 +94,11 @@ export default function AdminLogin() {
       </nav>
       <form className="form-card" onSubmit={submit}>
         <LockKeyhole color="#e73f8c" />
-        <h1>{mode === 'login' ? 'Área da proprietária' : 'Criar conta'}</h1>
+        <h1>{mode === 'login' ? 'Sua conta Belleland' : 'Criar conta'}</h1>
         <p>
           {mode === 'login'
-            ? 'Entre para revisar e publicar as peças captadas.'
-            : 'Cadastre seu acesso. A conta precisará ser liberada como proprietária.'}
+            ? 'Entre na sua conta para acompanhar a Belleland.'
+            : 'Crie sua conta para receber novidades, promoções e lançamentos da Belleland.'}
         </p>
         {error && (
           <div className="form-error" role="alert">
@@ -109,18 +132,32 @@ export default function AdminLogin() {
           />
         </div>
         {mode === 'signup' && (
-          <div className="field">
-            <label htmlFor="confirm-password">Confirmar senha</label>
-            <input
-              id="confirm-password"
-              type="password"
-              autoComplete="new-password"
-              required
-              minLength={8}
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
+          <>
+            <div className="field">
+              <label htmlFor="confirm-password">Confirmar senha</label>
+              <input
+                id="confirm-password"
+                type="password"
+                autoComplete="new-password"
+                required
+                minLength={8}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <label className="consent-field">
+              <input
+                type="checkbox"
+                required
+                checked={marketingOptIn}
+                onChange={(e) => setMarketingOptIn(e.target.checked)}
+              />
+              <span>
+                Quero receber promoções, novidades e lançamentos da Belleland
+                por e-mail.
+              </span>
+            </label>
+          </>
         )}
         <button className="button-pop button-primary full" disabled={loading}>
           {loading
@@ -139,6 +176,7 @@ export default function AdminLogin() {
             setError('');
             setMessage('');
             setConfirmPassword('');
+            setMarketingOptIn(false);
           }}
         >
           {mode === 'login'

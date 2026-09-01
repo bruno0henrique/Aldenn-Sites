@@ -1,5 +1,20 @@
 # Histórico de versões
 
+## [0.5.0] - 2026-09-01
+
+### Adicionado
+
+- Conexão do site com o projeto Supabase da Belleland.
+- Cadastro e login para contas comuns, com redirecionamento separado da proprietária.
+- Consentimento promocional e perfil persistido automaticamente no banco.
+- Sessões em cookies com `@supabase/ssr` e atualização no proxy.
+
+### Segurança
+
+- RLS aplicada aos perfis de clientes.
+- Banco limitado a uma única conta proprietária.
+- Permissões públicas removidas da função interna de ativação automática de RLS.
+
 ## [0.4.0] - 2026-09-01
 
 ### Adicionado

@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 import { BrandHeader } from '@/components/brand-header';
 import { MotionScene } from '@/components/motion-scene';
 import { ProductGrid } from '@/components/product-grid';
@@ -15,6 +16,7 @@ import { getPublishedProducts } from '@/lib/catalog';
 import { whatsappUrl } from '@/lib/whatsapp';
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['published-products'],
     queryFn: getPublishedProducts,
@@ -22,6 +24,9 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
       <BrandHeader />
+      {searchParams.get('conta') === 'conectada' && (
+        <output className="account-notice">Conta conectada com sucesso.</output>
+      )}
       <MotionScene>
         <section className="hero-shell" aria-labelledby="hero-title">
           <div className="hero-copy" data-reveal>
@@ -128,7 +133,7 @@ export default function Home() {
         >
           <Camera size={17} /> @bellelandcloset
         </a>
-        <a href="/admin/login">Área da proprietária</a>
+        <a href="/admin/login">Entrar ou criar conta</a>
       </footer>
     </main>
   );
