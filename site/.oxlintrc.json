@@ -29,6 +29,8 @@
     "build/**",
     "dist/**",
     "coverage/**",
+    "components/ui/**",
+    "hooks/**",
     "next-env.d.ts"
   ],
   "rules": {
@@ -43,6 +45,8 @@
     "react/no-unescaped-entities": "error",
     "react/react-compiler": "error",
     "react/require-render-return": "error",
+    "nextjs/no-img-element": "off",
+    "nextjs/no-html-link-for-pages": "off",
     "react/rules-of-hooks": "error",
     "typescript/ban-ts-comment": "error",
     "typescript/no-deprecated": "error",

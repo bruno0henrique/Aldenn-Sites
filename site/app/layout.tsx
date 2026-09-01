@@ -15,7 +15,8 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: { default: 'Belleland Closet', template: '%s | Belleland Closet' },
-  description: 'Peças escolhidas para realçar sua essência. Consulte e reserve pelo WhatsApp.',
+  description:
+    'Peças escolhidas para realçar sua essência. Consulte e reserve pelo WhatsApp.',
 };
 
 export default function RootLayout({
@@ -25,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${instrumentSans.variable} ${playfairDisplay.variable}`}>
+      <body
+        className={`${instrumentSans.variable} ${playfairDisplay.variable}`}
+      >
         <AppProviders>{children}</AppProviders>
       </body>
     </html>
