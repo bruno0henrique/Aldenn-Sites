@@ -1,0 +1,7 @@
+import { getSupabase } from '@/lib/supabase';
+import type { Product } from '@/lib/types';
+
+type ProductRow = Omit<Product, 'primary_image_url' | 'images'> & { product_media: { public_url: string; role: string; position: number }[] };
+function mapProduct(row: ProductRow): Product { const { product_media, ...product } = row; const media = [...(product_media || [])].sort((a, b) => a.position - b.position); return { ...product, primary_image_url: media.find(item => item.role === 'primary')?.public_url || media[0]?.public_url || '', images: media.map(item => item.public_url) }; }
+export async function getPublishedProducts(): Promise<Product[]> { const supabase = getSupabase(); if (!supabase) return []; const { data, error } = await supabase.from('products').select('id,slug,name,description,category,price_cents,instagram_url,product_media(public_url,role,position)').eq('status', 'published').order('published_at', { ascending: false }); if (error) throw error; return (data as ProductRow[]).map(mapProduct); }
+export async function getProduct(slug: string): Promise<Product | null> { const supabase = getSupabase(); if (!supabase) return null; const { data, error } = await supabase.from('products').select('id,slug,name,description,category,price_cents,instagram_url,product_media(public_url,role,position)').eq('slug', slug).eq('status', 'published').maybeSingle(); if (error) throw error; return data ? mapProduct(data as ProductRow) : null; }
