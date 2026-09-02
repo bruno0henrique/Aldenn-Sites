@@ -1,32 +1,23 @@
 'use client';
 
-import {
-  ArrowRight,
-  Camera,
-  Heart,
-  MessageCircle,
-  Phone,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, Camera, Heart, MessageCircle, Phone } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
-import { Suspense, useMemo, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useMemo } from 'react';
 import { BrandHeader } from '@/components/brand-header';
 import { AccountFooterLink } from '@/components/account-footer-link';
 import { AccountToast } from '@/components/account-toast';
 import { MotionScene } from '@/components/motion-scene';
-import { ProductGrid } from '@/components/product-grid';
-import { getPublishedProducts } from '@/lib/catalog';
+import { HeroCarousel } from '@/components/hero-carousel';
+import { ProductCarousel } from '@/components/product-carousel';
+import {
+  getCatalogCategories,
+  getHomeBanners,
+  getPublishedProducts,
+} from '@/lib/catalog';
 import { whatsappUrl } from '@/lib/whatsapp';
 
-const categories = [
-  { label: 'Tops', icon: '♟', values: ['top', 'tops'] },
-  { label: 'Básicos', icon: '♥', values: ['basico', 'basicos'] },
-  { label: 'Conjuntos', icon: '✦', values: ['conjunto', 'conjuntos'] },
-  { label: 'Novidades', icon: '✿', values: ['novidade', 'novidades'] },
-];
-
-function normalizeCategory(value: string | null) {
+function normalize(value: string | null) {
   return (value || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -43,103 +34,131 @@ export default function Home() {
 }
 
 function HomeContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const selectedSlug = searchParams.get('categoria') || 'todos';
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['published-products'],
     queryFn: getPublishedProducts,
   });
-  const filteredProducts = useMemo(() => {
-    if (!activeCategory) return products;
-    const selected = categories.find(
-      (category) => category.label === activeCategory,
+  const { data: categories = [] } = useQuery({
+    queryKey: ['catalog-categories'],
+    queryFn: getCatalogCategories,
+  });
+  const { data: banners = [] } = useQuery({
+    queryKey: ['home-banners'],
+    queryFn: getHomeBanners,
+  });
+  const selectedCategory = categories.find(
+    (category) => category.slug === selectedSlug,
+  );
+  const selectedProducts = useMemo(() => {
+    if (selectedSlug === 'novidades') return products.slice(0, 10);
+    if (!selectedCategory) return products;
+    return products.filter(
+      (product) =>
+        normalize(product.category) === normalize(selectedCategory.name),
     );
-    if (!selected) return products;
-    return products.filter((product) =>
-      selected.values.includes(normalizeCategory(product.category)),
+  }, [products, selectedCategory, selectedSlug]);
+  const categoryRails = useMemo(
+    () =>
+      categories
+        .map((category) => ({
+          category,
+          products: products.filter(
+            (product) =>
+              normalize(product.category) === normalize(category.name),
+          ),
+        }))
+        .filter((rail) => rail.products.length > 0),
+    [categories, products],
+  );
+
+  function chooseCategory(value: string) {
+    const query = value === 'todos' ? '' : `?categoria=${value}`;
+    router.replace(`/${query}#colecao`, { scroll: false });
+    window.setTimeout(
+      () =>
+        document
+          .getElementById('colecao')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
+      0,
     );
-  }, [activeCategory, products]);
+  }
+
+  const singleRailTitle =
+    selectedSlug === 'novidades'
+      ? 'Novidades'
+      : selectedCategory?.name || 'First Drop';
+
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
       <BrandHeader />
       <AccountToast visible={searchParams.get('conta') === 'conectada'} />
       <MotionScene>
-        <section className="hero-shell" aria-labelledby="hero-title">
-          <div className="hero-copy" data-reveal>
-            <span className="eyebrow">
-              <Sparkles size={14} /> First drop
-            </span>
-            <h1 id="hero-title">
-              Your new
-              <br />
-              <em>favorite</em>
-              <br />
-              closet.
-            </h1>
-            <p>
-              Peças escolhidas para realçar sua essência e te acompanhar em
-              todos os momentos.
-            </p>
-            <div className="hero-actions">
-              <a className="button-pop button-primary" href="#colecao">
-                Ver o First Drop <Sparkles size={17} />
-              </a>
-              <a
-                className="button-pop button-outline"
-                href={whatsappUrl()}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle size={18} /> Pedir pelo WhatsApp
-              </a>
-            </div>
-          </div>
-          <div className="hero-art" data-reveal>
-            <img src="/brand/hero-abstract.png" alt="" aria-hidden="true" />
-          </div>
-        </section>
-        <nav className="category-strip" aria-label="Filtrar por categoria" data-reveal>
-          {categories.map((category) => {
-            const active = activeCategory === category.label;
-            return (
-              <button
-                key={category.label}
-                type="button"
-                className={active ? 'active' : ''}
-                aria-pressed={active}
-                aria-label={`Filtrar por ${category.label}`}
-                onClick={() => {
-                  setActiveCategory(active ? null : category.label);
-                  document
-                    .getElementById('colecao')
-                    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-              >
-                <span>{category.icon}</span>
-                {category.label}
-              </button>
-            );
-          })}
-        </nav>
+        <HeroCarousel banners={banners} />
         <section
           className="collection"
           id="colecao"
           aria-labelledby="collection-title"
         >
-          <p className="section-kicker" data-reveal>
-            seleção especial
-          </p>
-          <h2 id="collection-title" data-reveal>
-            {activeCategory || 'First Drop'}
-          </h2>
-          <ProductGrid
-            products={filteredProducts}
-            isLoading={isLoading}
-            emptyCategory={activeCategory}
-          />
+          <div className="collection-toolbar" data-reveal>
+            <div>
+              <p className="section-kicker">seleção especial</p>
+              <h2 id="collection-title">First Drop</h2>
+            </div>
+            <label className="catalog-filter" htmlFor="catalog-category">
+              <span>Filtrar produtos</span>
+              <select
+                id="catalog-category"
+                value={
+                  selectedCategory
+                    ? selectedSlug
+                    : selectedSlug === 'novidades'
+                      ? 'novidades'
+                      : 'todos'
+                }
+                onChange={(event) => chooseCategory(event.target.value)}
+              >
+                <option value="todos">Todos</option>
+                <option value="novidades">Novidades</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.slug}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          {selectedSlug !== 'todos' ? (
+            <ProductCarousel
+              title={singleRailTitle}
+              products={selectedProducts}
+              isLoading={isLoading}
+              emptyCategory={singleRailTitle}
+            />
+          ) : (
+            <div className="catalog-rails">
+              <ProductCarousel
+                title="Novidades"
+                products={products.slice(0, 10)}
+                isLoading={isLoading}
+              />
+              {!isLoading &&
+                categoryRails.map(({ category, products: railProducts }) => (
+                  <ProductCarousel
+                    key={category.id}
+                    title={category.name}
+                    products={railProducts}
+                  />
+                ))}
+            </div>
+          )}
         </section>
         <section
           className="contact-card"
+          id="fale-com-a-gente"
           aria-labelledby="contact-title"
           data-reveal
         >

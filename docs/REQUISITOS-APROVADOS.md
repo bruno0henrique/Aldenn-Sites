@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.13.0
+Versão: 0.14.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -9,6 +9,11 @@ Versão: 0.13.0
 - Fontes: Playfair Display para títulos e Instrument Sans para interface e textos.
 - Produtos abrem em página própria e são reservados pelo WhatsApp `(12) 98107-3663`.
 - A página inicial apresenta um bloco compacto com Instagram `@bellelandcloset` e WhatsApp `(12) 98107-3663`; o e-mail será incluído após a definição do endereço profissional.
+- O menu principal ocupa a lateral e apresenta início, First Drop, produtos por categoria, conta, áreas administrativas autorizadas, Instagram e WhatsApp.
+- A página inicial usa um filtro compacto e carrosséis horizontais para novidades e categorias com produtos publicados.
+- Banners da abertura são vinculados a produtos publicados e usam uma foto real da peça; sem banners ativos, a abertura padrão permanece.
+- A área Vitrine permite criar, renomear, ordenar, ativar e ocultar categorias, além de organizar banners.
+- `Novidades` é uma seleção automática dos produtos mais recentes e não é uma categoria editável.
 - A mensagem de reserva inclui nome, preço e link público da peça. O WhatsApp usa a prévia do link; não há anexo automático.
 - Instagram `@bellelandcloset` é fonte de captura sob demanda. Ao clicar em Atualizar, publicações ainda não registradas entram na fila, sem exigir hashtag.
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
@@ -22,6 +27,7 @@ Versão: 0.13.0
 - O menu exibe `Aprovações` apenas para proprietária e administradores.
 - A área de aprovações permite revisar capturas, editar seus dados e cadastrar uma peça manualmente com foto.
 - No cadastro por imagem, a administradora pode solicitar ao Gemini sugestões de nome, categoria, cor, tamanho, preço e descrição.
+- A sugestão de categoria do Gemini deve corresponder exatamente a uma categoria ativa ou permanecer vazia para revisão.
 - A análise por Gemini acontece somente após ação explícita, não publica automaticamente e mantém todos os campos editáveis.
 - A revisão e a gestão de publicados começam por miniaturas proporcionais; o formulário completo abre somente após escolher uma peça.
 - Capturas em revisão podem ser editadas, precificadas, colocadas em promoção, ignoradas ou excluídas.

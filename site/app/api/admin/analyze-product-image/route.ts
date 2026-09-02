@@ -78,6 +78,16 @@ export async function POST(request: NextRequest) {
     return json({ error: 'Esta conta não tem acesso às aprovações.' }, 403);
   }
 
+  const { data: categoryRows, error: categoriesError } = await supabase
+    .from('catalog_categories')
+    .select('name')
+    .eq('is_active', true)
+    .order('sort_order');
+  if (categoriesError) {
+    return json({ error: 'Não foi possível carregar as categorias.' }, 503);
+  }
+  const categoryNames = (categoryRows || []).map((category) => category.name);
+
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return json(
@@ -126,8 +136,7 @@ export async function POST(request: NextRequest) {
       ],
       config: {
         abortSignal: AbortSignal.timeout(30_000),
-        systemInstruction:
-          'Analise artes de produtos de moda da Belleland Closet. Extraia somente informações visíveis na imagem. Não invente nome, preço, tamanho, cor ou características. Use strings vazias quando um dado não estiver legível. Converta preço em reais para centavos, por exemplo R$ 89,90 vira 8990. A descrição deve ser curta, objetiva e apropriada para catálogo. Registre incertezas em warnings.',
+        systemInstruction: `Analise artes de produtos de moda da Belleland Closet. Extraia somente informações visíveis na imagem. Não invente nome, preço, tamanho, cor ou características. Use strings vazias quando um dado não estiver legível. Converta preço em reais para centavos, por exemplo R$ 89,90 vira 8990. A descrição deve ser curta, objetiva e apropriada para catálogo. Registre incertezas em warnings. Para category, use exatamente um dos nomes desta lista ou retorne string vazia quando nenhum for adequado: ${categoryNames.join(', ')}.`,
         responseMimeType: 'application/json',
         responseJsonSchema: productImageAnalysisSchema,
         thinkingConfig: { thinkingBudget: 0 },
@@ -150,7 +159,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return json({ analysis: analysis.data });
+    const normalizedCategory = categoryNames.find(
+      (category) => category === analysis.data.category,
+    );
+    return json({
+      analysis: {
+        ...analysis.data,
+        category: normalizedCategory || '',
+      },
+    });
   } catch {
     return json(
       {

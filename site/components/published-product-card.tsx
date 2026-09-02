@@ -4,6 +4,7 @@ import { BadgePercent, Save, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { digitsToCents, formatPrice } from '@/lib/format';
 import type { Product } from '@/lib/types';
+import { CatalogCategorySelect } from '@/components/catalog-category-select';
 
 export function PublishedProductCard({
   initial,
@@ -17,17 +18,15 @@ export function PublishedProductCard({
   onDelete: (id: number) => void;
 }) {
   const [product, setProduct] = useState(initial);
-  const [promotion, setPromotion] = useState(
-    Boolean(initial.sale_price_cents),
-  );
+  const [promotion, setPromotion] = useState(Boolean(initial.sale_price_cents));
 
   const valid = Boolean(
     product.name.trim() &&
-      product.price_cents > 0 &&
-      (!promotion ||
-        (product.sale_price_cents &&
-          product.sale_price_cents > 0 &&
-          product.sale_price_cents < product.price_cents)),
+    product.price_cents > 0 &&
+    (!promotion ||
+      (product.sale_price_cents &&
+        product.sale_price_cents > 0 &&
+        product.sale_price_cents < product.price_cents)),
   );
 
   function save() {
@@ -75,13 +74,10 @@ export function PublishedProductCard({
             <label htmlFor={`published-category-${product.id}`}>
               Categoria
             </label>
-            <input
+            <CatalogCategorySelect
               id={`published-category-${product.id}`}
-              maxLength={80}
               value={product.category || ''}
-              onChange={(event) =>
-                setProduct({ ...product, category: event.target.value })
-              }
+              onChange={(value) => setProduct({ ...product, category: value })}
             />
           </div>
           <div className="field">

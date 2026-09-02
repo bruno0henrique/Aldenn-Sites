@@ -1,64 +1,143 @@
 'use client';
 
-import { useGSAP } from '@gsap/react';
 import { useQuery } from '@tanstack/react-query';
 import {
   Camera,
+  ChevronDown,
   ClipboardCheck,
+  Home,
+  LayoutDashboard,
   LogIn,
   Menu,
   MessageCircle,
+  Shirt,
   Sparkles,
   UserRound,
-  X,
 } from 'lucide-react';
-import gsap from 'gsap';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { getAccountSnapshot, isStaff } from '@/lib/account';
+import { getCatalogCategories } from '@/lib/catalog';
 import { whatsappUrl } from '@/lib/whatsapp';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from '@/components/ui/sheet';
 
 export function BrandHeader() {
   const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
   const { data: account } = useQuery({
     queryKey: ['current-account'],
     queryFn: getAccountSnapshot,
   });
-
-  useGSAP(
-    () => {
-      const reducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)',
-      ).matches;
-      gsap.to(panelRef.current, {
-        autoAlpha: open ? 1 : 0,
-        y: open ? 0 : -14,
-        scale: open ? 1 : 0.98,
-        duration: reducedMotion ? 0 : open ? 0.32 : 0.2,
-        ease: open ? 'power3.out' : 'power2.in',
-        pointerEvents: open ? 'auto' : 'none',
-      });
-      gsap.to(toggleRef.current, {
-        rotate: open ? 90 : 0,
-        duration: reducedMotion ? 0 : 0.25,
-        ease: 'power2.out',
-      });
-    },
-    { dependencies: [open] },
-  );
+  const { data: categories = [] } = useQuery({
+    queryKey: ['catalog-categories'],
+    queryFn: getCatalogCategories,
+  });
+  const close = () => setOpen(false);
 
   return (
     <header className="brand-header">
-      <button
-        ref={toggleRef}
-        className="icon-button"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? 'Fechar menu' : 'Abrir menu'}
-        aria-expanded={open}
-      >
-        {open ? <X /> : <Menu />}
-      </button>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <button
+          className="icon-button"
+          onClick={() => setOpen(true)}
+          aria-label="Abrir menu"
+          aria-expanded={open}
+        >
+          <Menu />
+        </button>
+        <SheetContent
+          side="left"
+          className="brand-drawer"
+          aria-label="Menu principal"
+        >
+          <div className="drawer-brand">
+            <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+            <SheetTitle>Menu Belleland</SheetTitle>
+            <SheetDescription>
+              Navegue pelo catálogo e fale com a gente.
+            </SheetDescription>
+          </div>
+          <nav className="drawer-navigation">
+            <a href="/" onClick={close}>
+              <Home /> Início
+            </a>
+            <a href="/#colecao" onClick={close}>
+              <Sparkles /> First Drop
+            </a>
+            <Collapsible defaultOpen>
+              <CollapsibleTrigger className="drawer-products-trigger">
+                <span>
+                  <Shirt /> Produtos
+                </span>
+                <ChevronDown />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="drawer-products-list">
+                <a href="/#colecao" onClick={close}>
+                  Ver todos
+                </a>
+                <a href="/?categoria=novidades#colecao" onClick={close}>
+                  Novidades
+                </a>
+                {categories.map((category) => (
+                  <a
+                    href={`/?categoria=${category.slug}#colecao`}
+                    onClick={close}
+                    key={category.id}
+                  >
+                    {category.name}
+                  </a>
+                ))}
+              </CollapsibleContent>
+            </Collapsible>
+            <div className="drawer-divider" />
+            {account?.user ? (
+              <a href="/conta" onClick={close}>
+                <UserRound /> Minha conta
+              </a>
+            ) : (
+              <a href="/admin/login" onClick={close}>
+                <LogIn /> Entrar ou criar conta
+              </a>
+            )}
+            {isStaff(account?.role || null) && (
+              <>
+                <a href="/admin" onClick={close}>
+                  <ClipboardCheck /> Aprovações
+                </a>
+                <a href="/admin?secao=vitrine" onClick={close}>
+                  <LayoutDashboard /> Vitrine
+                </a>
+              </>
+            )}
+          </nav>
+          <div className="drawer-contact">
+            <a
+              href="https://instagram.com/bellelandcloset"
+              target="_blank"
+              rel="noreferrer"
+              onClick={close}
+            >
+              <Camera /> Instagram
+            </a>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noreferrer"
+              onClick={close}
+            >
+              <MessageCircle /> WhatsApp
+            </a>
+          </div>
+        </SheetContent>
+      </Sheet>
       <a href="/" aria-label="Belleland Closet, início">
         <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
       </a>
@@ -71,47 +150,6 @@ export function BrandHeader() {
       >
         <MessageCircle />
       </a>
-      <nav
-        ref={panelRef}
-        className="menu-panel"
-        aria-hidden={!open}
-        inert={!open}
-        aria-label="Menu principal"
-      >
-        <a href="/#colecao" onClick={() => setOpen(false)}>
-          <Sparkles size={18} /> First Drop
-        </a>
-        {account?.user ? (
-          <a href="/conta" onClick={() => setOpen(false)}>
-            <UserRound size={18} /> Minha conta
-          </a>
-        ) : (
-          <a href="/admin/login" onClick={() => setOpen(false)}>
-            <LogIn size={18} /> Entrar ou criar conta
-          </a>
-        )}
-        {isStaff(account?.role || null) && (
-          <a href="/admin" onClick={() => setOpen(false)}>
-            <ClipboardCheck size={18} /> Aprovações
-          </a>
-        )}
-        <a
-          href="https://instagram.com/bellelandcloset"
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => setOpen(false)}
-        >
-          <Camera size={18} /> Instagram
-        </a>
-        <a
-          href={whatsappUrl()}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => setOpen(false)}
-        >
-          <MessageCircle size={18} /> WhatsApp
-        </a>
-      </nav>
     </header>
   );
 }

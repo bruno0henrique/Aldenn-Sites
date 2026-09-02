@@ -1,5 +1,27 @@
 # Histórico de versões
 
+## [0.14.0] - 2026-09-02
+
+### Adicionado
+
+- Menu lateral completo com produtos, categorias, conta, áreas administrativas e canais de contato.
+- Carrosséis horizontais para novidades e categorias, com navegação mobile e desktop.
+- Banners rotativos vinculados somente a produtos publicados e suas fotos reais.
+- Área Vitrine no painel para organizar categorias e banners da página inicial.
+- Categorias administráveis com ativação, renomeação e ordenação.
+- Migração Supabase com RLS, auditoria, índices e importação das categorias existentes.
+
+### Alterado
+
+- Blocos de categorias do meio da página substituídos por um filtro compacto.
+- Cadastro, revisão, produtos publicados e Gemini passam a usar somente categorias ativas.
+- Gemini retorna uma categoria válida da vitrine ou deixa o campo vazio para revisão.
+
+### Segurança
+
+- Visitantes leem somente categorias e banners ativos ligados a produtos publicados.
+- Somente proprietária e administradores podem alterar a organização da vitrine.
+
 ## [0.13.0] - 2026-09-02
 
 ### Adicionado
