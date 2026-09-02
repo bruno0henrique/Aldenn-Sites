@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.12.2] - 2026-09-02
+
+### Alterado
+
+- Campos de uma linha no cadastro assistido ficaram mais compactos, incluindo o seletor de foto.
+
 ## [0.12.1] - 2026-09-02
 
 ### Alterado

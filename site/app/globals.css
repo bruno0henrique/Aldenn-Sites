@@ -1101,6 +1101,11 @@ footer a:last-child {
   color: #826a61;
   font-size: 0.86rem;
 }
+.manual-product-form .field input,
+.manual-product-form .field select {
+  min-height: 42px;
+  padding: 9px 12px;
+}
 .manual-image-field label {
   display: flex;
   align-items: center;
