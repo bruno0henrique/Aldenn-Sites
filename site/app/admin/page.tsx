@@ -4,6 +4,7 @@ import {
   ArrowLeft,
   ArrowUpRight,
   Images,
+  LayoutDashboard,
   LogOut,
   Pencil,
   RefreshCw,
@@ -14,6 +15,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { ReviewCard } from '@/components/review-card';
 import { ManualProductForm } from '@/components/manual-product-form';
 import { PublishedProductCard } from '@/components/published-product-card';
+import { StorefrontManager } from '@/components/storefront-manager';
 import {
   assertStaff,
   deleteCapture,
@@ -75,6 +77,9 @@ function AdminPageContent() {
   const searchParams = useSearchParams();
   const previewMode = searchParams.get('preview') === '1';
   const queryClient = useQueryClient();
+  const [section, setSection] = useState<'curadoria' | 'vitrine'>(
+    searchParams.get('secao') === 'vitrine' ? 'vitrine' : 'curadoria',
+  );
   const [tab, setTab] = useState('pending_review');
   const [accessError, setAccessError] = useState('');
   const [publishing, setPublishing] = useState<Capture[]>([]);
@@ -341,161 +346,193 @@ function AdminPageContent() {
         <div className="admin-title">
           <div>
             <span>Painel administrativo</span>
-            <h1>Aprovações</h1>
+            <h1>{section === 'vitrine' ? 'Vitrine' : 'Aprovações'}</h1>
             {previewMode && (
               <p className="preview-badge">
                 Modo demonstração: dados locais de teste
               </p>
             )}
           </div>
-          <button
-            className="refresh-button"
-            disabled={synchronize.isPending}
-            onClick={() => (previewMode ? resetDemo() : synchronize.mutate())}
-          >
-            <RefreshCw
-              size={16}
-              className={synchronize.isPending ? 'refresh-spinning' : ''}
-            />{' '}
-            {synchronize.isPending ? 'Buscando...' : 'Atualizar'}
-          </button>
+          {section === 'curadoria' && (
+            <button
+              className="refresh-button"
+              disabled={synchronize.isPending}
+              onClick={() => (previewMode ? resetDemo() : synchronize.mutate())}
+            >
+              <RefreshCw
+                size={16}
+                className={synchronize.isPending ? 'refresh-spinning' : ''}
+              />{' '}
+              {synchronize.isPending ? 'Buscando...' : 'Atualizar'}
+            </button>
+          )}
         </div>
-        {syncMessage && (
-          <output
-            className={synchronize.isError ? 'form-error' : 'sync-message'}
+        <nav className="admin-sections" aria-label="Áreas administrativas">
+          <button
+            className={section === 'curadoria' ? 'active' : ''}
+            type="button"
+            onClick={() => setSection('curadoria')}
           >
-            {syncMessage}
-          </output>
-        )}
-        {!previewMode && (
-          <ManualProductForm
-            onCreated={() => {
-              setTab('pending_review');
-              setSelectedCaptureId(null);
-              void queryClient.invalidateQueries({ queryKey: ['captures'] });
-            }}
-          />
-        )}
-        <nav className="admin-tabs" aria-label="Estados da curadoria">
-          {tabs.map((item) => (
-            <button
-              className={tab === item.id ? 'active' : ''}
-              onClick={() => {
-                setTab(item.id);
-                setSelectedCaptureId(null);
-                setSelectedProductId(null);
-              }}
-              key={item.id}
-            >
-              {item.label}
-              {item.id === 'publishing' &&
-                (previewMode ? demoPublishing.length : publishing.length) >
-                  0 && (
-                  <b>
-                    {previewMode ? demoPublishing.length : publishing.length}
-                  </b>
-                )}
-            </button>
-          ))}
+            <Images size={17} /> Curadoria
+          </button>
+          <button
+            className={section === 'vitrine' ? 'active' : ''}
+            type="button"
+            onClick={() => setSection('vitrine')}
+          >
+            <LayoutDashboard size={17} /> Vitrine
+          </button>
         </nav>
-        {accessError && <div className="form-error">{accessError}</div>}
-        {error && (
-          <div className="form-error">
-            {error instanceof Error
-              ? error.message
-              : 'Falha ao carregar capturas.'}
-          </div>
-        )}
-        {productsError && (
-          <div className="form-error">
-            {productsError instanceof Error
-              ? productsError.message
-              : 'Falha ao carregar produtos publicados.'}
-          </div>
-        )}
-        {!previewMode && (tab === 'published' ? productsLoading : isLoading) ? (
-          <div className="admin-loading">Carregando capturas…</div>
-        ) : tab === 'published' && selectedProduct ? (
-          <div className="selected-editor">
-            <button
-              className="back-to-products"
-              type="button"
-              onClick={() => setSelectedProductId(null)}
-            >
-              <ArrowLeft size={17} /> Voltar aos produtos
-            </button>
-            <div className="published-product-list">
-              <PublishedProductCard
-                key={selectedProduct.id}
-                initial={selectedProduct}
-                busy={updateProduct.isPending || removeProduct.isPending}
-                onSave={handleUpdateProduct}
-                onDelete={handleDeleteProduct}
+        {section === 'vitrine' ? (
+          <StorefrontManager previewMode={previewMode} />
+        ) : (
+          <>
+            {syncMessage && (
+              <output
+                className={synchronize.isError ? 'form-error' : 'sync-message'}
+              >
+                {syncMessage}
+              </output>
+            )}
+            {!previewMode && (
+              <ManualProductForm
+                onCreated={() => {
+                  setTab('pending_review');
+                  setSelectedCaptureId(null);
+                  void queryClient.invalidateQueries({
+                    queryKey: ['captures'],
+                  });
+                }}
               />
-            </div>
-          </div>
-        ) : tab === 'published' && displayedProducts.length ? (
-          <ProductChooser
-            products={displayedProducts}
-            onSelect={setSelectedProductId}
-          />
-        ) : tab === 'published' ? (
-          <EmptyAdmin tab={tab} />
-        ) : displayedCaptures.length ? (
-          tab === 'pending_review' ? (
-            selectedCapture ? (
+            )}
+            <nav className="admin-tabs" aria-label="Estados da curadoria">
+              {tabs.map((item) => (
+                <button
+                  className={tab === item.id ? 'active' : ''}
+                  onClick={() => {
+                    setTab(item.id);
+                    setSelectedCaptureId(null);
+                    setSelectedProductId(null);
+                  }}
+                  key={item.id}
+                >
+                  {item.label}
+                  {item.id === 'publishing' &&
+                    (previewMode ? demoPublishing.length : publishing.length) >
+                      0 && (
+                      <b>
+                        {previewMode
+                          ? demoPublishing.length
+                          : publishing.length}
+                      </b>
+                    )}
+                </button>
+              ))}
+            </nav>
+            {accessError && <div className="form-error">{accessError}</div>}
+            {error && (
+              <div className="form-error">
+                {error instanceof Error
+                  ? error.message
+                  : 'Falha ao carregar capturas.'}
+              </div>
+            )}
+            {productsError && (
+              <div className="form-error">
+                {productsError instanceof Error
+                  ? productsError.message
+                  : 'Falha ao carregar produtos publicados.'}
+              </div>
+            )}
+            {!previewMode &&
+            (tab === 'published' ? productsLoading : isLoading) ? (
+              <div className="admin-loading">Carregando capturas…</div>
+            ) : tab === 'published' && selectedProduct ? (
               <div className="selected-editor">
                 <button
                   className="back-to-products"
                   type="button"
-                  onClick={() => setSelectedCaptureId(null)}
+                  onClick={() => setSelectedProductId(null)}
                 >
-                  <ArrowLeft size={17} /> Voltar às peças
+                  <ArrowLeft size={17} /> Voltar aos produtos
                 </button>
-                <ReviewCard
-                  key={selectedCapture.id}
-                  initial={selectedCapture}
-                  busy={
-                    previewMode
-                      ? demoBusy
-                      : publish.isPending ||
-                        status.isPending ||
-                        removeCapture.isPending
-                  }
-                  onPublish={handlePublish}
-                  onIgnore={handleIgnore}
-                  onDelete={handleDeleteCapture}
-                />
+                <div className="published-product-list">
+                  <PublishedProductCard
+                    key={selectedProduct.id}
+                    initial={selectedProduct}
+                    busy={updateProduct.isPending || removeProduct.isPending}
+                    onSave={handleUpdateProduct}
+                    onDelete={handleDeleteProduct}
+                  />
+                </div>
               </div>
-            ) : (
-              <CaptureChooser
-                captures={displayedCaptures}
-                onSelect={setSelectedCaptureId}
+            ) : tab === 'published' && displayedProducts.length ? (
+              <ProductChooser
+                products={displayedProducts}
+                onSelect={setSelectedProductId}
               />
-            )
-          ) : (
-            <CaptureList
-              captures={displayedCaptures}
-              tab={tab}
-              onRestore={handleRestore}
-            />
-          )
-        ) : (
-          <EmptyAdmin tab={tab} />
-        )}
-        {publish.error && (
-          <div className="form-error publish-error">
-            A publicação falhou e a peça voltou para revisão.{' '}
-            {publish.error.message}
-          </div>
-        )}
-        {(removeCapture.error ||
-          updateProduct.error ||
-          removeProduct.error) && (
-          <div className="form-error publish-error">
-            {(removeCapture.error || updateProduct.error || removeProduct.error)
-              ?.message || 'Não foi possível concluir a alteração.'}
-          </div>
+            ) : tab === 'published' ? (
+              <EmptyAdmin tab={tab} />
+            ) : displayedCaptures.length ? (
+              tab === 'pending_review' ? (
+                selectedCapture ? (
+                  <div className="selected-editor">
+                    <button
+                      className="back-to-products"
+                      type="button"
+                      onClick={() => setSelectedCaptureId(null)}
+                    >
+                      <ArrowLeft size={17} /> Voltar às peças
+                    </button>
+                    <ReviewCard
+                      key={selectedCapture.id}
+                      initial={selectedCapture}
+                      busy={
+                        previewMode
+                          ? demoBusy
+                          : publish.isPending ||
+                            status.isPending ||
+                            removeCapture.isPending
+                      }
+                      onPublish={handlePublish}
+                      onIgnore={handleIgnore}
+                      onDelete={handleDeleteCapture}
+                    />
+                  </div>
+                ) : (
+                  <CaptureChooser
+                    captures={displayedCaptures}
+                    onSelect={setSelectedCaptureId}
+                  />
+                )
+              ) : (
+                <CaptureList
+                  captures={displayedCaptures}
+                  tab={tab}
+                  onRestore={handleRestore}
+                />
+              )
+            ) : (
+              <EmptyAdmin tab={tab} />
+            )}
+            {publish.error && (
+              <div className="form-error publish-error">
+                A publicação falhou e a peça voltou para revisão.{' '}
+                {publish.error.message}
+              </div>
+            )}
+            {(removeCapture.error ||
+              updateProduct.error ||
+              removeProduct.error) && (
+              <div className="form-error publish-error">
+                {(
+                  removeCapture.error ||
+                  updateProduct.error ||
+                  removeProduct.error
+                )?.message || 'Não foi possível concluir a alteração.'}
+              </div>
+            )}
+          </>
         )}
       </div>
     </main>

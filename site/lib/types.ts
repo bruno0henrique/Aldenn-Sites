@@ -10,6 +10,22 @@ export type Product = {
   primary_image_url: string;
   images?: string[];
 };
+export type CatalogCategory = {
+  id: number;
+  name: string;
+  slug: string;
+  sort_order: number;
+  is_active: boolean;
+};
+export type HomeBanner = {
+  id: number;
+  product_id: number;
+  media_position: number;
+  sort_order: number;
+  is_active: boolean;
+  image_url: string;
+  product: Product;
+};
 export type CaptureMedia = {
   id: number;
   public_url: string;

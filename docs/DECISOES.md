@@ -87,3 +87,14 @@
 - Motivo: Usar a faixa gratuita disponível e reduzir o custo inicial sem alterar o fluxo administrativo.
 - Impactos: A chave passa a ser `GEMINI_API_KEY`. No plano gratuito, as artes enviadas podem ser usadas pelo Google para melhorar seus produtos.
 - Substitui: DEC-007.
+
+## DEC-009: Navegação e Vitrine organizadas por produtos
+
+- Data: 2026-09-02
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A referência aprovada usa menu lateral com tópicos, banners e carrosséis próximos, sem blocos soltos ou grandes espaços.
+- Decisão: Usar menu lateral completo, filtro compacto, carrosséis por categoria e banners vinculados a produtos publicados. Categorias e banners são organizados na área Vitrine do painel.
+- Motivo: Aproximar a navegação da referência mantendo a estética Belleland e a reserva pelo WhatsApp.
+- Impactos: `Novidades` é automática. Categorias podem ser ocultadas sem remover produtos. Banners nunca usam uploads independentes.
+- Substitui: Os quatro blocos fixos de categoria da página inicial.

@@ -3,6 +3,7 @@
 import { ImagePlus, Plus, Sparkles, X } from 'lucide-react';
 import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { analyzeProductImage, createManualCapture } from '@/lib/admin';
+import { CatalogCategorySelect } from '@/components/catalog-category-select';
 import { digitsToCents, formatPrice } from '@/lib/format';
 
 export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
@@ -122,8 +123,9 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         </button>
       </header>
       <p>
-        Envie a arte da publicação e o programa vai sugerir os dados. A imagem só
-        é analisada quando você pedir e tudo continua editável antes de publicar.
+        Envie a arte da publicação e o programa vai sugerir os dados. A imagem
+        só é analisada quando você pedir e tudo continua editável antes de
+        publicar.
       </p>
       {error && <div className="form-error">{error}</div>}
       <div className="manual-grid">
@@ -139,11 +141,10 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         </div>
         <div className="field">
           <label htmlFor="manual-category">Categoria</label>
-          <input
+          <CatalogCategorySelect
             id="manual-category"
-            maxLength={80}
             value={category}
-            onChange={(event) => setCategory(event.target.value)}
+            onChange={setCategory}
           />
         </div>
         <div className="field">

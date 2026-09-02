@@ -11,6 +11,7 @@ import {
 import { useMemo, useState } from 'react';
 import type { Capture, CaptureMedia } from '@/lib/types';
 import { digitsToCents, formatPrice } from '@/lib/format';
+import { CatalogCategorySelect } from '@/components/catalog-category-select';
 
 export function ReviewCard({
   initial,
@@ -147,11 +148,11 @@ export function ReviewCard({
         </div>
         <div className="field">
           <label htmlFor="product-category">Categoria</label>
-          <input
+          <CatalogCategorySelect
             id="product-category"
             value={capture.proposed_category || ''}
-            onChange={(e) =>
-              setCapture({ ...capture, proposed_category: e.target.value })
+            onChange={(value) =>
+              setCapture({ ...capture, proposed_category: value })
             }
           />
         </div>

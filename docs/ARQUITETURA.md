@@ -1,4 +1,4 @@
-# Arquitetura v0.12.0
+# Arquitetura v0.14.0
 
 ## Fluxo
 
@@ -12,6 +12,9 @@
 8. O catálogo público consulta apenas registros com `status = 'published'`.
 9. `update_published_product` mantém produto e captura de origem sincronizados ao editar dados ou promoção.
 10. `remove_published_product` retira o produto e move a captura de origem para `ignored` em uma transação.
+11. `catalog_categories` controla nomes, ordem e visibilidade das categorias exibidas no menu, filtro e cadastro.
+12. `home_banners` relaciona cada banner a um produto publicado e à posição de uma foto existente.
+13. A página inicial agrupa produtos publicados por categoria e apresenta novidades pela ordem de publicação.
 
 ## Segurança
 
@@ -31,6 +34,8 @@
 - `GEMINI_API_KEY` é exclusiva do servidor e nunca usa o prefixo `NEXT_PUBLIC_`.
 - Imagens aceitas são limitadas a JPG, PNG ou WebP com até 10 MB. A resposta usa cache privado desativado e `store: false`.
 - A imagem só é enviada ao Google após o clique em `Preencher com Gemini`. O resultado é sugestão e exige revisão humana.
+- Categorias e banners usam RLS. Visitantes leem apenas registros ativos e banners ligados a produtos publicados.
+- Alterações na Vitrine exigem `owner` ou `admin` e geram eventos de auditoria.
 
 ## Operação inicial
 

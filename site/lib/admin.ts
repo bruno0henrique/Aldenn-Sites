@@ -1,6 +1,11 @@
 import { requireSupabase } from '@/lib/supabase';
 import { getPublishedProducts } from '@/lib/catalog';
-import type { Capture, Product } from '@/lib/types';
+import type {
+  Capture,
+  CatalogCategory,
+  HomeBanner,
+  Product,
+} from '@/lib/types';
 
 export type InstagramSyncResult = {
   created: number;
@@ -240,6 +245,161 @@ export async function deleteCapture(capture: Capture) {
 export async function listPublishedProductsAdmin(): Promise<Product[]> {
   await assertStaff();
   return getPublishedProducts();
+}
+
+export async function listCatalogCategoriesAdmin(): Promise<CatalogCategory[]> {
+  await assertStaff();
+  const { data, error } = await requireSupabase()
+    .from('catalog_categories')
+    .select('id,name,slug,sort_order,is_active')
+    .order('sort_order')
+    .order('name');
+  if (error) throw error;
+  return (data || []) as CatalogCategory[];
+}
+
+function categorySlug(name: string) {
+  return name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+export async function createCatalogCategory(name: string) {
+  await assertStaff();
+  const cleanedName = name.trim();
+  const slug = categorySlug(cleanedName);
+  if (cleanedName.length < 2 || !slug)
+    throw new Error('Informe um nome de categoria válido.');
+  const supabase = requireSupabase();
+  const { data: last } = await supabase
+    .from('catalog_categories')
+    .select('sort_order')
+    .order('sort_order', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const { error } = await supabase.from('catalog_categories').insert({
+    name: cleanedName,
+    slug,
+    sort_order: (last?.sort_order || 0) + 10,
+  });
+  if (error) throw error;
+}
+
+export async function updateCatalogCategory(
+  id: number,
+  updates: Partial<Pick<CatalogCategory, 'name' | 'is_active' | 'sort_order'>>,
+) {
+  await assertStaff();
+  const payload = { ...updates } as Record<string, string | number | boolean>;
+  if (typeof updates.name === 'string') {
+    const name = updates.name.trim();
+    const slug = categorySlug(name);
+    if (name.length < 2 || !slug)
+      throw new Error('Informe um nome de categoria válido.');
+    payload.name = name;
+    payload.slug = slug;
+  }
+  const { error } = await requireSupabase()
+    .from('catalog_categories')
+    .update(payload)
+    .eq('id', id);
+  if (error) throw error;
+}
+
+export async function reorderCatalogCategories(categories: CatalogCategory[]) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const results = await Promise.all(
+    categories.map((category, index) =>
+      supabase
+        .from('catalog_categories')
+        .update({ sort_order: (index + 1) * 10 })
+        .eq('id', category.id),
+    ),
+  );
+  const failed = results.find((result) => result.error);
+  if (failed?.error) throw failed.error;
+}
+
+export type HomeBannerRow = Omit<HomeBanner, 'image_url' | 'product'>;
+
+export async function listHomeBannersAdmin(): Promise<HomeBannerRow[]> {
+  await assertStaff();
+  const { data, error } = await requireSupabase()
+    .from('home_banners')
+    .select('id,product_id,media_position,sort_order,is_active')
+    .order('sort_order')
+    .order('id');
+  if (error) throw error;
+  return (data || []) as HomeBannerRow[];
+}
+
+export async function createHomeBanner({
+  productId,
+  mediaPosition,
+}: {
+  productId: number;
+  mediaPosition: number;
+}) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const { data: last } = await supabase
+    .from('home_banners')
+    .select('sort_order')
+    .order('sort_order', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const { error } = await supabase.from('home_banners').insert({
+    product_id: productId,
+    media_position: mediaPosition,
+    sort_order: (last?.sort_order || 0) + 10,
+  });
+  if (error) throw error;
+}
+
+export async function updateHomeBanner(
+  id: number,
+  updates: Partial<
+    Pick<
+      HomeBannerRow,
+      'product_id' | 'media_position' | 'sort_order' | 'is_active'
+    >
+  >,
+) {
+  await assertStaff();
+  const { error } = await requireSupabase()
+    .from('home_banners')
+    .update(updates)
+    .eq('id', id);
+  if (error) throw error;
+}
+
+export async function reorderHomeBanners(banners: HomeBannerRow[]) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const results = await Promise.all(
+    banners.map((banner, index) =>
+      supabase
+        .from('home_banners')
+        .update({ sort_order: (index + 1) * 10 })
+        .eq('id', banner.id),
+    ),
+  );
+  const failed = results.find((result) => result.error);
+  if (failed?.error) throw failed.error;
+}
+
+export async function deleteHomeBanner(id: number) {
+  await assertStaff();
+  const { error } = await requireSupabase()
+    .from('home_banners')
+    .delete()
+    .eq('id', id);
+  if (error) throw error;
 }
 
 export async function updatePublishedProduct(product: Product) {
