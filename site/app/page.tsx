@@ -137,23 +137,6 @@ function HomeContent() {
             emptyCategory={activeCategory}
           />
         </section>
-        <section className="made-with-love" data-reveal>
-          <div className="love-title">
-            <Sparkles size={20} />
-            <strong>Made</strong>
-            <span>with love ♡</span>
-          </div>
-          <div className="love-copy">
-            <p>
-              Belleland Closet nasceu do desejo de criar peças que unem
-              conforto, estilo e personalidade.
-            </p>
-            <p>
-              Cada detalhe é pensado com carinho para você se sentir linda,
-              confiante e autêntica todos os dias.
-            </p>
-          </div>
-        </section>
         <section className="whatsapp-banner" data-reveal>
           <MessageCircle className="whatsapp-mark" aria-hidden="true" />
           <div>

@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.12.4] - 2026-09-02
+
+### Alterado
+
+- Bloco “Made with love” removido da página inicial para reduzir informação visual.
+
 ## [0.12.3] - 2026-09-02
 
 ### Alterado
