@@ -69,10 +69,21 @@
 ## DEC-007: GPT como assistente do cadastro por imagem
 
 - Data: 2026-09-02
-- Estado: Aprovada
+- Estado: Substituída pela DEC-008
 - Decidido por: Cliente
 - Contexto: As artes das publicações já contêm nome, tamanho, preço e características visuais úteis ao cadastro.
 - Decisão: Usar análise visual da OpenAI sob demanda para sugerir os campos do formulário administrativo, sempre com revisão humana antes da publicação.
 - Motivo: Reduzir digitação sem depender da API da Meta ou de automação de acesso ao Instagram.
 - Impactos: A imagem é enviada a um terceiro somente após ação explícita. A chave fica no servidor, há custo por uso e nenhum resultado é publicado automaticamente.
 - Substitui: Não se aplica.
+
+## DEC-008: Gemini 2.5 Flash como assistente do cadastro
+
+- Data: 2026-09-02
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A configuração de pagamento da OpenAI impediu a ativação da análise visual.
+- Decisão: Substituir a OpenAI pelo Google Gemini 2.5 Flash, mantendo o envio sob demanda, a saída estruturada e a revisão humana.
+- Motivo: Usar a faixa gratuita disponível e reduzir o custo inicial sem alterar o fluxo administrativo.
+- Impactos: A chave passa a ser `GEMINI_API_KEY`. No plano gratuito, as artes enviadas podem ser usadas pelo Google para melhorar seus produtos.
+- Substitui: DEC-007.

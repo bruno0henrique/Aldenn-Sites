@@ -1,5 +1,4 @@
-import OpenAI from 'openai';
-import { zodTextFormat } from 'openai/helpers/zod';
+import { GoogleGenAI } from '@google/genai';
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createClient } from '@/lib/supabase/server';
@@ -21,6 +20,33 @@ const ProductImageAnalysis = z.object({
   confidence: z.number().min(0).max(1),
   warnings: z.array(z.string()),
 });
+
+const productImageAnalysisSchema = {
+  type: 'object',
+  additionalProperties: false,
+  properties: {
+    name: { type: 'string' },
+    category: { type: 'string' },
+    color: { type: 'string' },
+    size: { type: 'string' },
+    price_cents: { type: 'integer', minimum: 0 },
+    description: { type: 'string' },
+    visible_text: { type: 'string' },
+    confidence: { type: 'number', minimum: 0, maximum: 1 },
+    warnings: { type: 'array', items: { type: 'string' } },
+  },
+  required: [
+    'name',
+    'category',
+    'color',
+    'size',
+    'price_cents',
+    'description',
+    'visible_text',
+    'confidence',
+    'warnings',
+  ],
+};
 
 function json(body: object, status = 200) {
   return NextResponse.json(body, {
@@ -52,12 +78,12 @@ export async function POST(request: NextRequest) {
     return json({ error: 'Esta conta não tem acesso às aprovações.' }, 403);
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return json(
       {
         error:
-          'A análise por GPT ainda precisa da chave OPENAI_API_KEY no servidor.',
+          'A análise por Gemini ainda precisa da chave GEMINI_API_KEY no servidor.',
       },
       503,
     );
@@ -84,49 +110,51 @@ export async function POST(request: NextRequest) {
 
   try {
     const bytes = Buffer.from(await image.arrayBuffer());
-    const imageUrl = `data:${image.type};base64,${bytes.toString('base64')}`;
-    const openai = new OpenAI({ apiKey });
-    const response = await openai.responses.parse({
-      model: process.env.OPENAI_VISION_MODEL || 'gpt-5-mini',
-      store: false,
-      instructions:
-        'Analise artes de produtos de moda da Belleland Closet. Extraia somente informações visíveis na imagem. Não invente nome, preço, tamanho, cor ou características. Use strings vazias quando um dado não estiver legível. Converta preço em reais para centavos, por exemplo R$ 89,90 vira 8990. A descrição deve ser curta, objetiva e apropriada para catálogo. Registre incertezas em warnings.',
-      input: [
+    const google = new GoogleGenAI({ apiKey });
+    const response = await google.models.generateContent({
+      model: process.env.GEMINI_VISION_MODEL || 'gemini-2.5-flash',
+      contents: [
         {
-          role: 'user',
-          content: [
-            {
-              type: 'input_text',
-              text: 'Extraia os dados desta peça para preencher um cadastro que será revisado manualmente antes da publicação.',
-            },
-            {
-              type: 'input_image',
-              image_url: imageUrl,
-              detail: 'high',
-            },
-          ],
+          inlineData: {
+            mimeType: image.type,
+            data: bytes.toString('base64'),
+          },
+        },
+        {
+          text: 'Extraia os dados desta peça para preencher um cadastro que será revisado manualmente antes da publicação.',
         },
       ],
-      text: {
-        format: zodTextFormat(ProductImageAnalysis, 'product_image_analysis'),
+      config: {
+        abortSignal: AbortSignal.timeout(30_000),
+        systemInstruction:
+          'Analise artes de produtos de moda da Belleland Closet. Extraia somente informações visíveis na imagem. Não invente nome, preço, tamanho, cor ou características. Use strings vazias quando um dado não estiver legível. Converta preço em reais para centavos, por exemplo R$ 89,90 vira 8990. A descrição deve ser curta, objetiva e apropriada para catálogo. Registre incertezas em warnings.',
+        responseMimeType: 'application/json',
+        responseJsonSchema: productImageAnalysisSchema,
+        thinkingConfig: { thinkingBudget: 0 },
+        temperature: 0.1,
       },
     });
 
-    if (!response.output_parsed) {
+    if (!response.text) {
       return json(
         { error: 'A imagem não retornou dados suficientes para o cadastro.' },
         422,
       );
     }
 
-    return json({ analysis: response.output_parsed });
-  } catch (error) {
-    const requestId =
-      error instanceof OpenAI.APIError ? error.requestID : undefined;
+    const analysis = ProductImageAnalysis.safeParse(JSON.parse(response.text));
+    if (!analysis.success) {
+      return json(
+        { error: 'A análise retornou dados inválidos. Tente outra imagem.' },
+        422,
+      );
+    }
+
+    return json({ analysis: analysis.data });
+  } catch {
     return json(
       {
         error: 'Não foi possível analisar a imagem agora. Tente novamente.',
-        requestId,
       },
       502,
     );
