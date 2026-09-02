@@ -5,6 +5,7 @@ import {
   Camera,
   Heart,
   MessageCircle,
+  Phone,
   Sparkles,
 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -136,6 +137,39 @@ function HomeContent() {
             isLoading={isLoading}
             emptyCategory={activeCategory}
           />
+        </section>
+        <section
+          className="contact-card"
+          aria-labelledby="contact-title"
+          data-reveal
+        >
+          <div className="contact-heading">
+            <span>Fale com a gente</span>
+            <h2 id="contact-title">Belleland mais perto de você</h2>
+            <p>Escolha o canal que preferir para conversar com a gente.</p>
+          </div>
+          <div className="contact-links">
+            <a
+              href="https://instagram.com/bellelandcloset"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Camera aria-hidden="true" />
+              <span>
+                <small>Instagram</small>
+                <strong>@bellelandcloset</strong>
+              </span>
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+            <a href={whatsappUrl()} target="_blank" rel="noreferrer">
+              <Phone aria-hidden="true" />
+              <span>
+                <small>WhatsApp</small>
+                <strong>(12) 98107-3663</strong>
+              </span>
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          </div>
         </section>
         <section className="whatsapp-banner" data-reveal>
           <MessageCircle className="whatsapp-mark" aria-hidden="true" />

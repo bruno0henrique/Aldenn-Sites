@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.13.0] - 2026-09-02
+
+### Adicionado
+
+- Bloco compacto de contato na página inicial com Instagram e WhatsApp da Belleland.
+- A estrutura visual permite incluir o e-mail profissional quando o endereço for definido.
+
 ## [0.12.4] - 2026-09-02
 
 ### Alterado
