@@ -43,3 +43,14 @@
 - Motivo: Manter o mesmo padrão de hospedagem dos demais projetos e evitar a barreira de acesso privada.
 - Impactos: Links de confirmação, área de conta e painel retornam ao domínio da Vercel.
 - Substitui: O uso do domínio privado como endereço principal.
+
+## DEC-005: Gestão e promoção de produtos publicados
+
+- Data: 2026-09-01
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A operação precisa corrigir dados, ajustar preços, criar promoções e retirar peças mesmo depois da publicação.
+- Decisão: Permitir edição e promoção antes e depois da publicação. A retirada de um produto publicado remove sua exposição e move a captura para Ignorados.
+- Motivo: Evitar republicação manual e preservar uma rota de recuperação para exclusões acidentais.
+- Impactos: Preços promocionais são validados no banco. Produtos e capturas de origem permanecem sincronizados.
+- Substitui: Não se aplica.

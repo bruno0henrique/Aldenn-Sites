@@ -59,7 +59,14 @@ export function ProductGrid({
           </div>
           <div>
             <h3>{product.name}</h3>
-            <p>{formatPrice(product.price_cents)}</p>
+            {product.sale_price_cents ? (
+              <div className="product-card-prices">
+                <del>{formatPrice(product.price_cents)}</del>
+                <p>{formatPrice(product.sale_price_cents)}</p>
+              </div>
+            ) : (
+              <p>{formatPrice(product.price_cents)}</p>
+            )}
           </div>
         </a>
       ))}

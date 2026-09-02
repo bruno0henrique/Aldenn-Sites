@@ -1,5 +1,6 @@
 import { requireSupabase } from '@/lib/supabase';
-import type { Capture } from '@/lib/types';
+import { getPublishedProducts } from '@/lib/catalog';
+import type { Capture, Product } from '@/lib/types';
 
 export async function assertStaff() {
   const supabase = requireSupabase();
@@ -19,7 +20,7 @@ export async function listCaptures(status: string): Promise<Capture[]> {
   const { data, error } = await requireSupabase()
     .from('instagram_captures')
     .select(
-      'id,instagram_shortcode,source_url,proposed_name,proposed_description,proposed_category,price_cents,status,capture_media(id,public_url,decision,source_position)',
+      'id,instagram_shortcode,source_url,proposed_name,proposed_description,proposed_category,price_cents,proposed_sale_price_cents,status,capture_media(id,public_url,storage_path,decision,source_position)',
     )
     .eq('status', status)
     .order('captured_at');
@@ -35,6 +36,7 @@ export async function saveCapture(capture: Capture) {
       proposed_description: capture.proposed_description,
       proposed_category: capture.proposed_category,
       price_cents: capture.price_cents,
+      proposed_sale_price_cents: capture.proposed_sale_price_cents,
       status: 'in_review',
     })
     .eq('id', capture.id);
@@ -92,12 +94,14 @@ export async function createManualCapture({
   description,
   category,
   priceCents,
+  salePriceCents,
   image,
 }: {
   name: string;
   description: string;
   category: string;
   priceCents: number;
+  salePriceCents: number;
   image: File;
 }) {
   const user = await assertStaff();
@@ -111,6 +115,10 @@ export async function createManualCapture({
     throw new Error('Selecione uma imagem válida.');
   if (image.size > 10 * 1024 * 1024)
     throw new Error('A imagem deve ter no máximo 10 MB.');
+  if (priceCents <= 0)
+    throw new Error('Informe um preço válido.');
+  if (salePriceCents > 0 && salePriceCents >= priceCents)
+    throw new Error('O preço promocional deve ser menor que o preço normal.');
 
   const supabase = requireSupabase();
   const manualId = crypto.randomUUID();
@@ -125,6 +133,7 @@ export async function createManualCapture({
       proposed_description: description.trim() || null,
       proposed_category: category.trim() || null,
       price_cents: priceCents || null,
+      proposed_sale_price_cents: salePriceCents || null,
     })
     .select('id')
     .single();
@@ -157,4 +166,44 @@ export async function createManualCapture({
     throw mediaError;
   }
   return capture.id as number;
+}
+
+export async function deleteCapture(capture: Capture) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const paths = capture.capture_media
+    .map((media) => media.storage_path)
+    .filter((path): path is string => Boolean(path));
+  const { error } = await supabase
+    .from('instagram_captures')
+    .delete()
+    .eq('id', capture.id);
+  if (error) throw error;
+  if (paths.length) await supabase.storage.from('product-media').remove(paths);
+}
+
+export async function listPublishedProductsAdmin(): Promise<Product[]> {
+  await assertStaff();
+  return getPublishedProducts();
+}
+
+export async function updatePublishedProduct(product: Product) {
+  await assertStaff();
+  const { error } = await requireSupabase().rpc('update_published_product', {
+    target_product_id: product.id,
+    new_name: product.name.trim(),
+    new_description: product.description || '',
+    new_category: product.category || '',
+    new_price_cents: product.price_cents,
+    new_sale_price_cents: product.sale_price_cents || null,
+  });
+  if (error) throw error;
+}
+
+export async function removePublishedProduct(id: number) {
+  await assertStaff();
+  const { error } = await requireSupabase().rpc('remove_published_product', {
+    target_product_id: id,
+  });
+  if (error) throw error;
 }

@@ -17,11 +17,13 @@ export function ReviewCard({
   busy,
   onPublish,
   onIgnore,
+  onDelete,
 }: {
   initial: Capture;
   busy: boolean;
   onPublish: (capture: Capture) => void;
   onIgnore: (id: number) => void;
+  onDelete: (capture: Capture) => void;
 }) {
   const prepared = useMemo(
     () => ({
@@ -69,7 +71,9 @@ export function ReviewCard({
     primary &&
     capture.proposed_name?.trim() &&
     capture.price_cents &&
-    capture.price_cents > 0,
+    capture.price_cents > 0 &&
+    (!capture.proposed_sale_price_cents ||
+      capture.proposed_sale_price_cents < capture.price_cents),
   );
   return (
     <section className="review-workspace">
@@ -176,6 +180,22 @@ export function ReviewCard({
             }
           />
         </div>
+        <div className="field promotion-field">
+          <label htmlFor="product-sale-price">Promoção</label>
+          <input
+            id="product-sale-price"
+            inputMode="numeric"
+            value={formatPrice(capture.proposed_sale_price_cents || 0)}
+            onChange={(e) =>
+              setCapture({
+                ...capture,
+                proposed_sale_price_cents:
+                  digitsToCents(e.target.value) || null,
+              })
+            }
+          />
+          <small>Deixe em R$ 0,00 para publicar sem promoção.</small>
+        </div>
         <div className="review-actions">
           <button
             className="button-pop button-outline"
@@ -183,6 +203,13 @@ export function ReviewCard({
             disabled={busy}
           >
             <Trash2 size={17} /> Ignorar
+          </button>
+          <button
+            className="button-pop danger-button"
+            onClick={() => onDelete(capture)}
+            disabled={busy}
+          >
+            <Trash2 size={17} /> Excluir definitivamente
           </button>
           {ready && (
             <a

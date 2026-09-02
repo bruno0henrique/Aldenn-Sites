@@ -1,4 +1,4 @@
-# Arquitetura v0.6.0
+# Arquitetura v0.9.0
 
 ## Fluxo
 
@@ -9,6 +9,8 @@
 5. Uma peça também pode ser cadastrada manualmente com foto e entrar na mesma fila de aprovação.
 6. `publish_capture` valida e publica produto e mídia em uma única transação.
 7. O catálogo público consulta apenas registros com `status = 'published'`.
+8. `update_published_product` mantém produto e captura de origem sincronizados ao editar dados ou promoção.
+9. `remove_published_product` retira o produto e move a captura de origem para `ignored` em uma transação.
 
 ## Segurança
 
@@ -22,6 +24,8 @@
 - `customer_profiles` registra e-mail, nome, telefone e consentimento promocional, com RLS para a própria conta.
 - Um índice único impede mais de uma conta com papel de proprietária.
 - O modo demonstração usa somente dados locais em memória e não consulta ou altera o Supabase.
+- Preços promocionais possuem restrição no banco e precisam ser positivos e menores que o preço normal.
+- As operações administrativas de produtos exigem `owner` ou `admin` por RLS e por verificação nas funções transacionais.
 
 ## Operação inicial
 

@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.6.0
+Versão: 0.9.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -19,8 +19,11 @@ Versão: 0.6.0
 - Contas autenticadas possuem área própria para nome, telefone e preferência de comunicações promocionais.
 - O menu exibe `Aprovações` apenas para proprietária e administradores.
 - A área de aprovações permite revisar capturas, editar seus dados e cadastrar uma peça manualmente com foto.
+- Capturas em revisão podem ser editadas, precificadas, colocadas em promoção, ignoradas ou excluídas.
+- Produtos publicados podem ser editados, receber ou perder promoção e ser retirados do site.
+- Ao retirar um produto publicado, sua captura original vai para Ignorados e pode ser restaurada.
 - O cadastro promocional exige consentimento explícito para receber novidades, promoções e lançamentos por e-mail.
-- A publicação exige nome, preço maior que zero e exatamente uma foto principal.
+- A publicação exige nome, preço maior que zero e exatamente uma foto principal. Quando houver promoção, o preço promocional deve ser menor que o normal.
 - Publicação é otimista e transacional; falha devolve a peça para revisão.
 - Login Google fica para uma etapa futura.
 - GSAP apenas em detalhes visuais e com respeito a `prefers-reduced-motion`.

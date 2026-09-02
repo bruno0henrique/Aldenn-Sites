@@ -1,5 +1,19 @@
 # Histórico de versões
 
+## [0.9.0] - 2026-09-01
+
+### Adicionado
+
+- Preço promocional opcional no cadastro, na revisão e em produtos publicados.
+- Cards de administração para editar nome, categoria, descrição e preços após a publicação.
+- Exclusão definitiva de capturas em revisão e retirada recuperável de produtos publicados.
+- Exibição de preço normal e promocional no catálogo e na página da peça.
+
+### Segurança
+
+- Migração com validação de preço promocional e funções administrativas protegidas por `is_staff()`.
+- Políticas RLS de produtos e mídias separadas por operação e sem sobreposições de leitura.
+
 ## [0.8.0] - 2026-09-01
 
 ### Adicionado

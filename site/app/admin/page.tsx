@@ -6,14 +6,19 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ReviewCard } from '@/components/review-card';
 import { ManualProductForm } from '@/components/manual-product-form';
+import { PublishedProductCard } from '@/components/published-product-card';
 import {
   assertStaff,
+  deleteCapture,
   listCaptures,
+  listPublishedProductsAdmin,
   publishCapture,
+  removePublishedProduct,
   setCaptureStatus,
+  updatePublishedProduct,
 } from '@/lib/admin';
 import { requireSupabase } from '@/lib/supabase';
-import type { Capture } from '@/lib/types';
+import type { Capture, Product } from '@/lib/types';
 
 const tabs = [
   { id: 'pending_review', label: 'Revisar' },
@@ -31,6 +36,7 @@ const demoCapture: Capture = {
     'Captura de demonstração para testar a curadoria antes da conexão com o Supabase.',
   proposed_category: 'Novidades',
   price_cents: 11990,
+  proposed_sale_price_cents: null,
   status: 'pending_review',
   capture_media: [
     {
@@ -84,7 +90,16 @@ function AdminPageContent() {
     queryKey: ['captures', tab],
     queryFn: () =>
       tab === 'publishing' ? Promise.resolve(publishing) : listCaptures(tab),
-    enabled: !accessError && !previewMode,
+    enabled: !accessError && !previewMode && tab !== 'published',
+  });
+  const {
+    data: publishedProducts = [],
+    isLoading: productsLoading,
+    error: productsError,
+  } = useQuery({
+    queryKey: ['admin-published-products'],
+    queryFn: listPublishedProductsAdmin,
+    enabled: !accessError && !previewMode && tab === 'published',
   });
   const demoCaptures: Record<string, Capture[]> = {
     pending_review: demoPending,
@@ -97,6 +112,21 @@ function AdminPageContent() {
     : tab === 'publishing'
       ? publishing
       : captures;
+  const demoProducts: Product[] = demoPublished.map((capture) => ({
+    id: capture.id,
+    slug: `demo-${capture.id}`,
+    name: capture.proposed_name || 'Peça Belleland',
+    description: capture.proposed_description,
+    category: capture.proposed_category,
+    price_cents: capture.price_cents || 0,
+    sale_price_cents: capture.proposed_sale_price_cents,
+    instagram_url: capture.source_url || null,
+    primary_image_url:
+      capture.capture_media.find((media) => media.decision === 'primary')
+        ?.public_url || capture.capture_media[0]?.public_url || '',
+    images: capture.capture_media.map((media) => media.public_url),
+  }));
+  const displayedProducts = previewMode ? demoProducts : publishedProducts;
   const publish = useMutation({
     mutationFn: publishCapture,
     onMutate: async (capture) => {
@@ -128,6 +158,31 @@ function AdminPageContent() {
       next: 'pending_review' | 'ignored';
     }) => setCaptureStatus(id, next),
     onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['captures'] });
+    },
+  });
+  const removeCapture = useMutation({
+    mutationFn: deleteCapture,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['captures'] });
+    },
+  });
+  const updateProduct = useMutation({
+    mutationFn: updatePublishedProduct,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['admin-published-products'],
+      });
+      void queryClient.invalidateQueries({ queryKey: ['published-products'] });
+    },
+  });
+  const removeProduct = useMutation({
+    mutationFn: removePublishedProduct,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: ['admin-published-products'],
+      });
+      void queryClient.invalidateQueries({ queryKey: ['published-products'] });
       void queryClient.invalidateQueries({ queryKey: ['captures'] });
     },
   });
@@ -184,6 +239,43 @@ function AdminPageContent() {
     setDemoIgnored((items) => items.filter((item) => item.id !== id));
     setDemoPending([{ ...capture, status: 'pending_review' }]);
     setTab('pending_review');
+  }
+  function handleDeleteCapture(capture: Capture) {
+    if (!window.confirm('Excluir esta captura e suas fotos definitivamente?'))
+      return;
+    if (!previewMode) {
+      removeCapture.mutate(capture);
+      return;
+    }
+    setDemoPending((items) => items.filter((item) => item.id !== capture.id));
+    setDemoIgnored((items) => items.filter((item) => item.id !== capture.id));
+  }
+  function handleUpdateProduct(product: Product) {
+    if (!previewMode) {
+      updateProduct.mutate(product);
+      return;
+    }
+    setDemoPublished((items) =>
+      items.map((item) =>
+        item.id === product.id
+          ? {
+              ...item,
+              proposed_name: product.name,
+              proposed_description: product.description,
+              proposed_category: product.category,
+              price_cents: product.price_cents,
+              proposed_sale_price_cents: product.sale_price_cents,
+            }
+          : item,
+      ),
+    );
+  }
+  function handleDeleteProduct(id: number) {
+    if (!previewMode) {
+      removeProduct.mutate(id);
+      return;
+    }
+    setDemoPublished((items) => items.filter((item) => item.id !== id));
   }
   const current = displayedCaptures[0];
   return (
@@ -257,8 +349,30 @@ function AdminPageContent() {
               : 'Falha ao carregar capturas.'}
           </div>
         )}
-        {!previewMode && isLoading ? (
+        {productsError && (
+          <div className="form-error">
+            {productsError instanceof Error
+              ? productsError.message
+              : 'Falha ao carregar produtos publicados.'}
+          </div>
+        )}
+        {!previewMode &&
+        (tab === 'published' ? productsLoading : isLoading) ? (
           <div className="admin-loading">Carregando capturas…</div>
+        ) : tab === 'published' && displayedProducts.length ? (
+          <div className="published-product-list">
+            {displayedProducts.map((product) => (
+              <PublishedProductCard
+                key={product.id}
+                initial={product}
+                busy={updateProduct.isPending || removeProduct.isPending}
+                onSave={handleUpdateProduct}
+                onDelete={handleDeleteProduct}
+              />
+            ))}
+          </div>
+        ) : tab === 'published' ? (
+          <EmptyAdmin tab={tab} />
         ) : current ? (
           tab === 'pending_review' ? (
             <ReviewCard
@@ -269,6 +383,7 @@ function AdminPageContent() {
               }
               onPublish={handlePublish}
               onIgnore={handleIgnore}
+              onDelete={handleDeleteCapture}
             />
           ) : (
             <CaptureList
@@ -284,6 +399,15 @@ function AdminPageContent() {
           <div className="form-error publish-error">
             A publicação falhou e a peça voltou para revisão.{' '}
             {publish.error.message}
+          </div>
+        )}
+        {(removeCapture.error || updateProduct.error || removeProduct.error) && (
+          <div className="form-error publish-error">
+            {(
+              removeCapture.error ||
+              updateProduct.error ||
+              removeProduct.error
+            )?.message || 'Não foi possível concluir a alteração.'}
           </div>
         )}
       </div>

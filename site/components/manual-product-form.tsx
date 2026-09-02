@@ -11,6 +11,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [priceCents, setPriceCents] = useState(0);
+  const [salePriceCents, setSalePriceCents] = useState(0);
   const [image, setImage] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -26,12 +27,14 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         category,
         description,
         priceCents,
+        salePriceCents,
         image,
       });
       setName('');
       setCategory('');
       setDescription('');
       setPriceCents(0);
+      setSalePriceCents(0);
       setImage(null);
       setOpen(false);
       onCreated();
@@ -98,6 +101,21 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             onChange={(event) => setPriceCents(digitsToCents(event.target.value))}
           />
         </div>
+        <div className="field">
+          <label htmlFor="manual-sale-price">Preço promocional</label>
+          <input
+            id="manual-sale-price"
+            inputMode="numeric"
+            value={formatPrice(salePriceCents)}
+            onChange={(event) =>
+              setSalePriceCents(digitsToCents(event.target.value))
+            }
+            aria-describedby="manual-sale-help"
+          />
+          <small id="manual-sale-help">
+            Opcional e sempre menor que o preço normal.
+          </small>
+        </div>
         <div className="field manual-image-field">
           <label htmlFor="manual-image">
             <ImagePlus size={16} /> Foto principal
@@ -123,7 +141,13 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
       </div>
       <button
         className="button-pop button-primary full"
-        disabled={busy || !image || !name.trim() || priceCents <= 0}
+        disabled={
+          busy ||
+          !image ||
+          !name.trim() ||
+          priceCents <= 0 ||
+          salePriceCents >= priceCents
+        }
       >
         {busy ? 'Criando…' : 'Enviar para aprovação'}
       </button>
