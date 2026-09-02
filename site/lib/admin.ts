@@ -8,6 +8,38 @@ export type InstagramSyncResult = {
   scanned: number;
 };
 
+export type ProductImageAnalysis = {
+  name: string;
+  category: string;
+  color: string;
+  size: string;
+  price_cents: number;
+  description: string;
+  visible_text: string;
+  confidence: number;
+  warnings: string[];
+};
+
+export async function analyzeProductImage(
+  image: File,
+): Promise<ProductImageAnalysis> {
+  const formData = new FormData();
+  formData.append('image', image);
+  const response = await fetch('/api/admin/analyze-product-image', {
+    method: 'POST',
+    body: formData,
+    credentials: 'same-origin',
+  });
+  const body = (await response.json()) as {
+    analysis?: ProductImageAnalysis;
+    error?: string;
+  };
+  if (!response.ok || !body.analysis) {
+    throw new Error(body.error || 'Não foi possível analisar a imagem.');
+  }
+  return body.analysis;
+}
+
 export async function syncInstagramPosts(): Promise<InstagramSyncResult> {
   const supabase = requireSupabase();
   const { data } = await supabase.auth.getSession();

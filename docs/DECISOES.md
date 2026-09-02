@@ -65,3 +65,14 @@
 - Motivo: Dar visão geral do catálogo e evitar imagens desproporcionais no primeiro acesso ao painel.
 - Impactos: A seleção passa a ser uma etapa anterior à edição, sem alterar dados ou permissões.
 - Substitui: Não se aplica.
+
+## DEC-007: GPT como assistente do cadastro por imagem
+
+- Data: 2026-09-02
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: As artes das publicações já contêm nome, tamanho, preço e características visuais úteis ao cadastro.
+- Decisão: Usar análise visual da OpenAI sob demanda para sugerir os campos do formulário administrativo, sempre com revisão humana antes da publicação.
+- Motivo: Reduzir digitação sem depender da API da Meta ou de automação de acesso ao Instagram.
+- Impactos: A imagem é enviada a um terceiro somente após ação explícita. A chave fica no servidor, há custo por uso e nenhum resultado é publicado automaticamente.
+- Substitui: Não se aplica.

@@ -1,8 +1,8 @@
 'use client';
 
-import { ImagePlus, Plus, X } from 'lucide-react';
-import { SyntheticEvent, useState } from 'react';
-import { createManualCapture } from '@/lib/admin';
+import { ImagePlus, Plus, Sparkles, X } from 'lucide-react';
+import { SyntheticEvent, useEffect, useMemo, useState } from 'react';
+import { analyzeProductImage, createManualCapture } from '@/lib/admin';
 import { digitsToCents, formatPrice } from '@/lib/format';
 
 export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
@@ -14,7 +14,55 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
   const [salePriceCents, setSalePriceCents] = useState(0);
   const [image, setImage] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
+  const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState('');
+  const [analysisMessage, setAnalysisMessage] = useState('');
+  const imagePreview = useMemo(
+    () => (image ? URL.createObjectURL(image) : ''),
+    [image],
+  );
+
+  useEffect(() => {
+    return () => {
+      if (imagePreview) URL.revokeObjectURL(imagePreview);
+    };
+  }, [imagePreview]);
+
+  async function analyze() {
+    if (!image) return;
+    setAnalyzing(true);
+    setError('');
+    setAnalysisMessage('');
+    try {
+      const result = await analyzeProductImage(image);
+      if (result.name) setName(result.name);
+      if (result.category) setCategory(result.category);
+      if (result.price_cents > 0) setPriceCents(result.price_cents);
+
+      const details = [
+        result.description,
+        result.color ? `Cor: ${result.color}.` : '',
+        result.size ? `Tamanho: ${result.size}.` : '',
+      ].filter(Boolean);
+      if (details.length) setDescription(details.join(' '));
+
+      const confidence = Math.round(result.confidence * 100);
+      const warning = result.warnings[0];
+      setAnalysisMessage(
+        warning
+          ? `Sugestões preenchidas (${confidence}% de confiança). Confira: ${warning}`
+          : `Sugestões preenchidas (${confidence}% de confiança). Revise antes de enviar.`,
+      );
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : 'Não foi possível analisar a imagem.',
+      );
+    } finally {
+      setAnalyzing(false);
+    }
+  }
 
   async function submit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -36,11 +84,14 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
       setPriceCents(0);
       setSalePriceCents(0);
       setImage(null);
+      setAnalysisMessage('');
       setOpen(false);
       onCreated();
     } catch (cause) {
       setError(
-        cause instanceof Error ? cause.message : 'Não foi possível criar a peça.',
+        cause instanceof Error
+          ? cause.message
+          : 'Não foi possível criar a peça.',
       );
     } finally {
       setBusy(false);
@@ -50,7 +101,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
   if (!open) {
     return (
       <button className="manual-trigger" onClick={() => setOpen(true)}>
-        <Plus size={17} /> Nova peça manual
+        <Plus size={17} /> Cadastrar por imagem
       </button>
     );
   }
@@ -59,16 +110,21 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
     <form className="manual-product-form" onSubmit={submit}>
       <header>
         <div>
-          <span>Cadastro livre</span>
-          <h2>Nova peça manual</h2>
+          <span>Cadastro assistido</span>
+          <h2>Nova peça por imagem</h2>
         </div>
-        <button type="button" onClick={() => setOpen(false)} aria-label="Fechar">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label="Fechar"
+        >
           <X />
         </button>
       </header>
       <p>
-        Crie uma peça sem depender da captura do Instagram. Depois você ainda
-        poderá revisar tudo antes de publicar.
+        Envie a arte da publicação e use o GPT para sugerir os dados. A imagem
+        só é analisada quando você pedir e tudo continua editável antes de
+        publicar.
       </p>
       {error && <div className="form-error">{error}</div>}
       <div className="manual-grid">
@@ -98,7 +154,9 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             required
             inputMode="numeric"
             value={formatPrice(priceCents)}
-            onChange={(event) => setPriceCents(digitsToCents(event.target.value))}
+            onChange={(event) =>
+              setPriceCents(digitsToCents(event.target.value))
+            }
           />
         </div>
         <div className="field">
@@ -125,10 +183,42 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             type="file"
             required
             accept="image/jpeg,image/png,image/webp"
-            onChange={(event) => setImage(event.target.files?.[0] || null)}
+            onChange={(event) => {
+              setImage(event.target.files?.[0] || null);
+              setAnalysisMessage('');
+            }}
           />
+          <small>
+            Prefira a arte original ou recorte o print. Esta será a foto do
+            produto no catálogo.
+          </small>
         </div>
       </div>
+      {imagePreview && (
+        <div className="manual-analysis">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imagePreview} alt="Prévia da imagem escolhida" />
+          <div>
+            <strong>Preenchimento inteligente</strong>
+            <p>
+              A imagem será enviada à OpenAI somente para sugerir os campos
+              deste cadastro.
+            </p>
+            <button
+              type="button"
+              className="button-pop ai-fill-button"
+              onClick={analyze}
+              disabled={analyzing || busy}
+            >
+              <Sparkles size={16} />
+              {analyzing ? 'Analisando imagem...' : 'Preencher com GPT'}
+            </button>
+          </div>
+        </div>
+      )}
+      {analysisMessage && (
+        <output className="analysis-message">{analysisMessage}</output>
+      )}
       <div className="field">
         <label htmlFor="manual-description">Descrição</label>
         <textarea
@@ -143,6 +233,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         className="button-pop button-primary full"
         disabled={
           busy ||
+          analyzing ||
           !image ||
           !name.trim() ||
           priceCents <= 0 ||

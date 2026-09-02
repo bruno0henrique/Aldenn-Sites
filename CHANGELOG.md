@@ -1,5 +1,22 @@
 # Histórico de versões
 
+## [0.11.0] - 2026-09-02
+
+### Adicionado
+
+- Análise visual sob demanda no cadastro por imagem com OpenAI Responses API.
+- Sugestões estruturadas de nome, categoria, cor, tamanho, preço e descrição.
+- Prévia compacta da imagem e retorno de confiança ou alertas antes da revisão.
+
+### Segurança
+
+- Rota exclusiva para proprietária e administradores com validação da sessão no servidor.
+- Chave OpenAI restrita ao servidor, imagens limitadas por formato e tamanho, cache desativado e armazenamento da resposta desabilitado.
+
+### Alterado
+
+- Cadastro manual apresentado como cadastro assistido por imagem, mantendo edição total e publicação separada.
+
 ## [0.10.1] - 2026-09-01
 
 ### Corrigido
