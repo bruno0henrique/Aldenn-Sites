@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.12.1] - 2026-09-02
+
+### Alterado
+
+- Logo principal substituída pelo novo SVG fornecido pela cliente.
+- Prancheta do SVG ajustada para manter a marca legível nos cabeçalhos mobile e desktop.
+
 ## [0.12.0] - 2026-09-02
 
 ### Alterado

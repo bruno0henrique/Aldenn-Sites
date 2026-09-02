@@ -1,9 +1,10 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.12.0
+Versão: 0.12.1
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
+- A marca principal usa o SVG enviado pela cliente em 2026-09-02, preservado como vetor e com a prancheta ajustada para os cabeçalhos.
 - Paleta principal: `#F8E8A6`, `#E73F8C`, `#7B4F3F`, `#F7F1EA`.
 - Fontes: Playfair Display para títulos e Instrument Sans para interface e textos.
 - Produtos abrem em página própria e são reservados pelo WhatsApp `(12) 98107-3663`.
