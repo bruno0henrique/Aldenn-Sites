@@ -2,6 +2,31 @@ import { requireSupabase } from '@/lib/supabase';
 import { getPublishedProducts } from '@/lib/catalog';
 import type { Capture, Product } from '@/lib/types';
 
+export type InstagramSyncResult = {
+  created: number;
+  skipped: number;
+  scanned: number;
+};
+
+export async function syncInstagramPosts(): Promise<InstagramSyncResult> {
+  const supabase = requireSupabase();
+  const { data } = await supabase.auth.getSession();
+  if (!data.session) throw new Error('Sessão expirada.');
+  const response = await fetch('/api/instagram_sync', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${data.session.access_token}`,
+    },
+  });
+  const body = (await response.json()) as InstagramSyncResult & {
+    error?: string;
+  };
+  if (!response.ok)
+    throw new Error(body.error || 'Não foi possível sincronizar o Instagram.');
+  return body;
+}
+
 export async function assertStaff() {
   const supabase = requireSupabase();
   const { data: auth } = await supabase.auth.getUser();
@@ -111,12 +136,10 @@ export async function createManualCapture({
     'image/webp': 'webp',
   };
   const extension = allowedImageTypes[image.type];
-  if (!extension)
-    throw new Error('Selecione uma imagem válida.');
+  if (!extension) throw new Error('Selecione uma imagem válida.');
   if (image.size > 10 * 1024 * 1024)
     throw new Error('A imagem deve ter no máximo 10 MB.');
-  if (priceCents <= 0)
-    throw new Error('Informe um preço válido.');
+  if (priceCents <= 0) throw new Error('Informe um preço válido.');
   if (salePriceCents > 0 && salePriceCents >= priceCents)
     throw new Error('O preço promocional deve ser menor que o preço normal.');
 

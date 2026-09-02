@@ -957,8 +957,16 @@ footer a:last-child {
 
 .account-page {
   background:
-    radial-gradient(circle at 12% 18%, rgba(249, 219, 231, 0.72), transparent 30%),
-    radial-gradient(circle at 92% 80%, rgba(248, 232, 166, 0.42), transparent 25%),
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(249, 219, 231, 0.72),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 92% 80%,
+      rgba(248, 232, 166, 0.42),
+      transparent 25%
+    ),
     #fffaf7;
 }
 .account-shell {
@@ -996,7 +1004,9 @@ footer a:last-child {
 .account-heading h1 {
   margin: 2px 0 0;
   color: var(--pink-dark);
-  font: 800 clamp(2rem, 8vw, 3rem) var(--font-playfair-display), serif;
+  font:
+    800 clamp(2rem, 8vw, 3rem) var(--font-playfair-display),
+    serif;
 }
 .account-loading {
   min-height: 220px;
@@ -1075,7 +1085,9 @@ footer a:last-child {
 }
 .manual-product-form h2 {
   margin: 3px 0 0;
-  font: 800 1.65rem var(--font-playfair-display), serif;
+  font:
+    800 1.65rem var(--font-playfair-display),
+    serif;
 }
 .manual-product-form header button {
   width: 38px;
@@ -1192,6 +1204,28 @@ footer a:last-child {
   font-size: 0.78rem;
   cursor: pointer;
 }
+.refresh-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+.refresh-spinning {
+  animation: refresh-spin 0.8s linear infinite;
+}
+.sync-message {
+  margin: -8px 0 18px;
+  border: 1px solid #b8d9c2;
+  border-radius: 12px;
+  background: #eff9f2;
+  color: #2c673c;
+  padding: 11px 13px;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+@keyframes refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .admin-tabs {
   display: flex;
   gap: 6px;
@@ -1223,6 +1257,10 @@ footer a:last-child {
 .review-workspace {
   display: grid;
   gap: 18px;
+}
+.review-card-list {
+  display: grid;
+  gap: 24px;
 }
 .review-stack {
   display: grid;
@@ -1370,7 +1408,9 @@ footer a:last-child {
 }
 .published-product-heading h2 {
   margin: 3px 0 0;
-  font: 800 1.55rem var(--font-playfair-display), serif;
+  font:
+    800 1.55rem var(--font-playfair-display),
+    serif;
 }
 .published-product-heading a {
   color: var(--pink-dark);

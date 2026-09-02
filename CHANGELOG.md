@@ -1,5 +1,23 @@
 # Histórico de versões
 
+## [0.10.0] - 2026-09-01
+
+### Adicionado
+
+- Botão Atualizar conectado ao scraper hospedado e protegido pela sessão administrativa.
+- Novas publicações do Instagram entram na fila e todos os cards pendentes aparecem para revisão.
+- Retorno visual de busca, sucesso, ausência de novidades e bloqueio temporário do Instagram.
+
+### Alterado
+
+- Captura do Instagram não exige mais hashtag nas publicações.
+- Sincronização processa até 12 novos posts por execução para respeitar o tempo da função hospedada.
+
+### Segurança
+
+- O scraper valida a sessão Supabase e o papel administrativo antes de ler ou gravar dados.
+- A função hospedada usa RLS e não recebe service role nem credencial da Meta.
+
 ## [0.9.0] - 2026-09-01
 
 ### Adicionado
@@ -124,7 +142,7 @@
 - Painel de curadoria com revisão de imagens, edição, preço, publicação otimista e restauração.
 - Modo demonstração sem login e sem acesso aos dados reais, disponível no site privado para avaliação do painel.
 - Migração PostgreSQL com RLS, Storage, auditoria e publicação transacional.
-- Sincronizador manual do Instagram por `#bellelandproduto`.
+- Sincronizador manual inicial do Instagram por marcação nas legendas.
 - Animações GSAP acessíveis e microinterações inspiradas no Uiverse.
 
 ### Segurança

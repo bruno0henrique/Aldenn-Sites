@@ -15,6 +15,7 @@ import {
   publishCapture,
   removePublishedProduct,
   setCaptureStatus,
+  syncInstagramPosts,
   updatePublishedProduct,
 } from '@/lib/admin';
 import { requireSupabase } from '@/lib/supabase';
@@ -75,6 +76,7 @@ function AdminPageContent() {
   const [demoPublished, setDemoPublished] = useState<Capture[]>([]);
   const [demoIgnored, setDemoIgnored] = useState<Capture[]>([]);
   const [demoBusy, setDemoBusy] = useState(false);
+  const [syncMessage, setSyncMessage] = useState('');
   useEffect(() => {
     if (previewMode) return;
     assertStaff().catch((error) => {
@@ -123,7 +125,9 @@ function AdminPageContent() {
     instagram_url: capture.source_url || null,
     primary_image_url:
       capture.capture_media.find((media) => media.decision === 'primary')
-        ?.public_url || capture.capture_media[0]?.public_url || '',
+        ?.public_url ||
+      capture.capture_media[0]?.public_url ||
+      '',
     images: capture.capture_media.map((media) => media.public_url),
   }));
   const displayedProducts = previewMode ? demoProducts : publishedProducts;
@@ -186,6 +190,19 @@ function AdminPageContent() {
       void queryClient.invalidateQueries({ queryKey: ['captures'] });
     },
   });
+  const synchronize = useMutation({
+    mutationFn: syncInstagramPosts,
+    onSuccess: (result) => {
+      setTab('pending_review');
+      setSyncMessage(
+        result.created
+          ? `${result.created} nova${result.created === 1 ? '' : 's'} publicação${result.created === 1 ? '' : 'ões'} adicionada${result.created === 1 ? '' : 's'} para revisão.`
+          : 'Instagram conferido. Nenhuma publicação nova no momento.',
+      );
+      void queryClient.invalidateQueries({ queryKey: ['captures'] });
+    },
+    onError: (syncError) => setSyncMessage(syncError.message),
+  });
   async function logout() {
     if (previewMode) {
       router.replace('/admin/login');
@@ -200,6 +217,7 @@ function AdminPageContent() {
     setDemoPublished([]);
     setDemoIgnored([]);
     setDemoBusy(false);
+    setSyncMessage('Demonstração atualizada.');
     setTab('pending_review');
   }
   function handlePublish(capture: Capture) {
@@ -306,15 +324,23 @@ function AdminPageContent() {
           </div>
           <button
             className="refresh-button"
-            onClick={() =>
-              previewMode
-                ? resetDemo()
-                : queryClient.invalidateQueries({ queryKey: ['captures'] })
-            }
+            disabled={synchronize.isPending}
+            onClick={() => (previewMode ? resetDemo() : synchronize.mutate())}
           >
-            <RefreshCw size={16} /> Atualizar
+            <RefreshCw
+              size={16}
+              className={synchronize.isPending ? 'refresh-spinning' : ''}
+            />{' '}
+            {synchronize.isPending ? 'Buscando...' : 'Atualizar'}
           </button>
         </div>
+        {syncMessage && (
+          <output
+            className={synchronize.isError ? 'form-error' : 'sync-message'}
+          >
+            {syncMessage}
+          </output>
+        )}
         {!previewMode && (
           <ManualProductForm
             onCreated={() => {
@@ -356,8 +382,7 @@ function AdminPageContent() {
               : 'Falha ao carregar produtos publicados.'}
           </div>
         )}
-        {!previewMode &&
-        (tab === 'published' ? productsLoading : isLoading) ? (
+        {!previewMode && (tab === 'published' ? productsLoading : isLoading) ? (
           <div className="admin-loading">Carregando capturas…</div>
         ) : tab === 'published' && displayedProducts.length ? (
           <div className="published-product-list">
@@ -375,16 +400,24 @@ function AdminPageContent() {
           <EmptyAdmin tab={tab} />
         ) : current ? (
           tab === 'pending_review' ? (
-            <ReviewCard
-              key={current.id}
-              initial={current}
-              busy={
-                previewMode ? demoBusy : publish.isPending || status.isPending
-              }
-              onPublish={handlePublish}
-              onIgnore={handleIgnore}
-              onDelete={handleDeleteCapture}
-            />
+            <div className="review-card-list">
+              {displayedCaptures.map((capture) => (
+                <ReviewCard
+                  key={capture.id}
+                  initial={capture}
+                  busy={
+                    previewMode
+                      ? demoBusy
+                      : publish.isPending ||
+                        status.isPending ||
+                        removeCapture.isPending
+                  }
+                  onPublish={handlePublish}
+                  onIgnore={handleIgnore}
+                  onDelete={handleDeleteCapture}
+                />
+              ))}
+            </div>
           ) : (
             <CaptureList
               captures={displayedCaptures}
@@ -401,13 +434,12 @@ function AdminPageContent() {
             {publish.error.message}
           </div>
         )}
-        {(removeCapture.error || updateProduct.error || removeProduct.error) && (
+        {(removeCapture.error ||
+          updateProduct.error ||
+          removeProduct.error) && (
           <div className="form-error publish-error">
-            {(
-              removeCapture.error ||
-              updateProduct.error ||
-              removeProduct.error
-            )?.message || 'Não foi possível concluir a alteração.'}
+            {(removeCapture.error || updateProduct.error || removeProduct.error)
+              ?.message || 'Não foi possível concluir a alteração.'}
           </div>
         )}
       </div>
@@ -482,7 +514,7 @@ function EmptyAdmin({ tab }: { tab: string }) {
       <h2>{messages[tab]}</h2>
       <p>
         {tab === 'pending_review'
-          ? 'Quando a sincronização encontrar posts com #bellelandproduto, eles aparecerão aqui.'
+          ? 'Clique em Atualizar para buscar novas publicações do Instagram.'
           : 'Esta lista será atualizada automaticamente.'}
       </p>
       {tab === 'pending_review' && (

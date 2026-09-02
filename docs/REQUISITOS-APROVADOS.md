@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.9.0
+Versão: 0.10.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -8,7 +8,7 @@ Versão: 0.9.0
 - Fontes: Playfair Display para títulos e Instrument Sans para interface e textos.
 - Produtos abrem em página própria e são reservados pelo WhatsApp `(12) 98107-3663`.
 - A mensagem de reserva inclui nome, preço e link público da peça. O WhatsApp usa a prévia do link; não há anexo automático.
-- Instagram `@bellelandcloset` é fonte de captura manual. Apenas posts com `#bellelandproduto` entram na fila.
+- Instagram `@bellelandcloset` é fonte de captura sob demanda. Ao clicar em Atualizar, publicações ainda não registradas entram na fila, sem exigir hashtag.
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
 - Não usar produtos fictícios. Sem itens publicados, exibir “Em breve, novos produtos”.
 - Proprietária e administradores entram com e-mail e senha via Supabase e revisam capturas antes de publicar.
