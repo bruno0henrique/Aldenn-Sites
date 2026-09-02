@@ -1,5 +1,19 @@
 # Histórico de versões
 
+## [0.12.0] - 2026-09-02
+
+### Alterado
+
+- Análise visual migrada da OpenAI para o Google Gemini 2.5 Flash.
+- Botão, avisos e variáveis de ambiente atualizados para o novo provedor.
+- Raciocínio adicional do Gemini desativado nessa extração para reduzir custo e latência.
+
+### Segurança
+
+- `GEMINI_API_KEY` permanece exclusiva do servidor.
+- Resposta estruturada continua validada antes de preencher o formulário.
+- Uso de dados do plano gratuito documentado para evitar envio de conteúdo pessoal desnecessário.
+
 ## [0.11.0] - 2026-09-02
 
 ### Adicionado

@@ -122,7 +122,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         </button>
       </header>
       <p>
-        Envie a arte da publicação e use o GPT para sugerir os dados. A imagem
+        Envie a arte da publicação e use o Gemini para sugerir os dados. A imagem
         só é analisada quando você pedir e tudo continua editável antes de
         publicar.
       </p>
@@ -201,8 +201,9 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
           <div>
             <strong>Preenchimento inteligente</strong>
             <p>
-              A imagem será enviada à OpenAI somente para sugerir os campos
-              deste cadastro.
+              A imagem será enviada ao Google Gemini somente para sugerir os
+              campos deste cadastro. No plano gratuito, o Google pode usar o
+              conteúdo para melhorar seus produtos. Não envie dados pessoais.
             </p>
             <button
               type="button"
@@ -211,7 +212,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
               disabled={analyzing || busy}
             >
               <Sparkles size={16} />
-              {analyzing ? 'Analisando imagem...' : 'Preencher com GPT'}
+              {analyzing ? 'Analisando imagem...' : 'Preencher com Gemini'}
             </button>
           </div>
         </div>
