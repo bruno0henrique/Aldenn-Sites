@@ -122,9 +122,8 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         </button>
       </header>
       <p>
-        Envie a arte da publicação e use o Gemini para sugerir os dados. A imagem
-        só é analisada quando você pedir e tudo continua editável antes de
-        publicar.
+        Envie a arte da publicação e o programa vai sugerir os dados. A imagem só
+        é analisada quando você pedir e tudo continua editável antes de publicar.
       </p>
       {error && <div className="form-error">{error}</div>}
       <div className="manual-grid">
@@ -199,22 +198,21 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imagePreview} alt="Prévia da imagem escolhida" />
           <div>
-            <strong>Preenchimento inteligente</strong>
+            <strong>Preencher dados</strong>
             <p>
-              A imagem será enviada ao Google Gemini somente para sugerir os
-              campos deste cadastro. No plano gratuito, o Google pode usar o
-              conteúdo para melhorar seus produtos. Não envie dados pessoais.
+              A imagem será enviada ao programa somente para sugerir os campos
+              deste cadastro.
             </p>
-            <button
-              type="button"
-              className="button-pop ai-fill-button"
-              onClick={analyze}
-              disabled={analyzing || busy}
-            >
-              <Sparkles size={16} />
-              {analyzing ? 'Analisando imagem...' : 'Preencher com Gemini'}
-            </button>
           </div>
+          <button
+            type="button"
+            className="button-pop ai-fill-button"
+            onClick={analyze}
+            disabled={analyzing || busy}
+          >
+            <Sparkles size={16} />
+            {analyzing ? 'Analisando imagem...' : 'Preencher dados'}
+          </button>
         </div>
       )}
       {analysisMessage && (
