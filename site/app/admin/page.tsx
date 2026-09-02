@@ -1,6 +1,13 @@
 'use client';
 
-import { ArrowUpRight, LogOut, RefreshCw } from 'lucide-react';
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Images,
+  LogOut,
+  Pencil,
+  RefreshCw,
+} from 'lucide-react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -77,6 +84,12 @@ function AdminPageContent() {
   const [demoIgnored, setDemoIgnored] = useState<Capture[]>([]);
   const [demoBusy, setDemoBusy] = useState(false);
   const [syncMessage, setSyncMessage] = useState('');
+  const [selectedCaptureId, setSelectedCaptureId] = useState<number | null>(
+    null,
+  );
+  const [selectedProductId, setSelectedProductId] = useState<number | null>(
+    null,
+  );
   useEffect(() => {
     if (previewMode) return;
     assertStaff().catch((error) => {
@@ -194,6 +207,7 @@ function AdminPageContent() {
     mutationFn: syncInstagramPosts,
     onSuccess: (result) => {
       setTab('pending_review');
+      setSelectedCaptureId(null);
       setSyncMessage(
         result.created
           ? `${result.created} nova${result.created === 1 ? '' : 's'} publicação${result.created === 1 ? '' : 'ões'} adicionada${result.created === 1 ? '' : 's'} para revisão.`
@@ -218,9 +232,12 @@ function AdminPageContent() {
     setDemoIgnored([]);
     setDemoBusy(false);
     setSyncMessage('Demonstração atualizada.');
+    setSelectedCaptureId(null);
+    setSelectedProductId(null);
     setTab('pending_review');
   }
   function handlePublish(capture: Capture) {
+    setSelectedCaptureId(null);
     if (!previewMode) {
       publish.mutate(capture);
       return;
@@ -237,6 +254,7 @@ function AdminPageContent() {
     }, 700);
   }
   function handleIgnore(id: number) {
+    setSelectedCaptureId(null);
     if (!previewMode) {
       status.mutate({ id, next: 'ignored' });
       return;
@@ -262,6 +280,7 @@ function AdminPageContent() {
     if (!window.confirm('Excluir esta captura e suas fotos definitivamente?'))
       return;
     if (!previewMode) {
+      setSelectedCaptureId(null);
       removeCapture.mutate(capture);
       return;
     }
@@ -269,6 +288,7 @@ function AdminPageContent() {
     setDemoIgnored((items) => items.filter((item) => item.id !== capture.id));
   }
   function handleUpdateProduct(product: Product) {
+    setSelectedProductId(null);
     if (!previewMode) {
       updateProduct.mutate(product);
       return;
@@ -289,13 +309,19 @@ function AdminPageContent() {
     );
   }
   function handleDeleteProduct(id: number) {
+    setSelectedProductId(null);
     if (!previewMode) {
       removeProduct.mutate(id);
       return;
     }
     setDemoPublished((items) => items.filter((item) => item.id !== id));
   }
-  const current = displayedCaptures[0];
+  const selectedCapture = displayedCaptures.find(
+    (capture) => capture.id === selectedCaptureId,
+  );
+  const selectedProduct = displayedProducts.find(
+    (product) => product.id === selectedProductId,
+  );
   return (
     <main className="admin-page">
       <header className="admin-header">
@@ -345,6 +371,7 @@ function AdminPageContent() {
           <ManualProductForm
             onCreated={() => {
               setTab('pending_review');
+              setSelectedCaptureId(null);
               void queryClient.invalidateQueries({ queryKey: ['captures'] });
             }}
           />
@@ -353,7 +380,11 @@ function AdminPageContent() {
           {tabs.map((item) => (
             <button
               className={tab === item.id ? 'active' : ''}
-              onClick={() => setTab(item.id)}
+              onClick={() => {
+                setTab(item.id);
+                setSelectedCaptureId(null);
+                setSelectedProductId(null);
+              }}
               key={item.id}
             >
               {item.label}
@@ -384,27 +415,46 @@ function AdminPageContent() {
         )}
         {!previewMode && (tab === 'published' ? productsLoading : isLoading) ? (
           <div className="admin-loading">Carregando capturas…</div>
-        ) : tab === 'published' && displayedProducts.length ? (
-          <div className="published-product-list">
-            {displayedProducts.map((product) => (
+        ) : tab === 'published' && selectedProduct ? (
+          <div className="selected-editor">
+            <button
+              className="back-to-products"
+              type="button"
+              onClick={() => setSelectedProductId(null)}
+            >
+              <ArrowLeft size={17} /> Voltar aos produtos
+            </button>
+            <div className="published-product-list">
               <PublishedProductCard
-                key={product.id}
-                initial={product}
+                key={selectedProduct.id}
+                initial={selectedProduct}
                 busy={updateProduct.isPending || removeProduct.isPending}
                 onSave={handleUpdateProduct}
                 onDelete={handleDeleteProduct}
               />
-            ))}
+            </div>
           </div>
+        ) : tab === 'published' && displayedProducts.length ? (
+          <ProductChooser
+            products={displayedProducts}
+            onSelect={setSelectedProductId}
+          />
         ) : tab === 'published' ? (
           <EmptyAdmin tab={tab} />
-        ) : current ? (
+        ) : displayedCaptures.length ? (
           tab === 'pending_review' ? (
-            <div className="review-card-list">
-              {displayedCaptures.map((capture) => (
+            selectedCapture ? (
+              <div className="selected-editor">
+                <button
+                  className="back-to-products"
+                  type="button"
+                  onClick={() => setSelectedCaptureId(null)}
+                >
+                  <ArrowLeft size={17} /> Voltar às peças
+                </button>
                 <ReviewCard
-                  key={capture.id}
-                  initial={capture}
+                  key={selectedCapture.id}
+                  initial={selectedCapture}
                   busy={
                     previewMode
                       ? demoBusy
@@ -416,8 +466,13 @@ function AdminPageContent() {
                   onIgnore={handleIgnore}
                   onDelete={handleDeleteCapture}
                 />
-              ))}
-            </div>
+              </div>
+            ) : (
+              <CaptureChooser
+                captures={displayedCaptures}
+                onSelect={setSelectedCaptureId}
+              />
+            )
           ) : (
             <CaptureList
               captures={displayedCaptures}
@@ -444,6 +499,81 @@ function AdminPageContent() {
         )}
       </div>
     </main>
+  );
+}
+
+function CaptureChooser({
+  captures,
+  onSelect,
+}: {
+  captures: Capture[];
+  onSelect: (id: number) => void;
+}) {
+  return (
+    <div className="product-chooser">
+      {captures.map((capture) => {
+        const image =
+          capture.capture_media.find((media) => media.decision === 'primary')
+            ?.public_url || capture.capture_media[0]?.public_url;
+        return (
+          <button
+            className="product-choice-card"
+            key={capture.id}
+            type="button"
+            aria-label={`Editar ${capture.proposed_name || `post ${capture.instagram_shortcode}`}`}
+            onClick={() => onSelect(capture.id)}
+          >
+            {image ? (
+              <img src={image} alt="" loading="lazy" />
+            ) : (
+              <span className="choice-image-empty">
+                <Images size={24} />
+              </span>
+            )}
+            <span className="choice-card-copy">
+              <small>{capture.capture_media.length} foto(s)</small>
+              <strong>
+                {capture.proposed_name || `Post ${capture.instagram_shortcode}`}
+              </strong>
+              <span>
+                <Pencil size={14} /> Editar peça
+              </span>
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function ProductChooser({
+  products,
+  onSelect,
+}: {
+  products: Product[];
+  onSelect: (id: number) => void;
+}) {
+  return (
+    <div className="product-chooser">
+      {products.map((product) => (
+        <button
+          className="product-choice-card"
+          key={product.id}
+          type="button"
+          aria-label={`Editar ${product.name}`}
+          onClick={() => onSelect(product.id)}
+        >
+          <img src={product.primary_image_url} alt="" loading="lazy" />
+          <span className="choice-card-copy">
+            <small>Publicado</small>
+            <strong>{product.name}</strong>
+            <span>
+              <Pencil size={14} /> Editar produto
+            </span>
+          </span>
+        </button>
+      ))}
+    </div>
   );
 }
 

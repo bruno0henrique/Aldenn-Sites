@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.10.1] - 2026-09-01
+
+### Corrigido
+
+- Revisão e produtos publicados agora começam por uma grade de miniaturas proporcionais.
+- Editor completo abre somente após a escolha da peça e permite voltar à lista.
+- Logo usa o rosa oficial diretamente no SVG, sem filtro de cor variável no mobile.
+
 ## [0.10.0] - 2026-09-01
 
 ### Adicionado

@@ -54,3 +54,14 @@
 - Motivo: Evitar republicação manual e preservar uma rota de recuperação para exclusões acidentais.
 - Impactos: Preços promocionais são validados no banco. Produtos e capturas de origem permanecem sincronizados.
 - Substitui: Não se aplica.
+
+## DEC-006: Seleção antes da edição administrativa
+
+- Data: 2026-09-01
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Abrir editores completos imediatamente deixou fotos grandes e dificultou escolher qual peça alterar.
+- Decisão: Mostrar uma grade compacta de miniaturas em Revisar e Publicados. Abrir somente o editor da peça escolhida e oferecer retorno à lista.
+- Motivo: Dar visão geral do catálogo e evitar imagens desproporcionais no primeiro acesso ao painel.
+- Impactos: A seleção passa a ser uma etapa anterior à edição, sem alterar dados ou permissões.
+- Substitui: Não se aplica.
