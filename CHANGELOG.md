@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.12.3] - 2026-09-02
+
+### Alterado
+
+- A prévia da imagem permanece em destaque e o botão de preenchimento automático fica ao lado dela em telas amplas.
+- Textos do cadastro assistido simplificados para apresentar a sugestão automática sem citar o provedor técnico.
+
 ## [0.12.2] - 2026-09-02
 
 ### Alterado
