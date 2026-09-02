@@ -50,7 +50,7 @@ export default function ProductPage() {
     : [product.primary_image_url];
   const reserve = whatsappUrl({
     name: product.name,
-    price: formatPrice(product.price_cents),
+    price: formatPrice(product.sale_price_cents || product.price_cents),
     url: pageUrl,
   });
   return (
@@ -89,7 +89,17 @@ export default function ProductPage() {
               {product.category || 'Belleland Closet'}
             </span>
             <h1>{product.name}</h1>
-            <p className="product-price">{formatPrice(product.price_cents)}</p>
+            {product.sale_price_cents ? (
+              <div className="product-detail-prices">
+                <del>{formatPrice(product.price_cents)}</del>
+                <p className="product-price">
+                  {formatPrice(product.sale_price_cents)}
+                </p>
+                <span>Promoção</span>
+              </div>
+            ) : (
+              <p className="product-price">{formatPrice(product.price_cents)}</p>
+            )}
             {product.description && (
               <p className="product-description">{product.description}</p>
             )}

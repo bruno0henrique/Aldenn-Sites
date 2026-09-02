@@ -1,5 +1,122 @@
 # Histórico de versões
 
+## [0.11.0] - 2026-09-02
+
+### Adicionado
+
+- Análise visual sob demanda no cadastro por imagem com OpenAI Responses API.
+- Sugestões estruturadas de nome, categoria, cor, tamanho, preço e descrição.
+- Prévia compacta da imagem e retorno de confiança ou alertas antes da revisão.
+
+### Segurança
+
+- Rota exclusiva para proprietária e administradores com validação da sessão no servidor.
+- Chave OpenAI restrita ao servidor, imagens limitadas por formato e tamanho, cache desativado e armazenamento da resposta desabilitado.
+
+### Alterado
+
+- Cadastro manual apresentado como cadastro assistido por imagem, mantendo edição total e publicação separada.
+
+## [0.10.1] - 2026-09-01
+
+### Corrigido
+
+- Revisão e produtos publicados agora começam por uma grade de miniaturas proporcionais.
+- Editor completo abre somente após a escolha da peça e permite voltar à lista.
+- Logo usa o rosa oficial diretamente no SVG, sem filtro de cor variável no mobile.
+
+## [0.10.0] - 2026-09-01
+
+### Adicionado
+
+- Botão Atualizar conectado ao scraper hospedado e protegido pela sessão administrativa.
+- Novas publicações do Instagram entram na fila e todos os cards pendentes aparecem para revisão.
+- Retorno visual de busca, sucesso, ausência de novidades e bloqueio temporário do Instagram.
+
+### Alterado
+
+- Captura do Instagram não exige mais hashtag nas publicações.
+- Sincronização processa até 12 novos posts por execução para respeitar o tempo da função hospedada.
+
+### Segurança
+
+- O scraper valida a sessão Supabase e o papel administrativo antes de ler ou gravar dados.
+- A função hospedada usa RLS e não recebe service role nem credencial da Meta.
+
+## [0.9.0] - 2026-09-01
+
+### Adicionado
+
+- Preço promocional opcional no cadastro, na revisão e em produtos publicados.
+- Cards de administração para editar nome, categoria, descrição e preços após a publicação.
+- Exclusão definitiva de capturas em revisão e retirada recuperável de produtos publicados.
+- Exibição de preço normal e promocional no catálogo e na página da peça.
+
+### Segurança
+
+- Migração com validação de preço promocional e funções administrativas protegidas por `is_staff()`.
+- Políticas RLS de produtos e mídias separadas por operação e sem sobreposições de leitura.
+
+## [0.8.0] - 2026-09-01
+
+### Adicionado
+
+- Categorias da página inicial agora filtram a coleção publicada.
+- Categorias vazias exibem uma mensagem contextual sobre próximas novidades.
+- Favicon, ícone para dispositivos Apple e imagem oficial de compartilhamento.
+- Metadados Open Graph e Twitter Card para prévias de links e WhatsApp.
+
+### Alterado
+
+- Arte abstrata removida do hero em telas mobile.
+- Categoria selecionada recebe destaque visual e pode ser desmarcada com um novo clique.
+
+## [0.7.0] - 2026-09-01
+
+### Alterado
+
+- Hero de tablet e desktop centralizado em um painel maior, arredondado e responsivo.
+- Arte abstrata passou a ocupar todo o fundo com tratamento de cor integrado ao painel principal.
+- Título, texto e ações ganharam maior presença visual em telas amplas.
+
+## [0.6.2] - 2026-09-01
+
+### Alterado
+
+- Espaçamentos verticais entre hero, categorias, coleção e blocos finais ficaram mais compactos no mobile.
+- Grade de produtos recebeu menor distância entre os cards em telas pequenas.
+
+## [0.6.1] - 2026-09-01
+
+### Alterado
+
+- Faixa abstrata entre a abertura e as categorias ficou mais compacta no mobile.
+- Todos os itens do menu principal agora possuem ícones consistentes.
+
+## [0.6.0] - 2026-09-01
+
+### Adicionado
+
+- Área de conta com nome, telefone, preferência promocional e encerramento de sessão.
+- Papel de administrador com acesso às aprovações, mantendo uma única proprietária.
+- Cadastro manual de peça com foto e envio para a fila de revisão.
+- Item `Aprovações` no menu para contas autorizadas.
+
+### Corrigido
+
+- Confirmação de e-mail direcionada ao domínio ativo do site.
+- Sessão autenticada refletida no menu e no rodapé.
+- Aviso de conta conectada convertido em notificação temporária com fechamento manual.
+- Abertura e fechamento do menu receberam animação GSAP com redução de movimento.
+- Aplicação migrada para execução direta na Vercel, removendo o redirecionamento para o ambiente privado.
+- URL principal do Supabase alterada para o domínio estável da Vercel.
+
+## [0.5.1] - 2026-09-01
+
+### Corrigido
+
+- Endereços antigos da Vercel agora redirecionam para o domínio ativo da Belleland.
+
 ## [0.5.0] - 2026-09-01
 
 ### Adicionado
@@ -50,7 +167,7 @@
 - Painel de curadoria com revisão de imagens, edição, preço, publicação otimista e restauração.
 - Modo demonstração sem login e sem acesso aos dados reais, disponível no site privado para avaliação do painel.
 - Migração PostgreSQL com RLS, Storage, auditoria e publicação transacional.
-- Sincronizador manual do Instagram por `#bellelandproduto`.
+- Sincronizador manual inicial do Instagram por marcação nas legendas.
 - Animações GSAP acessíveis e microinterações inspiradas no Uiverse.
 
 ### Segurança

@@ -1,7 +1,65 @@
 import { requireSupabase } from '@/lib/supabase';
-import type { Capture } from '@/lib/types';
+import { getPublishedProducts } from '@/lib/catalog';
+import type { Capture, Product } from '@/lib/types';
 
-export async function assertOwner() {
+export type InstagramSyncResult = {
+  created: number;
+  skipped: number;
+  scanned: number;
+};
+
+export type ProductImageAnalysis = {
+  name: string;
+  category: string;
+  color: string;
+  size: string;
+  price_cents: number;
+  description: string;
+  visible_text: string;
+  confidence: number;
+  warnings: string[];
+};
+
+export async function analyzeProductImage(
+  image: File,
+): Promise<ProductImageAnalysis> {
+  const formData = new FormData();
+  formData.append('image', image);
+  const response = await fetch('/api/admin/analyze-product-image', {
+    method: 'POST',
+    body: formData,
+    credentials: 'same-origin',
+  });
+  const body = (await response.json()) as {
+    analysis?: ProductImageAnalysis;
+    error?: string;
+  };
+  if (!response.ok || !body.analysis) {
+    throw new Error(body.error || 'Não foi possível analisar a imagem.');
+  }
+  return body.analysis;
+}
+
+export async function syncInstagramPosts(): Promise<InstagramSyncResult> {
+  const supabase = requireSupabase();
+  const { data } = await supabase.auth.getSession();
+  if (!data.session) throw new Error('Sessão expirada.');
+  const response = await fetch('/api/instagram_sync', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      Authorization: `Bearer ${data.session.access_token}`,
+    },
+  });
+  const body = (await response.json()) as InstagramSyncResult & {
+    error?: string;
+  };
+  if (!response.ok)
+    throw new Error(body.error || 'Não foi possível sincronizar o Instagram.');
+  return body;
+}
+
+export async function assertStaff() {
   const supabase = requireSupabase();
   const { data: auth } = await supabase.auth.getUser();
   if (!auth.user) throw new Error('Sessão expirada.');
@@ -10,16 +68,16 @@ export async function assertOwner() {
     .select('role')
     .eq('user_id', auth.user.id)
     .maybeSingle();
-  if (error || data?.role !== 'owner')
-    throw new Error('Esta conta não tem acesso de proprietária.');
+  if (error || !['owner', 'admin'].includes(data?.role || ''))
+    throw new Error('Esta conta não tem acesso às aprovações.');
   return auth.user;
 }
 export async function listCaptures(status: string): Promise<Capture[]> {
-  await assertOwner();
+  await assertStaff();
   const { data, error } = await requireSupabase()
     .from('instagram_captures')
     .select(
-      'id,instagram_shortcode,source_url,proposed_name,proposed_description,proposed_category,price_cents,status,capture_media(id,public_url,decision,source_position)',
+      'id,instagram_shortcode,source_url,proposed_name,proposed_description,proposed_category,price_cents,proposed_sale_price_cents,status,capture_media(id,public_url,storage_path,decision,source_position)',
     )
     .eq('status', status)
     .order('captured_at');
@@ -35,6 +93,7 @@ export async function saveCapture(capture: Capture) {
       proposed_description: capture.proposed_description,
       proposed_category: capture.proposed_category,
       price_cents: capture.price_cents,
+      proposed_sale_price_cents: capture.proposed_sale_price_cents,
       status: 'in_review',
     })
     .eq('id', capture.id);
@@ -79,10 +138,127 @@ export async function setCaptureStatus(
   id: number,
   status: 'pending_review' | 'ignored',
 ) {
-  await assertOwner();
+  await assertStaff();
   const { error } = await requireSupabase()
     .from('instagram_captures')
     .update({ status })
     .eq('id', id);
+  if (error) throw error;
+}
+
+export async function createManualCapture({
+  name,
+  description,
+  category,
+  priceCents,
+  salePriceCents,
+  image,
+}: {
+  name: string;
+  description: string;
+  category: string;
+  priceCents: number;
+  salePriceCents: number;
+  image: File;
+}) {
+  const user = await assertStaff();
+  const allowedImageTypes: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/webp': 'webp',
+  };
+  const extension = allowedImageTypes[image.type];
+  if (!extension) throw new Error('Selecione uma imagem válida.');
+  if (image.size > 10 * 1024 * 1024)
+    throw new Error('A imagem deve ter no máximo 10 MB.');
+  if (priceCents <= 0) throw new Error('Informe um preço válido.');
+  if (salePriceCents > 0 && salePriceCents >= priceCents)
+    throw new Error('O preço promocional deve ser menor que o preço normal.');
+
+  const supabase = requireSupabase();
+  const manualId = crypto.randomUUID();
+  const { data: capture, error: captureError } = await supabase
+    .from('instagram_captures')
+    .insert({
+      instagram_shortcode: `manual-${manualId}`,
+      source_url: '',
+      captured_at: new Date().toISOString(),
+      status: 'pending_review',
+      proposed_name: name.trim(),
+      proposed_description: description.trim() || null,
+      proposed_category: category.trim() || null,
+      price_cents: priceCents || null,
+      proposed_sale_price_cents: salePriceCents || null,
+    })
+    .select('id')
+    .single();
+  if (captureError) throw captureError;
+
+  const storagePath = `manual/${user.id}/${manualId}.${extension}`;
+  const { error: uploadError } = await supabase.storage
+    .from('product-media')
+    .upload(storagePath, image, { contentType: image.type, upsert: false });
+  if (uploadError) {
+    await supabase.from('instagram_captures').delete().eq('id', capture.id);
+    throw uploadError;
+  }
+
+  const { data: publicImage } = supabase.storage
+    .from('product-media')
+    .getPublicUrl(storagePath);
+  const { error: mediaError } = await supabase.from('capture_media').insert({
+    capture_id: capture.id,
+    source_position: 0,
+    source_url: publicImage.publicUrl,
+    storage_path: storagePath,
+    public_url: publicImage.publicUrl,
+    mime_type: image.type,
+    decision: 'primary',
+  });
+  if (mediaError) {
+    await supabase.storage.from('product-media').remove([storagePath]);
+    await supabase.from('instagram_captures').delete().eq('id', capture.id);
+    throw mediaError;
+  }
+  return capture.id as number;
+}
+
+export async function deleteCapture(capture: Capture) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const paths = capture.capture_media
+    .map((media) => media.storage_path)
+    .filter((path): path is string => Boolean(path));
+  const { error } = await supabase
+    .from('instagram_captures')
+    .delete()
+    .eq('id', capture.id);
+  if (error) throw error;
+  if (paths.length) await supabase.storage.from('product-media').remove(paths);
+}
+
+export async function listPublishedProductsAdmin(): Promise<Product[]> {
+  await assertStaff();
+  return getPublishedProducts();
+}
+
+export async function updatePublishedProduct(product: Product) {
+  await assertStaff();
+  const { error } = await requireSupabase().rpc('update_published_product', {
+    target_product_id: product.id,
+    new_name: product.name.trim(),
+    new_description: product.description || '',
+    new_category: product.category || '',
+    new_price_cents: product.price_cents,
+    new_sale_price_cents: product.sale_price_cents || null,
+  });
+  if (error) throw error;
+}
+
+export async function removePublishedProduct(id: number) {
+  await assertStaff();
+  const { error } = await requireSupabase().rpc('remove_published_product', {
+    target_product_id: id,
+  });
   if (error) throw error;
 }

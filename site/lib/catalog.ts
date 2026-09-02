@@ -24,7 +24,7 @@ export async function getPublishedProducts(): Promise<Product[]> {
   const { data, error } = await supabase
     .from('products')
     .select(
-      'id,slug,name,description,category,price_cents,instagram_url,product_media(public_url,role,position)',
+      'id,slug,name,description,category,price_cents,sale_price_cents,instagram_url,product_media(public_url,role,position)',
     )
     .eq('status', 'published')
     .order('published_at', { ascending: false });
@@ -37,7 +37,7 @@ export async function getProduct(slug: string): Promise<Product | null> {
   const { data, error } = await supabase
     .from('products')
     .select(
-      'id,slug,name,description,category,price_cents,instagram_url,product_media(public_url,role,position)',
+      'id,slug,name,description,category,price_cents,sale_price_cents,instagram_url,product_media(public_url,role,position)',
     )
     .eq('slug', slug)
     .eq('status', 'published')

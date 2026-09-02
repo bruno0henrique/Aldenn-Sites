@@ -15,14 +15,14 @@ import instaloader
 import requests
 
 PROFILE = "bellelandcloset"
-PRODUCT_TAG = "#bellelandproduto"
 BUCKET = "product-media"
 
 
 @dataclass(frozen=True)
 class Settings:
     url: str
-    service_key: str
+    api_key: str
+    auth_token: str
     instagram_username: str | None
     session_file: str | None
 
@@ -32,13 +32,13 @@ class Settings:
         key = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")
         if not url or not key:
             raise RuntimeError("Defina NEXT_PUBLIC_SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY.")
-        return cls(url, key, os.getenv("INSTAGRAM_USERNAME") or None, os.getenv("INSTAGRAM_SESSIONFILE") or None)
+        return cls(url, key, key, os.getenv("INSTAGRAM_USERNAME") or None, os.getenv("INSTAGRAM_SESSIONFILE") or None)
 
 
 class SupabaseRest:
     def __init__(self, settings: Settings) -> None:
         self.url = settings.url
-        self.headers = {"apikey": settings.service_key, "Authorization": f"Bearer {settings.service_key}"}
+        self.headers = {"apikey": settings.api_key, "Authorization": f"Bearer {settings.auth_token}"}
 
     def request(self, method: str, path: str, **kwargs):
         response = requests.request(method, f"{self.url}{path}", headers={**self.headers, **kwargs.pop("headers", {})}, timeout=45, **kwargs)
@@ -52,7 +52,7 @@ class SupabaseRest:
 
     def create_capture(self, post):
         caption = post.caption or ""
-        first_line = next((line.strip() for line in caption.splitlines() if line.strip() and PRODUCT_TAG not in line.lower()), f"Peça {post.shortcode}")
+        first_line = next((line.strip() for line in caption.splitlines() if line.strip()), f"Peça {post.shortcode}")
         payload = {"instagram_shortcode": post.shortcode, "source_url": f"https://www.instagram.com/p/{post.shortcode}/", "raw_caption": caption, "captured_at": post.date_utc.replace(tzinfo=timezone.utc).isoformat(), "proposed_name": first_line[:120], "proposed_description": caption[:2000], "status": "pending_review"}
         return self.request("POST", "/rest/v1/instagram_captures", json=payload, headers={"Prefer": "return=representation"}).json()[0]
 
@@ -96,7 +96,7 @@ def loader(settings: Settings) -> instaloader.Instaloader:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Captura posts com #bellelandproduto para revisão.")
+    parser = argparse.ArgumentParser(description="Captura novos posts do Instagram para revisão.")
     parser.add_argument("--full", action="store_true", help="Percorre todos os posts e sinaliza fontes removidas.")
     args = parser.parse_args()
     settings = Settings.from_env()
@@ -105,9 +105,6 @@ def main() -> int:
     present: set[str] = set()
     captured = 0
     for post in posts:
-        caption = post.caption or ""
-        if PRODUCT_TAG not in caption.lower():
-            continue
         present.add(post.shortcode)
         existing = api.find_capture(post.shortcode)
         if existing and not args.full:
