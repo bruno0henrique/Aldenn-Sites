@@ -1,6 +1,6 @@
 # Belleland Closet: Aldenn Sites
 
-Catálogo mobile-first de roupas com reserva direcionada ao WhatsApp e painel de curadoria integrado ao Supabase.
+Catálogo mobile-first de roupas com reserva direcionada ao WhatsApp e painel de revisões integrado ao Supabase.
 
 ## Desenvolvimento
 

@@ -82,7 +82,10 @@ export function ProductCarousel({
       >
         <CarouselContent>
           {products.map((product) => (
-            <CarouselItem className="product-carousel-item" key={product.id}>
+            <CarouselItem
+              className={`product-carousel-item${isNews ? ' product-carousel-item--news' : ''}`}
+              key={product.id}
+            >
               <a
                 className={`product-card${isNews ? ' product-card--news' : ''}`}
                 href={`/produto/${product.slug}`}

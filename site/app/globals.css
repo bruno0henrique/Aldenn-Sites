@@ -1310,6 +1310,9 @@ footer a:last-child {
 .product-carousel-item {
   flex-basis: 50%;
 }
+.product-carousel-item--news {
+  flex-basis: 72%;
+}
 .product-carousel .product-card {
   height: 100%;
   display: block;
@@ -1355,7 +1358,7 @@ footer a:last-child {
   color: white;
   display: flex;
   align-items: baseline;
-  gap: 3px;
+  gap: 0;
   font-family: var(--font-playfair-display), serif;
   line-height: 1;
   font-weight: 400;
@@ -1364,18 +1367,19 @@ footer a:last-child {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 .news-card-currency {
-  margin-right: 1px;
+  margin-right: 0;
   font-size: clamp(0.76rem, 2.8vw, 1rem);
   font-weight: 400;
   letter-spacing: 0;
 }
 .news-card-major {
-  font-size: clamp(2rem, 8.4vw, 3.15rem);
+  font-size: clamp(2.25rem, 9.2vw, 3.45rem);
   font-weight: 400;
+  letter-spacing: -0.06em;
 }
 .news-card-price sup {
-  align-self: flex-start;
-  margin-top: 4px;
+  align-self: flex-end;
+  margin: 0 0 4px -3px;
   font-size: clamp(0.78rem, 3vw, 1.06rem);
   font-weight: 400;
   letter-spacing: -0.02em;
@@ -1627,6 +1631,9 @@ footer a:last-child {
   .product-carousel-item {
     flex-basis: 43%;
   }
+  .product-carousel-item--news {
+    flex-basis: 52%;
+  }
   .product-card--news .product-image {
     min-height: 390px;
   }
@@ -1665,6 +1672,9 @@ footer a:last-child {
   }
   .product-carousel-item {
     flex-basis: 25%;
+  }
+  .product-carousel-item--news {
+    flex-basis: 30%;
   }
   .product-card--news .product-image {
     min-height: 430px;

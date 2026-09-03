@@ -43,7 +43,7 @@ const demoCapture: Capture = {
   source_url: 'https://www.instagram.com/bellelandcloset/',
   proposed_name: 'Peça de teste Belleland',
   proposed_description:
-    'Captura de demonstração para testar a curadoria antes da conexão com o Supabase.',
+    'Captura de demonstração para testar as revisões antes da conexão com o Supabase.',
   proposed_category: 'Novidades',
   price_cents: 11990,
   proposed_sale_price_cents: null,
@@ -373,7 +373,7 @@ function AdminPageContent() {
             type="button"
             onClick={() => setSection('curadoria')}
           >
-            <Images size={17} /> Curadoria
+            <Images size={17} /> Revisões
           </button>
           <button
             className={section === 'vitrine' ? 'active' : ''}
@@ -405,7 +405,7 @@ function AdminPageContent() {
                 }}
               />
             )}
-            <nav className="admin-tabs" aria-label="Estados da curadoria">
+            <nav className="admin-tabs" aria-label="Estados das revisões">
               {tabs.map((item) => (
                 <button
                   className={tab === item.id ? 'active' : ''}

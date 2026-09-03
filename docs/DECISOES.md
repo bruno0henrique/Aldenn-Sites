@@ -149,7 +149,7 @@
 - Estado: Aprovada
 - Decidido por: Cliente
 - Contexto: O card convencional e a primeira versão da vinheta acrescentaram informação e contorno visual demais, reduzindo o destaque da roupa.
-- Decisão: Em Novidades, exibir somente a fotografia e o preço em branco. A imagem recebe arredondamento discreto e um degradê forte na base que desaparece ao atingir um terço da altura. A parte inteira do preço usa tamanho maior e peso fino; os centavos ficam menores.
+- Decisão: Em Novidades, exibir somente a fotografia e o preço em branco. A imagem recebe arredondamento discreto, maior presença horizontal e um degradê forte na base que desaparece ao atingir um terço da altura. A parte inteira do preço usa tamanho maior, peso fino e espaçamento compacto; os centavos ficam menores, próximos e alinhados abaixo.
 - Motivo: Priorizar a peça ou a modelo usando a roupa e criar uma apresentação mais editorial.
 - Impactos: Nome, borda, fundo e preço anterior não aparecem no carrossel de Novidades. O estilo é exclusivo dessa seção e a grade filtrada mantém os cards compactos em duas colunas.
 - Substitui: Complementa a DEC-013.

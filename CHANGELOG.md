@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## [0.20.2] - 2026-09-03
+
+### Alterado
+
+- A imagem de cada novidade ganhou mais largura e presença logo na entrada do catálogo.
+- A parte inteira do preço ficou maior e mais compacta.
+- Os centavos agora aparecem abaixo e mais próximos do valor principal.
+- A seção administrativa Curadoria passou a se chamar Revisões.
+
 ## [0.20.1] - 2026-09-03
 
 ### Corrigido
