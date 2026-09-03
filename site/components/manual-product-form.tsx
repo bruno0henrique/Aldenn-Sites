@@ -129,7 +129,8 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
       </p>
       {error && <div className="form-error">{error}</div>}
       <div className="manual-grid">
-        <div className="field">
+        <div className="field manual-field-card">
+          <span className="manual-field-number">01</span>
           <label htmlFor="manual-name">Nome</label>
           <input
             id="manual-name"
@@ -139,7 +140,8 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div className="field">
+        <div className="field manual-field-card">
+          <span className="manual-field-number">02</span>
           <label htmlFor="manual-category">Categoria</label>
           <CatalogCategorySelect
             id="manual-category"
@@ -147,7 +149,8 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             onChange={setCategory}
           />
         </div>
-        <div className="field">
+        <div className="field manual-field-card">
+          <span className="manual-field-number">03</span>
           <label htmlFor="manual-price">Preço</label>
           <input
             id="manual-price"
@@ -159,7 +162,8 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             }
           />
         </div>
-        <div className="field">
+        <div className="field manual-field-card">
+          <span className="manual-field-number">04</span>
           <label htmlFor="manual-sale-price">Preço promocional</label>
           <input
             id="manual-sale-price"
@@ -174,60 +178,64 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
             Opcional e sempre menor que o preço normal.
           </small>
         </div>
-        <div className="field manual-image-field">
-          <label htmlFor="manual-image">
+        <div className="field manual-field-card manual-image-card">
+          <span className="manual-field-number">05</span>
+          <span className="manual-field-label">
             <ImagePlus size={16} /> Foto principal
+          </span>
+          <label className="manual-upload-zone" htmlFor="manual-image">
+            {imagePreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={imagePreview} alt="Prévia da imagem escolhida" />
+            ) : (
+              <span>
+                <ImagePlus size={24} />
+                <strong>Escolher imagem</strong>
+                <small>JPG, PNG ou WEBP</small>
+              </span>
+            )}
+            <input
+              id="manual-image"
+              className="manual-file-input"
+              type="file"
+              required
+              accept="image/jpeg,image/png,image/webp"
+              onChange={(event) => {
+                setImage(event.target.files?.[0] || null);
+                setAnalysisMessage('');
+              }}
+            />
           </label>
-          <input
-            id="manual-image"
-            type="file"
-            required
-            accept="image/jpeg,image/png,image/webp"
-            onChange={(event) => {
-              setImage(event.target.files?.[0] || null);
-              setAnalysisMessage('');
-            }}
-          />
           <small>
-            Prefira a arte original ou recorte o print. Esta será a foto do
-            produto no catálogo.
+            {image
+              ? image.name
+              : 'Esta imagem será usada no catálogo e no preenchimento automático.'}
           </small>
-        </div>
-      </div>
-      {imagePreview && (
-        <div className="manual-analysis">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imagePreview} alt="Prévia da imagem escolhida" />
-          <div>
-            <strong>Preencher dados</strong>
-            <p>
-              A imagem será enviada ao programa somente para sugerir os campos
-              deste cadastro.
-            </p>
-          </div>
           <button
             type="button"
             className="button-pop ai-fill-button"
             onClick={analyze}
-            disabled={analyzing || busy}
+            disabled={!image || analyzing || busy}
           >
             <Sparkles size={16} />
             {analyzing ? 'Analisando imagem...' : 'Preencher dados'}
           </button>
+          {analysisMessage && (
+            <output className="analysis-message">{analysisMessage}</output>
+          )}
         </div>
-      )}
-      {analysisMessage && (
-        <output className="analysis-message">{analysisMessage}</output>
-      )}
-      <div className="field">
-        <label htmlFor="manual-description">Descrição</label>
-        <textarea
-          id="manual-description"
-          rows={3}
-          maxLength={800}
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
+        <div className="field manual-field-card manual-description-card">
+          <span className="manual-field-number">06</span>
+          <label htmlFor="manual-description">Descrição</label>
+          <textarea
+            id="manual-description"
+            rows={6}
+            maxLength={800}
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+          <small>Revise as informações antes de enviar para aprovação.</small>
+        </div>
       </div>
       <button
         className="button-pop button-primary full"
