@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.14.0
+Versão: 0.14.1
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.

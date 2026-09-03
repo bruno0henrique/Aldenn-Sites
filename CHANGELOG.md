@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.14.1] - 2026-09-02
+
+### Corrigido
+
+- Invalidação do arquivo de estilos da produção para carregar corretamente o menu lateral e a área Vitrine.
+- Isolamento visual do painel lateral para manter largura, espaçamento e alinhamento em tablets.
+
 ## [0.14.0] - 2026-09-02
 
 ### Adicionado
