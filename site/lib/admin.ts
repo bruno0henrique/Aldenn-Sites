@@ -157,14 +157,16 @@ export async function createManualCapture({
   category,
   priceCents,
   salePriceCents,
-  image,
+  images,
+  primaryImageIndex,
 }: {
   name: string;
   description: string;
   category: string;
   priceCents: number;
   salePriceCents: number;
-  image: File;
+  images: File[];
+  primaryImageIndex: number;
 }) {
   const user = await assertStaff();
   const allowedImageTypes: Record<string, string> = {
@@ -172,10 +174,20 @@ export async function createManualCapture({
     'image/png': 'png',
     'image/webp': 'webp',
   };
-  const extension = allowedImageTypes[image.type];
-  if (!extension) throw new Error('Selecione uma imagem válida.');
-  if (image.size > 10 * 1024 * 1024)
-    throw new Error('A imagem deve ter no máximo 10 MB.');
+  if (!images.length || images.length > 6)
+    throw new Error('Selecione entre 1 e 6 fotos.');
+  if (
+    !Number.isInteger(primaryImageIndex) ||
+    primaryImageIndex < 0 ||
+    primaryImageIndex >= images.length
+  )
+    throw new Error('Escolha uma foto principal válida.');
+  images.forEach((image) => {
+    if (!allowedImageTypes[image.type])
+      throw new Error('Selecione somente imagens JPG, PNG ou WEBP.');
+    if (image.size > 10 * 1024 * 1024)
+      throw new Error('Cada imagem deve ter no máximo 10 MB.');
+  });
   if (priceCents <= 0) throw new Error('Informe um preço válido.');
   if (salePriceCents > 0 && salePriceCents >= priceCents)
     throw new Error('O preço promocional deve ser menor que o preço normal.');
@@ -199,29 +211,45 @@ export async function createManualCapture({
     .single();
   if (captureError) throw captureError;
 
-  const storagePath = `manual/${user.id}/${manualId}.${extension}`;
-  const { error: uploadError } = await supabase.storage
-    .from('product-media')
-    .upload(storagePath, image, { contentType: image.type, upsert: false });
-  if (uploadError) {
+  const uploadedPaths: string[] = [];
+  const mediaRows = [];
+  try {
+    for (const [index, image] of images.entries()) {
+      const extension = allowedImageTypes[image.type];
+      const storagePath = `manual/${user.id}/${manualId}/${index}.${extension}`;
+      const { error: uploadError } = await supabase.storage
+        .from('product-media')
+        .upload(storagePath, image, {
+          contentType: image.type,
+          upsert: false,
+        });
+      if (uploadError) throw uploadError;
+      uploadedPaths.push(storagePath);
+      const { data: publicImage } = supabase.storage
+        .from('product-media')
+        .getPublicUrl(storagePath);
+      mediaRows.push({
+        capture_id: capture.id,
+        source_position: index,
+        source_url: publicImage.publicUrl,
+        storage_path: storagePath,
+        public_url: publicImage.publicUrl,
+        mime_type: image.type,
+        decision: index === primaryImageIndex ? 'primary' : 'secondary',
+      });
+    }
+  } catch (uploadError) {
+    if (uploadedPaths.length)
+      await supabase.storage.from('product-media').remove(uploadedPaths);
     await supabase.from('instagram_captures').delete().eq('id', capture.id);
     throw uploadError;
   }
 
-  const { data: publicImage } = supabase.storage
-    .from('product-media')
-    .getPublicUrl(storagePath);
-  const { error: mediaError } = await supabase.from('capture_media').insert({
-    capture_id: capture.id,
-    source_position: 0,
-    source_url: publicImage.publicUrl,
-    storage_path: storagePath,
-    public_url: publicImage.publicUrl,
-    mime_type: image.type,
-    decision: 'primary',
-  });
+  const { error: mediaError } = await supabase
+    .from('capture_media')
+    .insert(mediaRows);
   if (mediaError) {
-    await supabase.storage.from('product-media').remove([storagePath]);
+    await supabase.storage.from('product-media').remove(uploadedPaths);
     await supabase.from('instagram_captures').delete().eq('id', capture.id);
     throw mediaError;
   }

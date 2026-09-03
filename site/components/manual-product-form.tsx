@@ -6,6 +6,14 @@ import { analyzeProductImage, createManualCapture } from '@/lib/admin';
 import { CatalogCategorySelect } from '@/components/catalog-category-select';
 import { digitsToCents, formatPrice } from '@/lib/format';
 
+const MAX_PRODUCT_IMAGES = 6;
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = new Set([
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+]);
+
 export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
@@ -13,29 +21,68 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
   const [description, setDescription] = useState('');
   const [priceCents, setPriceCents] = useState(0);
   const [salePriceCents, setSalePriceCents] = useState(0);
-  const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<File[]>([]);
+  const [primaryImageIndex, setPrimaryImageIndex] = useState(0);
   const [busy, setBusy] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
   const [error, setError] = useState('');
   const [analysisMessage, setAnalysisMessage] = useState('');
-  const imagePreview = useMemo(
-    () => (image ? URL.createObjectURL(image) : ''),
-    [image],
+  const imagePreviews = useMemo(
+    () => images.map((image) => URL.createObjectURL(image)),
+    [images],
   );
+  const primaryImage = images[primaryImageIndex] || null;
 
   useEffect(() => {
     return () => {
-      if (imagePreview) URL.revokeObjectURL(imagePreview);
+      imagePreviews.forEach((preview) => URL.revokeObjectURL(preview));
     };
-  }, [imagePreview]);
+  }, [imagePreviews]);
+
+  function addImages(selectedFiles: FileList | null) {
+    const selected = Array.from(selectedFiles || []);
+    if (!selected.length) return;
+    if (selected.some((image) => !ALLOWED_IMAGE_TYPES.has(image.type))) {
+      setError('Selecione somente imagens JPG, PNG ou WEBP.');
+      return;
+    }
+    if (selected.some((image) => image.size > MAX_IMAGE_SIZE)) {
+      setError('Cada imagem deve ter no máximo 10 MB.');
+      return;
+    }
+    const known = new Set(
+      images.map(
+        (image) => `${image.name}:${image.size}:${image.lastModified}`,
+      ),
+    );
+    const additions = selected.filter(
+      (image) => !known.has(`${image.name}:${image.size}:${image.lastModified}`),
+    );
+    if (images.length + additions.length > MAX_PRODUCT_IMAGES) {
+      setError('Você pode adicionar até 6 fotos por produto.');
+      return;
+    }
+    setImages((current) => [...current, ...additions]);
+    setError('');
+    setAnalysisMessage('');
+  }
+
+  function removeImage(index: number) {
+    setImages((current) => current.filter((_, itemIndex) => itemIndex !== index));
+    setPrimaryImageIndex((current) => {
+      if (index === current) return 0;
+      return index < current ? current - 1 : current;
+    });
+    setAnalysisMessage('');
+  }
 
   async function analyze() {
-    if (!image) return;
+    if (!primaryImage) return;
     setAnalyzing(true);
     setError('');
     setAnalysisMessage('');
     try {
-      const result = await analyzeProductImage(image);
+      const result = await analyzeProductImage(primaryImage);
       if (result.name) setName(result.name);
       if (result.category) setCategory(result.category);
       if (result.price_cents > 0) setPriceCents(result.price_cents);
@@ -67,7 +114,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
 
   async function submit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!image) return;
+    if (!images.length) return;
     setBusy(true);
     setError('');
     try {
@@ -77,14 +124,16 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         description,
         priceCents,
         salePriceCents,
-        image,
+        images,
+        primaryImageIndex,
       });
       setName('');
       setCategory('');
       setDescription('');
       setPriceCents(0);
       setSalePriceCents(0);
-      setImage(null);
+      setImages([]);
+      setPrimaryImageIndex(0);
       setAnalysisMessage('');
       setOpen(false);
       onCreated();
@@ -181,41 +230,72 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         <div className="field manual-field-card manual-image-card">
           <span className="manual-field-number">05</span>
           <span className="manual-field-label">
-            <ImagePlus size={16} /> Foto principal
+            <ImagePlus size={16} /> Fotos do produto
           </span>
           <label className="manual-upload-zone" htmlFor="manual-image">
-            {imagePreview ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={imagePreview} alt="Prévia da imagem escolhida" />
-            ) : (
-              <span>
-                <ImagePlus size={24} />
-                <strong>Escolher imagem</strong>
-                <small>JPG, PNG ou WEBP</small>
-              </span>
-            )}
+            <span>
+              {images.length ? <Plus size={24} /> : <ImagePlus size={24} />}
+              <strong>{images.length ? 'Adicionar fotos' : 'Escolher fotos'}</strong>
+              <small>
+                {images.length}/{MAX_PRODUCT_IMAGES} selecionadas
+              </small>
+            </span>
             <input
               id="manual-image"
               className="manual-file-input"
               type="file"
-              required
+              multiple
               accept="image/jpeg,image/png,image/webp"
               onChange={(event) => {
-                setImage(event.target.files?.[0] || null);
-                setAnalysisMessage('');
+                addImages(event.target.files);
+                event.target.value = '';
               }}
             />
           </label>
+          {images.length > 0 && (
+            <div className="manual-photo-grid" aria-label="Fotos selecionadas">
+              {imagePreviews.map((preview, index) => (
+                <article
+                  className={index === primaryImageIndex ? 'is-primary' : ''}
+                  key={`${images[index].name}:${images[index].lastModified}`}
+                >
+                  <button
+                    type="button"
+                    className="manual-photo-select"
+                    onClick={() => {
+                      setPrimaryImageIndex(index);
+                      setAnalysisMessage('');
+                    }}
+                    aria-pressed={index === primaryImageIndex}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={preview} alt={`Foto ${index + 1} do produto`} />
+                    <span>
+                      {index === primaryImageIndex
+                        ? 'Principal'
+                        : 'Usar como principal'}
+                    </span>
+                  </button>
+                  <button
+                    type="button"
+                    className="manual-photo-remove"
+                    onClick={() => removeImage(index)}
+                    aria-label={`Remover foto ${index + 1}`}
+                  >
+                    <X size={14} />
+                  </button>
+                </article>
+              ))}
+            </div>
+          )}
           <small>
-            {image
-              ? image.name
-              : 'Esta imagem será usada no catálogo e no preenchimento automático.'}
+            Escolha até 6 fotos. A principal será analisada e usada como capa.
           </small>
           <button
             type="button"
             className="button-pop ai-fill-button"
             onClick={analyze}
-            disabled={!image || analyzing || busy}
+            disabled={!primaryImage || analyzing || busy}
           >
             <Sparkles size={16} />
             {analyzing ? 'Analisando imagem...' : 'Preencher dados'}
@@ -242,7 +322,7 @@ export function ManualProductForm({ onCreated }: { onCreated: () => void }) {
         disabled={
           busy ||
           analyzing ||
-          !image ||
+          !images.length ||
           !name.trim() ||
           priceCents <= 0 ||
           salePriceCents >= priceCents
