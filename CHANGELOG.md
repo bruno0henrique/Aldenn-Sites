@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.15.1] - 2026-09-02
+
+### Alterado
+
+- A seção Produtos do menu lateral agora inicia recolhida.
+- Abertura e recolhimento das categorias receberam uma transição sutil e acessível.
+
 ## [0.15.0] - 2026-09-02
 
 ### Alterado

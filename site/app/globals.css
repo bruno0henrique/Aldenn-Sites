@@ -1082,11 +1082,25 @@ footer a:last-child {
   transform: rotate(180deg);
 }
 .drawer-products-list {
+  height: var(--collapsible-panel-height);
   margin: 2px 0 7px 30px;
   padding: 5px 0 5px 18px;
   border-left: 1px solid var(--line);
   display: grid;
   overflow: hidden;
+  opacity: 1;
+  transform: translateY(0);
+  transform-origin: top;
+  transition:
+    height 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 160ms ease,
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.drawer-products-list[data-starting-style],
+.drawer-products-list[data-ending-style] {
+  height: 0;
+  opacity: 0;
+  transform: translateY(-5px);
 }
 .drawer-products-list a {
   padding: 9px 11px;

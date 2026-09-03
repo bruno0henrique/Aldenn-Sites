@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.15.0
+Versão: 0.15.1
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -10,6 +10,7 @@ Versão: 0.15.0
 - Produtos abrem em página própria e são reservados pelo WhatsApp `(12) 98107-3663`.
 - A página inicial apresenta um bloco compacto com Instagram `@bellelandcloset` e WhatsApp `(12) 98107-3663`; o e-mail será incluído após a definição do endereço profissional.
 - O menu principal ocupa a lateral e apresenta início, First Drop, produtos por categoria, conta, áreas administrativas autorizadas, Instagram e WhatsApp.
+- A lista de produtos do menu inicia recolhida e abre somente após o toque, com transição sutil e respeito à redução de movimento.
 - A página inicial usa um filtro compacto e carrosséis horizontais para novidades e categorias com produtos publicados.
 - Banners da abertura são vinculados a produtos publicados e usam uma foto real da peça; sem banners ativos, a abertura padrão permanece.
 - A área Vitrine permite criar, renomear, ordenar, ativar e ocultar categorias, além de organizar banners.
