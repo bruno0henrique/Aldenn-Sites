@@ -120,3 +120,14 @@
 - Motivo: Começar pelo menor custo e preservar a possibilidade de elevar a qualidade sem alterar o código.
 - Impactos: Somente a foto principal é enviada sob demanda. A chave permanece no servidor e nenhum resultado é publicado automaticamente.
 - Substitui: DEC-008.
+
+## DEC-012: Validação estrita das imagens do catálogo
+
+- Data: 2026-09-03
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O preenchimento automático aceitou um cosmético como produto, apesar de o catálogo ser exclusivo de roupas.
+- Decisão: Classificar a imagem antes da extração e aceitar somente quando uma peça de roupa for claramente o produto principal. Imagens inválidas ou incertas não preenchem nenhum campo.
+- Motivo: Impedir sugestões fora do escopo e reduzir informações inventadas no cadastro.
+- Impactos: Cosméticos, acessórios, objetos e cenas ambíguas são recusados. Preço, tamanho, nome e descrição seguem regras de evidência visual e continuam sujeitos à revisão humana.
+- Substitui: Complementa a DEC-011.

@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.17.0
+Versão: 0.18.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -32,6 +32,8 @@ Versão: 0.17.0
 - A sugestão de categoria da OpenAI deve corresponder exatamente a uma categoria ativa ou permanecer vazia para revisão.
 - A análise pela OpenAI acontece somente após ação explícita, não publica automaticamente e mantém todos os campos editáveis.
 - O modelo padrão é `gpt-5-nano` por ser o mais econômico, podendo ser trocado no servidor se a qualidade não for suficiente.
+- O preenchimento automático aceita somente imagens cujo produto principal seja claramente uma peça de roupa. Itens de beleza, acessórios e imagens incertas são recusados sem alterar o formulário.
+- Nome, preço, tamanho e demais características não podem ser inventados. Textos de interface, comentários e elementos do celular devem ser ignorados.
 - A revisão e a gestão de publicados começam por miniaturas proporcionais; o formulário completo abre somente após escolher uma peça.
 - Capturas em revisão podem ser editadas, precificadas, colocadas em promoção, ignoradas ou excluídas.
 - Produtos publicados podem ser editados, receber ou perder promoção e ser retirados do site.
