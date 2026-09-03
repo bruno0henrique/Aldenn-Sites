@@ -98,3 +98,14 @@
 - Motivo: Aproximar a navegação da referência mantendo a estética Belleland e a reserva pelo WhatsApp.
 - Impactos: `Novidades` é automática. Categorias podem ser ocultadas sem remover produtos. Banners nunca usam uploads independentes.
 - Substitui: Os quatro blocos fixos de categoria da página inicial.
+
+## DEC-010: Galeria no cadastro manual
+
+- Data: 2026-09-02
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Um produto pode ter fotos de modelos e ângulos diferentes além da capa principal.
+- Decisão: Aceitar até 6 fotos no cadastro manual, permitindo escolher uma principal e manter as demais como secundárias.
+- Motivo: Apresentar melhor cada peça sem criar cadastros duplicados.
+- Impactos: O preenchimento automático analisa somente a foto principal. Todas as fotos seguem para revisão e publicação.
+- Substitui: O cadastro manual limitado a uma única foto.

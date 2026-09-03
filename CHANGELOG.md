@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.16.0] - 2026-09-02
+
+### Adicionado
+
+- Cadastro manual com até 6 fotos por produto.
+- Escolha da foto principal, prévias e remoção antes do envio para aprovação.
+
+### Alterado
+
+- O preenchimento automático usa a foto marcada como principal.
+- Fotos adicionais seguem como secundárias para a revisão e a galeria publicada.
+
 ## [0.15.1] - 2026-09-02
 
 ### Alterado
