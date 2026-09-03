@@ -1379,7 +1379,7 @@ footer a:last-child {
 }
 .news-card-price sup {
   align-self: flex-end;
-  margin: 0 0 4px -3px;
+  margin: 0 0 4px 1px;
   font-size: clamp(0.78rem, 3vw, 1.06rem);
   font-weight: 400;
   letter-spacing: -0.02em;

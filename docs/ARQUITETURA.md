@@ -1,4 +1,4 @@
-# Arquitetura v0.20.2
+# Arquitetura v0.20.3
 
 ## Fluxo
 

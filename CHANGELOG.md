@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.20.3] - 2026-09-03
+
+### Corrigido
+
+- Ajustado o espaçamento entre o valor inteiro e a parte decimal do preço em Novidades.
+
 ## [0.20.2] - 2026-09-03
 
 ### Alterado
