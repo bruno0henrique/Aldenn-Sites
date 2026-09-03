@@ -1,4 +1,4 @@
-# Arquitetura v0.17.0
+# Arquitetura v0.18.0
 
 ## Fluxo
 
@@ -33,6 +33,7 @@
 - A rota de análise visual confirma a sessão com `auth.getUser()` e consulta `staff_members` no servidor.
 - `OPENAI_API_KEY` é exclusiva do servidor e nunca usa o prefixo `NEXT_PUBLIC_`.
 - Imagens aceitas são limitadas a JPG, PNG ou WebP com até 10 MB. A resposta usa cache privado desativado e `store: false`.
+- Antes da extração, a resposta estruturada classifica o assunto principal. Apenas `clothing` prossegue; `not_clothing` e `uncertain` retornam erro sem sugestões.
 - A imagem só é enviada à OpenAI após o clique em `Preencher dados`. O resultado é sugestão e exige revisão humana.
 - Categorias e banners usam RLS. Visitantes leem apenas registros ativos e banners ligados a produtos publicados.
 - Alterações na Vitrine exigem `owner` ou `admin` e geram eventos de auditoria.

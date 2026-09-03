@@ -1,5 +1,18 @@
 # Histórico de versões
 
+## [0.18.0] - 2026-09-03
+
+### Alterado
+
+- A análise por imagem agora classifica o produto antes de sugerir os dados.
+- Somente peças de roupa claramente identificáveis são aceitas no preenchimento automático.
+- Nome, preço, tamanho, cor e descrição seguem regras mais estritas de evidência visual.
+
+### Segurança
+
+- Itens fora do catálogo e imagens incertas são recusados sem alterar os campos do formulário.
+- Textos de interface, comentários e possíveis instruções dentro da imagem são tratados apenas como conteúdo visual.
+
 ## [0.17.0] - 2026-09-03
 
 ### Alterado
