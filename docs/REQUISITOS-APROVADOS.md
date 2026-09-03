@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.16.0
+Versão: 0.17.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -27,10 +27,11 @@ Versão: 0.16.0
 - Contas autenticadas possuem área própria para nome, telefone e preferência de comunicações promocionais.
 - O menu exibe `Aprovações` apenas para proprietária e administradores.
 - A área de aprovações permite revisar capturas, editar seus dados e cadastrar uma peça manualmente com foto.
-- No cadastro por imagem, a administradora pode solicitar ao Gemini sugestões de nome, categoria, cor, tamanho, preço e descrição.
+- No cadastro por imagem, a administradora pode solicitar à API da OpenAI sugestões de nome, categoria, cor, tamanho, preço e descrição.
 - O cadastro por imagem usa seis caixas alinhadas para nome, categoria, preço, promoção, imagens e descrição; a caixa de imagens aceita até 6 fotos, permite escolher a principal e reúne envio, prévias e preenchimento automático.
-- A sugestão de categoria do Gemini deve corresponder exatamente a uma categoria ativa ou permanecer vazia para revisão.
-- A análise por Gemini acontece somente após ação explícita, não publica automaticamente e mantém todos os campos editáveis.
+- A sugestão de categoria da OpenAI deve corresponder exatamente a uma categoria ativa ou permanecer vazia para revisão.
+- A análise pela OpenAI acontece somente após ação explícita, não publica automaticamente e mantém todos os campos editáveis.
+- O modelo padrão é `gpt-5-nano` por ser o mais econômico, podendo ser trocado no servidor se a qualidade não for suficiente.
 - A revisão e a gestão de publicados começam por miniaturas proporcionais; o formulário completo abre somente após escolher uma peça.
 - Capturas em revisão podem ser editadas, precificadas, colocadas em promoção, ignoradas ou excluídas.
 - Produtos publicados podem ser editados, receber ou perder promoção e ser retirados do site.
