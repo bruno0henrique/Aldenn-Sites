@@ -374,7 +374,7 @@ a {
   height: 100%;
   object-fit: cover;
 }
-.product-image span {
+.product-image > span {
   position: absolute;
   left: 9px;
   top: 9px;
@@ -385,7 +385,7 @@ a {
   font-size: 0.72rem;
   font-weight: 800;
 }
-.product-card > div:last-child {
+.product-card:not(.product-card--news) > div:last-child {
   padding: 12px;
 }
 .product-card h3 {
@@ -1314,7 +1314,69 @@ footer a:last-child {
   height: 100%;
   display: block;
 }
-.product-carousel .product-card > div:last-child {
+.product-carousel .product-card--news {
+  position: relative;
+  border-color: rgba(123, 79, 63, 0.2);
+  background: #4a3029;
+  box-shadow: 0 10px 24px rgba(74, 48, 41, 0.13);
+}
+.product-card--news .product-image {
+  height: 100%;
+  min-height: 285px;
+  aspect-ratio: 0.76;
+}
+.news-card-caption {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  min-height: 46%;
+  padding: 72px 15px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(37, 20, 16, 0.2) 20%,
+    rgba(37, 20, 16, 0.88) 100%
+  );
+  color: white;
+}
+.product-card--news .news-card-caption h3 {
+  margin: 0 0 5px;
+  color: white;
+  font:
+    700 clamp(1.08rem, 4.8vw, 1.55rem) / 1.05
+      var(--font-playfair-display),
+    serif;
+  text-wrap: balance;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.28);
+}
+.news-card-caption del {
+  margin-bottom: 1px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.68rem;
+}
+.product-card--news .news-card-price {
+  margin: 0;
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  gap: 1px;
+  font-family: var(--font-playfair-display), serif;
+  line-height: 1;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+}
+.news-card-price span {
+  font-size: clamp(1.18rem, 5.4vw, 1.7rem);
+  font-weight: 800;
+}
+.news-card-price sup {
+  margin-top: 2px;
+  font-size: clamp(0.72rem, 2.6vw, 0.96rem);
+  font-weight: 800;
+}
+.product-carousel .product-card:not(.product-card--news) > div:last-child {
   min-height: 122px;
   display: flex;
   flex-direction: column;
@@ -1561,6 +1623,9 @@ footer a:last-child {
   .product-carousel-item {
     flex-basis: 43%;
   }
+  .product-card--news .product-image {
+    min-height: 390px;
+  }
   .rail-arrow {
     display: inline-flex !important;
     top: -46px !important;
@@ -1596,6 +1661,9 @@ footer a:last-child {
   }
   .product-carousel-item {
     flex-basis: 25%;
+  }
+  .product-card--news .product-image {
+    min-height: 430px;
   }
   .storefront-manager {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);

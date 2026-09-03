@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.20.0] - 2026-09-03
+
+### Alterado
+
+- Os cards do carrossel de Novidades agora priorizam a fotografia em formato editorial.
+- Nome e preço aparecem em branco sobre uma vinheta escura na base da imagem.
+- A parte inteira do preço ganhou destaque e os centavos passaram a ser exibidos em tamanho menor.
+
 ## [0.19.0] - 2026-09-03
 
 ### Alterado

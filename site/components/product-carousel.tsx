@@ -22,6 +22,8 @@ export function ProductCarousel({
   isLoading?: boolean;
   emptyCategory?: string;
 }) {
+  const isNews = title === 'Novidades';
+
   if (isLoading) {
     return (
       <section className="product-rail" aria-label={`Carregando ${title}`}>
@@ -81,29 +83,46 @@ export function ProductCarousel({
         <CarouselContent>
           {products.map((product) => (
             <CarouselItem className="product-carousel-item" key={product.id}>
-              <a className="product-card" href={`/produto/${product.slug}`}>
+              <a
+                className={`product-card${isNews ? ' product-card--news' : ''}`}
+                href={`/produto/${product.slug}`}
+              >
                 <div className="product-image">
                   <img
                     src={product.primary_image_url}
                     alt={product.name}
                     loading="lazy"
                   />
-                  {title === 'Novidades' && <span>Novo</span>}
-                </div>
-                <div>
-                  <h3>{product.name}</h3>
-                  {product.sale_price_cents ? (
-                    <div className="product-card-prices">
-                      <del>{formatPrice(product.price_cents)}</del>
-                      <p>{formatPrice(product.sale_price_cents)}</p>
+                  {isNews && (
+                    <div className="news-card-caption">
+                      <h3>{product.name}</h3>
+                      {product.sale_price_cents ? (
+                        <>
+                          <del>{formatPrice(product.price_cents)}</del>
+                          <NewsPrice cents={product.sale_price_cents} />
+                        </>
+                      ) : (
+                        <NewsPrice cents={product.price_cents} />
+                      )}
                     </div>
-                  ) : (
-                    <p>{formatPrice(product.price_cents)}</p>
                   )}
-                  <small>
-                    Ver peça <ArrowRight />
-                  </small>
                 </div>
+                {!isNews && (
+                  <div>
+                    <h3>{product.name}</h3>
+                    {product.sale_price_cents ? (
+                      <div className="product-card-prices">
+                        <del>{formatPrice(product.price_cents)}</del>
+                        <p>{formatPrice(product.sale_price_cents)}</p>
+                      </div>
+                    ) : (
+                      <p>{formatPrice(product.price_cents)}</p>
+                    )}
+                    <small>
+                      Ver peça <ArrowRight />
+                    </small>
+                  </div>
+                )}
               </a>
             </CarouselItem>
           ))}
@@ -112,5 +131,17 @@ export function ProductCarousel({
         <CarouselNext className="rail-arrow rail-arrow-next" />
       </Carousel>
     </section>
+  );
+}
+
+function NewsPrice({ cents }: { cents: number }) {
+  const reais = Math.floor(cents / 100).toLocaleString('pt-BR');
+  const centavos = String(cents % 100).padStart(2, '0');
+
+  return (
+    <p className="news-card-price" aria-label={formatPrice(cents)}>
+      <span>R$ {reais}</span>
+      <sup>,{centavos}</sup>
+    </p>
   );
 }

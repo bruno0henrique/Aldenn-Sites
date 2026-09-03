@@ -142,3 +142,14 @@
 - Motivo: Priorizar lançamentos e aumentar a quantidade de produtos visíveis sem repetir todas as categorias na mesma página.
 - Impactos: O filtro deixa de listar Novidades, que possui acesso próprio no menu, e passa a controlar exclusivamente a grade da coleção.
 - Substitui: Complementa a DEC-009.
+
+## DEC-014: Card editorial para Novidades
+
+- Data: 2026-09-03
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O card convencional dividia a atenção entre foto e informações, reduzindo o destaque visual da roupa.
+- Decisão: Em Novidades, usar a fotografia em toda a área do card e sobrepor nome e preço em branco sobre uma vinheta escura na base. Os centavos aparecem menores que a parte inteira do preço.
+- Motivo: Priorizar a peça ou a modelo usando a roupa e criar uma apresentação mais editorial.
+- Impactos: O estilo é exclusivo do carrossel de Novidades. A grade filtrada mantém os cards compactos em duas colunas.
+- Substitui: Complementa a DEC-013.
