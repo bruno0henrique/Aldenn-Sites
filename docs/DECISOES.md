@@ -131,3 +131,14 @@
 - Motivo: Impedir sugestões fora do escopo e reduzir informações inventadas no cadastro.
 - Impactos: Cosméticos, acessórios, objetos e cenas ambíguas são recusados. Preço, tamanho, nome e descrição seguem regras de evidência visual e continuam sujeitos à revisão humana.
 - Substitui: Complementa a DEC-011.
+
+## DEC-013: Novidades antes do filtro e coleção em grade
+
+- Data: 2026-09-03
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A sequência anterior colocava o filtro antes de Novidades e mostrava cards grandes demais no celular.
+- Decisão: Manter Novidades como carrossel acima do filtro e mostrar abaixo apenas a coleção apontada pelo filtro, em grade com duas peças por linha no celular.
+- Motivo: Priorizar lançamentos e aumentar a quantidade de produtos visíveis sem repetir todas as categorias na mesma página.
+- Impactos: O filtro deixa de listar Novidades, que possui acesso próprio no menu, e passa a controlar exclusivamente a grade da coleção.
+- Substitui: Complementa a DEC-009.
