@@ -83,7 +83,7 @@ export function BrandHeader() {
                 <a href="/#colecao" onClick={close}>
                   Ver todos
                 </a>
-                <a href="/?categoria=novidades#colecao" onClick={close}>
+                <a href="/#novidades" onClick={close}>
                   Novidades
                 </a>
                 {categories.map((category) => (

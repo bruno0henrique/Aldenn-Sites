@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## [0.19.0] - 2026-09-03
+
+### Alterado
+
+- O carrossel de novidades agora aparece antes do filtro de produtos.
+- O filtro controla uma única grade de coleção logo abaixo do seletor.
+- A vitrine móvel passa a mostrar duas peças por linha, com imagens e cards mais compactos.
+- O atalho Novidades do menu leva diretamente ao carrossel correspondente.
+
 ## [0.18.0] - 2026-09-03
 
 ### Alterado

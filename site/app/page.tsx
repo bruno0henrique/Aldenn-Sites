@@ -10,6 +10,7 @@ import { AccountToast } from '@/components/account-toast';
 import { MotionScene } from '@/components/motion-scene';
 import { HeroCarousel } from '@/components/hero-carousel';
 import { ProductCarousel } from '@/components/product-carousel';
+import { ProductGrid } from '@/components/product-grid';
 import {
   getCatalogCategories,
   getHomeBanners,
@@ -53,27 +54,12 @@ function HomeContent() {
     (category) => category.slug === selectedSlug,
   );
   const selectedProducts = useMemo(() => {
-    if (selectedSlug === 'novidades') return products.slice(0, 10);
     if (!selectedCategory) return products;
     return products.filter(
       (product) =>
         normalize(product.category) === normalize(selectedCategory.name),
     );
-  }, [products, selectedCategory, selectedSlug]);
-  const categoryRails = useMemo(
-    () =>
-      categories
-        .map((category) => ({
-          category,
-          products: products.filter(
-            (product) =>
-              normalize(product.category) === normalize(category.name),
-          ),
-        }))
-        .filter((rail) => rail.products.length > 0),
-    [categories, products],
-  );
-
+  }, [products, selectedCategory]);
   function chooseCategory(value: string) {
     const query = value === 'todos' ? '' : `?categoria=${value}`;
     router.replace(`/${query}#colecao`, { scroll: false });
@@ -86,10 +72,7 @@ function HomeContent() {
     );
   }
 
-  const singleRailTitle =
-    selectedSlug === 'novidades'
-      ? 'Novidades'
-      : selectedCategory?.name || 'First Drop';
+  const collectionTitle = selectedCategory?.name || 'First Drop';
 
   return (
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
@@ -97,31 +80,28 @@ function HomeContent() {
       <AccountToast visible={searchParams.get('conta') === 'conectada'} />
       <MotionScene>
         <HeroCarousel banners={banners} />
-        <section
-          className="collection"
-          id="colecao"
-          aria-labelledby="collection-title"
-        >
-          <div className="collection-toolbar" data-reveal>
+        <section className="collection" aria-labelledby="collection-title">
+          <div id="novidades">
+            <ProductCarousel
+              title="Novidades"
+              products={products.slice(0, 10)}
+              isLoading={isLoading}
+            />
+          </div>
+
+          <div className="collection-toolbar" id="colecao" data-reveal>
             <div>
               <p className="section-kicker">seleção especial</p>
-              <h2 id="collection-title">First Drop</h2>
+              <h2 id="collection-title">{collectionTitle}</h2>
             </div>
             <label className="catalog-filter" htmlFor="catalog-category">
               <span>Filtrar produtos</span>
               <select
                 id="catalog-category"
-                value={
-                  selectedCategory
-                    ? selectedSlug
-                    : selectedSlug === 'novidades'
-                      ? 'novidades'
-                      : 'todos'
-                }
+                value={selectedCategory ? selectedSlug : 'todos'}
                 onChange={(event) => chooseCategory(event.target.value)}
               >
                 <option value="todos">Todos</option>
-                <option value="novidades">Novidades</option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.slug}>
                     {category.name}
@@ -130,31 +110,13 @@ function HomeContent() {
               </select>
             </label>
           </div>
-
-          {selectedSlug !== 'todos' ? (
-            <ProductCarousel
-              title={singleRailTitle}
+          <div className="collection-grid">
+            <ProductGrid
               products={selectedProducts}
               isLoading={isLoading}
-              emptyCategory={singleRailTitle}
+              emptyCategory={selectedCategory?.name}
             />
-          ) : (
-            <div className="catalog-rails">
-              <ProductCarousel
-                title="Novidades"
-                products={products.slice(0, 10)}
-                isLoading={isLoading}
-              />
-              {!isLoading &&
-                categoryRails.map(({ category, products: railProducts }) => (
-                  <ProductCarousel
-                    key={category.id}
-                    title={category.name}
-                    products={railProducts}
-                  />
-                ))}
-            </div>
-          )}
+          </div>
         </section>
         <section
           className="contact-card"
