@@ -72,7 +72,7 @@ export function BrandHeader() {
             <a href="/#colecao" onClick={close}>
               <Sparkles /> First Drop
             </a>
-            <Collapsible defaultOpen>
+            <Collapsible>
               <CollapsibleTrigger className="drawer-products-trigger">
                 <span>
                   <Shirt /> Produtos
