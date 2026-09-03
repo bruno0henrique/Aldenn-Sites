@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.15.0] - 2026-09-02
+
+### Alterado
+
+- Cadastro assistido reorganizado em seis caixas alinhadas para nome, categoria, preço, promoção, imagem e descrição.
+- Envio da imagem ganhou uma área visual com prévia e acesso direto ao preenchimento automático.
+
 ## [0.14.1] - 2026-09-02
 
 ### Corrigido
