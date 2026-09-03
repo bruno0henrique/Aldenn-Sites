@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.17.0] - 2026-09-03
+
+### Alterado
+
+- Preenchimento automático por imagem migrou do Gemini para a Responses API da OpenAI.
+- `gpt-5-nano` definido como modelo visual padrão para priorizar o menor custo.
+- O modelo pode ser trocado por `OPENAI_VISION_MODEL` sem alteração no código.
+
+### Segurança
+
+- `OPENAI_API_KEY` permanece exclusiva do servidor e as respostas não são armazenadas pela API.
+
 ## [0.16.0] - 2026-09-02
 
 ### Adicionado

@@ -80,7 +80,7 @@
 ## DEC-008: Gemini 2.5 Flash como assistente do cadastro
 
 - Data: 2026-09-02
-- Estado: Aprovada
+- Estado: Substituída pela DEC-011
 - Decidido por: Cliente
 - Contexto: A configuração de pagamento da OpenAI impediu a ativação da análise visual.
 - Decisão: Substituir a OpenAI pelo Google Gemini 2.5 Flash, mantendo o envio sob demanda, a saída estruturada e a revisão humana.
@@ -109,3 +109,14 @@
 - Motivo: Apresentar melhor cada peça sem criar cadastros duplicados.
 - Impactos: O preenchimento automático analisa somente a foto principal. Todas as fotos seguem para revisão e publicação.
 - Substitui: O cadastro manual limitado a uma única foto.
+
+## DEC-011: OpenAI com modelo econômico no cadastro assistido
+
+- Data: 2026-09-03
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O Gemini não será mais usado e a análise visual voltará para a API da OpenAI.
+- Decisão: Usar a Responses API com `gpt-5-nano` por padrão, mantendo `OPENAI_VISION_MODEL` para troca posterior caso a qualidade não seja suficiente.
+- Motivo: Começar pelo menor custo e preservar a possibilidade de elevar a qualidade sem alterar o código.
+- Impactos: Somente a foto principal é enviada sob demanda. A chave permanece no servidor e nenhum resultado é publicado automaticamente.
+- Substitui: DEC-008.
