@@ -985,6 +985,8 @@ footer a:last-child {
 
 /* Navigation, catalog rails and storefront management */
 .brand-drawer {
+  --storefront-style-version: 1;
+  isolation: isolate;
   width: min(88vw, 390px) !important;
   max-width: 390px !important;
   gap: 0 !important;
@@ -1358,6 +1360,7 @@ footer a:last-child {
   color: white;
 }
 .storefront-manager {
+  --storefront-style-version: 1;
   display: grid;
   gap: 20px;
 }
