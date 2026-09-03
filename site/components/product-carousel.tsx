@@ -95,15 +95,9 @@ export function ProductCarousel({
                   />
                   {isNews && (
                     <div className="news-card-caption">
-                      <h3>{product.name}</h3>
-                      {product.sale_price_cents ? (
-                        <>
-                          <del>{formatPrice(product.price_cents)}</del>
-                          <NewsPrice cents={product.sale_price_cents} />
-                        </>
-                      ) : (
-                        <NewsPrice cents={product.price_cents} />
-                      )}
+                      <NewsPrice
+                        cents={product.sale_price_cents || product.price_cents}
+                      />
                     </div>
                   )}
                 </div>
@@ -140,7 +134,8 @@ function NewsPrice({ cents }: { cents: number }) {
 
   return (
     <p className="news-card-price" aria-label={formatPrice(cents)}>
-      <span>R$ {reais}</span>
+      <span className="news-card-currency">R$</span>
+      <span className="news-card-major">{reais}</span>
       <sup>,{centavos}</sup>
     </p>
   );

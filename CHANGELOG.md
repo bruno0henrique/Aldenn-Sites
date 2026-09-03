@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.20.1] - 2026-09-03
+
+### Corrigido
+
+- O carrossel de Novidades agora exibe somente a fotografia e o preço sobre o terço inferior da imagem.
+- Borda, fundo, nome da peça e preço anterior foram removidos para preservar o foco visual.
+- O degradê passa de forte na base a transparente, com arredondamento discreto e preço de traço fino.
+
 ## [0.20.0] - 2026-09-03
 
 ### Alterado
