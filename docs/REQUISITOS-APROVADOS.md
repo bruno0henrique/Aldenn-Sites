@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.22.0
+Versão: 0.23.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -47,6 +47,7 @@ Versão: 0.22.0
 - Publicação é otimista e transacional; falha devolve a peça para revisão.
 - Login Google fica para uma etapa futura.
 - GSAP apenas em detalhes visuais e com respeito a `prefers-reduced-motion`.
-- O fim da página ocupa uma área ampla e reúne, de forma simples e com ícones, informações de Sobre, Contato e Ajuda.
+- O fim da página possui um rodapé compacto na cor rosa da marca, com contraste legível e acessos com ícones para Sobre, Contato, Ajuda e conta.
+- Sobre possui uma página dedicada que apresenta a Belleland e explica como consultar e reservar peças.
 
 Os formulários originais contêm dados pessoais e não são versionados. Este documento registra somente requisitos necessários ao produto.

@@ -168,10 +168,21 @@
 ## DEC-016: Pesquisa dedicada e rodapé informativo
 
 - Data: 2026-09-04
-- Estado: Aprovada
+- Estado: Substituída pela DEC-017
 - Decidido por: Cliente
 - Contexto: A pesquisa precisava deixar de repetir os destaques da chegada e o fim da página estava fragmentado em blocos pequenos.
 - Decisão: A busca terá uma área editorial própria e filtrará a grade existente. O fim da página será um bloco amplo, simples e coerente com a marca, organizado em Sobre, Contato e Ajuda com ícones.
 - Motivo: Separar a intenção de busca da tela principal e encerrar a navegação com informações essenciais bem organizadas.
 - Impactos: A URL com `busca` oculta Hero First Drop e Novidades. Os cards e a grade de produtos permanecem inalterados.
 - Substitui: Complementa a DEC-015.
+
+## DEC-017: Rodapé compacto e Sobre dedicado
+
+- Data: 2026-09-04
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O primeiro rodapé informativo ocupava espaço demais e sua cor escura se afastava do rosa usado pela marca.
+- Decisão: Reduzir drasticamente o rodapé, usar o rosa principal com texto escuro de alto contraste e manter apenas acessos compactos para Sobre, Contato, Ajuda e conta. O conteúdo institucional passa para uma página Sobre dedicada.
+- Motivo: Encerrar a página sem competir com os produtos e preservar a identidade visual da Belleland.
+- Impactos: A página inicial perde o bloco institucional grande. O ícone de conta aparece depois do texto e `/sobre` concentra a explicação da marca e do atendimento.
+- Substitui: Parte do rodapé definida na DEC-016; a pesquisa dedicada permanece válida.

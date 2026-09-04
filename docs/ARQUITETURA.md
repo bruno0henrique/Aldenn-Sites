@@ -1,4 +1,4 @@
-# Arquitetura v0.22.0
+# Arquitetura v0.23.0
 
 ## Fluxo
 
@@ -17,6 +17,7 @@
 13. A tela principal embaralha as novidades a cada carregamento e as apresenta em carrossel circular.
 14. A presença do parâmetro `categoria` ativa a visualização de catálogo, oculta hero e novidades e carrega uma única grade de coleção.
 15. A presença do parâmetro `busca` ativa a visualização de pesquisa, oculta hero e novidades e filtra a mesma grade por nome, categoria e descrição.
+16. A rota `/sobre` apresenta o conteúdo institucional e reutiliza o cabeçalho e o rodapé do catálogo.
 
 ## Segurança
 

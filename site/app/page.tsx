@@ -1,32 +1,22 @@
 'use client';
 
-import {
-  ArrowRight,
-  Camera,
-  CircleHelp,
-  Heart,
-  Info,
-  Search,
-  UserRound,
-  X,
-} from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { type SyntheticEvent, Suspense, useMemo } from 'react';
 import { BrandHeader } from '@/components/brand-header';
-import { AccountFooterLink } from '@/components/account-footer-link';
 import { AccountToast } from '@/components/account-toast';
 import { MotionScene } from '@/components/motion-scene';
 import { HeroCarousel } from '@/components/hero-carousel';
 import { ProductCarousel } from '@/components/product-carousel';
 import { ProductGrid } from '@/components/product-grid';
+import { SiteFooter } from '@/components/site-footer';
 import {
   getCatalogCategories,
   getHomeBanners,
   getPublishedProducts,
 } from '@/lib/catalog';
 import type { Product } from '@/lib/types';
-import { whatsappUrl } from '@/lib/whatsapp';
 
 const EMPTY_PRODUCTS: Product[] = [];
 
@@ -210,62 +200,7 @@ function HomeContent() {
           </div>
         </section>
       </MotionScene>
-      <footer className="site-footer" id="fale-com-a-gente">
-        <div className="footer-shell">
-          <div className="footer-intro" id="sobre">
-            <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
-            <p className="section-kicker">Feita para você</p>
-            <h2>Moda com personalidade, todos os dias.</h2>
-            <p>
-              Peças escolhidas com carinho para você se sentir linda, confiante
-              e autêntica.
-            </p>
-          </div>
-          <div className="footer-navigation">
-            <section aria-labelledby="footer-about-title">
-              <Info aria-hidden="true" />
-              <h3 id="footer-about-title">Sobre</h3>
-              <p>
-                Conheça a Belleland e acompanhe cada novidade da nossa seleção.
-              </p>
-              <a href="/#colecao">
-                Ver First Drop <ArrowRight aria-hidden="true" />
-              </a>
-            </section>
-            <section aria-labelledby="footer-contact-title">
-              <Camera aria-hidden="true" />
-              <h3 id="footer-contact-title">Contato</h3>
-              <a
-                href="https://instagram.com/bellelandcloset"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram <ArrowRight aria-hidden="true" />
-              </a>
-              <a href={whatsappUrl()} target="_blank" rel="noreferrer">
-                WhatsApp <ArrowRight aria-hidden="true" />
-              </a>
-            </section>
-            <section aria-labelledby="footer-help-title">
-              <CircleHelp aria-hidden="true" />
-              <h3 id="footer-help-title">Ajuda</h3>
-              <a href={whatsappUrl()} target="_blank" rel="noreferrer">
-                Atendimento <ArrowRight aria-hidden="true" />
-              </a>
-              <span className="footer-account-link">
-                <UserRound aria-hidden="true" />
-                <AccountFooterLink />
-              </span>
-            </section>
-          </div>
-          <div className="footer-bottom">
-            <span>
-              <Heart aria-hidden="true" /> Belleland Closet
-            </span>
-            <span>Moda feminina com personalidade.</span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

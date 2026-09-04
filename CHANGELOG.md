@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.23.0] - 2026-09-04
+
+### Adicionado
+
+- Página Sobre dedicada, com apresentação da Belleland e explicação do processo de consulta e reserva.
+
+### Alterado
+
+- Rodapé reduzido para uma faixa compacta na cor rosa da marca.
+- Sobre, Contato, Ajuda e conta foram reorganizados com contraste e ícones menores.
+- O ícone de conta passou para a direita do texto.
+
 ## [0.22.0] - 2026-09-04
 
 ### Adicionado
