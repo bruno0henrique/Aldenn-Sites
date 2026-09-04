@@ -197,3 +197,14 @@
 - Motivo: Integrar o rodapé ao catálogo sem criar um bloco agressivo ou visualmente solto.
 - Impactos: A estrutura e os links definidos na DEC-017 permanecem, com nova composição visual e comportamento de altura.
 - Substitui: A definição visual do rodapé na DEC-017; a página Sobre permanece válida.
+
+## DEC-019: Página Sobre sem caixas auxiliares
+
+- Data: 2026-09-04
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Os três blocos em formato de caixa deixavam a página Sobre fragmentada e com aparência artificial.
+- Decisão: Manter a apresentação principal à esquerda e substituir os três blocos por um único texto natural à direita sobre a ideia, a proposta e o atendimento da Belleland.
+- Motivo: Criar uma leitura mais simples, humana e coerente com a identidade editorial do site.
+- Impactos: A página Sobre deixa de usar cartões informativos e passa a ter uma composição limpa em duas colunas no desktop e sequencial no celular.
+- Substitui: A composição inicial da página Sobre criada na DEC-017.

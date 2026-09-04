@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.23.2] - 2026-09-04
+
+### Alterado
+
+- Página Sobre simplificada para duas áreas de texto, sem caixas auxiliares.
+- A proposta da Belleland ganhou uma explicação mais natural e direta.
+
 ## [0.23.1] - 2026-09-04
 
 ### Corrigido

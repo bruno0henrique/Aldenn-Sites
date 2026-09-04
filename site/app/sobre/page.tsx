@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Heart, MessageCircle, Sparkles } from 'lucide-react';
 import { BrandHeader } from '@/components/brand-header';
 import { SiteFooter } from '@/components/site-footer';
-import { whatsappUrl } from '@/lib/whatsapp';
 
 export const metadata: Metadata = {
   title: 'Sobre',
@@ -22,34 +20,20 @@ export default function AboutPage() {
             aproximar você de peças com personalidade, conforto e estilo.
           </p>
         </div>
-        <div className="about-note">
-          <Sparkles aria-hidden="true" />
+        <div className="about-story">
+          <p className="section-kicker">A proposta</p>
+          <h2>Encontrar uma peça bonita pode ser simples.</h2>
           <p>
-            Novidades e seleções pensadas para acompanhar diferentes momentos e
-            destacar a sua essência.
+            A ideia da Belleland é reunir roupas que tenham personalidade e
+            apresentar tudo de um jeito leve, para você olhar com calma e
+            escolher o que realmente combina com você.
+          </p>
+          <p>
+            Quando encontrar uma favorita, é só chamar no WhatsApp para tirar
+            dúvidas e combinar a reserva. Sem complicação e com uma conversa
+            próxima do começo ao fim.
           </p>
         </div>
-      </section>
-      <section className="about-details" aria-label="Como funciona">
-        <article>
-          <Heart aria-hidden="true" />
-          <h2>Escolha com calma</h2>
-          <p>
-            Explore o catálogo, use os filtros e abra cada peça para conferir
-            fotos, preço e detalhes.
-          </p>
-        </article>
-        <article>
-          <MessageCircle aria-hidden="true" />
-          <h2>Fale com a gente</h2>
-          <p>
-            Encontrou sua favorita? A consulta e a reserva são combinadas
-            diretamente com a Belleland pelo WhatsApp.
-          </p>
-          <a href={whatsappUrl()} target="_blank" rel="noreferrer">
-            Conversar no WhatsApp
-          </a>
-        </article>
       </section>
       <SiteFooter />
     </main>
