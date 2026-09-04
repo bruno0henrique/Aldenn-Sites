@@ -6,7 +6,13 @@ import { useRef } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
-export function MotionScene({ children }: { children: React.ReactNode }) {
+export function MotionScene({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const scope = useRef<HTMLDivElement>(null);
   useGSAP(
     () => {
@@ -21,5 +27,9 @@ export function MotionScene({ children }: { children: React.ReactNode }) {
     },
     { scope },
   );
-  return <div ref={scope}>{children}</div>;
+  return (
+    <div ref={scope} className={className}>
+      {children}
+    </div>
+  );
 }

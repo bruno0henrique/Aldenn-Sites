@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.23.1] - 2026-09-04
+
+### Corrigido
+
+- Rodapé redesenhado com rosa suave, melhor proporção tipográfica e organização mais leve.
+- Páginas curtas agora mantêm o rodapé no final da tela, sem faixa vazia abaixo.
+
 ## [0.23.0] - 2026-09-04
 
 ### Adicionado

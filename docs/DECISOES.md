@@ -179,10 +179,21 @@
 ## DEC-017: Rodapé compacto e Sobre dedicado
 
 - Data: 2026-09-04
-- Estado: Aprovada
+- Estado: Substituída pela DEC-018
 - Decidido por: Cliente
 - Contexto: O primeiro rodapé informativo ocupava espaço demais e sua cor escura se afastava do rosa usado pela marca.
 - Decisão: Reduzir drasticamente o rodapé, usar o rosa principal com texto escuro de alto contraste e manter apenas acessos compactos para Sobre, Contato, Ajuda e conta. O conteúdo institucional passa para uma página Sobre dedicada.
 - Motivo: Encerrar a página sem competir com os produtos e preservar a identidade visual da Belleland.
 - Impactos: A página inicial perde o bloco institucional grande. O ícone de conta aparece depois do texto e `/sobre` concentra a explicação da marca e do atendimento.
 - Substitui: Parte do rodapé definida na DEC-016; a pesquisa dedicada permanece válida.
+
+## DEC-018: Rodapé rosa suave e proporcional
+
+- Data: 2026-09-04
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: O fundo rosa chapado e a escala reduzida dos textos deixaram o rodapé visualmente pesado e desproporcional em telas largas.
+- Decisão: Usar fundo rosa suave com o rosa principal em bordas e ícones, ampliar discretamente textos e marca e manter a altura compacta. Em páginas curtas, o rodapé deve encostar no final da tela sem deixar faixa vazia abaixo.
+- Motivo: Integrar o rodapé ao catálogo sem criar um bloco agressivo ou visualmente solto.
+- Impactos: A estrutura e os links definidos na DEC-017 permanecem, com nova composição visual e comportamento de altura.
+- Substitui: A definição visual do rodapé na DEC-017; a página Sobre permanece válida.

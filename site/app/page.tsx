@@ -126,7 +126,7 @@ function HomeContent() {
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa">
       <BrandHeader />
       <AccountToast visible={searchParams.get('conta') === 'conectada'} />
-      <MotionScene>
+      <MotionScene className="home-content">
         {isLandingView && <HeroCarousel banners={banners} />}
         {isSearchView && (
           <section className="search-stage" aria-labelledby="search-title">
