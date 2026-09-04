@@ -10,6 +10,7 @@ import {
   LogIn,
   Menu,
   MessageCircle,
+  Search,
   Shirt,
   Sparkles,
   UserRound,
@@ -68,6 +69,9 @@ export function BrandHeader() {
           <nav className="drawer-navigation">
             <a href="/" onClick={close}>
               <Home /> Início
+            </a>
+            <a href="/?busca=" onClick={close}>
+              <Search /> Pesquisar
             </a>
             <a href="/#colecao" onClick={close}>
               <Sparkles /> First Drop
@@ -141,15 +145,20 @@ export function BrandHeader() {
       <a href="/" aria-label="Belleland Closet, início">
         <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
       </a>
-      <a
-        className="icon-button"
-        href={whatsappUrl()}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Falar pelo WhatsApp"
-      >
-        <MessageCircle />
-      </a>
+      <div className="header-actions">
+        <a className="icon-button" href="/?busca=" aria-label="Pesquisar">
+          <Search />
+        </a>
+        <a
+          className="icon-button"
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Falar pelo WhatsApp"
+        >
+          <MessageCircle />
+        </a>
+      </div>
     </header>
   );
 }

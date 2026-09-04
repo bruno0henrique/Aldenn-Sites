@@ -1,4 +1,4 @@
-# Arquitetura v0.21.0
+# Arquitetura v0.22.0
 
 ## Fluxo
 
@@ -16,6 +16,7 @@
 12. `home_banners` relaciona cada banner a um produto publicado e à posição de uma foto existente.
 13. A tela principal embaralha as novidades a cada carregamento e as apresenta em carrossel circular.
 14. A presença do parâmetro `categoria` ativa a visualização de catálogo, oculta hero e novidades e carrega uma única grade de coleção.
+15. A presença do parâmetro `busca` ativa a visualização de pesquisa, oculta hero e novidades e filtra a mesma grade por nome, categoria e descrição.
 
 ## Segurança
 

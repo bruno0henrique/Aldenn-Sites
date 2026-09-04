@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.22.0] - 2026-09-04
+
+### Adicionado
+
+- Pesquisa dedicada por nome, categoria e descrição, acessível pelo cabeçalho e pelo menu.
+- Rodapé amplo com áreas de Sobre, Contato e Ajuda acompanhadas por ícones.
+
+### Alterado
+
+- Hero First Drop e Novidades ficam ocultos também durante a pesquisa.
+- O estado sem resultados informa a busca realizada e sugere uma nova consulta.
+
 ## [0.21.0] - 2026-09-03
 
 ### Alterado

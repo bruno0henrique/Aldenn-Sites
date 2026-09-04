@@ -164,3 +164,14 @@
 - Motivo: Dar identidade própria à chegada e tornar a navegação por categoria mais direta.
 - Impactos: A URL com o parâmetro `categoria` identifica a visualização filtrada. O carrossel muda a ordem após recarregar a página e retorna ao início sem interrupção.
 - Substitui: Complementa as decisões DEC-009 e DEC-013.
+
+## DEC-016: Pesquisa dedicada e rodapé informativo
+
+- Data: 2026-09-04
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A pesquisa precisava deixar de repetir os destaques da chegada e o fim da página estava fragmentado em blocos pequenos.
+- Decisão: A busca terá uma área editorial própria e filtrará a grade existente. O fim da página será um bloco amplo, simples e coerente com a marca, organizado em Sobre, Contato e Ajuda com ícones.
+- Motivo: Separar a intenção de busca da tela principal e encerrar a navegação com informações essenciais bem organizadas.
+- Impactos: A URL com `busca` oculta Hero First Drop e Novidades. Os cards e a grade de produtos permanecem inalterados.
+- Substitui: Complementa a DEC-015.

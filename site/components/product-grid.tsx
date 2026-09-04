@@ -6,10 +6,12 @@ export function ProductGrid({
   products,
   isLoading,
   emptyCategory,
+  emptySearchTerm,
 }: {
   products: Product[];
   isLoading: boolean;
   emptyCategory?: string | null;
+  emptySearchTerm?: string;
 }) {
   if (isLoading)
     return (
@@ -26,14 +28,18 @@ export function ProductGrid({
           <Sparkles />
         </span>
         <h3>
-          {emptyCategory
-            ? `Sem opções de ${emptyCategory} no momento`
-            : 'Em breve, novos produtos'}
+          {emptySearchTerm
+            ? `Nenhum resultado para “${emptySearchTerm}”`
+            : emptyCategory
+              ? `Sem opções de ${emptyCategory} no momento`
+              : 'Em breve, novos produtos'}
         </h3>
         <p>
-          {emptyCategory
-            ? 'Em breve teremos novidades nessa categoria.'
-            : 'A primeira seleção Belleland está sendo preparada com carinho.'}
+          {emptySearchTerm
+            ? 'Tente buscar por outro nome ou categoria.'
+            : emptyCategory
+              ? 'Em breve teremos novidades nessa categoria.'
+              : 'A primeira seleção Belleland está sendo preparada com carinho.'}
         </p>
         <a
           href="https://instagram.com/bellelandcloset"

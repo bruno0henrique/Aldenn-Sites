@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.21.0
+Versão: 0.22.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -13,6 +13,7 @@ Versão: 0.21.0
 - A lista de produtos do menu inicia recolhida e abre somente após o toque, com transição sutil e respeito à redução de movimento.
 - A página inicial mostra o carrossel de novidades antes do filtro. Abaixo do filtro, exibe somente a coleção selecionada em grade de duas peças por linha no celular.
 - Hero First Drop e Novidades aparecem somente na tela principal. Ao selecionar Todos ou uma categoria pelo filtro ou menu, a visualização começa diretamente na coleção.
+- O cabeçalho e o menu oferecem uma pesquisa própria. A busca oculta Hero First Drop e Novidades e filtra a grade existente por nome, categoria e descrição.
 - O carrossel de Novidades funciona em loop e embaralha os produtos a cada novo carregamento da página.
 - Os cards de Novidades exibem somente a fotografia e o preço em branco. A imagem tem bordas discretamente arredondadas, ocupa uma faixa maior do carrossel e recebe um degradê escuro restrito ao terço inferior; a parte inteira do preço aparece maior e compacta, com tipografia fina, e os centavos ficam menores, alinhados abaixo e separados por um respiro sutil.
 - Banners da abertura são vinculados a produtos publicados e usam uma foto real da peça; sem banners ativos, a abertura padrão permanece.
@@ -46,5 +47,6 @@ Versão: 0.21.0
 - Publicação é otimista e transacional; falha devolve a peça para revisão.
 - Login Google fica para uma etapa futura.
 - GSAP apenas em detalhes visuais e com respeito a `prefers-reduced-motion`.
+- O fim da página ocupa uma área ampla e reúne, de forma simples e com ícones, informações de Sobre, Contato e Ajuda.
 
 Os formulários originais contêm dados pessoais e não são versionados. Este documento registra somente requisitos necessários ao produto.
