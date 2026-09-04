@@ -1,5 +1,18 @@
 # Histórico de versões
 
+## [0.24.0] - 2026-09-04
+
+### Adicionado
+
+- Carrossel de chegada preparado para receber peças publicadas ou artes livres de promoções, campanhas e modelos.
+- Gestão manual do carrossel de Novidades, com seleção, ordem, visibilidade e remoção de produtos.
+
+### Alterado
+
+- A área Vitrine centraliza os dois carrosséis e as opções de produtos exibidas no menu lateral.
+- Slides da chegada aceitam chamada, título, texto e botão editáveis.
+- Sem seleção manual em Novidades, o site continua usando automaticamente os produtos mais recentes.
+
 ## [0.23.2] - 2026-09-04
 
 ### Alterado

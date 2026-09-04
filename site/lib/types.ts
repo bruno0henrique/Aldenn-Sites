@@ -19,12 +19,24 @@ export type CatalogCategory = {
 };
 export type HomeBanner = {
   id: number;
-  product_id: number;
+  product_id: number | null;
   media_position: number;
   sort_order: number;
   is_active: boolean;
+  eyebrow: string | null;
+  title: string | null;
+  description: string | null;
+  cta_label: string | null;
+  cta_url: string | null;
   image_url: string;
-  product: Product;
+  storage_path?: string | null;
+  product: Product | null;
+};
+export type HomeFeaturedProduct = {
+  id: number;
+  product_id: number;
+  sort_order: number;
+  is_active: boolean;
 };
 export type CaptureMedia = {
   id: number;

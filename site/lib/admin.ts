@@ -4,6 +4,7 @@ import type {
   Capture,
   CatalogCategory,
   HomeBanner,
+  HomeFeaturedProduct,
   Product,
 } from '@/lib/types';
 
@@ -353,28 +354,66 @@ export async function reorderCatalogCategories(categories: CatalogCategory[]) {
   if (failed?.error) throw failed.error;
 }
 
-export type HomeBannerRow = Omit<HomeBanner, 'image_url' | 'product'>;
+export type HomeBannerRow = Omit<HomeBanner, 'product'> & {
+  image_url: string | null;
+  storage_path: string | null;
+};
+
+export type HomeBannerInput = {
+  productId: number | null;
+  mediaPosition: number;
+  image?: File | null;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  ctaLabel?: string;
+  ctaUrl?: string;
+};
 
 export async function listHomeBannersAdmin(): Promise<HomeBannerRow[]> {
   await assertStaff();
   const { data, error } = await requireSupabase()
     .from('home_banners')
-    .select('id,product_id,media_position,sort_order,is_active')
+    .select(
+      'id,product_id,media_position,sort_order,is_active,image_url,storage_path,eyebrow,title,description,cta_label,cta_url',
+    )
     .order('sort_order')
     .order('id');
   if (error) throw error;
   return (data || []) as HomeBannerRow[];
 }
 
-export async function createHomeBanner({
-  productId,
-  mediaPosition,
-}: {
-  productId: number;
-  mediaPosition: number;
-}) {
-  await assertStaff();
+export async function createHomeBanner(input: HomeBannerInput) {
+  const user = await assertStaff();
   const supabase = requireSupabase();
+  const allowedImageTypes: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+    'image/webp': 'webp',
+  };
+  if (!input.productId && !input.image)
+    throw new Error('Escolha um produto ou envie uma imagem para o destaque.');
+  let imageUrl: string | null = null;
+  let storagePath: string | null = null;
+  if (input.image) {
+    const extension = allowedImageTypes[input.image.type];
+    if (!extension)
+      throw new Error('Selecione somente uma imagem JPG, PNG ou WEBP.');
+    if (input.image.size > 10 * 1024 * 1024)
+      throw new Error('A imagem deve ter no máximo 10 MB.');
+    storagePath = `storefront/${user.id}/${crypto.randomUUID()}.${extension}`;
+    const { error: uploadError } = await supabase.storage
+      .from('product-media')
+      .upload(storagePath, input.image, {
+        contentType: input.image.type,
+        upsert: false,
+      });
+    if (uploadError) throw uploadError;
+    const { data } = supabase.storage
+      .from('product-media')
+      .getPublicUrl(storagePath);
+    imageUrl = data.publicUrl;
+  }
   const { data: last } = await supabase
     .from('home_banners')
     .select('sort_order')
@@ -382,11 +421,22 @@ export async function createHomeBanner({
     .limit(1)
     .maybeSingle();
   const { error } = await supabase.from('home_banners').insert({
-    product_id: productId,
-    media_position: mediaPosition,
+    product_id: input.productId,
+    media_position: input.mediaPosition,
+    image_url: imageUrl,
+    storage_path: storagePath,
+    eyebrow: input.eyebrow?.trim() || null,
+    title: input.title?.trim() || null,
+    description: input.description?.trim() || null,
+    cta_label: input.ctaLabel?.trim() || null,
+    cta_url: input.ctaUrl?.trim() || null,
     sort_order: (last?.sort_order || 0) + 10,
   });
-  if (error) throw error;
+  if (error) {
+    if (storagePath)
+      await supabase.storage.from('product-media').remove([storagePath]);
+    throw error;
+  }
 }
 
 export async function updateHomeBanner(
@@ -394,7 +444,15 @@ export async function updateHomeBanner(
   updates: Partial<
     Pick<
       HomeBannerRow,
-      'product_id' | 'media_position' | 'sort_order' | 'is_active'
+      | 'product_id'
+      | 'media_position'
+      | 'sort_order'
+      | 'is_active'
+      | 'eyebrow'
+      | 'title'
+      | 'description'
+      | 'cta_label'
+      | 'cta_url'
     >
   >,
 ) {
@@ -421,10 +479,80 @@ export async function reorderHomeBanners(banners: HomeBannerRow[]) {
   if (failed?.error) throw failed.error;
 }
 
-export async function deleteHomeBanner(id: number) {
+export async function deleteHomeBanner(banner: HomeBannerRow) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const { error } = await supabase
+    .from('home_banners')
+    .delete()
+    .eq('id', banner.id);
+  if (error) throw error;
+  if (banner.storage_path)
+    await supabase.storage.from('product-media').remove([banner.storage_path]);
+}
+
+export async function listHomeFeaturedProductsAdmin(): Promise<
+  HomeFeaturedProduct[]
+> {
+  await assertStaff();
+  const { data, error } = await requireSupabase()
+    .from('home_featured_products')
+    .select('id,product_id,sort_order,is_active')
+    .order('sort_order')
+    .order('id');
+  if (error) throw error;
+  return (data || []) as HomeFeaturedProduct[];
+}
+
+export async function createHomeFeaturedProduct(productId: number) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const { data: last } = await supabase
+    .from('home_featured_products')
+    .select('sort_order')
+    .order('sort_order', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+  const { error } = await supabase.from('home_featured_products').insert({
+    product_id: productId,
+    sort_order: (last?.sort_order || 0) + 10,
+  });
+  if (error) throw error;
+}
+
+export async function updateHomeFeaturedProduct(
+  id: number,
+  updates: Partial<Pick<HomeFeaturedProduct, 'sort_order' | 'is_active'>>,
+) {
   await assertStaff();
   const { error } = await requireSupabase()
-    .from('home_banners')
+    .from('home_featured_products')
+    .update(updates)
+    .eq('id', id);
+  if (error) throw error;
+}
+
+export async function reorderHomeFeaturedProducts(
+  items: HomeFeaturedProduct[],
+) {
+  await assertStaff();
+  const supabase = requireSupabase();
+  const results = await Promise.all(
+    items.map((item, index) =>
+      supabase
+        .from('home_featured_products')
+        .update({ sort_order: (index + 1) * 10 })
+        .eq('id', item.id),
+    ),
+  );
+  const failed = results.find((result) => result.error);
+  if (failed?.error) throw failed.error;
+}
+
+export async function deleteHomeFeaturedProduct(id: number) {
+  await assertStaff();
+  const { error } = await requireSupabase()
+    .from('home_featured_products')
     .delete()
     .eq('id', id);
   if (error) throw error;

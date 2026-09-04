@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.23.2
+Versão: 0.24.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -16,9 +16,10 @@ Versão: 0.23.2
 - O cabeçalho e o menu oferecem uma pesquisa própria. A busca oculta Hero First Drop e Novidades e filtra a grade existente por nome, categoria e descrição.
 - O carrossel de Novidades funciona em loop e embaralha os produtos a cada novo carregamento da página.
 - Os cards de Novidades exibem somente a fotografia e o preço em branco. A imagem tem bordas discretamente arredondadas, ocupa uma faixa maior do carrossel e recebe um degradê escuro restrito ao terço inferior; a parte inteira do preço aparece maior e compacta, com tipografia fina, e os centavos ficam menores, alinhados abaixo e separados por um respiro sutil.
-- Banners da abertura são vinculados a produtos publicados e usam uma foto real da peça; sem banners ativos, a abertura padrão permanece.
-- A área Vitrine permite criar, renomear, ordenar, ativar e ocultar categorias, além de organizar banners.
-- `Novidades` é uma seleção automática dos produtos mais recentes e não é uma categoria editável.
+- O carrossel de chegada aceita slides vinculados a produtos publicados ou artes livres para promoções, campanhas e modelos. Chamada, título, texto, botão, ordem e visibilidade são editáveis; sem slides ativos, a abertura padrão permanece.
+- A área Vitrine centraliza a gestão do carrossel de chegada, do carrossel de Novidades e dos tópicos de produtos exibidos no menu lateral.
+- Os tópicos de produtos do menu podem ser adicionados, renomeados, ordenados e ocultados pela gestão de categorias.
+- `Novidades` permite selecionar, ordenar, ocultar e remover produtos. Enquanto nenhuma seleção manual existir, usa automaticamente os produtos mais recentes.
 - A mensagem de reserva inclui nome, preço e link público da peça. O WhatsApp usa a prévia do link; não há anexo automático.
 - Instagram `@bellelandcloset` é fonte de captura sob demanda. Ao clicar em Atualizar, publicações ainda não registradas entram na fila, sem exigir hashtag.
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.

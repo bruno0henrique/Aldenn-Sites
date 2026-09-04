@@ -49,22 +49,31 @@ export function HeroCarousel({ banners }: { banners: HomeBanner[] }) {
       >
         <CarouselContent className="hero-carousel-content">
           {banners.map((banner) => {
-            const price =
-              banner.product.sale_price_cents || banner.product.price_cents;
+            const price = banner.product
+              ? banner.product.sale_price_cents || banner.product.price_cents
+              : null;
+            const title = banner.title || banner.product?.name || '';
+            const eyebrow = banner.eyebrow || 'Destaque Belleland';
+            const ctaLabel = banner.cta_label || 'Ver peça';
+            const ctaUrl =
+              banner.cta_url ||
+              (banner.product
+                ? `/produto/${banner.product.slug}`
+                : '/#colecao');
             return (
               <CarouselItem className="hero-banner-item" key={banner.id}>
                 <article className="hero-product-banner">
-                  <img src={banner.image_url} alt={banner.product.name} />
+                  <img src={banner.image_url} alt={title} />
                   <div className="hero-product-overlay">
                     <span>
-                      <Sparkles /> Destaque Belleland
+                      <Sparkles /> {eyebrow}
                     </span>
-                    <h1>{banner.product.name}</h1>
-                    {banner.product.category && (
-                      <p>{banner.product.category}</p>
+                    <h1>{title}</h1>
+                    {(banner.description || banner.product?.category) && (
+                      <p>{banner.description || banner.product?.category}</p>
                     )}
-                    <strong>{formatPrice(price)}</strong>
-                    <a href={`/produto/${banner.product.slug}`}>Ver peça</a>
+                    {price !== null && <strong>{formatPrice(price)}</strong>}
+                    <a href={ctaUrl}>{ctaLabel}</a>
                   </div>
                 </article>
               </CarouselItem>

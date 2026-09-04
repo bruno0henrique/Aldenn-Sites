@@ -208,3 +208,14 @@
 - Motivo: Criar uma leitura mais simples, humana e coerente com a identidade editorial do site.
 - Impactos: A página Sobre deixa de usar cartões informativos e passa a ter uma composição limpa em duas colunas no desktop e sequencial no celular.
 - Substitui: A composição inicial da página Sobre criada na DEC-017.
+
+## DEC-020: Vitrine como central de apresentação da loja
+
+- Data: 2026-09-04
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A chegada do site precisa comportar um carrossel grande ainda sem campanha definida, enquanto os dois carrosséis e os tópicos do menu precisam ser ajustáveis sem alteração de código.
+- Decisão: Centralizar na área Vitrine a gestão do carrossel de chegada, de Novidades e das categorias exibidas dentro de Produtos no menu lateral. A chegada aceita uma peça publicada ou uma arte livre, com textos e botão editáveis. Novidades aceita seleção e ordem manual, preservando a seleção automática enquanto não houver configuração.
+- Motivo: Permitir que a cliente atualize a apresentação da loja conforme promoções, campanhas, modelos e lançamentos futuros.
+- Impactos: `home_banners` passa a aceitar conteúdo editorial sem produto; `home_featured_products` guarda a seleção de Novidades; os demais itens essenciais do menu permanecem fixos.
+- Substitui: Amplia a gestão da Vitrine definida anteriormente e ajusta a seleção automática descrita na DEC-015.

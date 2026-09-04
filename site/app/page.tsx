@@ -14,6 +14,7 @@ import { SiteFooter } from '@/components/site-footer';
 import {
   getCatalogCategories,
   getHomeBanners,
+  getHomeFeaturedProducts,
   getPublishedProducts,
 } from '@/lib/catalog';
 import type { Product } from '@/lib/types';
@@ -48,6 +49,7 @@ function HomeContent() {
     queryKey: ['home-catalog'],
     queryFn: async () => {
       const publishedProducts = await getPublishedProducts();
+      const featured = await getHomeFeaturedProducts();
       const shuffledNews = [...publishedProducts];
 
       for (let index = shuffledNews.length - 1; index > 0; index -= 1) {
@@ -60,7 +62,9 @@ function HomeContent() {
 
       return {
         products: publishedProducts,
-        news: shuffledNews.slice(0, 10),
+        news: featured.configured
+          ? featured.products
+          : shuffledNews.slice(0, 10),
       };
     },
   });
