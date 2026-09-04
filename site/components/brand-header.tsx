@@ -80,7 +80,7 @@ export function BrandHeader() {
                 <ChevronDown />
               </CollapsibleTrigger>
               <CollapsibleContent className="drawer-products-list">
-                <a href="/#colecao" onClick={close}>
+                <a href="/?categoria=todos#colecao" onClick={close}>
                   Ver todos
                 </a>
                 <a href="/#novidades" onClick={close}>

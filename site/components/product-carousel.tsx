@@ -78,7 +78,11 @@ export function ProductCarousel({
       </div>
       <Carousel
         className="product-carousel"
-        opts={{ align: 'start', containScroll: 'trimSnaps' }}
+        opts={{
+          align: 'start',
+          containScroll: 'trimSnaps',
+          loop: isNews,
+        }}
       >
         <CarouselContent>
           {products.map((product) => (

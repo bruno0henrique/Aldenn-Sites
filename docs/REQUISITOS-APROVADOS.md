@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.20.3
+Versão: 0.21.0
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -12,6 +12,8 @@ Versão: 0.20.3
 - O menu principal ocupa a lateral e apresenta início, First Drop, produtos por categoria, conta, áreas administrativas autorizadas, Instagram e WhatsApp.
 - A lista de produtos do menu inicia recolhida e abre somente após o toque, com transição sutil e respeito à redução de movimento.
 - A página inicial mostra o carrossel de novidades antes do filtro. Abaixo do filtro, exibe somente a coleção selecionada em grade de duas peças por linha no celular.
+- Hero First Drop e Novidades aparecem somente na tela principal. Ao selecionar Todos ou uma categoria pelo filtro ou menu, a visualização começa diretamente na coleção.
+- O carrossel de Novidades funciona em loop e embaralha os produtos a cada novo carregamento da página.
 - Os cards de Novidades exibem somente a fotografia e o preço em branco. A imagem tem bordas discretamente arredondadas, ocupa uma faixa maior do carrossel e recebe um degradê escuro restrito ao terço inferior; a parte inteira do preço aparece maior e compacta, com tipografia fina, e os centavos ficam menores, alinhados abaixo e separados por um respiro sutil.
 - Banners da abertura são vinculados a produtos publicados e usam uma foto real da peça; sem banners ativos, a abertura padrão permanece.
 - A área Vitrine permite criar, renomear, ordenar, ativar e ocultar categorias, além de organizar banners.

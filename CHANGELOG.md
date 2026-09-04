@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.21.0] - 2026-09-03
+
+### Alterado
+
+- Hero First Drop e Novidades agora são exclusivos da tela principal.
+- Filtros e categorias do menu abrem diretamente a coleção, sem repetir os destaques da chegada.
+- O carrossel de Novidades passou a funcionar em loop e embaralhar os produtos a cada carregamento.
+
 ## [0.20.3] - 2026-09-03
 
 ### Corrigido

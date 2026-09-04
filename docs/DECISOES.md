@@ -153,3 +153,14 @@
 - Motivo: Priorizar a peça ou a modelo usando a roupa e criar uma apresentação mais editorial.
 - Impactos: Nome, borda, fundo e preço anterior não aparecem no carrossel de Novidades. O estilo é exclusivo dessa seção e a grade filtrada mantém os cards compactos em duas colunas.
 - Substitui: Complementa a DEC-013.
+
+## DEC-015: Tela principal separada do catálogo filtrado
+
+- Data: 2026-09-03
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Hero e novidades continuavam visíveis acima da coleção após escolher uma categoria, repetindo conteúdo exclusivo da chegada ao site.
+- Decisão: Manter hero First Drop e Novidades apenas na tela principal. Ao escolher Todos ou uma categoria pelo filtro ou menu, iniciar diretamente na coleção. Em Novidades, embaralhar os produtos a cada carregamento e permitir navegação circular.
+- Motivo: Dar identidade própria à chegada e tornar a navegação por categoria mais direta.
+- Impactos: A URL com o parâmetro `categoria` identifica a visualização filtrada. O carrossel muda a ordem após recarregar a página e retorna ao início sem interrupção.
+- Substitui: Complementa as decisões DEC-009 e DEC-013.

@@ -1,4 +1,4 @@
-# Arquitetura v0.20.3
+# Arquitetura v0.21.0
 
 ## Fluxo
 
@@ -14,7 +14,8 @@
 10. `remove_published_product` retira o produto e move a captura de origem para `ignored` em uma transação.
 11. `catalog_categories` controla nomes, ordem e visibilidade das categorias exibidas no menu, filtro e cadastro.
 12. `home_banners` relaciona cada banner a um produto publicado e à posição de uma foto existente.
-13. A página inicial apresenta novidades pela ordem de publicação e usa o filtro para carregar uma única grade de coleção.
+13. A tela principal embaralha as novidades a cada carregamento e as apresenta em carrossel circular.
+14. A presença do parâmetro `categoria` ativa a visualização de catálogo, oculta hero e novidades e carrega uma única grade de coleção.
 
 ## Segurança
 

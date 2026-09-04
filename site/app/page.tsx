@@ -16,7 +16,10 @@ import {
   getHomeBanners,
   getPublishedProducts,
 } from '@/lib/catalog';
+import type { Product } from '@/lib/types';
 import { whatsappUrl } from '@/lib/whatsapp';
+
+const EMPTY_PRODUCTS: Product[] = [];
 
 function normalize(value: string | null) {
   return (value || '')
@@ -38,10 +41,29 @@ function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedSlug = searchParams.get('categoria') || 'todos';
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ['published-products'],
-    queryFn: getPublishedProducts,
+  const isCatalogView = searchParams.has('categoria');
+  const { data: catalogData, isLoading } = useQuery({
+    queryKey: ['home-catalog'],
+    queryFn: async () => {
+      const publishedProducts = await getPublishedProducts();
+      const shuffledNews = [...publishedProducts];
+
+      for (let index = shuffledNews.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffledNews[index], shuffledNews[randomIndex]] = [
+          shuffledNews[randomIndex],
+          shuffledNews[index],
+        ];
+      }
+
+      return {
+        products: publishedProducts,
+        news: shuffledNews.slice(0, 10),
+      };
+    },
   });
+  const products = catalogData?.products || EMPTY_PRODUCTS;
+  const newsProducts = catalogData?.news || EMPTY_PRODUCTS;
   const { data: categories = [] } = useQuery({
     queryKey: ['catalog-categories'],
     queryFn: getCatalogCategories,
@@ -61,8 +83,7 @@ function HomeContent() {
     );
   }, [products, selectedCategory]);
   function chooseCategory(value: string) {
-    const query = value === 'todos' ? '' : `?categoria=${value}`;
-    router.replace(`/${query}#colecao`, { scroll: false });
+    router.replace(`/?categoria=${value}#colecao`, { scroll: false });
     window.setTimeout(
       () =>
         document
@@ -79,15 +100,17 @@ function HomeContent() {
       <BrandHeader />
       <AccountToast visible={searchParams.get('conta') === 'conectada'} />
       <MotionScene>
-        <HeroCarousel banners={banners} />
+        {!isCatalogView && <HeroCarousel banners={banners} />}
         <section className="collection" aria-labelledby="collection-title">
-          <div id="novidades">
-            <ProductCarousel
-              title="Novidades"
-              products={products.slice(0, 10)}
-              isLoading={isLoading}
-            />
-          </div>
+          {!isCatalogView && (
+            <div id="novidades">
+              <ProductCarousel
+                title="Novidades"
+                products={newsProducts}
+                isLoading={isLoading}
+              />
+            </div>
+          )}
 
           <div className="collection-toolbar" id="colecao" data-reveal>
             <div>
