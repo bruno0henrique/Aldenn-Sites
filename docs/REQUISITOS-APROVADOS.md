@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.24.0
+Versão: 0.24.1
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - Visual claro, criativo e fiel às referências da Belleland.
@@ -17,6 +17,7 @@ Versão: 0.24.0
 - O carrossel de Novidades funciona em loop e embaralha os produtos a cada novo carregamento da página.
 - Os cards de Novidades exibem somente a fotografia e o preço em branco. A imagem tem bordas discretamente arredondadas, ocupa uma faixa maior do carrossel e recebe um degradê escuro restrito ao terço inferior; a parte inteira do preço aparece maior e compacta, com tipografia fina, e os centavos ficam menores, alinhados abaixo e separados por um respiro sutil.
 - O carrossel de chegada aceita slides vinculados a produtos publicados ou artes livres para promoções, campanhas e modelos. Chamada, título, texto, botão, ordem e visibilidade são editáveis; sem slides ativos, a abertura padrão permanece.
+- O destino do botão de cada slide é escolhido de forma guiada: coleção completa, categoria específica ou peça publicada. Um link personalizado permanece disponível como alternativa.
 - A área Vitrine centraliza a gestão do carrossel de chegada, do carrossel de Novidades e dos tópicos de produtos exibidos no menu lateral.
 - Os tópicos de produtos do menu podem ser adicionados, renomeados, ordenados e ocultados pela gestão de categorias.
 - `Novidades` permite selecionar, ordenar, ocultar e remover produtos. Enquanto nenhuma seleção manual existir, usa automaticamente os produtos mais recentes.

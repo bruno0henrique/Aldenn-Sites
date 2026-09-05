@@ -219,3 +219,14 @@
 - Motivo: Permitir que a cliente atualize a apresentação da loja conforme promoções, campanhas, modelos e lançamentos futuros.
 - Impactos: `home_banners` passa a aceitar conteúdo editorial sem produto; `home_featured_products` guarda a seleção de Novidades; os demais itens essenciais do menu permanecem fixos.
 - Substitui: Amplia a gestão da Vitrine definida anteriormente e ajusta a seleção automática descrita na DEC-015.
+
+## DEC-021: Destino guiado nos destaques
+
+- Data: 2026-09-05
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Digitar manualmente a URL do botão exige conhecimento da estrutura interna do site e facilita erros.
+- Decisão: Substituir o campo principal de URL por uma seleção guiada. A administradora escolhe uma coleção ou, em sequência, uma categoria e uma peça publicada. Links personalizados continuam disponíveis como alternativa.
+- Motivo: Tornar a configuração dos destaques semelhante à seleção de produtos já usada no painel.
+- Impactos: O painel gera e valida a rota de destino antes de salvar, mantendo compatibilidade com os links já cadastrados.
+- Substitui: Complementa a edição de botões definida na DEC-020.

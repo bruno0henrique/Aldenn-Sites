@@ -32,7 +32,221 @@ import {
   updateHomeFeaturedProduct,
   type HomeBannerRow,
 } from '@/lib/admin';
-import type { CatalogCategory, HomeFeaturedProduct } from '@/lib/types';
+import type {
+  CatalogCategory,
+  HomeFeaturedProduct,
+  Product,
+} from '@/lib/types';
+
+type DestinationKind = '' | 'collection' | 'product' | 'custom';
+
+function normalizeCategory(value: string | null | undefined) {
+  return value?.trim().toLocaleLowerCase('pt-BR') || '';
+}
+
+function readDestinationKind(url: string): DestinationKind {
+  if (!url) return '';
+  if (url.startsWith('/produto/')) return 'product';
+  if (url.includes('categoria=') || url === '/#colecao') return 'collection';
+  return 'custom';
+}
+
+function readDestinationCategory(
+  url: string,
+  categories: CatalogCategory[],
+  products: Product[],
+) {
+  const categoryMatch = url.match(/[?&]categoria=([^&#]+)/);
+  if (categoryMatch) {
+    try {
+      return decodeURIComponent(categoryMatch[1]);
+    } catch {
+      return '';
+    }
+  }
+  const productSlug = url.startsWith('/produto/')
+    ? url.slice('/produto/'.length).split(/[?#]/)[0]
+    : '';
+  const product = products.find((item) => item.slug === productSlug);
+  const category = categories.find(
+    (item) =>
+      normalizeCategory(item.name) === normalizeCategory(product?.category),
+  );
+  return category?.slug || '';
+}
+
+function BannerDestinationPicker({
+  categories,
+  products,
+  idPrefix,
+  initialValue = '',
+  value,
+  name,
+  onChange,
+  onReadyChange,
+}: {
+  categories: CatalogCategory[];
+  products: Product[];
+  idPrefix: string;
+  initialValue?: string;
+  value?: string;
+  name?: string;
+  onChange?: (value: string) => void;
+  onReadyChange?: (ready: boolean) => void;
+}) {
+  const startingValue = value ?? initialValue;
+  const [internalValue, setInternalValue] = useState(startingValue);
+  const [kind, setKind] = useState<DestinationKind>(() =>
+    readDestinationKind(startingValue),
+  );
+  const [categorySlug, setCategorySlug] = useState(() =>
+    readDestinationCategory(startingValue, categories, products),
+  );
+  const currentValue = value ?? internalValue;
+  const selectedCategory = categories.find(
+    (category) => category.slug === categorySlug,
+  );
+  const availableProducts = products.filter(
+    (product) =>
+      selectedCategory &&
+      normalizeCategory(product.category) ===
+        normalizeCategory(selectedCategory.name),
+  );
+  const selectedProductSlug = currentValue.startsWith('/produto/')
+    ? currentValue.slice('/produto/'.length).split(/[?#]/)[0]
+    : '';
+
+  function changeValue(nextValue: string) {
+    setInternalValue(nextValue);
+    onChange?.(nextValue);
+  }
+
+  return (
+    <div className="field storefront-destination-field">
+      <label htmlFor={`${idPrefix}-kind`}>Destino do botão</label>
+      <div className="storefront-destination-grid">
+        <select
+          id={`${idPrefix}-kind`}
+          value={kind}
+          onChange={(event) => {
+            const nextKind = event.target.value as DestinationKind;
+            setKind(nextKind);
+            if (nextKind === 'collection') {
+              setCategorySlug('todos');
+              changeValue('/?categoria=todos#colecao');
+              onReadyChange?.(true);
+            } else if (nextKind === 'product') {
+              setCategorySlug('');
+              changeValue('');
+              onReadyChange?.(false);
+            } else if (nextKind === 'custom') {
+              setCategorySlug('');
+              changeValue('');
+              onReadyChange?.(false);
+            } else {
+              setCategorySlug('');
+              changeValue('');
+              onReadyChange?.(true);
+            }
+          }}
+        >
+          <option value="">Destino automático</option>
+          <option value="collection">Uma coleção</option>
+          <option value="product">Uma peça</option>
+          <option value="custom">Outro link</option>
+        </select>
+
+        {kind === 'collection' && (
+          <select
+            aria-label="Coleção de destino"
+            value={categorySlug || 'todos'}
+            onChange={(event) => {
+              const slug = event.target.value;
+              setCategorySlug(slug);
+              changeValue(`/?categoria=${encodeURIComponent(slug)}#colecao`);
+            }}
+          >
+            <option value="todos">Todos os produtos</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.slug}>
+                {category.name}{category.is_active ? '' : ' (oculta)'}
+              </option>
+            ))}
+          </select>
+        )}
+
+        {kind === 'product' && (
+          <>
+            <select
+              aria-label="Categoria da peça"
+              value={categorySlug}
+              required
+              onChange={(event) => {
+                setCategorySlug(event.target.value);
+                changeValue('');
+                onReadyChange?.(false);
+              }}
+            >
+              <option value="">Escolha a categoria</option>
+              {categories
+                .filter((category) =>
+                  products.some(
+                    (product) =>
+                      normalizeCategory(product.category) ===
+                      normalizeCategory(category.name),
+                  ),
+                )
+                .map((category) => (
+                  <option key={category.id} value={category.slug}>
+                    {category.name}
+                  </option>
+                ))}
+            </select>
+            {categorySlug && (
+              <select
+                aria-label="Peça de destino"
+                value={selectedProductSlug}
+                required
+                onChange={(event) => {
+                  const slug = event.target.value;
+                  changeValue(slug ? `/produto/${slug}` : '');
+                  onReadyChange?.(Boolean(slug));
+                }}
+              >
+                <option value="">Escolha a peça</option>
+                {availableProducts.map((product) => (
+                  <option key={product.id} value={product.slug}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
+            )}
+          </>
+        )}
+
+        {kind === 'custom' && (
+          <input
+            value={currentValue}
+            maxLength={500}
+            placeholder="Ex.: /sobre"
+            aria-label="Link personalizado"
+            required
+            onChange={(event) => {
+              changeValue(event.target.value);
+              onReadyChange?.(Boolean(event.target.value.trim()));
+            }}
+          />
+        )}
+      </div>
+      {name && <input type="hidden" name={name} value={currentValue} />}
+      <small>
+        {kind === ''
+          ? 'Usa a própria peça quando houver; em artes livres, abre a coleção.'
+          : 'A cliente será levada diretamente ao destino escolhido.'}
+      </small>
+    </div>
+  );
+}
 
 function moveItem<T>(items: T[], index: number, direction: -1 | 1) {
   const nextIndex = index + direction;
@@ -63,6 +277,8 @@ export function StorefrontManager({ previewMode }: { previewMode: boolean }) {
   const [bannerDescription, setBannerDescription] = useState('');
   const [bannerCtaLabel, setBannerCtaLabel] = useState('');
   const [bannerCtaUrl, setBannerCtaUrl] = useState('');
+  const [bannerDestinationReady, setBannerDestinationReady] = useState(true);
+  const [bannerDestinationKey, setBannerDestinationKey] = useState(0);
   const [featuredProductId, setFeaturedProductId] = useState(0);
 
   const categoriesQuery = useQuery({
@@ -147,6 +363,8 @@ export function StorefrontManager({ previewMode }: { previewMode: boolean }) {
       setBannerDescription('');
       setBannerCtaLabel('');
       setBannerCtaUrl('');
+      setBannerDestinationReady(true);
+      setBannerDestinationKey((current) => current + 1);
       refreshBanners();
     },
   });
@@ -485,22 +703,22 @@ export function StorefrontManager({ previewMode }: { previewMode: boolean }) {
                 onChange={(event) => setBannerCtaLabel(event.target.value)}
               />
             </div>
-            <div className="field">
-              <label htmlFor="banner-cta-url">Destino do botão</label>
-              <input
-                id="banner-cta-url"
-                value={bannerCtaUrl}
-                maxLength={500}
-                placeholder="Ex.: /?categoria=vestidos#colecao"
-                onChange={(event) => setBannerCtaUrl(event.target.value)}
-              />
-            </div>
+            <BannerDestinationPicker
+              key={bannerDestinationKey}
+              categories={categories}
+              products={products}
+              idPrefix="new-banner-destination"
+              value={bannerCtaUrl}
+              onChange={setBannerCtaUrl}
+              onReadyChange={setBannerDestinationReady}
+            />
           </div>
           <button
             type="button"
             className="button-pop button-primary"
             disabled={
               addBanner.isPending ||
+              !bannerDestinationReady ||
               (bannerMode === 'product' ? !selectedProduct : !bannerImage)
             }
             onClick={() =>
@@ -662,12 +880,12 @@ export function StorefrontManager({ previewMode }: { previewMode: boolean }) {
                         placeholder="Texto do botão"
                         aria-label="Texto do botão"
                       />
-                      <input
+                      <BannerDestinationPicker
+                        categories={categories}
+                        products={products}
+                        idPrefix={`banner-${banner.id}-destination`}
+                        initialValue={banner.cta_url || ''}
                         name="cta_url"
-                        maxLength={500}
-                        defaultValue={banner.cta_url || ''}
-                        placeholder="Destino do botão"
-                        aria-label="Destino do botão"
                       />
                       <button
                         className="button-pop button-primary"

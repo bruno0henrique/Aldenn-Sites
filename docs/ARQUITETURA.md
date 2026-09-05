@@ -1,4 +1,4 @@
-# Arquitetura v0.24.0
+# Arquitetura v0.24.1
 
 ## Fluxo
 
@@ -13,7 +13,7 @@
 9. `update_published_product` mantém produto e captura de origem sincronizados ao editar dados ou promoção.
 10. `remove_published_product` retira o produto e move a captura de origem para `ignored` em uma transação.
 11. `catalog_categories` controla nomes, ordem e visibilidade das categorias exibidas no menu, filtro e cadastro.
-12. `home_banners` armazena os slides do carrossel de chegada. Cada slide pode usar a mídia de um produto publicado ou uma arte própria, além de textos e destino de botão opcionais.
+12. `home_banners` armazena os slides do carrossel de chegada. Cada slide pode usar a mídia de um produto publicado ou uma arte própria, além de textos e destino de botão opcionais. A interface monta esse destino por seleção de coleção ou de categoria e produto e persiste a rota resultante em `cta_url`.
 13. `home_featured_products` define seleção, ordem e visibilidade do carrossel de Novidades. Sem configuração, a tela principal usa os produtos publicados mais recentes.
 14. A tela principal embaralha as novidades selecionadas a cada carregamento e as apresenta em carrossel circular.
 15. A presença do parâmetro `categoria` ativa a visualização de catálogo, oculta hero e novidades e carrega uma única grade de coleção.

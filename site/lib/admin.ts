@@ -370,6 +370,17 @@ export type HomeBannerInput = {
   ctaUrl?: string;
 };
 
+function normalizeStorefrontLink(value: string | null | undefined) {
+  const cleaned = value?.trim() || '';
+  if (!cleaned) return null;
+  if (cleaned.startsWith('/') && !cleaned.startsWith('//')) return cleaned;
+  try {
+    const url = new URL(cleaned);
+    if (url.protocol === 'https:' || url.protocol === 'http:') return cleaned;
+  } catch {}
+  throw new Error('Escolha um destino válido para o botão.');
+}
+
 export async function listHomeBannersAdmin(): Promise<HomeBannerRow[]> {
   await assertStaff();
   const { data, error } = await requireSupabase()
@@ -429,7 +440,7 @@ export async function createHomeBanner(input: HomeBannerInput) {
     title: input.title?.trim() || null,
     description: input.description?.trim() || null,
     cta_label: input.ctaLabel?.trim() || null,
-    cta_url: input.ctaUrl?.trim() || null,
+    cta_url: normalizeStorefrontLink(input.ctaUrl),
     sort_order: (last?.sort_order || 0) + 10,
   });
   if (error) {
@@ -457,9 +468,12 @@ export async function updateHomeBanner(
   >,
 ) {
   await assertStaff();
+  const safeUpdates = { ...updates };
+  if ('cta_url' in safeUpdates)
+    safeUpdates.cta_url = normalizeStorefrontLink(safeUpdates.cta_url);
   const { error } = await requireSupabase()
     .from('home_banners')
-    .update(updates)
+    .update(safeUpdates)
     .eq('id', id);
   if (error) throw error;
 }

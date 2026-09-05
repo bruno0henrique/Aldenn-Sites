@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.24.1] - 2026-09-05
+
+### Alterado
+
+- O destino dos botões do carrossel de chegada passou a usar seleção guiada por coleção ou por categoria e peça.
+- Links já cadastrados são reconhecidos ao editar e links personalizados continuam disponíveis para casos especiais.
+
 ## [0.24.0] - 2026-09-04
 
 ### Adicionado
