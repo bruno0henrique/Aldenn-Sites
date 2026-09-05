@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.25.0] - 2026-09-05
+
+### Adicionado
+
+- Carrossel de chegada circular com o destaque central e prévias laterais do item anterior e seguinte.
+- Setas, navegação por toque e degradês laterais fortes para conduzir visualmente a passagem entre os slides.
+
+### Alterado
+
+- O First Drop permanece como slide fixo mesmo quando existem destaques cadastrados na Vitrine.
+- Fotografias de destaque priorizam o topo da imagem para preservar o rosto e o painel recomenda o formato horizontal de 1600 × 900 px sem restringir outros tamanhos.
+
 ## [0.24.1] - 2026-09-05
 
 ### Alterado

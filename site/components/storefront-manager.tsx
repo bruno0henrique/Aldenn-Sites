@@ -169,7 +169,8 @@ function BannerDestinationPicker({
             <option value="todos">Todos os produtos</option>
             {categories.map((category) => (
               <option key={category.id} value={category.slug}>
-                {category.name}{category.is_active ? '' : ' (oculta)'}
+                {category.name}
+                {category.is_active ? '' : ' (oculta)'}
               </option>
             ))}
           </select>
@@ -639,23 +640,33 @@ export function StorefrontManager({ previewMode }: { previewMode: boolean }) {
                   setBannerImage(event.target.files?.[0] || null)
                 }
               />
+              <small>
+                Melhor resultado: 1600 × 900 px, com a peça ou modelo no centro.
+                Outros tamanhos também são aceitos.
+              </small>
             </div>
           )}
           {bannerMode === 'product' && selectedProduct && (
-            <div className="banner-image-options" aria-label="Escolha a foto">
-              {(
-                selectedProduct.images || [selectedProduct.primary_image_url]
-              ).map((image, index) => (
-                <button
-                  type="button"
-                  className={mediaPosition === index ? 'active' : ''}
-                  key={`${image}-${index}`}
-                  onClick={() => setMediaPosition(index)}
-                  aria-label={`Usar foto ${index + 1}`}
-                >
-                  <img src={image} alt="" />
-                </button>
-              ))}
+            <div className="banner-image-picker">
+              <div className="banner-image-options" aria-label="Escolha a foto">
+                {(
+                  selectedProduct.images || [selectedProduct.primary_image_url]
+                ).map((image, index) => (
+                  <button
+                    type="button"
+                    className={mediaPosition === index ? 'active' : ''}
+                    key={`${image}-${index}`}
+                    onClick={() => setMediaPosition(index)}
+                    aria-label={`Usar foto ${index + 1}`}
+                  >
+                    <img src={image} alt="" />
+                  </button>
+                ))}
+              </div>
+              <small>
+                Prefira uma foto horizontal e com a peça centralizada quando
+                houver essa opção.
+              </small>
             </div>
           )}
           <div className="storefront-editor-fields">

@@ -230,3 +230,14 @@
 - Motivo: Tornar a configuração dos destaques semelhante à seleção de produtos já usada no painel.
 - Impactos: O painel gera e valida a rota de destino antes de salvar, mantendo compatibilidade com os links já cadastrados.
 - Substitui: Complementa a edição de botões definida na DEC-020.
+
+## DEC-022: Chegada circular com First Drop fixo
+
+- Data: 2026-09-05
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A primeira composição do banner isolava o destaque, recortava mal fotografias verticais e retirava o First Drop quando havia conteúdo cadastrado.
+- Decisão: Manter o First Drop como slide fixo e apresentar a chegada em carrossel circular inspirado na navegação da Netflix: item central amplo, partes do anterior e do seguinte visíveis, degradês fortes nas laterais, setas, toque e avanço automático. Priorizar o topo das fotografias e recomendar artes horizontais de 1600 × 900 px sem bloquear outros tamanhos.
+- Motivo: Preservar a identidade inicial, melhorar o enquadramento de modelos e deixar clara a continuidade dos destaques.
+- Impactos: Quando há somente um destaque editável, a apresentação visual é repetida no ciclo para manter as duas prévias laterais sem baixar a imagem novamente. Itens fora do centro não recebem foco.
+- Substitui: Amplia a apresentação do carrossel definida na DEC-020; a gestão pela Vitrine permanece igual.
