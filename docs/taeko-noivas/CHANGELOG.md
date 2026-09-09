@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.2.0 — 2026-09-09
+
+- Landing page responsiva implementada em projeto próprio.
+- GSAP aplicado a entradas e rolagem suave no desktop, preservando toque e redução de movimento.
+- Componente de sequência quadro a quadro criado com carregamento limitado, cache controlado e fallback para poster.
+- Demonstração publicada em `https://aldenn.com.br/demonstracao-taeko`.
+
 ## 0.1.0 — 2026-09-09
 
 - Planejamento visual baseado na referência enviada, distinguindo elementos estéticos de informações comerciais não confirmadas.

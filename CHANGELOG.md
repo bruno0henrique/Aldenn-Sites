@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.26.0] - 2026-09-09
+
+### Adicionado
+
+- Site independente da Taeko Noivas com direção editorial, contatos fornecidos, GSAP e rolagem suave em telas adequadas.
+- Estrutura de fundo preparada para receber uma sequência quadro a quadro controlada pela rolagem, com poster e comportamento alternativo.
+- Imagens editoriais ilustrativas identificadas na interface, aguardando os arquivos oficiais da Taeko.
+
+### Publicado
+
+- Demonstração em `https://aldenn.com.br/demonstracao-taeko` por meio do repositório institucional da Aldenn.
+
 ## [0.25.1] - 2026-09-09
 
 ### Corrigido
