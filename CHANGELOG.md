@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.25.1] - 2026-09-09
+
+### Corrigido
+
+- Produtos aprovados voltam a aparecer para visitantes sem login.
+- Uma falha na configuração opcional de Novidades não esvazia mais o catálogo público.
+
 ## [0.25.0] - 2026-09-05
 
 ### Adicionado

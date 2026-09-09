@@ -241,3 +241,13 @@
 - Motivo: Preservar a identidade inicial, melhorar o enquadramento de modelos e deixar clara a continuidade dos destaques.
 - Impactos: Quando há somente um destaque editável, a apresentação visual é repetida no ciclo para manter as duas prévias laterais sem baixar a imagem novamente. Itens fora do centro não recebem foco.
 - Substitui: Amplia a apresentação do carrossel definida na DEC-020; a gestão pela Vitrine permanece igual.
+
+## DEC-023: Publicação visível sem login
+
+- Data: 2026-09-09
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A configuração opcional de Novidades consultava uma função restrita à equipe durante o acesso anônimo e fazia o catálogo inteiro parecer vazio.
+- Decisão: Separar as políticas de leitura anônima e autenticada da seleção de Novidades. O catálogo publicado permanece independente dessa configuração opcional.
+- Motivo: Toda peça aprovada deve aparecer para qualquer visitante, mantendo dados administrativos protegidos.
+- Impactos: Visitantes leem somente produtos publicados e suas configurações públicas; revisões, contas e painel continuam restritos.

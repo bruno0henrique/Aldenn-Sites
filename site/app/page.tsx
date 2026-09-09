@@ -49,7 +49,10 @@ function HomeContent() {
     queryKey: ['home-catalog'],
     queryFn: async () => {
       const publishedProducts = await getPublishedProducts();
-      const featured = await getHomeFeaturedProducts();
+      const featured = await getHomeFeaturedProducts().catch(() => ({
+        configured: false,
+        products: [],
+      }));
       const shuffledNews = [...publishedProducts];
 
       for (let index = shuffledNews.length - 1; index > 0; index -= 1) {
