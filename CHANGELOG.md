@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.37.0] - 2026-09-10
+
+### Alterado
+
+- Modelo deslocada mais à esquerda durante a sequência para manter o texto livre.
+- Celulares passaram a exibir o quadro 120 como composição estática, sem carregar ou reproduzir a sequência.
+- Enquadramento da abertura no celular foi reposicionado discretamente para revelar melhor o rosto da modelo.
+
 ## [0.36.0] - 2026-09-10
 
 ### Alterado

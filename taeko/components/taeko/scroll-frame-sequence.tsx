@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 import type { SequenceSource } from "@/lib/hero-media";
 
@@ -10,6 +9,8 @@ const source: SequenceSource = {
   frameCount: 240,
   focalPoint: [0.5, 0.5],
 };
+
+const mobilePoster = "/demonstracao-taeko/media/bride-sequence/frame-0120.webp";
 
 export function ScrollFrameSequence() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -27,10 +28,11 @@ export function ScrollFrameSequence() {
     const copy = copyRef.current;
     const canvas = canvasRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobile = window.matchMedia("(max-width: 760px)").matches;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
 
     if (!root || !stage || !media || !gradient || !copy || !canvas) return;
-    if (reducedMotion || connection?.saveData) {
+    if (mobile || reducedMotion || connection?.saveData) {
       root.classList.add("is-static");
       return () => root.classList.remove("is-static");
     }
@@ -83,7 +85,7 @@ export function ScrollFrameSequence() {
         },
       });
       timeline
-        .to(media, { xPercent: -12, scale: 1.04, duration: 1, ease: "none" }, 0)
+        .to(media, { xPercent: -18, scale: 1.04, duration: 1, ease: "none" }, 0)
         .to(gradient, { opacity: 1, xPercent: 0, duration: 0.54, ease: "power2.out" }, 0.2)
         .to(copy, { autoAlpha: 1, x: 0, duration: 0.34, ease: "power2.out" }, 0.48);
 
@@ -111,13 +113,15 @@ export function ScrollFrameSequence() {
     <div className="atelier-story" ref={rootRef}>
       <div className="atelier-story-stage" ref={stageRef}>
         <div className="atelier-story-media" ref={mediaRef}>
-          <Image
-            src={source.poster}
-            alt="Noiva exibindo o movimento e o caimento de um vestido de renda"
-            fill
-            sizes="100vw"
-            loading="lazy"
-          />
+          <picture>
+            <source media="(max-width: 760px)" srcSet={mobilePoster} />
+            <img
+              src={source.poster}
+              alt="Noiva exibindo o movimento e o caimento de um vestido de renda"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
           <canvas ref={canvasRef} aria-hidden="true" />
         </div>
         <div className="atelier-story-gradient" ref={gradientRef} aria-hidden="true" />

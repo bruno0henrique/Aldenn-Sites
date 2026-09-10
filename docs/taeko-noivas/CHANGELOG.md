@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.13.0 — 2026-09-10
+
+- Deslocamento horizontal ampliado para separar a modelo do texto de ajustes.
+- Celulares usam o quadro 120 como imagem fixa e deixam de baixar a sequência completa.
+- Imagem da abertura reposicionada no celular para mostrar melhor o rosto da modelo.
+
 ## 0.12.0 — 2026-09-10
 
 - Reprodução da sequência distribuída por toda a passagem da cena na tela, começando na entrada e terminando próximo da saída.

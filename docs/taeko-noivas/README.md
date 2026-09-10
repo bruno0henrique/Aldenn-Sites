@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.12.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.13.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
@@ -10,7 +10,7 @@ A segunda revisão do mesmo dia reduziu a experiência a quatro blocos: abertura
 
 A ação principal agora fica no cabeçalho com o texto “Entrar em contato” e leva ao planejador. Os cards de inspiração são informativos, sem links, e o formulário usa uma composição linear mais discreta.
 
-O material em quadros fornecido em 10/09/2026 foi otimizado em 240 imagens WebP de qualidade elevada e aplicado em uma cena horizontal ampla. O GSAP ScrollTrigger acompanha o giro desde a primeira entrada da imagem na tela até quase sua saída, mantém a cena no trecho central, desloca a imagem para a esquerda e revela à direita um texto sobre ajustes sob medida. O percurso prolongado e a resposta suavizada preservam o ritmo delicado. O degradê passa continuamente do fundo claro ao bege da identidade.
+O material em quadros fornecido em 10/09/2026 foi otimizado em 240 imagens WebP de qualidade elevada e aplicado em uma cena horizontal ampla. No desktop, o GSAP ScrollTrigger acompanha o giro desde a primeira entrada da imagem na tela até quase sua saída, mantém a cena no trecho central, desloca a imagem para a esquerda e revela à direita um texto sobre ajustes sob medida. O percurso prolongado e a resposta suavizada preservam o ritmo delicado. No celular, a cena usa o quadro 120 como imagem fixa e não transfere a sequência completa. O degradê passa continuamente do fundo claro ao bege da identidade.
 
 A abertura apresenta um resumo baseado somente nas informações confirmadas pelo perfil fornecido: 40 anos, atuação em Jacareí e confecção sob medida.
 
