@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.8.0 — 2026-09-10
+
+- Seção de atendimento diferenciada por fundo rosé suave.
+- Formulário organizado em painel claro com acabamento arredondado e melhor separação entre perguntas e ação.
+
 ## 0.7.0 — 2026-09-10
 
 - Botões estilizados com formato pílula, sombra suave e preenchimento animado.

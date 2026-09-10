@@ -423,15 +423,32 @@ h3 {
 }
 
 .planner-section {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(280px, 0.72fr) minmax(480px, 1.28fr);
   align-items: start;
   gap: 8%;
+  overflow: hidden;
+  background: linear-gradient(125deg, #e8dbd0 0%, #f2eae2 52%, #e9ddd3 100%);
+}
+
+.planner-section::before {
+  position: absolute;
+  top: -180px;
+  right: -150px;
+  width: 430px;
+  height: 430px;
+  border: 1px solid rgb(128 86 83 / 13%);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
 }
 
 .planner-heading {
   position: sticky;
+  z-index: 1;
   top: 135px;
+  padding: 20px 0;
 }
 
 .planner-heading > p:last-child {
@@ -443,18 +460,24 @@ h3 {
 }
 
 .planner-card {
-  padding: 8px 0 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+  padding: clamp(30px, 4vw, 50px);
+  border: 1px solid rgb(128 86 83 / 18%);
+  border-radius: 30px;
+  background: rgb(255 252 248 / 82%);
+  box-shadow: 0 28px 65px rgb(72 48 41 / 12%);
+  backdrop-filter: blur(10px);
 }
 
 .choice-group {
   margin: 0;
-  padding: 28px 0;
+  padding: 0 0 32px;
   border: 0;
 }
 
 .choice-group + .choice-group {
+  padding-top: 32px;
   border-top: 1px solid var(--line);
 }
 
@@ -502,7 +525,8 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  padding: 28px 0;
+  margin: 0 -18px -18px;
+  padding: 28px 18px 18px;
   border-top: 1px solid var(--line);
 }
 
@@ -657,6 +681,7 @@ footer > span {
 
   .planner-heading {
     position: static;
+    padding: 0;
   }
 
   .contact-grid {
@@ -800,7 +825,8 @@ footer > span {
   }
 
   .planner-card {
-    padding-top: 2px;
+    padding: 28px 18px;
+    border-radius: 24px;
   }
 
   .choice-group legend {
@@ -816,6 +842,8 @@ footer > span {
   .planner-result {
     align-items: stretch;
     flex-direction: column;
+    margin: 0;
+    padding: 26px 0 0;
   }
 
   .planner-result .button {

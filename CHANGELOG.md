@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.32.0] - 2026-09-10
+
+### Alterado
+
+- Área de atendimento ganhou fundo rosé próprio e maior separação visual das demais seções.
+- Formulário passou a ocupar um painel claro com bordas arredondadas, sombra suave e espaçamento revisado.
+
 ## [0.31.0] - 2026-09-10
 
 ### Alterado
