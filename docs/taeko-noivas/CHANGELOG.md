@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.4.0 — 2026-09-10
+
+- Conteúdo reduzido aos elementos que orientam uma ação real da visitante.
+- Hero com uma única chamada, sem setas redundantes ou links concorrentes.
+- Blocos institucionais repetitivos removidos e contato condensado.
+- Planejador simplificado de três para duas escolhas.
+
 ## 0.3.0 — 2026-09-10
 
 - Galeria de inspirações alinhada e sem números decorativos; cada referência leva ao planejador com a direção visual selecionada.

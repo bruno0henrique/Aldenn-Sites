@@ -1,10 +1,12 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.3.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.4.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
-A revisão de 10/09/2026 removeu a numeração decorativa da galeria, alinhou as inspirações e vinculou cada referência ao planejador. O fluxo atual ajuda a visitante a informar seu momento, o tipo de orientação que procura e a direção visual preferida; ao concluir, o site prepara uma mensagem contextualizada para o WhatsApp sem armazenar respostas.
+A primeira revisão de 10/09/2026 removeu a numeração decorativa da galeria, alinhou as inspirações e vinculou cada referência ao planejador.
+
+A segunda revisão do mesmo dia reduziu a experiência a quatro blocos: abertura, inspirações, atendimento e contato. A abertura possui uma única chamada e o planejador solicita somente o momento e a direção visual.
 
 ## Solicitação e limites
 

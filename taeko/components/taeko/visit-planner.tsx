@@ -1,15 +1,10 @@
 "use client";
 
-import { ArrowUpRight, Check, MessageCircle } from "lucide-react";
+import { Check, MessageCircle } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { contact } from "@/lib/taeko";
 
 const moments = ["Casamento", "Debutante", "Madrinha", "Outro momento"];
-const goals = [
-  "Quero conhecer o sob medida",
-  "Busco referências e possibilidades",
-  "Quero conversar antes de decidir",
-];
 const preferences = [
   "Renda delicada",
   "Clássico e romântico",
@@ -51,7 +46,6 @@ function ChoiceGroup({
 
 export function VisitPlanner() {
   const [moment, setMoment] = useState("");
-  const [goal, setGoal] = useState("");
   const [preference, setPreference] = useState("");
 
   useEffect(() => {
@@ -64,18 +58,17 @@ export function VisitPlanner() {
     return () => window.removeEventListener("taeko:preference", receivePreference);
   }, []);
 
-  const completed = Boolean(moment && goal && preference);
+  const completed = Boolean(moment && preference);
   const whatsappUrl = useMemo(() => {
     if (!completed) return contact.whatsapp;
     const message = [
       "Olá, Taeko! Vi a demonstração do site e gostaria de conversar.",
       `Meu momento: ${moment}.`,
-      `O que procuro: ${goal}.`,
       `Minha direção preferida: ${preference}.`,
       "Podem me orientar sobre as possibilidades?",
     ].join("\n");
     return `${contact.whatsapp}?text=${encodeURIComponent(message)}`;
-  }, [completed, goal, moment, preference]);
+  }, [completed, moment, preference]);
 
   return (
     <div className="planner-card" data-reveal>
@@ -84,12 +77,6 @@ export function VisitPlanner() {
         options={moments}
         value={moment}
         onChange={setMoment}
-      />
-      <ChoiceGroup
-        legend="Como a Taeko pode ajudar agora?"
-        options={goals}
-        value={goal}
-        onChange={setGoal}
       />
       <ChoiceGroup
         legend="Qual direção mais combina com você?"
@@ -105,7 +92,7 @@ export function VisitPlanner() {
             <strong>
               {completed
                 ? "Sua mensagem está pronta"
-                : "Escolha uma opção em cada etapa"}
+                : "Faça duas escolhas"}
             </strong>
             <p>
               {completed
@@ -124,7 +111,7 @@ export function VisitPlanner() {
             if (!completed) event.preventDefault();
           }}
         >
-          Abrir conversa pronta <ArrowUpRight size={18} />
+          Abrir conversa pronta
         </a>
       </div>
     </div>

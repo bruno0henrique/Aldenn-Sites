@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.28.0] - 2026-09-10
+
+### Alterado
+
+- Demonstração da Taeko reduzida aos blocos essenciais: abertura, inspirações, atendimento e contato.
+- Abertura simplificada para uma única ação, sem setas ou chamadas concorrentes.
+- Planejador reduzido para duas escolhas antes de preparar a mensagem de WhatsApp.
+
 ## [0.27.0] - 2026-09-10
 
 ### Alterado
