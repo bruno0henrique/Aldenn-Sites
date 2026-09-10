@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.6.0 — 2026-09-10
+
+- Título auxiliar da abertura revisado para comunicar o serviço e a localização.
+- Traço decorativo removido.
+
 ## 0.5.0 — 2026-09-10
 
 - Botão “Entrar em contato” posicionado no cabeçalho e conectado ao formulário.

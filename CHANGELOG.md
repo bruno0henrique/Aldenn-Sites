@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.30.0] - 2026-09-10
+
+### Alterado
+
+- Identificação da abertura alterada para “Vestidos sob medida · Jacareí”.
+- Traço decorativo removido da abertura.
+
 ## [0.29.0] - 2026-09-10
 
 ### Alterado

@@ -238,14 +238,7 @@ button:focus-visible {
 .hero-copy > .eyebrow {
   display: flex;
   align-items: center;
-  gap: 13px;
   margin-bottom: 26px;
-}
-
-.small-line {
-  width: 30px;
-  height: 1px;
-  background: var(--rose);
 }
 
 h1 {

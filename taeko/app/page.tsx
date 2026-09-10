@@ -42,7 +42,7 @@ export default function Home() {
             <div className="hero-shade" />
             <div className="hero-copy">
               <p className="eyebrow hero-reveal">
-                <span className="small-line" /> TAEKO NOIVAS · JACAREÍ
+                VESTIDOS SOB MEDIDA · JACAREÍ
               </p>
               <h1 id="hero-title">
                 <span className="hero-reveal">O seu sonho,</span>
