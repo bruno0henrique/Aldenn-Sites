@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.34.0] - 2026-09-10
+
+### Alterado
+
+- Sequência do vestido removida do card e ampliada para uma cena horizontal com percurso prolongado.
+- GSAP mantém a cena visível, desloca o vídeo para a esquerda e revela gradualmente um texto sobre ajustes.
+- Degradê rosé surge durante a transição para preservar a leitura sem esconder o movimento do vestido.
+
 ## [0.33.0] - 2026-09-10
 
 ### Adicionado

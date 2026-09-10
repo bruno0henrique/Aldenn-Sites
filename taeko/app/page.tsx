@@ -1,5 +1,4 @@
 import { Camera, MapPin, MessageCircle } from "lucide-react";
-import Image from "next/image";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { MotionProvider } from "@/components/taeko/motion-provider";
 import { ScrollFrameSequence } from "@/components/taeko/scroll-frame-sequence";
@@ -57,60 +56,24 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="inspiration section-pad" id="inspiracoes" aria-labelledby="inspiration-title">
-            <div className="section-heading" data-reveal>
-              <div>
-                <p className="eyebrow">INSPIRAÇÕES</p>
-                <h2 id="inspiration-title">
-                  Qual estilo combina
-                  <br />
-                  <em>com você?</em>
-                </h2>
+          <section className="inspiration" id="inspiracoes" aria-labelledby="inspiration-title">
+            <div className="inspiration-intro section-pad">
+              <div className="section-heading" data-reveal>
+                <div>
+                  <p className="eyebrow">CAIMENTO E MOVIMENTO</p>
+                  <h2 id="inspiration-title">
+                    Um vestido pensado
+                    <br />
+                    <em>para você.</em>
+                  </h2>
+                </div>
+                <p className="heading-summary">
+                  Role para acompanhar como cada detalhe ganha forma.
+                </p>
               </div>
-              <p className="heading-summary">
-                Escolha uma referência para iniciar a conversa com a Taeko.
-              </p>
             </div>
 
-            <div className="inspiration-grid">
-              <article className="inspiration-card" data-reveal>
-                <ScrollFrameSequence />
-                <div className="inspiration-content">
-                  <div>
-                    <p className="eyebrow">RENDA E DELICADEZA</p>
-                    <h3>Detalhes leves e românticos</h3>
-                    <p className="card-description">
-                      Renda delicada, transparências sutis e acabamento romântico.
-                    </p>
-                  </div>
-                </div>
-              </article>
-
-              <article className="inspiration-card" data-reveal>
-                <div className="inspiration-photo inspiration-photo-wide">
-                  <Image
-                    src="/demonstracao-taeko/media/hero-editorial.webp"
-                    alt="Inspiração ilustrativa com vestido de noiva clássico e fluido"
-                    width="1536"
-                    height="1024"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="inspiration-content">
-                  <div>
-                    <p className="eyebrow">CLÁSSICO E ROMÂNTICO</p>
-                    <h3>Clássico, leve e atemporal</h3>
-                    <p className="card-description">
-                      Linhas elegantes e uma saia fluida que acompanha o movimento.
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <p className="image-note">
-              Imagens ilustrativas. Veja trabalhos reais no Instagram da Taeko.
-            </p>
+            <ScrollFrameSequence />
           </section>
 
           <section className="planner-section section-pad" id="planejador">

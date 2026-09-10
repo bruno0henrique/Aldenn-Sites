@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.10.0 — 2026-09-10
+
+- Sequência retirada do formato de card e transformada em uma cena ampla, próxima de um fundo cinematográfico.
+- Percurso prolongado mantém a cena durante a rolagem, move o vestido para a esquerda e revela o conteúdo à direita.
+- Degradê rosé entra aos poucos junto do texto sobre ajustes sob medida.
+
 ## 0.9.0 — 2026-09-10
 
 - Vídeo fornecido convertido em 120 quadros WebP e aplicado à primeira inspiração.
