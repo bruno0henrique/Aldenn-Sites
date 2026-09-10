@@ -103,20 +103,30 @@ export default function Home() {
               Veja como chegar e conheça os trabalhos recentes da loja.
             </p>
             <div className="contact-grid visit-grid">
-              <article>
-                <MapPin size={24} strokeWidth={1.25} />
-                <p className="eyebrow">COMO CHEGAR</p>
-                <p>
-                  Av. Adhemar Pereira de Barros, 1737
-                  <br /> Jacareí · SP · 12328-300
-                </p>
-                <a className="text-link" href={contact.map} target="_blank" rel="noreferrer">
-                  Traçar rota
-                </a>
+              <article className="visit-map-card">
+                <iframe
+                  title="Mapa da Taeko Noivas em Jacareí"
+                  src={contact.mapEmbed}
+                  loading="eager"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="visit-address">
+                  <MapPin size={22} strokeWidth={1.25} />
+                  <div>
+                    <p className="eyebrow">ENDEREÇO</p>
+                    <p>
+                      Av. Adhemar Pereira de Barros, 1737
+                      <br /> Jacareí · SP · 12328-300
+                    </p>
+                  </div>
+                </div>
               </article>
-              <article>
-                <Camera size={24} strokeWidth={1.25} />
-                <p className="eyebrow">ACOMPANHE A TAEKO</p>
+              <article className="visit-social-card">
+                <Camera size={26} strokeWidth={1.25} />
+                <p className="eyebrow">REDES SOCIAIS</p>
+                <a className="social-handle" href={contact.instagram} target="_blank" rel="noreferrer">
+                  @taekonoivas
+                </a>
                 <p>Veja modelos, detalhes e trabalhos recentes no perfil da loja.</p>
                 <a className="text-link" href={contact.instagram} target="_blank" rel="noreferrer">
                   Abrir Instagram

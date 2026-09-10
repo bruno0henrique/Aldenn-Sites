@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.15.0 — 2026-09-10
+
+- Mapa do Google incorporado diretamente à coluna de endereço na área de visita.
+- Redes sociais isoladas na coluna direita, com identificação e acesso ao Instagram.
+- Composição responsiva empilha mapa, endereço e redes sociais no celular.
+
 ## 0.14.0 — 2026-09-10
 
 - Navegação reduzida a dois destinos informativos e uma ação principal, sem duplicar atendimento e contato.

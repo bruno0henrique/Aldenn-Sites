@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.39.0] - 2026-09-10
+
+### Alterado
+
+- Área de visita passou a exibir o mapa interativo diretamente na coluna de endereço.
+- Coluna direita ficou dedicada às redes sociais, com acesso destacado ao Instagram.
+- No celular, mapa, endereço e redes sociais são apresentados em sequência vertical.
+
 ## [0.38.0] - 2026-09-10
 
 ### Alterado
