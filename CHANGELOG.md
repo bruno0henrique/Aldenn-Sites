@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.36.0] - 2026-09-10
+
+### Alterado
+
+- Sequência da noiva passou a responder desde a primeira entrada na tela até quase sua saída, com percurso mais longo e suavização mais delicada.
+- Planejador ganhou a etapa da escolha e uma direção visual adicional, incluindo os novos dados na mensagem pronta do WhatsApp.
+
 ## [0.35.0] - 2026-09-10
 
 ### Alterado

@@ -61,15 +61,22 @@ export function ScrollFrameSequence() {
       gsap.set(gradient, { opacity: 0, xPercent: 18 });
       gsap.set(copy, { autoAlpha: 0, x: 54 });
 
+      const pinTrigger = ScrollTrigger.create({
+        trigger: root,
+        start: () => `top top+=${headerHeight}`,
+        end: "bottom bottom",
+        pin: stage,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      });
+
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: root,
-          start: () => `top top+=${headerHeight}`,
-          end: "bottom bottom",
-          scrub: 0.65,
-          pin: stage,
-          pinSpacing: false,
-          anticipatePin: 1,
+          start: "top 92%",
+          end: "bottom 8%",
+          scrub: 1.15,
           invalidateOnRefresh: true,
           onUpdate: (self) => player.seek(self.progress),
           onRefresh: (self) => player.seek(self.progress),
@@ -82,6 +89,7 @@ export function ScrollFrameSequence() {
 
       ScrollTrigger.refresh();
       dispose = () => {
+        pinTrigger.kill();
         timeline.scrollTrigger?.kill();
         timeline.kill();
         player.destroy();

@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.12.0 — 2026-09-10
+
+- Reprodução da sequência distribuída por toda a passagem da cena na tela, começando na entrada e terminando próximo da saída.
+- Suavização da resposta ao scroll ampliada para preservar um ritmo lento e delicado.
+- Planejador ampliado com a etapa da escolha e a opção visual “Estruturado e marcante”.
+- Mensagem do WhatsApp atualizada com ocasião, direção visual e etapa informadas.
+
 ## 0.11.0 — 2026-09-10
 
 - Sequência atualizada de 120 para os 240 quadros originais, exportados em WebP com qualidade 90.

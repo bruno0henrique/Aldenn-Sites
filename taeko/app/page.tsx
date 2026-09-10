@@ -90,7 +90,7 @@ export default function Home() {
                 <br />
                 <em>mensagem.</em>
               </h2>
-              <p>Duas escolhas e o WhatsApp abre com o texto pronto para revisar.</p>
+              <p>Conte o momento, o estilo e a etapa da sua escolha. O WhatsApp abre com o texto pronto para revisar.</p>
             </div>
             <VisitPlanner />
           </section>

@@ -9,8 +9,10 @@ const preferences = [
   "Renda delicada",
   "Clássico e romântico",
   "Leve e minimalista",
+  "Estruturado e marcante",
   "Ainda estou descobrindo",
 ];
+const stages = ["Primeira pesquisa", "Já tenho referências", "Quero provar modelos"];
 
 function ChoiceGroup({
   legend,
@@ -47,18 +49,20 @@ function ChoiceGroup({
 export function VisitPlanner() {
   const [moment, setMoment] = useState("");
   const [preference, setPreference] = useState("");
+  const [stage, setStage] = useState("");
 
-  const completed = Boolean(moment && preference);
+  const completed = Boolean(moment && preference && stage);
   const whatsappUrl = useMemo(() => {
     if (!completed) return contact.whatsapp;
     const message = [
       "Olá, Taeko! Vi a demonstração do site e gostaria de conversar.",
       `Meu momento: ${moment}.`,
       `Minha direção preferida: ${preference}.`,
+      `Estou nesta etapa: ${stage}.`,
       "Podem me orientar sobre as possibilidades?",
     ].join("\n");
     return `${contact.whatsapp}?text=${encodeURIComponent(message)}`;
-  }, [completed, moment, preference]);
+  }, [completed, moment, preference, stage]);
 
   return (
     <div className="planner-card" data-reveal>
@@ -73,6 +77,12 @@ export function VisitPlanner() {
         options={preferences}
         value={preference}
         onChange={setPreference}
+      />
+      <ChoiceGroup
+        legend="Em que etapa você está?"
+        options={stages}
+        value={stage}
+        onChange={setStage}
       />
 
       <div className="planner-result" aria-live="polite">
