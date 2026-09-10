@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.10.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.11.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
@@ -10,7 +10,9 @@ A segunda revisão do mesmo dia reduziu a experiência a quatro blocos: abertura
 
 A ação principal agora fica no cabeçalho com o texto “Entrar em contato” e leva ao planejador. Os cards de inspiração são informativos, sem links, e o formulário usa uma composição linear mais discreta.
 
-O material em quadros fornecido em 10/09/2026 foi otimizado para 120 imagens WebP e aplicado em uma cena horizontal ampla. O GSAP ScrollTrigger mantém a cena durante um percurso aproximado de duas rolagens, acompanha o giro da noiva nos dois sentidos, desloca a imagem para a esquerda e revela à direita um texto sobre ajustes sob medida com degradê rosé progressivo.
+O material em quadros fornecido em 10/09/2026 foi otimizado em 240 imagens WebP de qualidade elevada e aplicado em uma cena horizontal ampla. O GSAP ScrollTrigger mantém a cena durante um percurso aproximado de duas rolagens, acompanha o giro da noiva nos dois sentidos, desloca a imagem para a esquerda e revela à direita um texto sobre ajustes sob medida. O degradê passa continuamente do fundo claro ao bege da identidade.
+
+A abertura apresenta um resumo baseado somente nas informações confirmadas pelo perfil fornecido: 40 anos, atuação em Jacareí e confecção sob medida.
 
 ## Solicitação e limites
 
@@ -99,7 +101,7 @@ configuração:
   scrollDistance: duração espacial da cena
 ```
 
-A quantidade real de quadros virá do material recebido. Como ensaio inicial, avaliar 90–150 quadros no desktop e uma versão móvel com menos quadros; medir antes de fechar os valores. Solicitar o vídeo original com boa resolução, movimento lento, iluminação consistente e sem textos embutidos. Preferir enquadramentos horizontal e vertical, com área livre para o título. Não é necessário áudio.
+O material recebido contém 240 quadros de 1280 × 720. A implementação atual preserva todos eles, com transferência antecipada e uma janela limitada de imagens decodificadas para equilibrar fluidez e memória. Para futuras substituições, solicitar vídeo original com boa resolução, movimento lento, iluminação consistente e sem textos embutidos. Preferir enquadramentos horizontal e vertical, com área livre para o título. Não é necessário áudio.
 
 Renderizar em canvas decorativo, atrás do conteúdo HTML. Calcular `round(progress * (frameCount - 1))`, limitar ao intervalo disponível e desenhar apenas quadros decodificados. Ajustar resolução e enquadramento ao tamanho da tela, limitando a densidade de pixels para controlar memória.
 

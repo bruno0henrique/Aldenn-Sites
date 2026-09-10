@@ -1,5 +1,14 @@
 # Histórico de versões
 
+## [0.35.0] - 2026-09-10
+
+### Alterado
+
+- Sequência reconstruída com os 240 quadros originais em WebP de qualidade elevada, sem descarte de quadros intermediários.
+- Carregador passou a antecipar a transferência da sequência e manter uma janela maior de quadros decodificados para eliminar pausas e saltos durante a rolagem.
+- Degradê da cena ficou contínuo, partindo do fundo claro e chegando ao bege da identidade sem divisões visíveis.
+- Abertura ganhou uma apresentação curta sobre os 40 anos e a confecção sob medida da Taeko em Jacareí.
+
 ## [0.34.0] - 2026-09-10
 
 ### Alterado

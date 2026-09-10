@@ -14,7 +14,7 @@ test("cover fills portrait viewport while honoring focal point", () => {
  assert.ok(x < 0); assert.equal(y, 0); assert.equal(h, 770); assert.ok(w >= 390);
  assert.ok(x + w >= 390);
 });
-test("player bounds requests, draws both directions, and releases decoded frames", async () => {
+test("player warms network data, bounds decoding, draws both directions, and releases frames", async () => {
  const original = { fetch: globalThis.fetch, window: globalThis.window, ResizeObserver: globalThis.ResizeObserver, createImageBitmap: globalThis.createImageBitmap };
  let inFlight = 0, peak = 0, closed = 0, decoded = 0;
  const draws = [];
@@ -30,7 +30,7 @@ test("player bounds requests, draws both directions, and releases decoded frames
   assert.ok(draws.includes("/frames/0100.webp"));
   player.seek(0); await new Promise(r => setTimeout(r, 40));
   assert.equal(draws.at(-1), "/frames/0001.webp");
-  assert.ok(peak <= 2); assert.ok(decoded < 20); assert.equal(canvas.width, 1500);
+  assert.ok(peak <= 8); assert.ok(decoded < 64); assert.equal(canvas.width, 1500);
   player.destroy(); assert.equal(canvas.style.opacity, "0"); assert.equal(closed, decoded);
  } finally { player.destroy(); Object.assign(globalThis, original); }
 });

@@ -7,7 +7,7 @@ import type { SequenceSource } from "@/lib/hero-media";
 const source: SequenceSource = {
   poster: "/demonstracao-taeko/media/bride-sequence/frame-0001.webp",
   framePattern: "/demonstracao-taeko/media/bride-sequence/frame-{frame}.webp",
-  frameCount: 120,
+  frameCount: 240,
   focalPoint: [0.5, 0.5],
 };
 
@@ -58,7 +58,7 @@ export function ScrollFrameSequence() {
       }
 
       const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 92;
-      gsap.set(gradient, { opacity: 0, clipPath: "inset(0 0 0 100%)" });
+      gsap.set(gradient, { opacity: 0, xPercent: 18 });
       gsap.set(copy, { autoAlpha: 0, x: 54 });
 
       const timeline = gsap.timeline({
@@ -66,7 +66,7 @@ export function ScrollFrameSequence() {
           trigger: root,
           start: () => `top top+=${headerHeight}`,
           end: "bottom bottom",
-          scrub: 0.9,
+          scrub: 0.65,
           pin: stage,
           pinSpacing: false,
           anticipatePin: 1,
@@ -77,7 +77,7 @@ export function ScrollFrameSequence() {
       });
       timeline
         .to(media, { xPercent: -12, scale: 1.04, duration: 1, ease: "none" }, 0)
-        .to(gradient, { opacity: 1, clipPath: "inset(0 0 0 0%)", duration: 0.48, ease: "power2.out" }, 0.24)
+        .to(gradient, { opacity: 1, xPercent: 0, duration: 0.54, ease: "power2.out" }, 0.2)
         .to(copy, { autoAlpha: 1, x: 0, duration: 0.34, ease: "power2.out" }, 0.48);
 
       ScrollTrigger.refresh();

@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.11.0 — 2026-09-10
+
+- Sequência atualizada de 120 para os 240 quadros originais, exportados em WebP com qualidade 90.
+- Transferência dos quadros antecipada em segundo plano e decodificação direcional ampliada para manter o giro fluido nos dois sentidos.
+- Degradê redesenhado como uma passagem contínua do branco suave ao bege da marca.
+- História curta adicionada à abertura com os dados confirmados: 40 anos, Jacareí e confecção sob medida.
+
 ## 0.10.0 — 2026-09-10
 
 - Sequência retirada do formato de card e transformada em uma cena ampla, próxima de um fundo cinematográfico.

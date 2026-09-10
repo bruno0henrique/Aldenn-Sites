@@ -53,6 +53,12 @@ export default function Home() {
               <p className="hero-description hero-reveal">
                 Confecção sob medida para o seu momento.
               </p>
+              <div className="hero-history hero-reveal">
+                <p className="eyebrow">HÁ 40 ANOS</p>
+                <p>
+                  Em Jacareí, a Taeko transforma sonhos em vestidos feitos sob medida, com cuidado em cada etapa.
+                </p>
+              </div>
             </div>
           </section>
 

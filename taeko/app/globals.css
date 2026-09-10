@@ -262,6 +262,28 @@ h1 > span {
   line-height: 1.75;
 }
 
+.hero-history {
+  position: absolute;
+  bottom: 58px;
+  left: 8%;
+  display: grid;
+  width: min(520px, 42vw);
+  grid-template-columns: 120px 1fr;
+  gap: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(128 86 83 / 34%);
+}
+
+.hero-history .eyebrow {
+  color: var(--rose-dark);
+}
+
+.hero-history > p:last-child {
+  color: #55463d;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .button {
   display: inline-flex;
   position: relative;
@@ -400,12 +422,17 @@ h2 {
 .atelier-story-gradient {
   position: absolute;
   z-index: -1;
-  inset: 0 0 0 30%;
-  background:
-    radial-gradient(circle at 86% 50%, rgb(220 188 181 / 38%), transparent 45%),
-    linear-gradient(90deg, transparent 0%, rgb(241 229 219 / 32%) 25%, rgb(238 218 210 / 91%) 68%, #ead5ce 100%);
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(247 243 237 / 0%) 12%,
+    rgb(247 243 237 / 10%) 34%,
+    rgb(241 233 224 / 54%) 58%,
+    rgb(235 222 211 / 88%) 78%,
+    #e5d8ca 100%
+  );
   pointer-events: none;
-  will-change: opacity, clip-path;
+  will-change: opacity, transform;
 }
 
 .atelier-story-copy {
@@ -811,6 +838,15 @@ footer > span {
     font-size: 14px;
   }
 
+  .hero-history {
+    position: static;
+    width: min(100%, 430px);
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 34px;
+    padding-top: 16px;
+  }
+
   .section-pad {
     padding: 68px 6%;
   }
@@ -847,10 +883,15 @@ footer > span {
   }
 
   .atelier-story-gradient {
-    inset: 32% 0 0;
-    background:
-      radial-gradient(circle at 70% 82%, rgb(211 169 162 / 34%), transparent 48%),
-      linear-gradient(180deg, transparent 0%, rgb(241 229 219 / 42%) 28%, rgb(238 218 210 / 94%) 72%, #ead5ce 100%);
+    inset: 24% 0 0;
+    background: linear-gradient(
+      180deg,
+      rgb(247 243 237 / 0%) 0%,
+      rgb(247 243 237 / 14%) 24%,
+      rgb(241 233 224 / 58%) 48%,
+      rgb(235 222 211 / 92%) 74%,
+      #e5d8ca 100%
+    );
   }
 
   .atelier-story-copy {
