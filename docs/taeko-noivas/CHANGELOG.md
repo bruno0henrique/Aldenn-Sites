@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.3.0 — 2026-09-10
+
+- Galeria de inspirações alinhada e sem números decorativos; cada referência leva ao planejador com a direção visual selecionada.
+- Seções de atendimento, história e contato reorganizadas para explicar a proposta da Taeko e facilitar a decisão da visitante.
+- Planejador interativo adicionado para montar uma mensagem contextualizada antes de abrir o WhatsApp, sem armazenar respostas.
+- Navegação interna, legibilidade e responsividade verificadas em desktop e celular.
+
 ## 0.2.0 — 2026-09-09
 
 - Landing page responsiva implementada em projeto próprio.

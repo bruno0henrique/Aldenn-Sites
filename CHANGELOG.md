@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.27.0] - 2026-09-10
+
+### Alterado
+
+- Galeria editorial reorganizada em uma grade alinhada, sem numeração decorativa e com caminhos úteis para o atendimento.
+- Landing page ampliada com explicação do atendimento, planejador de preferências, mensagem pronta para WhatsApp e contatos completos.
+- Navegação, tipografia e comportamento responsivo revisados para desktop e celular.
+
 ## [0.26.0] - 2026-09-09
 
 ### Adicionado
