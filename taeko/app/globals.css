@@ -163,17 +163,21 @@ button:focus-visible {
 
 .header-contact {
   display: flex;
-  min-height: 38px;
+  position: relative;
+  z-index: 1;
+  width: 11.5em;
+  height: 3em;
   align-items: center;
   justify-content: center;
-  padding: 9px 16px;
-  background: var(--rose);
-  color: white;
+  overflow: hidden;
+  border-radius: 30em;
+  background: #eaded5;
+  box-shadow: 5px 5px 11px #d4cbc2, -5px -5px 11px #ffffff;
+  color: var(--ink);
   font-size: 12px;
 }
 
 .header-contact:hover {
-  background: var(--rose-dark);
   color: white;
 }
 
@@ -260,21 +264,49 @@ h1 > span {
 
 .button {
   display: inline-flex;
+  position: relative;
+  z-index: 1;
   min-height: 54px;
   align-items: center;
   justify-content: center;
   gap: 26px;
+  overflow: hidden;
   padding: 15px 23px;
   border: 0;
-  background: var(--rose);
-  color: #fffaf5;
+  border-radius: 30em;
+  background: #eaded5;
+  box-shadow: 6px 6px 12px #d4cbc2, -6px -6px 12px #ffffff;
+  color: var(--ink);
   font-size: 13px;
   cursor: pointer;
-  transition: background 180ms ease;
+  transition: color 0.5s ease;
 }
 
 .button:hover {
-  background: var(--rose-dark);
+  color: white;
+}
+
+.header-contact::before,
+.button::before,
+.choice::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 30em;
+  background-image: linear-gradient(to right, #b9827c 0%, #754e4c 100%);
+  content: "";
+  transition: 0.5s ease;
+}
+
+.header-contact:hover::before,
+.button:hover::before,
+.choice:hover::before,
+.choice.is-selected::before {
+  width: 100%;
 }
 
 .text-link {
@@ -441,28 +473,28 @@ h3 {
 
 .choice {
   display: inline-flex;
+  position: relative;
+  z-index: 1;
   min-height: 40px;
   align-items: center;
   gap: 9px;
-  padding: 8px 2px;
+  overflow: hidden;
+  padding: 9px 17px;
   border: 0;
-  border-bottom: 1px solid #cdbdb1;
-  background: transparent;
+  border-radius: 30em;
+  background: #f7f3ed;
+  box-shadow: 4px 4px 9px #d4cbc2, -4px -4px 9px #ffffff;
   font-size: 14px;
   cursor: pointer;
-  transition:
-    border-color 180ms ease,
-    background 180ms ease,
-    color 180ms ease;
+  transition: color 0.5s ease;
 }
 
 .choice:hover {
-  color: var(--rose);
+  color: white;
 }
 
 .choice.is-selected {
-  border-bottom: 2px solid var(--rose);
-  color: var(--rose-dark);
+  color: white;
 }
 
 .planner-result {
@@ -501,6 +533,14 @@ h3 {
 .button.is-disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+
+.button.is-disabled:hover {
+  color: var(--ink);
+}
+
+.button.is-disabled:hover::before {
+  width: 0;
 }
 
 .contact {
@@ -666,8 +706,8 @@ footer > span {
   }
 
   .header-contact {
-    min-height: 36px;
-    padding: 8px 12px;
+    width: 10.8em;
+    height: 3em;
     font-size: 11px;
   }
 

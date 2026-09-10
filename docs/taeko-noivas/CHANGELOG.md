@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.7.0 — 2026-09-10
+
+- Botões estilizados com formato pílula, sombra suave e preenchimento animado.
+- Gradiente original da referência adaptado aos tons rosé e vinho da identidade visual.
+- Opções selecionadas permanecem preenchidas para facilitar a leitura do formulário.
+
 ## 0.6.0 — 2026-09-10
 
 - Título auxiliar da abertura revisado para comunicar o serviço e a localização.

@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.31.0] - 2026-09-10
+
+### Alterado
+
+- Botões receberam formato arredondado, relevo e preenchimento animado baseado na referência enviada.
+- Cores do efeito adaptadas para a paleta rosé e vinho da Taeko.
+- Estados selecionados do formulário ganharam destaque preenchido em desktop e celular.
+
 ## [0.30.0] - 2026-09-10
 
 ### Alterado

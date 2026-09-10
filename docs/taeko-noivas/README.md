@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.6.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.7.0 • Data: 10/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
