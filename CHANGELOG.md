@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.38.0] - 2026-09-10
+
+### Alterado
+
+- Cabeçalho simplificado para inspirações, visita à loja e ação principal de contato, eliminando destinos redundantes.
+- Regra que ocultava isoladamente um item de navegação em tablets foi removida.
+- Bloco final passou a orientar uma visita, com rota e Instagram em vez de repetir o atendimento por WhatsApp.
+
 ## [0.37.0] - 2026-09-10
 
 ### Alterado

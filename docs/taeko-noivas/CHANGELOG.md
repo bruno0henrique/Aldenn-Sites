@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.14.0 — 2026-09-10
+
+- Navegação reduzida a dois destinos informativos e uma ação principal, sem duplicar atendimento e contato.
+- Link “Visite a loja” leva a uma seção própria com endereço, rota e Instagram.
+- Navegação de tablet mantém os mesmos itens das telas maiores.
+
 ## 0.13.0 — 2026-09-10
 
 - Deslocamento horizontal ampliado para separar a modelo do texto de ajustes.

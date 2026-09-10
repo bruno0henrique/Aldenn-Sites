@@ -1,4 +1,4 @@
-import { Camera, MapPin, MessageCircle } from "lucide-react";
+import { Camera, MapPin } from "lucide-react";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { MotionProvider } from "@/components/taeko/motion-provider";
 import { ScrollFrameSequence } from "@/components/taeko/scroll-frame-sequence";
@@ -27,8 +27,7 @@ export default function Home() {
         </a>
         <nav aria-label="Navegação principal">
           <a href="#inspiracoes">Inspirações</a>
-          <a href="#planejador">Atendimento</a>
-          <a href="#contato">Contato</a>
+          <a href="#visite">Visite a loja</a>
         </nav>
         <a className="header-contact" href="#planejador">
           Entrar em contato
@@ -95,35 +94,32 @@ export default function Home() {
             <VisitPlanner />
           </section>
 
-          <section className="contact section-pad" id="contato" aria-labelledby="contact-title">
-            <p className="eyebrow" data-reveal>CONTATO</p>
-            <h2 id="contact-title" data-reveal>
-              Fale com a <em>Taeko.</em>
+          <section className="contact section-pad" id="visite" aria-labelledby="visit-title">
+            <p className="eyebrow" data-reveal>VISITE A LOJA</p>
+            <h2 id="visit-title" data-reveal>
+              Encontre a Taeko <em>em Jacareí.</em>
             </h2>
-            <div className="contact-grid compact-contact">
-              <article>
-                <MessageCircle size={24} strokeWidth={1.25} />
-                <p className="eyebrow">WHATSAPP</p>
-                <a href={contact.whatsapp} target="_blank" rel="noreferrer">
-                  (12) 99755-0893
-                </a>
-              </article>
+            <p className="visit-intro" data-reveal>
+              Veja como chegar e conheça os trabalhos recentes da loja.
+            </p>
+            <div className="contact-grid visit-grid">
               <article>
                 <MapPin size={24} strokeWidth={1.25} />
-                <p className="eyebrow">ENDEREÇO</p>
+                <p className="eyebrow">COMO CHEGAR</p>
                 <p>
                   Av. Adhemar Pereira de Barros, 1737
                   <br /> Jacareí · SP · 12328-300
                 </p>
                 <a className="text-link" href={contact.map} target="_blank" rel="noreferrer">
-                  Abrir no mapa
+                  Traçar rota
                 </a>
               </article>
               <article>
                 <Camera size={24} strokeWidth={1.25} />
-                <p className="eyebrow">INSTAGRAM</p>
-                <a href={contact.instagram} target="_blank" rel="noreferrer">
-                  @taekonoivas
+                <p className="eyebrow">ACOMPANHE A TAEKO</p>
+                <p>Veja modelos, detalhes e trabalhos recentes no perfil da loja.</p>
+                <a className="text-link" href={contact.instagram} target="_blank" rel="noreferrer">
+                  Abrir Instagram
                 </a>
               </article>
             </div>
