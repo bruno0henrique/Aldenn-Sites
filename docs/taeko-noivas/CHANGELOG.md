@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.5.0 — 2026-09-10
+
+- Botão “Entrar em contato” posicionado no cabeçalho e conectado ao formulário.
+- Formulário simplificado visualmente, com escolhas lineares e retorno textual direto.
+- Links e setas removidos dos cards de inspiração.
+- Texto do estilo clássico revisado para “Clássico, leve e atemporal”.
+
 ## 0.4.0 — 2026-09-10
 
 - Conteúdo reduzido aos elementos que orientam uma ação real da visitante.

@@ -151,25 +151,30 @@ button:focus-visible {
 
 .site-header nav a,
 .header-contact,
-.text-link,
-.preference-link {
+.text-link {
   transition: color 180ms ease;
 }
 
 .site-header nav a:hover,
 .header-contact:hover,
-.text-link:hover,
-.preference-link:hover {
+.text-link:hover {
   color: var(--rose);
 }
 
 .header-contact {
   display: flex;
-  min-height: 44px;
+  min-height: 38px;
   align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid var(--rose);
-  font-size: 13px;
+  justify-content: center;
+  padding: 9px 16px;
+  background: var(--rose);
+  color: white;
+  font-size: 12px;
+}
+
+.header-contact:hover {
+  background: var(--rose-dark);
+  color: white;
 }
 
 #smooth-content {
@@ -279,8 +284,7 @@ h1 > span {
   background: var(--rose-dark);
 }
 
-.text-link,
-.preference-link {
+.text-link {
   display: inline-flex;
   min-height: 42px;
   align-items: center;
@@ -359,7 +363,7 @@ h2 {
 
 .inspiration-content {
   display: flex;
-  min-height: 160px;
+  min-height: 145px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
@@ -369,6 +373,14 @@ h2 {
 
 .inspiration-content .eyebrow {
   color: var(--rose);
+}
+
+.card-description {
+  max-width: 520px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 h3 {
@@ -406,44 +418,42 @@ h3 {
 }
 
 .planner-card {
-  padding: clamp(25px, 4vw, 54px);
-  border: 1px solid var(--line);
-  background: #fbf8f3;
-  box-shadow: 0 26px 65px rgb(71 51 41 / 7%);
+  padding: 8px 0 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .choice-group {
   margin: 0;
-  padding: 0 0 31px;
+  padding: 28px 0;
   border: 0;
 }
 
 .choice-group + .choice-group {
-  padding-top: 31px;
   border-top: 1px solid var(--line);
 }
 
 .choice-group legend {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 28px;
+  font-size: 26px;
   line-height: 1.2;
 }
 
 .choice-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 10px 24px;
 }
 
 .choice {
   display: inline-flex;
-  min-height: 46px;
+  min-height: 40px;
   align-items: center;
   gap: 9px;
-  padding: 11px 15px;
-  border: 1px solid #cdbdb1;
-  border-radius: 999px;
+  padding: 8px 2px;
+  border: 0;
+  border-bottom: 1px solid #cdbdb1;
   background: transparent;
   font-size: 14px;
   cursor: pointer;
@@ -454,13 +464,12 @@ h3 {
 }
 
 .choice:hover {
-  border-color: var(--rose);
+  color: var(--rose);
 }
 
 .choice.is-selected {
-  border-color: var(--rose);
-  background: var(--rose);
-  color: white;
+  border-bottom: 2px solid var(--rose);
+  color: var(--rose-dark);
 }
 
 .planner-result {
@@ -468,34 +477,32 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  padding-top: 30px;
+  padding: 28px 0;
   border-top: 1px solid var(--line);
 }
 
 .planner-result > div {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.planner-result svg {
-  color: var(--rose);
+  display: block;
 }
 
 .planner-result strong {
   display: block;
-  margin-bottom: 6px;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 24px;
-  font-weight: 400;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.15;
 }
 
 .planner-result p {
-  max-width: 330px;
+  max-width: 390px;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
+}
+
+.planner-result .button {
+  min-height: 46px;
+  padding: 12px 18px;
 }
 
 .button.is-disabled {
@@ -666,7 +673,9 @@ footer > span {
   }
 
   .header-contact {
-    font-size: 12px;
+    min-height: 36px;
+    padding: 8px 12px;
+    font-size: 11px;
   }
 
   #smooth-content {
@@ -721,10 +730,6 @@ footer > span {
     font-size: 14px;
   }
 
-  .hero-copy .button {
-    min-height: 48px;
-  }
-
   .section-pad {
     padding: 68px 6%;
   }
@@ -762,7 +767,7 @@ footer > span {
   }
 
   .planner-card {
-    padding: 25px 18px;
+    padding-top: 2px;
   }
 
   .choice-group legend {

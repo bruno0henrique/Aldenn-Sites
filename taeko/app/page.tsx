@@ -2,7 +2,6 @@ import { Camera, MapPin, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { MotionProvider } from "@/components/taeko/motion-provider";
-import { PreferenceLink } from "@/components/taeko/preference-link";
 import { VisitPlanner } from "@/components/taeko/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
 import { contact } from "@/lib/taeko";
@@ -31,8 +30,8 @@ export default function Home() {
           <a href="#planejador">Atendimento</a>
           <a href="#contato">Contato</a>
         </nav>
-        <a className="header-contact" href={contact.whatsapp} target="_blank" rel="noreferrer">
-          Falar com a Taeko
+        <a className="header-contact" href="#planejador">
+          Entrar em contato
         </a>
       </header>
 
@@ -54,9 +53,6 @@ export default function Home() {
               <p className="hero-description hero-reveal">
                 Confecção sob medida para o seu momento.
               </p>
-              <a className="button hero-reveal" href="#planejador">
-                Começar atendimento
-              </a>
             </div>
           </section>
 
@@ -90,10 +86,10 @@ export default function Home() {
                   <div>
                     <p className="eyebrow">RENDA E DELICADEZA</p>
                     <h3>Detalhes leves e românticos</h3>
+                    <p className="card-description">
+                      Renda delicada, transparências sutis e acabamento romântico.
+                    </p>
                   </div>
-                  <PreferenceLink preference="Renda delicada">
-                    Escolher esta inspiração
-                  </PreferenceLink>
                 </div>
               </article>
 
@@ -110,11 +106,11 @@ export default function Home() {
                 <div className="inspiration-content">
                   <div>
                     <p className="eyebrow">CLÁSSICO E ROMÂNTICO</p>
-                    <h3>Presença com movimento suave</h3>
+                    <h3>Clássico, leve e atemporal</h3>
+                    <p className="card-description">
+                      Linhas elegantes e uma saia fluida que acompanha o movimento.
+                    </p>
                   </div>
-                  <PreferenceLink preference="Clássico e romântico">
-                    Escolher esta inspiração
-                  </PreferenceLink>
                 </div>
               </article>
             </div>

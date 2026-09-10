@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.29.0] - 2026-09-10
+
+### Alterado
+
+- A ação “Entrar em contato” foi movida para o cabeçalho e passa a levar ao formulário interno.
+- Formulário recebeu composição mais discreta, campos lineares e textos mais naturais.
+- Cards de inspiração ficaram sem links ou setas e receberam descrições mais objetivas.
+
 ## [0.28.0] - 2026-09-10
 
 ### Alterado
