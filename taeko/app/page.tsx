@@ -2,6 +2,7 @@ import { Camera, MapPin, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { MotionProvider } from "@/components/taeko/motion-provider";
+import { ScrollFrameSequence } from "@/components/taeko/scroll-frame-sequence";
 import { VisitPlanner } from "@/components/taeko/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
 import { contact } from "@/lib/taeko";
@@ -73,15 +74,7 @@ export default function Home() {
 
             <div className="inspiration-grid">
               <article className="inspiration-card" data-reveal>
-                <div className="inspiration-photo">
-                  <Image
-                    src="/demonstracao-taeko/media/editorial-portrait.webp"
-                    alt="Inspiração ilustrativa com renda delicada no vestido de noiva"
-                    width="1024"
-                    height="1536"
-                    loading="lazy"
-                  />
-                </div>
+                <ScrollFrameSequence />
                 <div className="inspiration-content">
                   <div>
                     <p className="eyebrow">RENDA E DELICADEZA</p>

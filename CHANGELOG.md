@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.33.0] - 2026-09-10
+
+### Adicionado
+
+- Primeira inspiração transformada em uma sequência de 120 quadros controlada pela rolagem com GSAP ScrollTrigger.
+- Quadros convertidos para WebP e carregados progressivamente, com aproximadamente 1,1 MB no conjunto completo.
+- Imagem estática preservada como alternativa para redução de movimento, economia de dados ou falha de mídia.
+
 ## [0.32.0] - 2026-09-10
 
 ### Alterado

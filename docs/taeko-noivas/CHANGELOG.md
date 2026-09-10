@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.9.0 — 2026-09-10
+
+- Vídeo fornecido convertido em 120 quadros WebP e aplicado à primeira inspiração.
+- GSAP ScrollTrigger vincula o giro da noiva ao avanço e ao retorno da rolagem, com suavização curta.
+- Carregamento progressivo, cache limitado e imagem alternativa mantêm a página leve e funcional em conexões restritas.
+
 ## 0.8.0 — 2026-09-10
 
 - Seção de atendimento diferenciada por fundo rosé suave.

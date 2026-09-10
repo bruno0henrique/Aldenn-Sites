@@ -366,6 +366,7 @@ h2 {
 }
 
 .inspiration-photo {
+  position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #e2d7cc;
@@ -376,6 +377,15 @@ h2 {
   height: 100%;
   object-position: 50% 34%;
   transition: transform 800ms cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+
+.scroll-sequence canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 
 .inspiration-card:hover img {
