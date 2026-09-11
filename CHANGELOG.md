@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.43.0] - 2026-09-11
+
+### Alterado
+
+- Cena quadro a quadro da Taeko substituída por fotografia editorial estática para eliminar flickers.
+- Imagens exclusivas para desktop e celular destacam renda, bordado e acabamento do vestido.
+- Entrada da cena reduzida a uma transição GSAP curta, sem pinagem ou progresso ligado à rolagem.
+
+### Performance
+
+- A página deixou de solicitar os 240 quadros durante a navegação.
+
 ## [0.42.0] - 2026-09-11
 
 ### Alterado

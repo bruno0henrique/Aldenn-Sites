@@ -1,8 +1,8 @@
 import { Camera, MapPin } from "lucide-react";
 import type { CSSProperties } from "react";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
+import { EditorialFabricScene } from "@/components/taeko/editorial-fabric-scene";
 import { MotionProvider } from "@/components/taeko/motion-provider";
-import { ScrollFrameSequence } from "@/components/taeko/scroll-frame-sequence";
 import { VisitPlanner } from "@/components/taeko/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
 import { contact } from "@/lib/taeko";
@@ -74,12 +74,12 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="heading-summary">
-                  Role para acompanhar como cada detalhe ganha forma.
+                  Renda, caimento e acabamento vistos de perto.
                 </p>
               </div>
             </div>
 
-            <ScrollFrameSequence />
+            <EditorialFabricScene />
           </section>
 
           <section className="planner-section section-pad" id="planejador">

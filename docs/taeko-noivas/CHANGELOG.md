@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.19.0 — 2026-09-11
+
+- Sequência de rolagem retirada temporariamente por apresentar flickers na experiência real.
+- Nova cena editorial estática criada em formatos próprios para desktop e celular, com foco na renda e no acabamento.
+- GSAP preservado apenas para uma entrada curta e delicada, sem pinagem, canvas ou troca de quadros.
+- Os arquivos da sequência permanecem no projeto para uma futura retomada, mas não são carregados pela página.
+
 ## 0.18.0 — 2026-09-11
 
 - Reprocessamento dos 240 quadros originais em WebP de qualidade 95.

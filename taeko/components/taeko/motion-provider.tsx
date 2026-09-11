@@ -17,6 +17,17 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
     gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
      gsap.from(element, { y: 25, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "all", scrollTrigger: { trigger: element, start: "top 93%", once: true } });
     });
+    const editorialScene = document.querySelector<HTMLElement>("[data-editorial-scene]");
+    const editorialMedia = editorialScene?.querySelector<HTMLElement>("[data-editorial-media]");
+    const editorialCopy = editorialScene?.querySelector<HTMLElement>("[data-editorial-copy]");
+    if (editorialScene && editorialMedia && editorialCopy) {
+     const editorialTimeline = gsap.timeline({
+      scrollTrigger: { trigger: editorialScene, start: "top 82%", once: true },
+     });
+     editorialTimeline
+      .from(editorialMedia, { scale: 1.025, opacity: 0.82, duration: 1.5, ease: "power2.out", clearProps: "all" })
+      .from(editorialCopy, { x: 28, opacity: 0, duration: 1.05, ease: "power2.out", clearProps: "all" }, 0.32);
+    }
     const navigate = (event: MouseEvent) => {
      if (!smoother || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
      const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');

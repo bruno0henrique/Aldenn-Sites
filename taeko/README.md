@@ -11,9 +11,9 @@ npm run dev
 
 A aplicação usa o caminho base `/demonstracao-taeko`. A versão de produção é gerada em `out/` por `npm run build` e publicada dentro do projeto institucional da Aldenn.
 
-## Mídia da abertura
+## Mídia editorial
 
-Configure `lib/hero-media.ts` para alternar entre o poster atual e a futura sequência de quadros. No modo `sequence`, informe o padrão com `{frame}`, a quantidade de quadros e o ponto focal. A reprodução usa carregamento progressivo, cache limitado e fallback para poster.
+A abertura usa o poster configurado em `lib/hero-media.ts`. A seção de inspiração usa fotografias editoriais próprias para desktop e celular, sem sequência vinculada à rolagem. A infraestrutura de quadros permanece no projeto para uma futura retomada, mas não integra a página atual.
 
 As imagens atuais são editoriais ilustrativas. Elas devem ser substituídas por materiais autorizados da Taeko quando forem recebidos.
 
