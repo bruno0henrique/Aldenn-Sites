@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.41.0] - 2026-09-10
+
+### Alterado
+
+- Botão do Instagram passou a usar a paleta neutra do site no estado inicial.
+- Gradiente do Instagram agora sobe apenas no hover, foco ou toque.
+
 ## [0.40.0] - 2026-09-10
 
 ### Alterado

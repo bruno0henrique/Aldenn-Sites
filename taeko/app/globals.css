@@ -706,26 +706,30 @@ h3 {
   padding: 0 28px;
   overflow: hidden;
   border-radius: 18px;
-  color: #fff;
-  text-shadow: 0 1px 1px rgb(51 25 41 / 28%);
-  background: linear-gradient(115deg, var(--instagram-purple), var(--instagram-pink) 52%, var(--instagram-orange));
+  color: var(--ink);
+  background: linear-gradient(145deg, #f4ece3, #e1d1c4);
   box-shadow:
-    0 1px 1px rgb(255 255 255 / 30%) inset,
-    0 12px 24px rgb(106 53 77 / 24%),
-    0 4px 8px rgb(54 34 42 / 10%);
-  transition: transform 300ms ease, box-shadow 300ms ease;
+    0 1px 1px rgb(255 255 255 / 55%) inset,
+    0 12px 24px rgb(106 78 65 / 17%),
+    0 4px 8px rgb(54 34 42 / 8%);
+  transition: color 350ms ease, transform 300ms ease, box-shadow 300ms ease;
 }
 
 .instagram-button::before {
   content: "";
   position: absolute;
-  z-index: -1;
-  inset: 6px;
-  border-radius: 13px;
-  background: linear-gradient(120deg, rgb(255 255 255 / 13%), transparent 52%, rgb(255 209 103 / 14%));
+  z-index: -2;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(115deg, var(--instagram-purple), var(--instagram-pink) 52%, var(--instagram-orange));
+  transform: translateY(105%);
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.instagram-button:hover {
+.instagram-button:hover,
+.instagram-button:focus-visible {
+  color: #fff;
+  text-shadow: 0 1px 1px rgb(51 25 41 / 28%);
   transform: translateY(-2px) scale(1.02);
   box-shadow:
     0 1px 1px rgb(255 255 255 / 40%) inset,
@@ -733,7 +737,14 @@ h3 {
     0 6px 10px rgb(54 34 42 / 12%);
 }
 
+.instagram-button:hover::before,
+.instagram-button:focus-visible::before,
+.instagram-button:active::before {
+  transform: translateY(0);
+}
+
 .instagram-button:active {
+  color: #fff;
   transform: translateY(0) scale(0.99);
 }
 
@@ -746,7 +757,8 @@ h3 {
   transition: opacity 350ms ease;
 }
 
-.instagram-button:hover .instagram-button-outline {
+.instagram-button:hover .instagram-button-outline,
+.instagram-button:focus-visible .instagram-button-outline {
   opacity: 1;
   animation: instagram-spin 2s linear infinite;
 }
@@ -762,7 +774,8 @@ h3 {
   transition: transform 350ms ease;
 }
 
-.instagram-button:hover .instagram-button-icon {
+.instagram-button:hover .instagram-button-icon,
+.instagram-button:focus-visible .instagram-button-icon {
   transform: rotate(-8deg) scale(1.12);
 }
 
@@ -778,7 +791,8 @@ h3 {
   animation: instagram-letter-in 600ms ease both calc(var(--letter-index) * 35ms);
 }
 
-.instagram-button:hover .instagram-button-label > span {
+.instagram-button:hover .instagram-button-label > span,
+.instagram-button:focus-visible .instagram-button-label > span {
   animation: instagram-letter-wave 500ms ease both calc(var(--letter-index) * 30ms);
 }
 

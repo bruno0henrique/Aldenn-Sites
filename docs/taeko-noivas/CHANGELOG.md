@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.17.0 — 2026-09-10
+
+- Botão do Instagram usa a paleta da Taeko no estado normal.
+- Cores da rede social entram de baixo para cima somente durante a interação.
+
 ## 0.16.0 — 2026-09-10
 
 - Conteúdo social centralizado na coluna direita e no empilhamento móvel.
