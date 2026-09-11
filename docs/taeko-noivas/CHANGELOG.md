@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.16.0 — 2026-09-10
+
+- Conteúdo social centralizado na coluna direita e no empilhamento móvel.
+- Acesso ao perfil substituído por botão animado com ícone e cores do Instagram.
+
 ## 0.15.0 — 2026-09-10
 
 - Mapa do Google incorporado diretamente à coluna de endereço na área de visita.

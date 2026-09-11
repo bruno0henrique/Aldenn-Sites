@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.40.0] - 2026-09-10
+
+### Alterado
+
+- Conteúdo da coluna de redes sociais centralizado em todas as telas.
+- Link simples substituído por botão animado com ícone e gradiente do Instagram.
+
 ## [0.39.0] - 2026-09-10
 
 ### Alterado

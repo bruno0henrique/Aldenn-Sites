@@ -677,10 +677,11 @@ h3 {
 .visit-grid .visit-social-card {
   display: flex;
   min-height: 430px;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   padding: 42px;
+  text-align: center;
 }
 
 .social-handle {
@@ -688,6 +689,123 @@ h3 {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 30px !important;
   line-height: 1.1 !important;
+}
+
+.instagram-button {
+  --instagram-pink: #e1306c;
+  --instagram-purple: #833ab4;
+  --instagram-orange: #f77737;
+  position: relative;
+  z-index: 1;
+  display: inline-flex !important;
+  min-width: 190px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0 0 !important;
+  padding: 0 28px;
+  overflow: hidden;
+  border-radius: 18px;
+  color: #fff;
+  text-shadow: 0 1px 1px rgb(51 25 41 / 28%);
+  background: linear-gradient(115deg, var(--instagram-purple), var(--instagram-pink) 52%, var(--instagram-orange));
+  box-shadow:
+    0 1px 1px rgb(255 255 255 / 30%) inset,
+    0 12px 24px rgb(106 53 77 / 24%),
+    0 4px 8px rgb(54 34 42 / 10%);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.instagram-button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 6px;
+  border-radius: 13px;
+  background: linear-gradient(120deg, rgb(255 255 255 / 13%), transparent 52%, rgb(255 209 103 / 14%));
+}
+
+.instagram-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 1px 1px rgb(255 255 255 / 40%) inset,
+    0 17px 32px rgb(106 53 77 / 30%),
+    0 6px 10px rgb(54 34 42 / 12%);
+}
+
+.instagram-button:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.instagram-button-outline {
+  position: absolute;
+  z-index: -2;
+  inset: -80%;
+  opacity: 0;
+  background: conic-gradient(from 180deg, transparent 62%, rgb(255 255 255 / 85%) 78%, transparent 96%);
+  transition: opacity 350ms ease;
+}
+
+.instagram-button:hover .instagram-button-outline {
+  opacity: 1;
+  animation: instagram-spin 2s linear infinite;
+}
+
+.instagram-button-state {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.instagram-button-icon {
+  display: flex;
+  transition: transform 350ms ease;
+}
+
+.instagram-button:hover .instagram-button-icon {
+  transform: rotate(-8deg) scale(1.12);
+}
+
+.instagram-button-label {
+  display: flex;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.instagram-button-label > span {
+  display: block;
+  animation: instagram-letter-in 600ms ease both calc(var(--letter-index) * 35ms);
+}
+
+.instagram-button:hover .instagram-button-label > span {
+  animation: instagram-letter-wave 500ms ease both calc(var(--letter-index) * 30ms);
+}
+
+@keyframes instagram-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes instagram-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(-9px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes instagram-letter-wave {
+  45% {
+    transform: translateY(-3px);
+    color: #ffd86f;
+  }
 }
 
 .contact-grid article {

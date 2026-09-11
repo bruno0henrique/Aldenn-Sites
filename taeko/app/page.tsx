@@ -1,4 +1,5 @@
 import { Camera, MapPin } from "lucide-react";
+import type { CSSProperties } from "react";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { MotionProvider } from "@/components/taeko/motion-provider";
 import { ScrollFrameSequence } from "@/components/taeko/scroll-frame-sequence";
@@ -128,8 +129,30 @@ export default function Home() {
                   @taekonoivas
                 </a>
                 <p>Veja modelos, detalhes e trabalhos recentes no perfil da loja.</p>
-                <a className="text-link" href={contact.instagram} target="_blank" rel="noreferrer">
-                  Abrir Instagram
+                <a
+                  className="instagram-button"
+                  href={contact.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Abrir Instagram da Taeko Noivas"
+                >
+                  <span className="instagram-button-outline" aria-hidden="true" />
+                  <span className="instagram-button-state" aria-hidden="true">
+                    <span className="instagram-button-icon">
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+                        <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <span className="instagram-button-label">
+                      {"Instagram".split("").map((letter, index) => (
+                        <span key={`${letter}-${index}`} style={{ "--letter-index": index } as CSSProperties}>
+                          {letter}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
                 </a>
               </article>
             </div>
