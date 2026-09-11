@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.19.0 • Data: 11/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.20.0 • Data: 11/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
@@ -8,7 +8,7 @@ A primeira revisão de 10/09/2026 removeu a numeração decorativa da galeria, a
 
 A segunda revisão do mesmo dia reduziu a experiência a quatro blocos: abertura, inspirações, atendimento e contato. A abertura possui uma única chamada e o planejador solicita o momento, a direção visual e a etapa da escolha.
 
-A ação principal fica no cabeçalho com o texto “Entrar em contato” e leva ao planejador. A navegação preserva somente “Inspirações” e “Visite a loja”; este último conduz a uma composição com mapa interativo e endereço à esquerda e Instagram à direita, sem repetir o atendimento por WhatsApp. A coluna social é centralizada e usa uma ação animada com ícone; o botão mantém a paleta do site e revela as cores do Instagram somente na interação. Os cards de inspiração são informativos, sem links, e o formulário usa uma composição linear mais discreta.
+A ação principal fica no cabeçalho com o texto “Entrar em contato” e leva ao planejador. A navegação apresenta “Opções”, “Como funciona” e “Visite a loja”. A vitrine editorial apresenta noivas, debutantes e madrinhas; ao escolher uma opção, a página leva ao planejador com a ocasião preenchida. A seção seguinte explica a primeira conversa, as provas e ajustes e o momento da entrega. A visita usa mapa amplo com endereço sobreposto e cartão independente para o Instagram, sem repetir o atendimento por WhatsApp. O botão social mantém a paleta do site e revela as cores do Instagram somente na interação.
 
 O material quadro a quadro foi retirado temporariamente da experiência porque a troca de imagens ainda apresentava flickers em uso real. A seção usa agora uma fotografia editorial estática criada em composições próprias para desktop e celular, com foco na renda e no acabamento do vestido. O GSAP faz somente uma entrada curta da fotografia e do texto, sem pinagem, canvas ou progresso vinculado continuamente à rolagem. Os quadros e o processamento permanecem disponíveis para uma futura retomada, mas não são carregados pela página.
 
@@ -140,4 +140,4 @@ Esses dados não impedem o planejamento; são necessários para concluir conteú
 - Decisão de organização: planejamento próprio da Taeko, sem modificar o aplicativo Belleland.
 - Confirmação posterior do usuário: são dois sites distintos; capturas do Instagram fornecem os dados comerciais descritos neste documento.
 - Proposta técnica: ScrollTrigger + ScrollSmoother, sequência em canvas e poster como alternativa permanente.
-- Proposta comercial e visual: página institucional com vestidos e contato; paleta e redação acima ainda sujeitas ao material real da marca.
+- Proposta comercial e visual: página institucional com vestidos e contato; noivas, debutantes e madrinhas aparecem como caminhos de atendimento a partir da solicitação aprovada em 11/09/2026. Paleta e fotografias continuam sujeitas ao material real da marca.

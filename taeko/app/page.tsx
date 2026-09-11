@@ -1,8 +1,10 @@
-import { Camera, MapPin } from "lucide-react";
+import { Camera, MapPin, MessageCircle, Scissors, Sparkles } from "lucide-react";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
 import { EditorialFabricScene } from "@/components/taeko/editorial-fabric-scene";
 import { MotionProvider } from "@/components/taeko/motion-provider";
+import { OccasionShowcase } from "@/components/taeko/occasion-showcase";
 import { VisitPlanner } from "@/components/taeko/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
 import { contact } from "@/lib/taeko";
@@ -27,7 +29,8 @@ export default function Home() {
           <Wordmark />
         </a>
         <nav aria-label="Navegação principal">
-          <a href="#inspiracoes">Inspirações</a>
+          <a href="#ocasioes">Opções</a>
+          <a href="#processo">Como funciona</a>
           <a href="#visite">Visite a loja</a>
         </nav>
         <a className="header-contact" href="#planejador">
@@ -82,6 +85,55 @@ export default function Home() {
             <EditorialFabricScene />
           </section>
 
+          <OccasionShowcase />
+
+          <section className="process section-pad" id="processo" aria-labelledby="process-title">
+            <div className="process-visual" data-reveal>
+              <Image
+                src="/demonstracao-taeko/media/editorial-portrait.webp"
+                alt="Detalhes de um vestido de noiva durante a criação"
+                width={1024}
+                height={1536}
+                sizes="(max-width: 1100px) 88vw, 40vw"
+              />
+              <div className="process-visual-caption">
+                <span>CONFECCIONADO EM JACAREÍ</span>
+                <p>Do primeiro encontro ao caimento final.</p>
+              </div>
+            </div>
+            <div className="process-copy">
+              <p className="eyebrow" data-reveal>FEITO PARA VESTIR VOCÊ</p>
+              <h2 id="process-title" data-reveal>
+                Cuidado presente
+                <br />
+                <em>em cada etapa.</em>
+              </h2>
+              <div className="process-list">
+                <article data-reveal>
+                  <MessageCircle size={23} strokeWidth={1.25} />
+                  <div>
+                    <h3>A primeira conversa</h3>
+                    <p>Entendemos sua ocasião, suas referências e como você deseja se sentir ao vestir a peça.</p>
+                  </div>
+                </article>
+                <article data-reveal>
+                  <Scissors size={23} strokeWidth={1.25} />
+                  <div>
+                    <h3>Provas e ajustes</h3>
+                    <p>O vestido encontra seu caimento aos poucos, com atenção ao conforto e ao movimento.</p>
+                  </div>
+                </article>
+                <article data-reveal>
+                  <Sparkles size={23} strokeWidth={1.25} />
+                  <div>
+                    <h3>O momento da entrega</h3>
+                    <p>Cada acabamento é revisto para que a peça chegue pronta para fazer parte da sua história.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
           <section className="planner-section section-pad" id="planejador">
             <div className="planner-heading" data-reveal>
               <p className="eyebrow">ATENDIMENTO</p>
@@ -103,7 +155,7 @@ export default function Home() {
             <p className="visit-intro" data-reveal>
               Veja como chegar e conheça os trabalhos recentes da loja.
             </p>
-            <div className="contact-grid visit-grid">
+            <div className="visit-composition">
               <article className="visit-map-card">
                 <iframe
                   title="Mapa da Taeko Noivas em Jacareí"

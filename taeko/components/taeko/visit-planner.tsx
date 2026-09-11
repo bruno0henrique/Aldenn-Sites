@@ -1,7 +1,7 @@
 "use client";
 
 import { Check } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { contact } from "@/lib/taeko";
 
 const moments = ["Casamento", "Debutante", "Madrinha", "Outro momento"];
@@ -50,6 +50,15 @@ export function VisitPlanner() {
   const [moment, setMoment] = useState("");
   const [preference, setPreference] = useState("");
   const [stage, setStage] = useState("");
+
+  useEffect(() => {
+    const selectMoment = (event: Event) => {
+      const moment = (event as CustomEvent<string>).detail;
+      if (moments.includes(moment)) setMoment(moment);
+    };
+    window.addEventListener("taeko:select-moment", selectMoment);
+    return () => window.removeEventListener("taeko:select-moment", selectMoment);
+  }, []);
 
   const completed = Boolean(moment && preference && stage);
   const whatsappUrl = useMemo(() => {

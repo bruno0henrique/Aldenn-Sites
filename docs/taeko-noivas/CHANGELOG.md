@@ -1,5 +1,13 @@
 # Histórico — Taeko Noivas
 
+## 0.20.0 — 2026-09-11
+
+- Nova vitrine apresenta noivas, debutantes e madrinhas em três composições editoriais.
+- Cada opção leva ao planejador e seleciona automaticamente a ocasião correspondente.
+- Nova seção explica a primeira conversa, as provas e ajustes e o momento da entrega.
+- Fechamento passou a usar mapa amplo com endereço sobreposto e cartão social independente, sem divisória vertical.
+- Navegação desktop atualizada para opções, processo e visita à loja.
+
 ## 0.19.0 — 2026-09-11
 
 - Sequência de rolagem retirada temporariamente por apresentar flickers na experiência real.

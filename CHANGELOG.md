@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.44.0] - 2026-09-11
+
+### Adicionado
+
+- Vitrine editorial de noivas, debutantes e madrinhas, com seleção automática da ocasião no formulário.
+- Seção sobre conversa, provas, ajustes e entrega para explicar o trabalho sob medida.
+
+### Alterado
+
+- Área de visita redesenhada com mapa amplo, endereço sobreposto e cartão independente para o Instagram.
+- Navegação atualizada para representar opções, processo e localização.
+
 ## [0.43.0] - 2026-09-11
 
 ### Alterado

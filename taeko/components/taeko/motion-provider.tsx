@@ -36,7 +36,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
      if (!target) return;
      event.preventDefault();
      history.pushState(null, "", anchor.hash);
-     smoother.scrollTo(target, true, "top 24px");
+     smoother.scrollTo(Math.max(0, smoother.offset(target, "top top") - 116), true);
      const previousTabIndex = target.getAttribute("tabindex");
      target.tabIndex = -1;
      target.focus({ preventScroll: true });
