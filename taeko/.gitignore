@@ -57,7 +57,8 @@ next-env.d.ts
 /public/file.svg
 /public/globe.svg
 /public/window.svg
-/scripts/
+/scripts/*
+!/scripts/process-bride-sequence.mjs
 /tsconfig.tsbuildinfo
 /vendor/
 /vite.config.ts

@@ -45,6 +45,8 @@ export function createSequencePlayer(
   let stopped = false;
   let failures = 0;
   let maxBitmaps = 14;
+  let naturalWidth = 0;
+  let naturalHeight = 0;
   let resolveReady: (value: boolean) => void = () => {};
   const ready = new Promise<boolean>((resolve) => {
     resolveReady = resolve;
@@ -65,8 +67,12 @@ export function createSequencePlayer(
   function resize() {
     const bounds = canvas.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    canvas.width = Math.max(1, Math.round(bounds.width * dpr));
-    canvas.height = Math.max(1, Math.round(bounds.height * dpr));
+    const sourceScale = naturalWidth && naturalHeight
+      ? Math.min(naturalWidth / bounds.width, naturalHeight / bounds.height)
+      : 1;
+    const renderScale = Math.max(0.1, Math.min(dpr, sourceScale));
+    canvas.width = Math.max(1, Math.round(bounds.width * renderScale));
+    canvas.height = Math.max(1, Math.round(bounds.height * renderScale));
     draw(bitmaps.has(desired) ? desired : lastDrawn);
   }
 
@@ -133,6 +139,11 @@ export function createSequencePlayer(
         Math.min(20, Math.floor((72 * 1024 * 1024) / (bitmap.width * bitmap.height * 4))),
       );
       bitmaps.set(index, bitmap);
+      if (!naturalWidth || !naturalHeight) {
+        naturalWidth = bitmap.width;
+        naturalHeight = bitmap.height;
+        resize();
+      }
       failures = 0;
       if (index === desired || lastDrawn === -1) draw(index);
       prune();

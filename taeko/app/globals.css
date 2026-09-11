@@ -400,8 +400,14 @@ h2 {
 .atelier-story-media {
   position: absolute;
   z-index: -2;
-  inset: 0 -14% 0 -2%;
-  transform-origin: 55% center;
+  top: 50%;
+  left: 4%;
+  width: min(65vw, 1280px);
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
+  transform-origin: 45% center;
+  mask-image: radial-gradient(ellipse 88% 82% at 42% 50%, #000 56%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 82% at 42% 50%, #000 56%, transparent 100%);
   will-change: transform;
 }
 
@@ -425,14 +431,26 @@ h2 {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgb(247 243 237 / 0%) 12%,
-    rgb(247 243 237 / 10%) 34%,
-    rgb(241 233 224 / 54%) 58%,
-    rgb(235 222 211 / 88%) 78%,
+    rgb(247 243 237 / 0%) 28%,
+    rgb(247 243 237 / 8%) 46%,
+    rgb(241 233 224 / 48%) 66%,
+    rgb(235 222 211 / 90%) 84%,
     #e5d8ca 100%
   );
   pointer-events: none;
   will-change: opacity, transform;
+}
+
+.atelier-story-stage::after {
+  position: absolute;
+  z-index: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: clamp(70px, 10vh, 120px);
+  background: linear-gradient(to bottom, transparent, rgb(232 219 208 / 78%));
+  content: "";
+  pointer-events: none;
 }
 
 .atelier-story-copy {
@@ -1058,7 +1076,12 @@ footer > span {
 
   .atelier-story-media {
     inset: 0 -18%;
+    width: auto;
+    aspect-ratio: auto;
+    transform: none;
     transform-origin: center;
+    mask-image: none;
+    -webkit-mask-image: none;
   }
 
   .atelier-story-gradient {

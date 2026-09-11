@@ -60,6 +60,7 @@ export function ScrollFrameSequence() {
       }
 
       const headerHeight = document.querySelector<HTMLElement>(".site-header")?.offsetHeight ?? 92;
+      gsap.set(media, { yPercent: -50 });
       gsap.set(gradient, { opacity: 0, xPercent: 18 });
       gsap.set(copy, { autoAlpha: 0, x: 54 });
 
@@ -85,7 +86,7 @@ export function ScrollFrameSequence() {
         },
       });
       timeline
-        .to(media, { xPercent: -18, scale: 1.04, duration: 1, ease: "none" }, 0)
+        .to(media, { xPercent: -12, duration: 1, ease: "none" }, 0)
         .to(gradient, { opacity: 1, xPercent: 0, duration: 0.54, ease: "power2.out" }, 0.2)
         .to(copy, { autoAlpha: 1, x: 0, duration: 0.34, ease: "power2.out" }, 0.48);
 

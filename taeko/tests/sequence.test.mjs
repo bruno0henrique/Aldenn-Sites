@@ -30,7 +30,8 @@ test("player warms network data, bounds decoding, draws both directions, and rel
   assert.ok(draws.includes("/frames/0100.webp"));
   player.seek(0); await new Promise(r => setTimeout(r, 40));
   assert.equal(draws.at(-1), "/frames/0001.webp");
-  assert.ok(peak <= 8); assert.ok(decoded < 64); assert.equal(canvas.width, 1500);
+  assert.ok(peak <= 8); assert.ok(decoded < 64);
+  assert.equal(canvas.width, 1440); assert.equal(canvas.height, 864);
   player.destroy(); assert.equal(canvas.style.opacity, "0"); assert.equal(closed, decoded);
  } finally { player.destroy(); Object.assign(globalThis, original); }
 });

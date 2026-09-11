@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.18.0 — 2026-09-11
+
+- Reprocessamento dos 240 quadros originais em WebP de qualidade 95.
+- Imagem desktop reduzida para cerca de 65% e limitada à resolução original.
+- Canvas ajustado para não ampliar internamente o material disponível.
+- Máscaras e degradês suavizam a integração da cena com o fundo e o formulário.
+
 ## 0.17.0 — 2026-09-10
 
 - Botão do Instagram usa a paleta da Taeko no estado normal.

@@ -1,5 +1,18 @@
 # Histórico de versões
 
+## [0.42.0] - 2026-09-11
+
+### Alterado
+
+- Sequência da noiva reprocessada a partir dos PNGs originais em WebP de qualidade 95.
+- Cena desktop limitada a 65% da largura e aos 1280 × 720 px originais, sem zoom adicional.
+- Canvas deixou de criar uma superfície maior que o quadro disponível.
+- Bordas da mídia e passagem para o atendimento receberam transições suaves.
+
+### Adicionado
+
+- Script reproduzível para processar e validar os 240 quadros da noiva.
+
 ## [0.41.0] - 2026-09-10
 
 ### Alterado
