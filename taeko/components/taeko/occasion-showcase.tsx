@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
 
 const occasions = [
@@ -26,7 +25,9 @@ const occasions = [
 
 export function OccasionShowcase() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef({ startX: 0, startScroll: 0, moved: false });
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const chooseOccasion = (moment: string) => {
     window.dispatchEvent(new CustomEvent("taeko:select-moment", { detail: moment }));
@@ -55,9 +56,36 @@ export function OccasionShowcase() {
     setActiveIndex(distances.indexOf(Math.min(...distances)));
   };
 
+  const startDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    dragRef.current = { startX: event.clientX, startScroll: track.scrollLeft, moved: false };
+    setIsDragging(true);
+    track.setPointerCapture(event.pointerId);
+  };
+
+  const moveDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track || !isDragging) return;
+
+    const distance = event.clientX - dragRef.current.startX;
+    if (Math.abs(distance) > 6) dragRef.current.moved = true;
+    track.scrollLeft = dragRef.current.startScroll - distance;
+  };
+
+  const finishDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    setIsDragging(false);
+    if (track.hasPointerCapture(event.pointerId)) track.releasePointerCapture(event.pointerId);
+    updateActiveOccasion();
+  };
+
   return (
     <section className="occasions section-pad" id="ocasioes" aria-labelledby="occasions-title">
-      <div className="section-heading occasions-heading" data-reveal>
+      <div className="section-heading" data-reveal>
         <div>
           <p className="eyebrow">PARA CADA MOMENTO</p>
           <h2 id="occasions-title">
@@ -69,18 +97,24 @@ export function OccasionShowcase() {
         <p className="heading-summary">
           Conheça as principais possibilidades e comece o atendimento pela direção que mais se aproxima de você.
         </p>
-        <div className="occasion-controls" aria-label="Navegar pelas ocasiões">
-          <button type="button" onClick={() => goToOccasion(activeIndex - 1)} aria-label="Ocasião anterior">
-            <ChevronLeft size={19} strokeWidth={1.4} />
-          </button>
-          <span aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(occasions.length).padStart(2, "0")}</span>
-          <button type="button" onClick={() => goToOccasion(activeIndex + 1)} aria-label="Próxima ocasião">
-            <ChevronRight size={19} strokeWidth={1.4} />
-          </button>
-        </div>
       </div>
 
-      <div className="occasion-list" ref={trackRef} onScroll={updateActiveOccasion}>
+      <div
+        className={`occasion-list${isDragging ? " is-dragging" : ""}`}
+        ref={trackRef}
+        onScroll={updateActiveOccasion}
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={finishDrag}
+        onPointerCancel={finishDrag}
+        onClickCapture={(event) => {
+          if (dragRef.current.moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            dragRef.current.moved = false;
+          }
+        }}
+      >
         {occasions.map((occasion) => (
           <article className="occasion-card" key={occasion.label} data-reveal>
             <picture>
@@ -92,6 +126,7 @@ export function OccasionShowcase() {
                 height={820}
                 loading="lazy"
                 decoding="async"
+                draggable={false}
               />
             </picture>
             <div className="occasion-card-copy">

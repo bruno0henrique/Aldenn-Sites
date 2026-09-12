@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.46.0] - 2026-09-12
+
+### Alterado
+
+- Controles grandes e contador do carrossel removidos.
+- Vitrine agora aceita arraste direto com mouse ou dedo e mantém apenas um indicador inferior discreto.
+
 ## [0.45.0] - 2026-09-12
 
 ### Alterado

@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.22.0 — 2026-09-12
+
+- Carrossel simplificado, sem setas ou contador visível.
+- Navegação feita pelo arraste com mouse ou dedo, acompanhada por um indicador inferior sutil.
+
 ## 0.21.0 — 2026-09-12
 
 - Opções apresentadas em carrossel responsivo com controles acessíveis.
