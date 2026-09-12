@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.45.0] - 2026-09-12
+
+### Alterado
+
+- Vitrine de ocasiões transformada em carrossel com setas, indicador e navegação por toque.
+- Fotografias de noivas, debutantes e madrinhas refeitas com modelos e ambientes distintos; duas cenas ganharam sorrisos naturais.
+- Seção sobre o processo recebeu uma paleta clara em bege mineral para uma apresentação mais leve e sofisticada.
+
 ## [0.44.0] - 2026-09-11
 
 ### Adicionado

@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.21.0 — 2026-09-12
+
+- Opções apresentadas em carrossel responsivo com controles acessíveis.
+- Ensaios editoriais refeitos com três modelos e cenários diferentes, preservando os vestidos apresentados.
+- Processo de confecção passou a usar fundo bege mineral e contraste mais delicado.
+
 ## 0.20.0 — 2026-09-11
 
 - Nova vitrine apresenta noivas, debutantes e madrinhas em três composições editoriais.

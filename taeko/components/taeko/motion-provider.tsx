@@ -28,6 +28,10 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
       .from(editorialMedia, { scale: 1.025, opacity: 0.82, duration: 1.5, ease: "power2.out", clearProps: "all" })
       .from(editorialCopy, { x: 28, opacity: 0, duration: 1.05, ease: "power2.out", clearProps: "all" }, 0.32);
     }
+    const scrollToTarget = (target: HTMLElement, smooth = true) => {
+     if (!smoother) return;
+     smoother.scrollTo(target, smooth, "top 116px");
+    };
     const navigate = (event: MouseEvent) => {
      if (!smoother || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
      const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
@@ -36,7 +40,7 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
      if (!target) return;
      event.preventDefault();
      history.pushState(null, "", anchor.hash);
-     smoother.scrollTo(Math.max(0, smoother.offset(target, "top top") - 116), true);
+     scrollToTarget(target);
      const previousTabIndex = target.getAttribute("tabindex");
      target.tabIndex = -1;
      target.focus({ preventScroll: true });
@@ -44,6 +48,10 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
      else target.setAttribute("tabindex", previousTabIndex);
     };
     document.addEventListener("click", navigate);
+    if (smoother && location.hash) {
+     const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+     if (initialTarget) requestAnimationFrame(() => scrollToTarget(initialTarget, false));
+    }
     return () => { document.removeEventListener("click", navigate); smoother?.kill(); };
    });
    document.fonts.ready.then(() => { if (!cancelled) ScrollTrigger.refresh(); });
