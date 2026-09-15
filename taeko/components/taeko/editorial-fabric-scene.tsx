@@ -30,7 +30,7 @@ export function EditorialFabricScene() {
             O caimento certo muda <em>tudo.</em>
           </h3>
           <p>
-            Cada ajuste aproxima o vestido do seu corpo, preserva o movimento e deixa você à vontade para viver o seu dia.
+            Em cada prova, o vestido vai encontrando o seu corpo. Ajustamos o caimento com delicadeza para que você se sinta bonita e à vontade.
           </p>
         </div>
       </div>

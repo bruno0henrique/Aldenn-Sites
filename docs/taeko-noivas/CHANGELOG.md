@@ -1,5 +1,11 @@
 # Histórico — Taeko Noivas
 
+## 0.23.0 — 2026-09-14
+
+- Legenda da fotografia do processo recebeu texto claro, sombra suave e um degradê mais profundo para permanecer legível.
+- Redação da página inteira revisada com uma voz mais humana, acolhedora e delicada.
+- Perguntas, respostas e mensagem do atendimento foram reescritas para soar como o início de uma conversa real com a Taeko.
+
 ## 0.22.0 — 2026-09-12
 
 - Carrossel simplificado, sem setas ou contador visível.

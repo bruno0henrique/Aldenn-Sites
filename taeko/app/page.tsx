@@ -54,12 +54,12 @@ export default function Home() {
                 </span>
               </h1>
               <p className="hero-description hero-reveal">
-                Confecção sob medida para o seu momento.
+                Um vestido criado com cuidado, para que você se reconheça nele.
               </p>
               <div className="hero-history hero-reveal">
                 <p className="eyebrow">HÁ 40 ANOS</p>
                 <p>
-                  Em Jacareí, a Taeko transforma sonhos em vestidos feitos sob medida, com cuidado em cada etapa.
+                  Há 40 anos, a Taeko recebe mulheres em Jacareí e transforma ideias, referências e sonhos em vestidos feitos sob medida.
                 </p>
               </div>
             </div>
@@ -73,11 +73,11 @@ export default function Home() {
                   <h2 id="inspiration-title">
                     Um vestido pensado
                     <br />
-                    <em>para você.</em>
+                    <em>com você.</em>
                   </h2>
                 </div>
                 <p className="heading-summary">
-                  Renda, caimento e acabamento vistos de perto.
+                  De perto, a renda, o caimento e os acabamentos revelam o cuidado de cada escolha.
                 </p>
               </div>
             </div>
@@ -97,37 +97,37 @@ export default function Home() {
                 sizes="(max-width: 1100px) 88vw, 40vw"
               />
               <div className="process-visual-caption">
-                <span>CONFECCIONADO EM JACAREÍ</span>
-                <p>Do primeiro encontro ao caimento final.</p>
+                <span>FEITO EM JACAREÍ</span>
+                <p>Da primeira conversa ao último ajuste.</p>
               </div>
             </div>
             <div className="process-copy">
-              <p className="eyebrow" data-reveal>FEITO PARA VESTIR VOCÊ</p>
+              <p className="eyebrow" data-reveal>UM VESTIDO, MUITOS CUIDADOS</p>
               <h2 id="process-title" data-reveal>
-                Cuidado presente
+                Cuidado que acompanha
                 <br />
-                <em>em cada etapa.</em>
+                <em>cada etapa.</em>
               </h2>
               <div className="process-list">
                 <article data-reveal>
                   <MessageCircle size={23} strokeWidth={1.25} />
                   <div>
                     <h3>A primeira conversa</h3>
-                    <p>Entendemos sua ocasião, suas referências e como você deseja se sentir ao vestir a peça.</p>
+                    <p>Antes de começar, ouvimos você: o seu momento, as suas referências e como gostaria de se sentir ao vestir a peça.</p>
                   </div>
                 </article>
                 <article data-reveal>
                   <Scissors size={23} strokeWidth={1.25} />
                   <div>
                     <h3>Provas e ajustes</h3>
-                    <p>O vestido encontra seu caimento aos poucos, com atenção ao conforto e ao movimento.</p>
+                    <p>A cada prova, ajustamos o caimento com calma, sempre atentas ao conforto e à liberdade de movimento.</p>
                   </div>
                 </article>
                 <article data-reveal>
                   <Sparkles size={23} strokeWidth={1.25} />
                   <div>
                     <h3>O momento da entrega</h3>
-                    <p>Cada acabamento é revisto para que a peça chegue pronta para fazer parte da sua história.</p>
+                    <p>Antes da entrega, revemos cada detalhe para que você vista a peça com segurança e tranquilidade.</p>
                   </div>
                 </article>
               </div>
@@ -136,24 +136,24 @@ export default function Home() {
 
           <section className="planner-section section-pad" id="planejador">
             <div className="planner-heading" data-reveal>
-              <p className="eyebrow">ATENDIMENTO</p>
+              <p className="eyebrow">VAMOS CONVERSAR</p>
               <h2>
-                Prepare sua
+                Conte um pouco sobre
                 <br />
-                <em>mensagem.</em>
+                <em>o seu momento.</em>
               </h2>
-              <p>Conte o momento, o estilo e a etapa da sua escolha. O WhatsApp abre com o texto pronto para revisar.</p>
+              <p>Escolha o que mais combina com você. Ao final, sua mensagem estará pronta para abrir no WhatsApp.</p>
             </div>
             <VisitPlanner />
           </section>
 
           <section className="contact section-pad" id="visite" aria-labelledby="visit-title">
-            <p className="eyebrow" data-reveal>VISITE A LOJA</p>
+            <p className="eyebrow" data-reveal>VENHA NOS CONHECER</p>
             <h2 id="visit-title" data-reveal>
-              Encontre a Taeko <em>em Jacareí.</em>
+              Será um prazer receber você <em>em Jacareí.</em>
             </h2>
             <p className="visit-intro" data-reveal>
-              Veja como chegar e conheça os trabalhos recentes da loja.
+              Veja o endereço, planeje o caminho e acompanhe as novidades da Taeko pelo Instagram.
             </p>
             <div className="visit-composition">
               <article className="visit-map-card">
@@ -180,7 +180,7 @@ export default function Home() {
                 <a className="social-handle" href={contact.instagram} target="_blank" rel="noreferrer">
                   @taekonoivas
                 </a>
-                <p>Veja modelos, detalhes e trabalhos recentes no perfil da loja.</p>
+                <p>No Instagram, você encontra vestidos, detalhes de acabamento e trabalhos recentes da Taeko.</p>
                 <a
                   className="instagram-button"
                   href={contact.instagram}

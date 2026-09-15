@@ -12,7 +12,7 @@ const preferences = [
   "Estruturado e marcante",
   "Ainda estou descobrindo",
 ];
-const stages = ["Primeira pesquisa", "Já tenho referências", "Quero provar modelos"];
+const stages = ["Estou começando a pesquisar", "Já reuni algumas referências", "Gostaria de provar modelos"];
 
 function ChoiceGroup({
   legend,
@@ -64,11 +64,11 @@ export function VisitPlanner() {
   const whatsappUrl = useMemo(() => {
     if (!completed) return contact.whatsapp;
     const message = [
-      "Olá, Taeko! Vi a demonstração do site e gostaria de conversar.",
-      `Meu momento: ${moment}.`,
-      `Minha direção preferida: ${preference}.`,
-      `Estou nesta etapa: ${stage}.`,
-      "Podem me orientar sobre as possibilidades?",
+      "Olá! Conheci o trabalho da Taeko pelo site e gostaria de conversar sobre um vestido.",
+      `A ocasião é: ${moment}.`,
+      `O estilo que mais combina comigo é: ${preference}.`,
+      `Neste momento, ${stage.toLowerCase()}.`,
+      "Vocês poderiam me orientar sobre as possibilidades?",
     ].join("\n");
     return `${contact.whatsapp}?text=${encodeURIComponent(message)}`;
   }, [completed, moment, preference, stage]);
@@ -76,19 +76,19 @@ export function VisitPlanner() {
   return (
     <div className="planner-card" data-reveal>
       <ChoiceGroup
-        legend="Para qual ocasião?"
+        legend="Qual é o seu momento?"
         options={moments}
         value={moment}
         onChange={setMoment}
       />
       <ChoiceGroup
-        legend="Qual estilo chamou sua atenção?"
+        legend="Que estilo mais combina com você?"
         options={preferences}
         value={preference}
         onChange={setPreference}
       />
       <ChoiceGroup
-        legend="Em que etapa você está?"
+        legend="Em que etapa da escolha você está?"
         options={stages}
         value={stage}
         onChange={setStage}
@@ -96,11 +96,11 @@ export function VisitPlanner() {
 
       <div className="planner-result" aria-live="polite">
         <div>
-          <strong>{completed ? "Tudo certo." : "Falta pouco."}</strong>
+          <strong>{completed ? "Sua mensagem está pronta." : "Só faltam algumas escolhas."}</strong>
           <p>
             {completed
-              ? "O WhatsApp abrirá com sua mensagem pronta para revisão."
-              : "Selecione uma opção em cada campo para continuar."}
+              ? "Quando quiser, abra o WhatsApp e confira o texto antes de enviar."
+              : "Escolha uma opção em cada etapa para prepararmos a mensagem."}
           </p>
         </div>
         <a

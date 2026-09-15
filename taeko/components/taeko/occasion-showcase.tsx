@@ -7,19 +7,19 @@ const occasions = [
     label: "Noivas",
     moment: "Casamento",
     image: "noiva",
-    copy: "Renda, caimento e acabamento para um vestido que tenha a sua presença.",
+    copy: "Renda, leveza e um caimento pensado para que o vestido tenha o seu jeito.",
   },
   {
     label: "Debutantes",
     moment: "Debutante",
     image: "debutante",
-    copy: "Volume, movimento e personalidade para celebrar um momento só seu.",
+    copy: "Movimento, personalidade e liberdade para celebrar esse dia do seu jeito.",
   },
   {
     label: "Madrinhas",
     moment: "Madrinha",
     image: "madrinha",
-    copy: "Elegância e conforto para acompanhar de perto uma história especial.",
+    copy: "Elegância e conforto para estar presente, com carinho, em uma história especial.",
   },
 ];
 
@@ -89,13 +89,13 @@ export function OccasionShowcase() {
         <div>
           <p className="eyebrow">PARA CADA MOMENTO</p>
           <h2 id="occasions-title">
-            Um vestido que combina
+            Um vestido para viver
             <br />
-            <em>com a ocasião.</em>
+            <em>o seu momento.</em>
           </h2>
         </div>
         <p className="heading-summary">
-          Conheça as principais possibilidades e comece o atendimento pela direção que mais se aproxima de você.
+          Escolha a possibilidade que mais se aproxima do que você imagina. Depois, conversamos com calma sobre os detalhes.
         </p>
       </div>
 
@@ -133,7 +133,7 @@ export function OccasionShowcase() {
               <h3>{occasion.label}</h3>
               <p>{occasion.copy}</p>
               <button type="button" onClick={() => chooseOccasion(occasion.moment)}>
-                Quero conhecer
+                Quero conversar
               </button>
             </div>
           </article>

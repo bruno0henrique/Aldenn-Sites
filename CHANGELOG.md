@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.47.0] - 2026-09-14
+
+### Alterado
+
+- Contraste da legenda sobre a fotografia do processo reforçado com texto claro, sombra suave e degradê mais profundo.
+- Textos da demonstração Taeko revisados para uma conversa mais acolhedora, delicada e natural.
+- Mensagem preparada para o WhatsApp deixou de mencionar a demonstração e passou a iniciar o atendimento de forma direta.
+
 ## [0.46.0] - 2026-09-12
 
 ### Alterado
