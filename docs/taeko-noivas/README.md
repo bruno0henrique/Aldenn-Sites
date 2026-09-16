@@ -1,8 +1,10 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.24.0 • Data: 16/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.25.0 • Data: 16/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
+
+A prévia de compartilhamento usa uma fotografia editorial horizontal do vestido no ateliê, acompanhada de título e descrição próprios. O texto destaca os 40 anos, os vestidos sob medida e o atendimento a Jacareí e região sem acrescentar condições comerciais não confirmadas.
 
 A primeira revisão de 10/09/2026 removeu a numeração decorativa da galeria, alinhou as inspirações e vinculou cada referência ao planejador.
 

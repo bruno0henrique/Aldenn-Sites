@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.49.0] - 2026-09-16
+
+### Adicionado
+
+- Fotografia editorial horizontal própria para a prévia do link no WhatsApp e em redes sociais.
+- Metadados Open Graph e Twitter Card com imagem, dimensões, endereço canônico e descrição objetiva.
+
+### Alterado
+
+- Texto institucional passou a mencionar Jacareí e região com uma voz mais acolhedora.
+- Chamada sobre renda, caimento e acabamentos recebeu uma redação mais natural.
+
 ## [0.48.0] - 2026-09-16
 
 ### Alterado

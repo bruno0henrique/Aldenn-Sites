@@ -69,7 +69,7 @@ export default function Home() {
               <div className="hero-history hero-reveal">
                 <p className="eyebrow">HÁ 40 ANOS</p>
                 <p>
-                  Há 40 anos, a Taeko recebe mulheres em Jacareí e transforma ideias, referências e sonhos em vestidos feitos sob medida.
+                  Há 40 anos, a Taeko acolhe mulheres de Jacareí e região para transformar ideias, referências e sonhos em vestidos feitos sob medida.
                 </p>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function Home() {
                   </h2>
                 </div>
                 <p className="heading-summary">
-                  De perto, a renda, o caimento e os acabamentos revelam o cuidado de cada escolha.
+                  É de perto que a renda, o caimento e os acabamentos revelam o cuidado presente em cada vestido.
                 </p>
               </div>
             </div>

@@ -1,5 +1,12 @@
 # Histórico — Taeko Noivas
 
+## 0.25.0 — 2026-09-16
+
+- Prévia do link ganhou fotografia editorial horizontal própria para WhatsApp e redes sociais.
+- Metadados de compartilhamento agora informam título, descrição, imagem, dimensões e endereço canônico.
+- Apresentação dos 40 anos passou a citar Jacareí e região com uma redação mais acolhedora.
+- Texto sobre renda, caimento e acabamentos ficou mais natural e conectado ao vestido.
+
 ## 0.24.0 — 2026-09-16
 
 - Card de noivas recebeu uma nova fotografia editorial com modelo loira de olhos claros, olhar suave para a esquerda, véu e vestido nupcial marcante.
