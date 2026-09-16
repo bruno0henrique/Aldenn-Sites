@@ -50,6 +50,7 @@ export function VisitPlanner() {
   const [moment, setMoment] = useState("");
   const [preference, setPreference] = useState("");
   const [stage, setStage] = useState("");
+  const [eventDate, setEventDate] = useState("");
 
   useEffect(() => {
     const selectMoment = (event: Event) => {
@@ -63,15 +64,21 @@ export function VisitPlanner() {
   const completed = Boolean(moment && preference && stage);
   const whatsappUrl = useMemo(() => {
     if (!completed) return contact.whatsapp;
+    const formattedDate = eventDate
+      ? new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${eventDate}T12:00:00Z`))
+      : "Ainda não definida";
     const message = [
       "Olá! Conheci o trabalho da Taeko pelo site e gostaria de conversar sobre um vestido.",
-      `A ocasião é: ${moment}.`,
-      `O estilo que mais combina comigo é: ${preference}.`,
-      `Neste momento, ${stage.toLowerCase()}.`,
-      "Vocês poderiam me orientar sobre as possibilidades?",
+      "",
+      `Ocasião: ${moment}`,
+      `Estilo: ${preference}`,
+      `Etapa da escolha: ${stage}`,
+      `Data do evento: ${formattedDate}`,
+      "",
+      "Gostaria de entender quais possibilidades combinam com o que imagino.",
     ].join("\n");
     return `${contact.whatsapp}?text=${encodeURIComponent(message)}`;
-  }, [completed, moment, preference, stage]);
+  }, [completed, eventDate, moment, preference, stage]);
 
   return (
     <div className="planner-card" data-reveal>
@@ -94,6 +101,17 @@ export function VisitPlanner() {
         onChange={setStage}
       />
 
+      <div className="planner-date">
+        <label htmlFor="event-date">Quando será o evento?</label>
+        <p>Se a data já estiver definida, você pode contar para a Taeko agora.</p>
+        <input
+          id="event-date"
+          type="date"
+          value={eventDate}
+          onChange={(event) => setEventDate(event.target.value)}
+        />
+      </div>
+
       <div className="planner-result" aria-live="polite">
         <div>
           <strong>{completed ? "Sua mensagem está pronta." : "Só faltam algumas escolhas."}</strong>
@@ -113,7 +131,7 @@ export function VisitPlanner() {
             if (!completed) event.preventDefault();
           }}
         >
-          Entrar em contato pelo WhatsApp
+          Enviar minhas escolhas pelo WhatsApp
         </a>
       </div>
     </div>

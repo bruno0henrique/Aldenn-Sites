@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
  title: "Taeko Noivas | O seu sonho, feito sob medida · Jacareí",
- description: "Há 40 anos, a Taeko Noivas cria vestidos sob medida em Jacareí, com atenção ao caimento, aos detalhes e ao momento de cada mulher.",
+ description: "Vestidos sob medida para noivas, debutantes e madrinhas em Jacareí, com atenção ao caimento, aos detalhes e ao momento de cada mulher.",
  icons: { icon: "/demonstracao-taeko/favicon.svg" },
  robots: { index: false, follow: false },
 };

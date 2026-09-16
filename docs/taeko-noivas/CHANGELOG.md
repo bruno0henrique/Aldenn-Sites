@@ -1,5 +1,15 @@
 # Histórico — Taeko Noivas
 
+## 0.24.0 — 2026-09-16
+
+- Card de noivas recebeu uma nova fotografia editorial com modelo loira de olhos claros, olhar suave para a esquerda, véu e vestido nupcial marcante.
+- Arquivos finais foram otimizados em AVIF e WebP na proporção original do carrossel.
+- A abertura agora explica que a Taeko atende noivas, debutantes e madrinhas em Jacareí e oferece duas ações imediatas.
+- O planejador passou para o meio da página e coleta, de forma opcional, a data do evento.
+- A mensagem do WhatsApp organiza ocasião, estilo, etapa da escolha e data em linhas separadas.
+- Chamadas de ação foram reescritas em torno do vestido desejado, e o mapa ganhou um link direto para traçar a rota.
+- Legibilidade de textos funcionais e controles foi ampliada no celular.
+
 ## 0.23.0 — 2026-09-14
 
 - Legenda da fotografia do processo recebeu texto claro, sombra suave e um degradê mais profundo para permanecer legível.

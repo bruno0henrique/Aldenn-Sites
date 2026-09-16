@@ -1,0 +1,10 @@
+Use case: precise-object-edit
+Asset type: fotografia editorial vertical para o card “Noivas” de um site de boutique de vestidos.
+Primary request: substituir a modelo atual por uma mulher adulta loira, de olhos claros, com beleza elegante e natural, olhando suavemente para a esquerda, sem olhar para a câmera. Deixar a cena marcante, sofisticada e inequivocamente nupcial.
+Subject: noiva loira com penteado preso baixo e delicado, mechas naturais, expressão serena, véu leve e vestido branco marfim com saia ampla, renda floral refinada, mangas longas transparentes, corpete estruturado e cauda visível.
+Style/medium: fotografia de moda nupcial editorial, realista, com acabamento de revista de luxo e texturas naturais.
+Composition/framing: corpo inteiro centralizado, rosto totalmente visível, olhar para a esquerda, vestido e cauda ocupando a maior parte do quadro e espaço inferior para a legenda do site.
+Lighting/mood: luz natural suave, atmosfera calma, romântica e sofisticada.
+Color palette: marfim, branco quente, bege mineral e verde discreto.
+Constraints: proporção retrato aproximada de 2:3; sem texto, logotipo ou marca-d'água; anatomia natural; mãos bem formadas; vestido claramente branco de noiva.
+Avoid: pose frontal rígida, olhar para a câmera, sorriso exagerado, decote excessivo, pele plástica, excesso de flores e fundo escuro.

@@ -7,18 +7,21 @@ const occasions = [
     label: "Noivas",
     moment: "Casamento",
     image: "noiva",
+    alt: "Noiva loira com vestido de renda e véu, olhando suavemente para a esquerda",
     copy: "Renda, leveza e um caimento pensado para que o vestido tenha o seu jeito.",
   },
   {
     label: "Debutantes",
     moment: "Debutante",
     image: "debutante",
+    alt: "Vestido para debutante em um ensaio editorial",
     copy: "Movimento, personalidade e liberdade para celebrar esse dia do seu jeito.",
   },
   {
     label: "Madrinhas",
     moment: "Madrinha",
     image: "madrinha",
+    alt: "Vestido para madrinha em um ensaio editorial",
     copy: "Elegância e conforto para estar presente, com carinho, em uma história especial.",
   },
 ];
@@ -121,7 +124,7 @@ export function OccasionShowcase() {
               <source type="image/avif" srcSet={`/demonstracao-taeko/media/occasion-${occasion.image}.avif`} />
               <img
                 src={`/demonstracao-taeko/media/occasion-${occasion.image}.webp`}
-                alt={`Vestido para ${occasion.label.toLowerCase()}`}
+                alt={occasion.alt}
                 width={512}
                 height={820}
                 loading="lazy"

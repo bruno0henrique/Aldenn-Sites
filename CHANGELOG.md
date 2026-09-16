@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## [0.48.0] - 2026-09-16
+
+### Alterado
+
+- Fotografia do card de noivas substituída por novo ensaio editorial com modelo loira, olhar suave para a esquerda, véu e vestido nupcial de renda com saia ampla.
+- Imagem otimizada em AVIF e WebP para preservar qualidade e carregamento do carrossel.
+- Primeira dobra passou a apresentar com clareza as ocasiões atendidas e ações diretas para encontrar um vestido ou conversar pelo WhatsApp.
+- Planejador reposicionado no meio da jornada, com data opcional do evento e mensagem mais organizada para o WhatsApp.
+- Chamadas do cabeçalho e do processo ficaram mais específicas, e a área de visita ganhou acesso direto à rota no Google Maps.
+- Textos funcionais e controles móveis receberam ajustes de tamanho e contraste.
+
 ## [0.47.0] - 2026-09-14
 
 ### Alterado

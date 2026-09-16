@@ -1,4 +1,4 @@
-import { Camera, MapPin, MessageCircle, Scissors, Sparkles } from "lucide-react";
+import { ArrowRight, Camera, MapPin, MessageCircle, Route, Scissors, Sparkles } from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
@@ -34,7 +34,7 @@ export default function Home() {
           <a href="#visite">Visite a loja</a>
         </nav>
         <a className="header-contact" href="#planejador">
-          Entrar em contato
+          Encontrar meu vestido
         </a>
       </header>
 
@@ -54,8 +54,18 @@ export default function Home() {
                 </span>
               </h1>
               <p className="hero-description hero-reveal">
-                Um vestido criado com cuidado, para que você se reconheça nele.
+                Vestidos sob medida para noivas, debutantes e madrinhas em Jacareí, criados com cuidado para que você se reconheça em cada detalhe.
               </p>
+              <div className="hero-actions hero-reveal" aria-label="Próximos passos">
+                <a className="button hero-primary-action" href="#planejador">
+                  Encontrar meu vestido
+                  <ArrowRight size={17} strokeWidth={1.5} aria-hidden="true" />
+                </a>
+                <a className="hero-secondary-action" href={contact.whatsapp} target="_blank" rel="noreferrer">
+                  <MessageCircle size={18} strokeWidth={1.4} aria-hidden="true" />
+                  Falar no WhatsApp
+                </a>
+              </div>
               <div className="hero-history hero-reveal">
                 <p className="eyebrow">HÁ 40 ANOS</p>
                 <p>
@@ -86,6 +96,19 @@ export default function Home() {
           </section>
 
           <OccasionShowcase />
+
+          <section className="planner-section section-pad" id="planejador">
+            <div className="planner-heading" data-reveal>
+              <p className="eyebrow">VAMOS CONVERSAR</p>
+              <h2>
+                Conte um pouco sobre
+                <br />
+                <em>o seu momento.</em>
+              </h2>
+              <p>Escolha o que mais combina com você. Ao final, sua mensagem estará pronta para abrir no WhatsApp.</p>
+            </div>
+            <VisitPlanner />
+          </section>
 
           <section className="process section-pad" id="processo" aria-labelledby="process-title">
             <div className="process-visual" data-reveal>
@@ -131,20 +154,11 @@ export default function Home() {
                   </div>
                 </article>
               </div>
+              <a className="text-link process-cta" href="#planejador">
+                Quero conversar sobre meu vestido
+                <ArrowRight size={17} strokeWidth={1.4} aria-hidden="true" />
+              </a>
             </div>
-          </section>
-
-          <section className="planner-section section-pad" id="planejador">
-            <div className="planner-heading" data-reveal>
-              <p className="eyebrow">VAMOS CONVERSAR</p>
-              <h2>
-                Conte um pouco sobre
-                <br />
-                <em>o seu momento.</em>
-              </h2>
-              <p>Escolha o que mais combina com você. Ao final, sua mensagem estará pronta para abrir no WhatsApp.</p>
-            </div>
-            <VisitPlanner />
           </section>
 
           <section className="contact section-pad" id="visite" aria-labelledby="visit-title">
@@ -171,6 +185,10 @@ export default function Home() {
                       Av. Adhemar Pereira de Barros, 1737
                       <br /> Jacareí · SP · 12328-300
                     </p>
+                    <a className="visit-route-link" href={contact.map} target="_blank" rel="noreferrer">
+                      <Route size={16} strokeWidth={1.4} aria-hidden="true" />
+                      Traçar rota no Google Maps
+                    </a>
                   </div>
                 </div>
               </article>

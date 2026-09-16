@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.23.0 • Data: 14/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.24.0 • Data: 16/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
@@ -8,9 +8,11 @@ A primeira revisão de 10/09/2026 removeu a numeração decorativa da galeria, a
 
 A segunda revisão do mesmo dia reduziu a experiência a quatro blocos: abertura, inspirações, atendimento e contato. A abertura possui uma única chamada e o planejador solicita o momento, a direção visual e a etapa da escolha.
 
-A ação principal fica no cabeçalho com o texto “Entrar em contato” e leva ao planejador. A navegação apresenta “Opções”, “Como funciona” e “Visite a loja”. O carrossel editorial apresenta noivas, debutantes e madrinhas em ensaios distintos e pode ser arrastado diretamente com mouse ou dedo; ao escolher uma opção, a página leva ao planejador com a ocasião preenchida. A seção seguinte explica a primeira conversa, as provas e ajustes e o momento da entrega em uma paleta bege mineral. A visita usa mapa amplo com endereço sobreposto e cartão independente para o Instagram, sem repetir o atendimento por WhatsApp. O botão social mantém a paleta do site e revela as cores do Instagram somente na interação.
+A abertura declara que a Taeko cria vestidos sob medida para noivas, debutantes e madrinhas em Jacareí e oferece duas ações imediatas: “Encontrar meu vestido” e “Falar no WhatsApp”. A ação do cabeçalho também usa “Encontrar meu vestido” e leva ao planejador. A navegação apresenta “Opções”, “Como funciona” e “Visite a loja”. O carrossel editorial apresenta as três ocasiões em ensaios distintos e pode ser arrastado diretamente com mouse ou dedo; ao escolher uma opção, a página leva ao planejador com a ocasião preenchida. O planejador aparece no meio da jornada, antes da explicação do processo, e pergunta também a data opcional do evento. A seção seguinte explica a primeira conversa, as provas e ajustes e o momento da entrega em uma paleta bege mineral. A visita usa mapa amplo com endereço sobreposto, acesso direto para traçar a rota e cartão independente para o Instagram. O botão social mantém a paleta do site e revela as cores do Instagram somente na interação.
 
-A redação fala diretamente com a visitante de forma serena e acolhedora, sem frases técnicas sobre a interface. O planejador funciona como o começo de uma conversa: pergunta sobre o momento, o estilo e a etapa da escolha e prepara uma mensagem natural para revisão no WhatsApp. A legenda sobre a fotografia do processo usa texto marfim sobre um degradê escuro para manter a leitura em diferentes telas.
+O card de noivas usa um ensaio editorial próprio com modelo loira de olhos claros, olhar suave para a esquerda, véu e vestido branco de renda com saia ampla. A composição reforça imediatamente a leitura nupcial e preserva espaço para o texto na base do card.
+
+A redação fala diretamente com a visitante de forma serena e acolhedora, sem frases técnicas sobre a interface. O planejador funciona como o começo de uma conversa: pergunta sobre o momento, o estilo, a etapa da escolha e, opcionalmente, a data do evento. A mensagem é organizada para revisão no WhatsApp. A legenda sobre a fotografia do processo usa texto marfim sobre um degradê escuro para manter a leitura em diferentes telas.
 
 O material quadro a quadro foi retirado temporariamente da experiência porque a troca de imagens ainda apresentava flickers em uso real. A seção usa agora uma fotografia editorial estática criada em composições próprias para desktop e celular, com foco na renda e no acabamento do vestido. O GSAP faz somente uma entrada curta da fotografia e do texto, sem pinagem, canvas ou progresso vinculado continuamente à rolagem. Os quadros e o processamento permanecem disponíveis para uma futura retomada, mas não são carregados pela página.
 
