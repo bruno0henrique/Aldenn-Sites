@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.26.0 — 2026-09-16
+
+- Cabeçalho passa a desaparecer ao rolar para baixo e reaparecer ao rolar para cima ou retornar ao topo.
+- Interação mantém uma transição suave e preserva a navegação por teclado.
+
 ## 0.25.0 — 2026-09-16
 
 - Prévia do link ganhou fotografia editorial horizontal própria para WhatsApp e redes sociais.

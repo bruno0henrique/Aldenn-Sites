@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.50.0] - 2026-09-16
+
+### Alterado
+
+- Cabeçalho passa a se recolher suavemente durante a rolagem para baixo e reaparece ao rolar para cima ou voltar ao início.
+- Navegação por teclado mantém o cabeçalho visível quando um de seus links recebe foco.
+
 ## [0.49.0] - 2026-09-16
 
 ### Adicionado

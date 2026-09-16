@@ -5,17 +5,10 @@ import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-backg
 import { EditorialFabricScene } from "@/components/taeko/editorial-fabric-scene";
 import { MotionProvider } from "@/components/taeko/motion-provider";
 import { OccasionShowcase } from "@/components/taeko/occasion-showcase";
+import { SiteHeader, Wordmark } from "@/components/taeko/site-header";
 import { VisitPlanner } from "@/components/taeko/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
 import { contact } from "@/lib/taeko";
-
-function Wordmark() {
-  return (
-    <span className="wordmark">
-      taeko<span>NOIVAS</span>
-    </span>
-  );
-}
 
 export default function Home() {
   return (
@@ -24,19 +17,7 @@ export default function Home() {
         Pular para o conteúdo
       </a>
 
-      <header className="site-header">
-        <a href="#inicio" aria-label="Taeko Noivas, início">
-          <Wordmark />
-        </a>
-        <nav aria-label="Navegação principal">
-          <a href="#ocasioes">Opções</a>
-          <a href="#processo">Como funciona</a>
-          <a href="#visite">Visite a loja</a>
-        </nav>
-        <a className="header-contact" href="#planejador">
-          Encontrar meu vestido
-        </a>
-      </header>
+      <SiteHeader />
 
       <MotionProvider>
         <main id="conteudo">

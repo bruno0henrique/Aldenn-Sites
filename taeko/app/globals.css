@@ -353,6 +353,14 @@ input:focus-visible {
   border-bottom: 1px solid rgb(128 86 83 / 20%);
   background: rgb(247 243 237 / 91%);
   backdrop-filter: blur(14px);
+  transform: translateY(0);
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.site-header--hidden {
+  pointer-events: none;
+  transform: translateY(calc(-100% - 2px));
 }
 
 .wordmark {
