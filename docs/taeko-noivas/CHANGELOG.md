@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.29.0 — 2026-09-17
+
+- Emoji removido da saudação do WhatsApp para evitar caracteres incompatíveis em alguns aparelhos.
+- Quebras de linha, tópicos e fechamento da mensagem foram preservados.
+
 ## 0.28.0 — 2026-09-17
 
 - Mensagem do WhatsApp ganhou saudação com emoji discreto e blocos separados por linhas em branco.

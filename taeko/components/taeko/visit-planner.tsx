@@ -68,7 +68,7 @@ export function VisitPlanner() {
       ? new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${eventDate}T12:00:00Z`))
       : "Ainda não definida";
     const message = [
-      "Oi, Taeko! ✨",
+      "Oi, Taeko!",
       "",
       "Gostaria de conversar sobre um vestido feito sob medida.",
       "",

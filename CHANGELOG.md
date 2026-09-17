@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.55.0] - 2026-09-17
+
+### Corrigido
+
+- Emoji incompatível foi removido da saudação preparada para o WhatsApp, preservando a organização da mensagem.
+
 ## [0.54.0] - 2026-09-17
 
 ### Alterado

@@ -1,6 +1,6 @@
 # Taeko Noivas — planejamento do site
 
-Versão documental: 0.28.0 • Data: 17/09/2026 • Estado: demonstração implementada e publicada.
+Versão documental: 0.29.0 • Data: 17/09/2026 • Estado: demonstração implementada e publicada.
 
 O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
 
@@ -18,7 +18,7 @@ A abertura declara que a Taeko cria vestidos sob medida para noivas, debutantes 
 
 O card de noivas usa um ensaio editorial próprio com modelo loira de olhos claros, olhar suave para a esquerda, véu e vestido branco de renda com saia ampla. A composição reforça imediatamente a leitura nupcial e preserva espaço para o texto na base do card.
 
-A redação fala diretamente com a visitante de forma serena e acolhedora, sem frases técnicas sobre a interface. O planejador funciona como o começo de uma conversa: pergunta sobre o momento, o estilo, a etapa da escolha e, opcionalmente, a data do evento. A mensagem começa com uma saudação breve, separa contexto e escolhas em blocos e apresenta cada resposta em um tópico antes do fechamento. A legenda sobre a fotografia do processo usa texto marfim sobre um degradê escuro para manter a leitura em diferentes telas.
+A redação fala diretamente com a visitante de forma serena e acolhedora, sem frases técnicas sobre a interface. O planejador funciona como o começo de uma conversa: pergunta sobre o momento, o estilo, a etapa da escolha e, opcionalmente, a data do evento. A mensagem começa com uma saudação breve em texto, separa contexto e escolhas em blocos e apresenta cada resposta em um tópico antes do fechamento. A legenda sobre a fotografia do processo usa texto marfim sobre um degradê escuro para manter a leitura em diferentes telas.
 
 O material quadro a quadro foi retirado temporariamente da experiência porque a troca de imagens ainda apresentava flickers em uso real. A seção usa agora uma fotografia editorial estática criada em composições próprias para desktop e celular, com foco na renda e no acabamento do vestido. O GSAP faz somente uma entrada curta da fotografia e do texto, sem pinagem, canvas ou progresso vinculado continuamente à rolagem. Os quadros e o processamento permanecem disponíveis para uma futura retomada, mas não são carregados pela página.
 
