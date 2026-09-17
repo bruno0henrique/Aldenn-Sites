@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## [0.56.0] - 2026-09-17
+
+### Adicionado
+
+- Modelo independente para lojas de noivas criado a partir da base visual da Taeko.
+- Marca fictícia Maison Amora, conteúdo demonstrativo, endereço ilustrativo na Liberdade e contatos direcionados à Aldenn.
+
+### Alterado
+
+- Componentes, metadados, rotas, eventos, arquivos e documentação foram desvinculados da Taeko no novo projeto.
+
 ## [0.55.0] - 2026-09-17
 
 ### Corrigido

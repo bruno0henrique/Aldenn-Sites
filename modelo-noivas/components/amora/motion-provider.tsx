@@ -1,0 +1,64 @@
+"use client";
+import { useEffect, useRef } from "react";
+export function MotionProvider({ children }: { children: React.ReactNode }) {
+ const wrapper = useRef<HTMLDivElement>(null);
+ useEffect(() => {
+  let dispose: (() => void) | undefined;
+  let cancelled = false;
+  async function setup() {
+   const [{ gsap }, { ScrollTrigger }, { ScrollSmoother }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger"), import("gsap/ScrollSmoother")]);
+   if (cancelled || !wrapper.current) return;
+   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+   const mm = gsap.matchMedia();
+   mm.add({ desktop: "(min-width: 1001px) and (pointer: fine)", motion: "(prefers-reduced-motion: no-preference)" }, (context) => {
+    if (!context.conditions?.motion) return;
+    const smoother = context.conditions.desktop ? ScrollSmoother.create({ wrapper: wrapper.current!, content: wrapper.current!.firstElementChild as HTMLElement, smooth: 1, smoothTouch: 0, effects: false }) : null;
+    gsap.from(".hero-reveal", { y: 22, opacity: 0, stagger: 0.09, duration: 0.85, ease: "power2.out", clearProps: "all" });
+    gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
+     gsap.from(element, { y: 25, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "all", scrollTrigger: { trigger: element, start: "top 93%", once: true } });
+    });
+    const editorialScene = document.querySelector<HTMLElement>("[data-editorial-scene]");
+    const editorialMedia = editorialScene?.querySelector<HTMLElement>("[data-editorial-media]");
+    const editorialCopy = editorialScene?.querySelector<HTMLElement>("[data-editorial-copy]");
+    if (editorialScene && editorialMedia && editorialCopy) {
+     const editorialTimeline = gsap.timeline({
+      scrollTrigger: { trigger: editorialScene, start: "top 82%", once: true },
+     });
+     editorialTimeline
+      .from(editorialMedia, { scale: 1.025, opacity: 0.82, duration: 1.5, ease: "power2.out", clearProps: "all" })
+      .from(editorialCopy, { x: 28, opacity: 0, duration: 1.05, ease: "power2.out", clearProps: "all" }, 0.32);
+    }
+    const scrollToTarget = (target: HTMLElement, smooth = true) => {
+     if (!smoother) return;
+     smoother.scrollTo(target, smooth, "top 116px");
+    };
+    const navigate = (event: MouseEvent) => {
+     if (!smoother || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+     const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
+     if (!anchor?.hash) return;
+     const target = document.getElementById(decodeURIComponent(anchor.hash.slice(1)));
+     if (!target) return;
+     event.preventDefault();
+     history.pushState(null, "", anchor.hash);
+     scrollToTarget(target);
+     const previousTabIndex = target.getAttribute("tabindex");
+     target.tabIndex = -1;
+     target.focus({ preventScroll: true });
+     if (previousTabIndex === null) target.removeAttribute("tabindex");
+     else target.setAttribute("tabindex", previousTabIndex);
+    };
+    document.addEventListener("click", navigate);
+    if (smoother && location.hash) {
+     const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+     if (initialTarget) requestAnimationFrame(() => scrollToTarget(initialTarget, false));
+    }
+    return () => { document.removeEventListener("click", navigate); smoother?.kill(); };
+   });
+   document.fonts.ready.then(() => { if (!cancelled) ScrollTrigger.refresh(); });
+   dispose = () => mm.revert();
+  }
+  setup().catch(() => { /* Native page remains usable without motion. */ });
+  return () => { cancelled = true; dispose?.(); };
+ }, []);
+ return <div ref={wrapper} id="smooth-wrapper"><div id="smooth-content">{children}</div></div>;
+}

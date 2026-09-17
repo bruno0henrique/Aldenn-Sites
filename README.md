@@ -1,6 +1,6 @@
 # Projetos de clientes: Aldenn Sites
 
-Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/` e não compartilha conteúdo ou regras de negócio com a Belleland.
+Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/` e reaproveita somente a base visual e técnica da demonstração.
 
 ## Belleland Closet
 
@@ -27,3 +27,7 @@ Os requisitos aprovados da Belleland estão em [docs/REQUISITOS-APROVADOS.md](do
 ## Taeko Noivas
 
 A demonstração editorial está em `taeko/`. O planejamento e o contrato para a futura sequência de quadros estão em [docs/taeko-noivas/README.md](docs/taeko-noivas/README.md).
+
+## Modelo para lojas de noivas
+
+O projeto independente em `modelo-noivas/` apresenta a marca fictícia Maison Amora, sem dados ou vínculos com a Taeko. Seu registro de escopo está em [docs/modelo-noivas/README.md](docs/modelo-noivas/README.md).
