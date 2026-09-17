@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.53.0] - 2026-09-17
+
+### Alterado
+
+- Anúncio da Aldenn Sites ganhou uma segunda direção visual mais editorial e humana.
+- Mockup 3D e efeitos artificiais foram substituídos por tipografia, respiro e uma apresentação baseada em projeto real.
+- Arquivo-fonte e rotina de renderização determinística permitem editar a peça sem nova geração por IA.
+
 ## [0.52.0] - 2026-09-17
 
 ### Adicionado
