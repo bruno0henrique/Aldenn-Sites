@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.28.0 — 2026-09-17
+
+- Mensagem do WhatsApp ganhou saudação com emoji discreto e blocos separados por linhas em branco.
+- Ocasião, estilo, etapa e data agora aparecem como tópicos, seguidos de um pedido gentil pelos próximos passos.
+
 ## 0.27.0 — 2026-09-17
 
 - Parágrafo da abertura ganhou largura responsiva menor para não avançar sobre o vestido.

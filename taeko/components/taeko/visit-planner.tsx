@@ -68,14 +68,17 @@ export function VisitPlanner() {
       ? new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${eventDate}T12:00:00Z`))
       : "Ainda não definida";
     const message = [
-      "Olá! Conheci o trabalho da Taeko pelo site e gostaria de conversar sobre um vestido.",
+      "Oi, Taeko! ✨",
       "",
-      `Ocasião: ${moment}`,
-      `Estilo: ${preference}`,
-      `Etapa da escolha: ${stage}`,
-      `Data do evento: ${formattedDate}`,
+      "Gostaria de conversar sobre um vestido feito sob medida.",
       "",
-      "Gostaria de entender quais possibilidades combinam com o que imagino.",
+      "Estas são as minhas escolhas:",
+      `• Ocasião: ${moment}`,
+      `• Estilo: ${preference}`,
+      `• Etapa da escolha: ${stage}`,
+      `• Data do evento: ${formattedDate}`,
+      "",
+      "Quando puder, gostaria de saber os próximos passos.",
     ].join("\n");
     return `${contact.whatsapp}?text=${encodeURIComponent(message)}`;
   }, [completed, eventDate, moment, preference, stage]);

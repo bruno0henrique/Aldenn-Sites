@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.54.0] - 2026-09-17
+
+### Alterado
+
+- Mensagem preparada pelo formulário da Taeko ganhou saudação acolhedora, respiros entre os blocos e escolhas organizadas em tópicos.
+- Fechamento da conversa passou a pedir os próximos passos de forma mais natural.
+
 ## [0.53.0] - 2026-09-17
 
 ### Alterado
