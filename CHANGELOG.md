@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.51.0] - 2026-09-17
+
+### Corrigido
+
+- Texto descritivo da abertura ganhou uma largura mais segura para não avançar sobre o vestido.
+- Degradê claro foi prolongado com suavidade atrás do conteúdo, melhorando a leitura sem esconder a fotografia.
+
 ## [0.50.0] - 2026-09-16
 
 ### Alterado

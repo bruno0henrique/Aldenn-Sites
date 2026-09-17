@@ -1,5 +1,10 @@
 # Histórico — Taeko Noivas
 
+## 0.27.0 — 2026-09-17
+
+- Parágrafo da abertura ganhou largura responsiva menor para não avançar sobre o vestido.
+- Degradê claro foi prolongado atrás dos textos, melhorando o contraste sem criar uma caixa visível.
+
 ## 0.26.0 — 2026-09-16
 
 - Cabeçalho passa a desaparecer ao rolar para baixo e reaparecer ao rolar para cima ou retornar ao topo.

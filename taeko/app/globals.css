@@ -459,10 +459,11 @@ input:focus-visible {
 .hero-shade {
   background: linear-gradient(
     90deg,
-    rgb(239 231 221 / 96%) 0%,
-    rgb(239 231 221 / 80%) 30%,
-    rgb(239 231 221 / 30%) 55%,
-    transparent 74%
+    rgb(239 231 221 / 98%) 0%,
+    rgb(239 231 221 / 94%) 32%,
+    rgb(239 231 221 / 72%) 50%,
+    rgb(239 231 221 / 24%) 66%,
+    transparent 79%
   );
 }
 
@@ -495,11 +496,12 @@ h1 > span {
 }
 
 .hero-description {
-  max-width: 650px;
+  max-width: min(560px, 44vw);
   margin: 31px 0 27px;
   color: #55463d;
   font-size: 16px;
   line-height: 1.75;
+  text-shadow: 0 1px 0 rgb(247 243 237 / 72%);
 }
 
 .hero-actions {
@@ -1248,6 +1250,10 @@ footer > span {
     padding-left: 6%;
   }
 
+  .hero-description {
+    max-width: 450px;
+  }
+
   .section-pad {
     padding: 85px 6%;
   }
@@ -1366,6 +1372,7 @@ footer > span {
   }
 
   .hero-description {
+    max-width: 100%;
     margin: 22px 0 19px;
     font-size: 15px;
     line-height: 1.65;
