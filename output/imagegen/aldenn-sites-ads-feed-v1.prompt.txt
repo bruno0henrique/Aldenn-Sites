@@ -1,0 +1,14 @@
+Use case: ads-marketing
+Asset type: anúncio vertical para Meta Ads / Instagram Feed, proporção 4:5, peça final profissional em português do Brasil
+Primary request: criar um post sofisticado e altamente legível para divulgar o serviço de criação de sites da Aldenn Sites para pequenos negócios e profissionais. A ideia visual central é transformar uma presença digital comum em uma presença profissional.
+Scene/backdrop: fundo grafite quase preto com gradiente sutil azul-violeta e leve textura premium; composição limpa, tecnológica e elegante. Ao centro-direita, notebook e smartphone realistas exibindo interfaces modernas de um site fictício, sem marcas de terceiros; telas com detalhes em azul elétrico e violeta.
+Style/medium: publicidade digital premium, mockup 3D fotorrealista, direção de arte minimalista, acabamento de agência contemporânea.
+Composition/framing: formato 1080 x 1350. Hierarquia forte. Marca pequena no topo; título grande ocupando o terço superior esquerdo; mockups no centro-direita; três benefícios curtos alinhados no meio inferior; botão/CTA destacado no rodapé. Manter margens de segurança generosas para Ads.
+Lighting/mood: iluminação de estúdio dramática e refinada, reflexos suaves, sensação de confiança, tecnologia e crescimento.
+Color palette: grafite, preto, branco, azul elétrico e violeta; alto contraste e excelente leitura.
+Text (verbatim): "ALDENN SITES"; "Seu negócio merece um site que vende por você."; "Design profissional"; "Rápido e responsivo"; "Feito para converter"; "PEÇA SEU ORÇAMENTO".
+Typography: sans-serif geométrica, moderna e muito legível; título em branco com destaque em azul elétrico para as palavras "site" e "vende"; benefícios com pequenos ícones simples; CTA em botão azul-violeta sólido.
+Constraints: reproduzir todo o texto exatamente como escrito, com acentos corretos; não adicionar preço, desconto, prazo, número de telefone, URL ou promessa de resultado garantido; não usar marcas de terceiros; não criar texto miúdo ilegível; visual deve funcionar em tela de celular.
+Avoid: excesso de elementos, aparência de template barato, pessoas, cifrões, gráficos de crescimento, erros de ortografia, texto em inglês, logotipos inventados, marcas d'água.
+
+Modo utilizado: ferramenta integrada de geração de imagens.

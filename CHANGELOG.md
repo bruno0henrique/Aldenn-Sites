@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.52.0] - 2026-09-17
+
+### Adicionado
+
+- Criativo vertical 4:5 para campanha da Aldenn Sites em Meta Ads.
+- Copy de campanha com texto principal, título, descrição e chamada para orçamento.
+- Prompt de geração preservado junto ao arquivo final para permitir novas variações.
+
 ## [0.51.0] - 2026-09-17
 
 ### Corrigido
