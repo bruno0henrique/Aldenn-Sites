@@ -1,6 +1,6 @@
 # Projetos de clientes: Aldenn Sites
 
-Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/` e reaproveita somente a base visual e técnica da demonstração.
+Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/`. A vitrine real da FF Moda Festa é mantida no projeto independente `modelo-moda-festa/`.
 
 ## Belleland Closet
 
@@ -31,3 +31,7 @@ A demonstração editorial está em `taeko/`. O planejamento e o contrato para a
 ## Modelo para lojas de noivas
 
 O projeto independente em `modelo-noivas/` apresenta a marca fictícia Maison Amora, sem dados ou vínculos com a Taeko. Seu registro de escopo está em [docs/modelo-noivas/README.md](docs/modelo-noivas/README.md).
+
+## FF Moda Festa
+
+A demonstração comercial da FF Moda Festa está publicada em [aldenn.com.br/demonstracao-ffmoda](https://www.aldenn.com.br/demonstracao-ffmoda). O conteúdo, as fontes oficiais e os limites de escopo estão registrados em [docs/ff-moda-festa/README.md](docs/ff-moda-festa/README.md).

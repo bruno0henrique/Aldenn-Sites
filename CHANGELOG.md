@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## [0.58.0] - 2026-09-18
+
+### Adicionado
+
+- Demonstração real da FF Moda Festa publicada em `https://www.aldenn.com.br/demonstracao-ffmoda`.
+- Vitrine mobile-first, galeria, vídeo, agendamento por WhatsApp, mapa e catálogo oficial.
+
+### Corrigido
+
+- Ação de WhatsApp removida da área do rosto da modelo.
+- Botão flutuante ampliado e atualizado com o símbolo oficial do WhatsApp.
+
 ## [0.57.0] - 2026-09-18
 
 ### Alterado
