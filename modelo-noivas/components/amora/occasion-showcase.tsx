@@ -121,9 +121,9 @@ export function OccasionShowcase() {
         {occasions.map((occasion) => (
           <article className="occasion-card" key={occasion.label} data-reveal>
             <picture>
-              <source type="image/avif" srcSet={`/media/occasion-${occasion.image}.avif`} />
+              <source type="image/avif" srcSet={`/demonstracao-noiva/media/occasion-${occasion.image}.avif`} />
               <img
-                src={`/media/occasion-${occasion.image}.webp`}
+                src={`/demonstracao-noiva/media/occasion-${occasion.image}.webp`}
                 alt={occasion.alt}
                 width={512}
                 height={820}

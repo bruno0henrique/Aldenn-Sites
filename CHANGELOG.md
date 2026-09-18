@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.57.0] - 2026-09-18
+
+### Alterado
+
+- Modelo fictício Maison Amora preparado para publicação isolada em `/demonstracao-noiva` no site da Aldenn.
+- Caminhos de mídia, metadados sociais, endereço canônico e favicon foram ajustados para o subcaminho público.
+
 ## [0.56.0] - 2026-09-17
 
 ### Adicionado

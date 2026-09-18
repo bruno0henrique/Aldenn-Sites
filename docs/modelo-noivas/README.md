@@ -1,6 +1,6 @@
 # Maison Amora — modelo para lojas de noivas
 
-Versão: 0.1.0 · Data: 17/09/2026 · Estado: demonstração fictícia.
+Versão: 0.2.0 · Data: 18/09/2026 · Estado: demonstração fictícia publicada.
 
 ## Escopo aprovado
 
@@ -25,4 +25,4 @@ Versão: 0.1.0 · Data: 17/09/2026 · Estado: demonstração fictícia.
 
 ## Publicação
 
-O projeto é independente em `modelo-noivas/`, usa exportação estática e possui seu próprio registro de hospedagem. A demonstração da Taeko permanece intacta em `taeko/`.
+O projeto é independente em `modelo-noivas/`, usa exportação estática e é publicado em `https://www.aldenn.com.br/demonstracao-noiva/`. A demonstração da Taeko permanece intacta em `taeko/`.

@@ -94,7 +94,7 @@ export default function Home() {
           <section className="process section-pad" id="processo" aria-labelledby="process-title">
             <div className="process-visual" data-reveal>
               <Image
-                src="/media/editorial-portrait.webp"
+                src="/demonstracao-noiva/media/editorial-portrait.webp"
                 alt="Detalhes de um vestido de noiva durante a criação"
                 width={1024}
                 height={1536}

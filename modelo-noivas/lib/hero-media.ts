@@ -2,7 +2,7 @@ export type SequenceSource = { poster: string; framePattern?: string; frameCount
 export type HeroMedia = { mode: "poster" | "sequence"; desktop: SequenceSource; mobile: SequenceSource; scrollDistance: number };
 export const heroMedia: HeroMedia = {
  mode: "poster",
- desktop: { poster: "/media/hero-editorial.webp", focalPoint: [0.7, 0.5] },
- mobile: { poster: "/media/hero-editorial.webp", focalPoint: [0.72, 0.5] },
+ desktop: { poster: "/demonstracao-noiva/media/hero-editorial.webp", focalPoint: [0.7, 0.5] },
+ mobile: { poster: "/demonstracao-noiva/media/hero-editorial.webp", focalPoint: [0.72, 0.5] },
  scrollDistance: 1.4,
 };

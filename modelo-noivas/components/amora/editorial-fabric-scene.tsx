@@ -6,16 +6,16 @@ export function EditorialFabricScene() {
           <source
             media="(max-width: 760px)"
             type="image/avif"
-            srcSet="/media/editorial-fabric-mobile.avif"
+            srcSet="/demonstracao-noiva/media/editorial-fabric-mobile.avif"
           />
           <source
             media="(max-width: 760px)"
             type="image/webp"
-            srcSet="/media/editorial-fabric-mobile.webp"
+            srcSet="/demonstracao-noiva/media/editorial-fabric-mobile.webp"
           />
-          <source type="image/avif" srcSet="/media/editorial-fabric-desktop.avif" />
+          <source type="image/avif" srcSet="/demonstracao-noiva/media/editorial-fabric-desktop.avif" />
           <img
-            src="/media/editorial-fabric-desktop.webp"
+            src="/demonstracao-noiva/media/editorial-fabric-desktop.webp"
             alt="Detalhes de renda e bordado em um vestido de noiva"
             width={1672}
             height={941}
