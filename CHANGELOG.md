@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.58.1] - 2026-09-18
+
+### Segurança
+
+- Cabeçalhos CSP, anti-iframe, MIME sniffing, referência e permissões aplicados também às demonstrações estáticas publicadas pela Vercel.
+
 ## [0.58.0] - 2026-09-18
 
 ### Adicionado
