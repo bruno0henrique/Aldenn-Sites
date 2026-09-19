@@ -251,3 +251,14 @@
 - Decisão: Separar as políticas de leitura anônima e autenticada da seleção de Novidades. O catálogo publicado permanece independente dessa configuração opcional.
 - Motivo: Toda peça aprovada deve aparecer para qualquer visitante, mantendo dados administrativos protegidos.
 - Impactos: Visitantes leem somente produtos publicados e suas configurações públicas; revisões, contas e painel continuam restritos.
+
+## DEC-024: Isolamento do projeto Vercel
+
+- Data: 2026-09-19
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Uma ligação local incorreta publicou a Belleland no projeto Vercel do site institucional da Aldenn.
+- Decisão: Vincular este repositório exclusivamente ao projeto Vercel `aldenn-sites` e manter `.vercel` fora do versionamento.
+- Motivo: Impedir que uma publicação da Belleland substitua `aldenn.com.br` ou outras rotas institucionais.
+- Impactos: Publicações locais deste repositório usam o projeto `aldenn-sites`; o site institucional permanece isolado no projeto `aldenn`.
+- Substitui: Não se aplica.

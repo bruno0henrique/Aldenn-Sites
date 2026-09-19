@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.58.2] - 2026-09-19
+
+### Corrigido
+
+- Vínculo local da Vercel movido do projeto institucional `aldenn` para o projeto correto `aldenn-sites`.
+- Diretório `.vercel` ignorado e destino de publicação documentado para evitar que a Belleland substitua novamente o site institucional.
+
 ## [0.58.1] - 2026-09-18
 
 ### Segurança

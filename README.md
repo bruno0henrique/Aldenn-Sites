@@ -4,6 +4,10 @@ Este repositório mantém projetos independentes. O aplicativo em `site/` perten
 
 ## Belleland Closet
 
+### Publicação na Vercel
+
+Este repositório deve ser vinculado exclusivamente ao projeto Vercel `aldenn-sites` (`prj_71WVeaHZOX71NTKImubStZU34NHv`). O projeto `aldenn` pertence ao site institucional e não pode receber publicações deste repositório.
+
 Catálogo mobile-first de roupas com reserva direcionada ao WhatsApp e painel de revisões integrado ao Supabase.
 
 ## Desenvolvimento
