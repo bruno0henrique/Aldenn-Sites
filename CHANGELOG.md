@@ -1,5 +1,23 @@
 # Histórico de versões
 
+## [0.59.0] - 2026-09-19
+
+### Adicionado
+
+- Vitrine editorial da FF Moda Festa construída com os 20 vestidos já presentes no projeto.
+- Detalhe imersivo de produto com fotografia ao fundo, card sobreposto e consulta contextual pelo WhatsApp.
+
+### Alterado
+
+- Enquadramento do hero preserva a cabeça da modelo em telas largas.
+- Formulário exige nome e ocasião, mantém a data opcional e remove a seleção de horário.
+- Botões recebem estados de preenchimento, efeito de relevo e interação inspirada na referência da Taeko.
+- Paleta da demonstração foi suavizada e o indicador “01 03” removido.
+
+### Decisão
+
+- A vitrine permanece local nesta versão; banco de dados fica reservado para uma etapa futura caso o site seja comercializado.
+
 ## [0.58.2] - 2026-09-19
 
 ### Corrigido
