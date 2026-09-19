@@ -1,5 +1,15 @@
 # Histórico de versões
 
+## [0.61.0] - 2026-09-19
+
+### Adicionado
+
+- Galeria navegável e vestidos relacionados no detalhe da vitrine FF Moda Festa.
+
+### Alterado
+
+- Cabeçalho da vitrine torna-se compacto durante a rolagem.
+
 ## [0.60.0] - 2026-09-19
 
 ### Adicionado
