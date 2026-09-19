@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## [0.61.1] - 2026-09-19
+
+### Corrigido
+
+- Site institucional da Aldenn restaurado como produção de `aldenn.com.br` e `www.aldenn.com.br`.
+- Build da Belleland passa a bloquear publicações direcionadas a qualquer projeto Vercel diferente de `aldenn-sites`.
+
+### Decisão
+
+- `aldenn.com.br` e a raiz `/` ficam permanentemente reservados ao site principal da Aldenn; projetos de clientes e demonstrações permanecem depois dele ou em projetos isolados.
+
 ## [0.61.0] - 2026-09-19
 
 ### Adicionado

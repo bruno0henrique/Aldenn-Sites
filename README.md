@@ -8,6 +8,8 @@ Este repositório mantém projetos independentes. O aplicativo em `site/` perten
 
 Este repositório deve ser vinculado exclusivamente ao projeto Vercel `aldenn-sites` (`prj_71WVeaHZOX71NTKImubStZU34NHv`). O projeto `aldenn` pertence ao site institucional e não pode receber publicações deste repositório.
 
+O build da Belleland valida automaticamente o ID do projeto e é interrompido caso seja direcionado a qualquer projeto diferente de `aldenn-sites`. `aldenn.com.br` e a rota `/` são exclusivos do site principal da Aldenn; demonstrações devem usar caminhos posteriores ou projetos isolados.
+
 Catálogo mobile-first de roupas com reserva direcionada ao WhatsApp e painel de revisões integrado ao Supabase.
 
 ## Desenvolvimento

@@ -262,3 +262,14 @@
 - Motivo: Impedir que uma publicação da Belleland substitua `aldenn.com.br` ou outras rotas institucionais.
 - Impactos: Publicações locais deste repositório usam o projeto `aldenn-sites`; o site institucional permanece isolado no projeto `aldenn`.
 - Substitui: Não se aplica.
+
+## DEC-025: Proteção da raiz institucional
+
+- Data: 2026-09-19
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: Uma nova publicação da Belleland voltou a substituir a página inicial de `aldenn.com.br`, apesar da correção do vínculo local.
+- Decisão: Reservar permanentemente `aldenn.com.br` e a raiz `/` ao site institucional da Aldenn. Projetos de clientes e demonstrações só podem aparecer em projetos separados ou em caminhos posteriores à raiz. O build da Belleland deve falhar quando executado fora do projeto Vercel `aldenn-sites`.
+- Motivo: Impedir que um vínculo local incorreto volte a substituir o site principal.
+- Impactos: Publicações da Belleland validam o ID do projeto antes do build; `aldenn` permanece como projeto exclusivo do site institucional.
+- Substitui: Complementa a DEC-024.

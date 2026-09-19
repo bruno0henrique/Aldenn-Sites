@@ -1,8 +1,9 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.25.1
+Versão: 0.25.2
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
+- A Belleland é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
 - Visual claro, criativo e fiel às referências da Belleland.
 - A marca principal usa o SVG enviado pela cliente em 2026-09-02, preservado como vetor e com a prancheta ajustada para os cabeçalhos.
 - Paleta principal: `#F8E8A6`, `#E73F8C`, `#7B4F3F`, `#F7F1EA`.
