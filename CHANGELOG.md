@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## [0.60.0] - 2026-09-19
+
+### Adicionado
+
+- Vitrine completa da FF Moda Festa em página própria, com filtros de modelagem, cor e preço e ordenação.
+
+### Alterado
+
+- Landing da FF Moda Festa preserva o carrossel e direciona o acesso à vitrine dedicada.
+- CTA de disponibilidade recebeu paleta mais clara e o campo de data foi corrigido para telas estreitas.
+
 ## [0.59.0] - 2026-09-19
 
 ### Adicionado
