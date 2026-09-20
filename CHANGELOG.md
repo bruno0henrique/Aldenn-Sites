@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.62.2] - 2026-09-20
+
+### Ajustado
+
+- Sombras dos CTAs da FF Moda Festa foram reduzidas para uma profundidade vertical mais discreta.
+
 ## [0.62.1] - 2026-09-20
 
 ### Alterado
