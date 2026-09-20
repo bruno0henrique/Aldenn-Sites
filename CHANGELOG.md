@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.63.0] - 2026-09-20
+
+### Alterado
+
+- Detalhe dos vestidos da FF Moda Festa passa a seguir um padrão completo de página de produto, adaptado ao fluxo real de locação.
+
 ## [0.62.2] - 2026-09-20
 
 ### Ajustado
