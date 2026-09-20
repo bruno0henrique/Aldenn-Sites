@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.62.0] - 2026-09-20
+
+### Alterado
+
+- FF Moda Festa recebe movimento progressivo e suavização de rolagem com GSAP, seguindo a experiência já aplicada na Taeko.
+
 ## [0.61.1] - 2026-09-19
 
 ### Corrigido
