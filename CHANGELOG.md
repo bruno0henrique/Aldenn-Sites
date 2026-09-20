@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.62.1] - 2026-09-20
+
+### Alterado
+
+- CTAs da FF Moda Festa recebem novo efeito de relevo e preenchimento interativo na paleta da marca.
+
 ## [0.62.0] - 2026-09-20
 
 ### Alterado
