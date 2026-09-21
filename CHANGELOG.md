@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## [0.63.1] - 2026-09-21
+
+### Adicionado
+
+- Belleland recebe dez peças ilustrativas no modo demonstração para testar a grade, o filtro, Novidades e o carrossel de chegada.
+- Prévia independente em `/demo`, com detalhes demonstrativos sem reserva e aviso visível de conteúdo fictício.
+
+### Segurança
+
+- Nenhum produto ou foto de teste foi inserido no Supabase; a vitrine real permanece inalterada.
+
 ## [0.63.0] - 2026-09-20
 
 ### Alterado

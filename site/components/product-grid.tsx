@@ -7,11 +7,13 @@ export function ProductGrid({
   isLoading,
   emptyCategory,
   emptySearchTerm,
+  productHref = (product) => `/produto/${product.slug}`,
 }: {
   products: Product[];
   isLoading: boolean;
   emptyCategory?: string | null;
   emptySearchTerm?: string;
+  productHref?: (product: Product) => string;
 }) {
   if (isLoading)
     return (
@@ -55,7 +57,7 @@ export function ProductGrid({
       {products.map((product) => (
         <a
           className="product-card"
-          href={`/produto/${product.slug}`}
+          href={productHref(product)}
           key={product.id}
           data-reveal
         >

@@ -273,3 +273,14 @@
 - Motivo: Impedir que um vínculo local incorreto volte a substituir o site principal.
 - Impactos: Publicações da Belleland validam o ID do projeto antes do build; `aldenn` permanece como projeto exclusivo do site institucional.
 - Substitui: Complementa a DEC-024.
+
+## DEC-026: Amostras isoladas para validar a vitrine Belleland
+
+- Data: 2026-09-21
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A loja real tem poucas peças e não oferece volume suficiente para avaliar grade e carrosséis.
+- Decisão: Disponibilizar dez peças fictícias com fotos licenciadas apenas na demonstração, em `/demo` e no painel em modo de teste. Identificar imagens e preços como ilustrativos, impedir reserva e não persistir amostras no Supabase.
+- Motivo: Permitir ajustes visuais sem confundir amostras com estoque disponível.
+- Impactos: A produção mantém somente os produtos aprovados; a prévia não entra nos mecanismos de busca e pode ser descartada sem afetar dados reais.
+- Substitui: Não se aplica.

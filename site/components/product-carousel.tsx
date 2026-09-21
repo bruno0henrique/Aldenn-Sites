@@ -16,11 +16,15 @@ export function ProductCarousel({
   products,
   isLoading = false,
   emptyCategory,
+  productHref = (product) => `/produto/${product.slug}`,
+  helpHref = '#fale-com-a-gente',
 }: {
   title: string;
   products: Product[];
   isLoading?: boolean;
   emptyCategory?: string;
+  productHref?: (product: Product) => string;
+  helpHref?: string | null;
 }) {
   const isNews = title === 'Novidades';
 
@@ -74,7 +78,7 @@ export function ProductCarousel({
           <span>Seleção Belleland</span>
           <h2 id={`rail-${title}`}>{title}</h2>
         </div>
-        <a href="#fale-com-a-gente">Precisa de ajuda?</a>
+        {helpHref && <a href={helpHref}>Precisa de ajuda?</a>}
       </div>
       <Carousel
         className="product-carousel"
@@ -92,7 +96,7 @@ export function ProductCarousel({
             >
               <a
                 className={`product-card${isNews ? ' product-card--news' : ''}`}
-                href={`/produto/${product.slug}`}
+                href={productHref(product)}
               >
                 <div className="product-image">
                   <img

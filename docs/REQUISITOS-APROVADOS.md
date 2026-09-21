@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.25.2
+Versão: 0.25.3
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - A Belleland é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
@@ -32,6 +32,7 @@ Versão: 0.25.2
 - Proprietária e administradores entram com e-mail e senha via Supabase e revisam capturas antes de publicar.
 - Enquanto o site estiver em avaliação privada, o painel oferece modo demonstração sem login e sem acesso aos dados reais.
 - O modo demonstração permite testar revisão, edição, descarte, restauração e publicação com dados locais descartáveis.
+- A vitrine de demonstração em `/demo` apresenta dez peças fictícias com fotos ilustrativas para testar grade, filtro e os dois carrosséis; não consulta nem altera o catálogo real e não oferece reserva.
 - A tela permite criar conta por e-mail no Supabase. Novas contas não recebem permissão de proprietária automaticamente.
 - Qualquer visitante pode criar conta e entrar. Somente uma conta pode ser proprietária, mas outras contas podem receber o papel de administradora em `staff_members`.
 - Contas autenticadas possuem área própria para nome, telefone e preferência de comunicações promocionais.

@@ -14,7 +14,13 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 
-export function HeroCarousel({ banners }: { banners: HomeBanner[] }) {
+export function HeroCarousel({
+  banners,
+  demo = false,
+}: {
+  banners: HomeBanner[];
+  demo?: boolean;
+}) {
   const [api, setApi] = useState<CarouselApi>();
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -38,7 +44,7 @@ export function HeroCarousel({ banners }: { banners: HomeBanner[] }) {
     return () => window.clearInterval(interval);
   }, [api, paused, slideCount]);
 
-  if (!banners.length) return <DefaultHero />;
+  if (!banners.length) return <DefaultHero demo={demo} />;
 
   return (
     <section className="hero-carousel-shell" aria-label="Produtos em destaque">
@@ -57,7 +63,7 @@ export function HeroCarousel({ banners }: { banners: HomeBanner[] }) {
             aria-hidden={selected !== 0}
             inert={selected !== 0}
           >
-            <DefaultHero />
+            <DefaultHero demo={demo} />
           </CarouselItem>
           {banners.map((banner, bannerIndex) => {
             const slideIndex = bannerIndex + 1;
@@ -79,7 +85,7 @@ export function HeroCarousel({ banners }: { banners: HomeBanner[] }) {
                 aria-hidden={selected !== 2}
                 inert={selected !== 2}
               >
-                <DefaultHero titleId="hero-title-repeat" />
+                <DefaultHero titleId="hero-title-repeat" demo={demo} />
               </CarouselItem>
               <CarouselItem
                 className={`hero-banner-item ${selected === 3 ? 'is-active' : ''}`}
@@ -144,7 +150,13 @@ function BannerHero({ banner }: { banner: HomeBanner }) {
   );
 }
 
-function DefaultHero({ titleId = 'hero-title' }: { titleId?: string }) {
+function DefaultHero({
+  titleId = 'hero-title',
+  demo = false,
+}: {
+  titleId?: string;
+  demo?: boolean;
+}) {
   return (
     <section className="hero-shell" aria-labelledby="hero-title">
       <div className="hero-copy" data-reveal>
@@ -163,17 +175,23 @@ function DefaultHero({ titleId = 'hero-title' }: { titleId?: string }) {
           momentos.
         </p>
         <div className="hero-actions">
-          <a className="button-pop button-primary" href="#colecao">
+          <a className="button-pop button-primary" href={demo ? '/demo#colecao' : '#colecao'}>
             Ver o First Drop <Sparkles size={17} />
           </a>
-          <a
-            className="button-pop button-outline"
-            href={whatsappUrl()}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageCircle size={18} /> Pedir pelo WhatsApp
-          </a>
+          {demo ? (
+            <a className="button-pop button-outline" href="/demo#novidades">
+              Ver novidades de teste
+            </a>
+          ) : (
+            <a
+              className="button-pop button-outline"
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle size={18} /> Pedir pelo WhatsApp
+            </a>
+          )}
         </div>
       </div>
       <div className="hero-art" data-reveal>

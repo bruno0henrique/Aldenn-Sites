@@ -1816,16 +1816,20 @@ footer a:last-child {
   }
   .rail-arrow {
     display: inline-flex !important;
-    top: -46px !important;
+    z-index: 2;
+    top: 50% !important;
     bottom: auto !important;
-    left: auto !important;
-    right: 0 !important;
+    left: 12px !important;
+    right: auto !important;
+    margin: 0 !important;
+    transform: translateY(-50%);
     border-color: var(--line) !important;
     background: #fffaf7 !important;
     color: var(--pink-dark) !important;
   }
-  .rail-arrow-prev {
-    right: 42px !important;
+  .rail-arrow-next {
+    left: auto !important;
+    right: 12px !important;
   }
   .storefront-inline-form {
     grid-template-columns: 1fr auto;
@@ -2228,6 +2232,61 @@ footer a:last-child {
   .manual-description-card {
     min-height: 350px;
   }
+}
+
+.brand-header.demo-storefront-header {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-inline: clamp(18px, 5vw, 72px);
+}
+.brand-header.demo-storefront-header > a:nth-child(2) {
+  width: auto;
+}
+.demo-real-link,
+.demo-notice a,
+.demo-footer a {
+  color: var(--pink-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.demo-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 12px 20px;
+  background: #fff3d2;
+  color: #604b36;
+  text-align: center;
+  font-size: 0.82rem;
+}
+.demo-notice strong {
+  color: #7a361f;
+  font-size: 0.73rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.demo-storefront .hero-product-banner img {
+  object-position: center 25%;
+}
+.demo-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 25px clamp(18px, 5vw, 72px);
+  background: #ffe8f0;
+  color: #6a4b54;
+  font-size: 0.83rem;
+}
+.demo-product-page .product-detail {
+  margin-top: 0;
+}
+.demo-not-found {
+  margin: 50px auto;
+  max-width: 600px;
 }
 
 .admin-page {

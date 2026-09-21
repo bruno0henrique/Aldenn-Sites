@@ -28,6 +28,7 @@ import {
   updatePublishedProduct,
 } from '@/lib/admin';
 import { requireSupabase } from '@/lib/supabase';
+import { demoPublishedCaptures } from '@/lib/demo-catalog';
 import type { Capture, Product } from '@/lib/types';
 
 const tabs = [
@@ -85,7 +86,9 @@ function AdminPageContent() {
   const [publishing, setPublishing] = useState<Capture[]>([]);
   const [demoPending, setDemoPending] = useState<Capture[]>([demoCapture]);
   const [demoPublishing, setDemoPublishing] = useState<Capture[]>([]);
-  const [demoPublished, setDemoPublished] = useState<Capture[]>([]);
+  const [demoPublished, setDemoPublished] = useState<Capture[]>(
+    demoPublishedCaptures,
+  );
   const [demoIgnored, setDemoIgnored] = useState<Capture[]>([]);
   const [demoBusy, setDemoBusy] = useState(false);
   const [syncMessage, setSyncMessage] = useState('');
@@ -233,7 +236,7 @@ function AdminPageContent() {
   function resetDemo() {
     setDemoPending([demoCapture]);
     setDemoPublishing([]);
-    setDemoPublished([]);
+    setDemoPublished(demoPublishedCaptures);
     setDemoIgnored([]);
     setDemoBusy(false);
     setSyncMessage('Demonstração atualizada.');
@@ -334,8 +337,8 @@ function AdminPageContent() {
           <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
         </a>
         <div>
-          <a className="admin-site-link" href="/" target="_blank">
-            Ver site <ArrowUpRight size={15} />
+          <a className="admin-site-link" href={previewMode ? '/demo' : '/'} target="_blank">
+            {previewMode ? 'Ver vitrine de teste' : 'Ver site'} <ArrowUpRight size={15} />
           </a>
           <button className="icon-button" onClick={logout} aria-label="Sair">
             <LogOut />
