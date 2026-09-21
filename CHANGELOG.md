@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.63.2] - 2026-09-21
+
+### Corrigido
+
+- Fotos reais armazenadas no Supabase voltam a carregar sob a política de segurança do site, mantendo restrição às demais origens.
+
 ## [0.63.1] - 2026-09-21
 
 ### Adicionado

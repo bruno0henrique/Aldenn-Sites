@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.25.3
+Versão: 0.25.4
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - A Belleland é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
