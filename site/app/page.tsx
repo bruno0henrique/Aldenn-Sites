@@ -17,6 +17,7 @@ import {
   getHomeFeaturedProducts,
   getPublishedProducts,
 } from '@/lib/catalog';
+import { demoBanners, demoProducts, withSampleCategories } from '@/lib/demo-catalog';
 import type { Product } from '@/lib/types';
 
 const EMPTY_PRODUCTS: Product[] = [];
@@ -53,7 +54,8 @@ function HomeContent() {
         configured: false,
         products: [],
       }));
-      const shuffledNews = [...publishedProducts];
+      const displayProducts = [...publishedProducts, ...demoProducts];
+      const shuffledNews = [...displayProducts];
 
       for (let index = shuffledNews.length - 1; index > 0; index -= 1) {
         const randomIndex = Math.floor(Math.random() * (index + 1));
@@ -64,9 +66,12 @@ function HomeContent() {
       }
 
       return {
-        products: publishedProducts,
+        products: displayProducts,
         news: featured.configured
-          ? featured.products
+          ? [
+              ...featured.products,
+              ...shuffledNews.filter((product) => product.id < 0),
+            ].slice(0, 10)
           : shuffledNews.slice(0, 10),
       };
     },
@@ -75,12 +80,19 @@ function HomeContent() {
   const newsProducts = catalogData?.news || EMPTY_PRODUCTS;
   const { data: categories = [] } = useQuery({
     queryKey: ['catalog-categories'],
-    queryFn: getCatalogCategories,
+    queryFn: async () => withSampleCategories(await getCatalogCategories()),
   });
   const { data: banners = [] } = useQuery({
     queryKey: ['home-banners'],
     queryFn: getHomeBanners,
   });
+  const showcaseBanners = [
+    ...banners,
+    ...demoBanners.map((banner) => ({
+      ...banner,
+      cta_url: `/produto/${banner.product?.slug}`,
+    })),
+  ];
   const selectedCategory = categories.find(
     (category) => category.slug === selectedSlug,
   );
@@ -134,7 +146,7 @@ function HomeContent() {
       <BrandHeader />
       <AccountToast visible={searchParams.get('conta') === 'conectada'} />
       <MotionScene className="home-content">
-        {isLandingView && <HeroCarousel banners={banners} />}
+        {isLandingView && <HeroCarousel banners={showcaseBanners} />}
         {isSearchView && (
           <section className="search-stage" aria-labelledby="search-title">
             <div className="search-stage-copy">

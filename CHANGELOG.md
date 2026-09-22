@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.63.3] - 2026-09-21
+
+### Alterado
+
+- O ambiente de teste Belleland mostra as dez amostras junto dos produtos reais na página inicial, em Novidades, no carrossel de chegada, na busca e nos filtros.
+- Amostras são identificadas e abrem detalhes sem reserva; os três produtos reais e o Supabase permanecem intactos.
+
 ## [0.63.2] - 2026-09-21
 
 ### Corrigido

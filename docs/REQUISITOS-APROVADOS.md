@@ -1,6 +1,6 @@
 # Requisitos aprovados: Belleland Closet
 
-Versão: 0.25.4
+Versão: 0.25.5
 
 - Site mobile-first de catálogo de roupas, sem checkout ou venda no site.
 - A Belleland é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
@@ -28,7 +28,7 @@ Versão: 0.25.4
 - A mensagem de reserva inclui nome, preço e link público da peça. O WhatsApp usa a prévia do link; não há anexo automático.
 - Instagram `@bellelandcloset` é fonte de captura sob demanda. Ao clicar em Atualizar, publicações ainda não registradas entram na fila, sem exigir hashtag.
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
-- Não usar produtos fictícios. Sem itens publicados, exibir “Em breve, novos produtos”.
+- No catálogo definitivo, não usar produtos fictícios. Durante os testes em `aldenn-sites.vercel.app`, as dez amostras podem aparecer na vitrine principal junto das peças reais, identificadas como amostras e sem reserva. Sem itens reais nem amostras, exibir “Em breve, novos produtos”.
 - Proprietária e administradores entram com e-mail e senha via Supabase e revisam capturas antes de publicar.
 - Enquanto o site estiver em avaliação privada, o painel oferece modo demonstração sem login e sem acesso aos dados reais.
 - O modo demonstração permite testar revisão, edição, descarte, restauração e publicação com dados locais descartáveis.

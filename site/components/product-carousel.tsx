@@ -104,6 +104,7 @@ export function ProductCarousel({
                     alt={product.name}
                     loading="lazy"
                   />
+                  {product.id < 0 && <span>Amostra</span>}
                   {isNews && (
                     <div className="news-card-caption">
                       <NewsPrice

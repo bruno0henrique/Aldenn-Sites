@@ -284,3 +284,14 @@
 - Motivo: Permitir ajustes visuais sem confundir amostras com estoque disponível.
 - Impactos: A produção mantém somente os produtos aprovados; a prévia não entra nos mecanismos de busca e pode ser descartada sem afetar dados reais.
 - Substitui: Não se aplica.
+
+## DEC-027: Amostras visíveis na vitrine principal do ambiente de teste
+
+- Data: 2026-09-21
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A vitrine de teste separada não dava volume à página inicial usada para avaliar o site.
+- Decisão: Em `aldenn-sites.vercel.app`, misturar as dez amostras locais às peças reais na grade, busca, filtros e carrosséis. Identificar as amostras e impedir reserva delas. O catálogo definitivo só terá peças reais.
+- Motivo: Permitir ajustar a apresentação no endereço que está em avaliação sem simular estoque disponível para atendimento.
+- Impactos: As amostras não são persistidas no Supabase e não aparecem para edição na Vitrine administrativa; sua composição permanece versionada no código e poderá ser retirada antes do lançamento definitivo. O projeto e o domínio `aldenn.com.br` não mudam.
+- Substitui: A restrição de visibilidade apenas em `/demo` da DEC-026 durante a fase de teste.

@@ -1,6 +1,6 @@
 # Fotos da vitrine de demonstração Belleland
 
-As dez imagens abaixo são ilustrativas e não representam estoque da Belleland. Os nomes e preços da prévia são fictícios. Cópias locais otimizadas das fotos ficam em `site/public/demo/`, para que a vitrine `/demo` e o painel de teste não dependam do carregamento externo; nada é salvo no Supabase.
+As dez imagens abaixo são ilustrativas e não representam estoque da Belleland. Os nomes e preços são fictícios. Cópias locais otimizadas das fotos ficam em `site/public/demo/`. As amostras aparecem misturadas às peças publicadas na página inicial de teste, além da prévia `/demo`; não são salvas no Supabase nem editáveis pelo painel. As páginas dessas amostras informam que não estão disponíveis para reserva. Retirar ou substituir as amostras antes de tratar o catálogo como estoque real.
 
 Licença: https://www.pexels.com/license/ (uso gratuito em sites; não atribuir endosso dos modelos à loja).
 

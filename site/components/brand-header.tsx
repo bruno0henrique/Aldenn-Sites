@@ -18,6 +18,7 @@ import {
 import { useState } from 'react';
 import { getAccountSnapshot, isStaff } from '@/lib/account';
 import { getCatalogCategories } from '@/lib/catalog';
+import { withSampleCategories } from '@/lib/demo-catalog';
 import { whatsappUrl } from '@/lib/whatsapp';
 import {
   Collapsible,
@@ -39,7 +40,7 @@ export function BrandHeader() {
   });
   const { data: categories = [] } = useQuery({
     queryKey: ['catalog-categories'],
-    queryFn: getCatalogCategories,
+    queryFn: async () => withSampleCategories(await getCatalogCategories()),
   });
   const close = () => setOpen(false);
 

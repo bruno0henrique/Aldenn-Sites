@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useSyncExternalStore } from 'react';
 import { getProduct } from '@/lib/catalog';
+import { demoProducts } from '@/lib/demo-catalog';
 import { formatPrice } from '@/lib/format';
 import { whatsappUrl } from '@/lib/whatsapp';
 
@@ -12,7 +13,9 @@ export default function ProductPage() {
   const params = useParams<{ slug: string }>();
   const { data: product, isLoading } = useQuery({
     queryKey: ['product', params.slug],
-    queryFn: () => getProduct(params.slug),
+    queryFn: () =>
+      demoProducts.find((item) => item.slug === params.slug) ||
+      getProduct(params.slug),
   });
   const [selected, setSelected] = useState(0);
   const pageUrl = useSyncExternalStore(
@@ -53,6 +56,7 @@ export default function ProductPage() {
     price: formatPrice(product.sale_price_cents || product.price_cents),
     url: pageUrl,
   });
+  const isSample = product.id < 0;
   return (
     <main className="surface-page">
       <nav className="simple-nav">
@@ -104,17 +108,24 @@ export default function ProductPage() {
               <p className="product-description">{product.description}</p>
             )}
             <p className="product-note">
-              A reserva é combinada diretamente com a Belleland pelo WhatsApp.
-              Este site não processa pagamentos.
+              {isSample
+                ? 'Amostra de apresentação com foto e preço ilustrativos. Esta peça não está disponível para reserva.'
+                : 'A reserva é combinada diretamente com a Belleland pelo WhatsApp. Este site não processa pagamentos.'}
             </p>
-            <a
-              className="button-pop button-primary full"
-              href={reserve}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MessageCircle size={19} /> Reservar no WhatsApp
-            </a>
+            {isSample ? (
+              <a className="button-pop button-primary full" href="/#colecao">
+                Voltar à coleção
+              </a>
+            ) : (
+              <a
+                className="button-pop button-primary full"
+                href={reserve}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle size={19} /> Reservar no WhatsApp
+              </a>
+            )}
             {product.instagram_url && (
               <a
                 className="back-link"

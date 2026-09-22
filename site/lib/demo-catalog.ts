@@ -43,6 +43,20 @@ export const demoCategories: CatalogCategory[] = [
   is_active: true,
 }));
 
+export function withSampleCategories(categories: CatalogCategory[]) {
+  const normalize = (name: string) =>
+    name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return [
+    ...categories,
+    ...demoCategories.filter(
+      (sample) =>
+        !categories.some(
+          (category) => normalize(category.name) === normalize(sample.name),
+        ),
+    ),
+  ];
+}
+
 export const demoBanners: HomeBanner[] = [demoProducts[0], demoProducts[9]].map(
   (product, index) => ({
     id: product.id,
