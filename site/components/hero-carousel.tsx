@@ -189,7 +189,7 @@ function DefaultHero({
               target="_blank"
               rel="noreferrer"
             >
-              <MessageCircle size={18} /> Pedir pelo WhatsApp
+              <MessageCircle size={18} /> Falar pelo WhatsApp
             </a>
           )}
         </div>

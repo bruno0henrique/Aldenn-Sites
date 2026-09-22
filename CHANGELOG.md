@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.63.4] - 2026-09-22
+
+### Alterado
+
+- A vitrine demonstrativa não diferencia as peças locais com o rótulo “Amostra”; o detalhe usa o mesmo aviso para todas e não oferece reserva.
+- Textos do destaque, da página Sobre e da prévia separada deixam claro que a Belleland ainda não vende.
+
 ## [0.63.3] - 2026-09-21
 
 ### Alterado

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://aldenn-sites.vercel.app'),
   title: { default: 'Belleland Closet', template: '%s | Belleland Closet' },
   description:
-    'Peças escolhidas para realçar sua essência. Consulte e reserve pelo WhatsApp.',
+    'Conheça a proposta da Belleland Closet e explore nossa vitrine de moda feminina em demonstração.',
   applicationName: 'Belleland Closet',
   openGraph: {
     type: 'website',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: 'Belleland Closet',
     title: 'Belleland Closet',
     description:
-      'Moda feminina com personalidade. Consulte as peças e reserve pelo WhatsApp.',
+      'Moda feminina com personalidade. Explore a vitrine demonstrativa da Belleland Closet.',
     images: [
       {
         url: '/brand/belleland-share.jpg',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Belleland Closet',
     description:
-      'Moda feminina com personalidade. Consulte as peças e reserve pelo WhatsApp.',
+      'Moda feminina com personalidade. Explore a vitrine demonstrativa da Belleland Closet.',
     images: ['/brand/belleland-share.jpg'],
   },
 };

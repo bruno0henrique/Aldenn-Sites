@@ -20,7 +20,7 @@ export default function DemoProductPage() {
       <div className="demo-notice" role="note">
         <strong>Demonstração</strong>
         <span>Foto e preço ilustrativos. Esta peça não está à venda.</span>
-        <a href="/">Ver loja real</a>
+        <a href="/">Ver vitrine principal</a>
       </div>
       {product ? (
         <article className="product-detail">
@@ -44,12 +44,14 @@ export default function DemoProductPage() {
               ) : (
                 <p className="product-price">{formatPrice(product.price_cents)}</p>
               )}
-              <p className="product-description">{product.description}</p>
+              {product.description && (
+                <p className="product-description">{product.description}</p>
+              )}
               <p className="product-note">
-                Amostra visual. Para ver peças disponíveis, acesse a loja real.
+                Este site é demonstrativo e ainda não realiza vendas ou reservas.
               </p>
               <a className="button-pop button-primary full" href="/">
-                Ver loja real
+                Ver vitrine principal
               </a>
             </div>
           </div>

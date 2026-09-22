@@ -63,7 +63,6 @@ export function ProductGrid({
         >
           <div className="product-image">
             <img src={product.primary_image_url} alt={product.name} />
-            {product.id < 0 && <span>Amostra</span>}
           </div>
           <div>
             <h3>{product.name}</h3>

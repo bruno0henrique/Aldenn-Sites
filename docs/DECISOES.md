@@ -295,3 +295,14 @@
 - Motivo: Permitir ajustar a apresentação no endereço que está em avaliação sem simular estoque disponível para atendimento.
 - Impactos: As amostras não são persistidas no Supabase e não aparecem para edição na Vitrine administrativa; sua composição permanece versionada no código e poderá ser retirada antes do lançamento definitivo. O projeto e o domínio `aldenn.com.br` não mudam.
 - Substitui: A restrição de visibilidade apenas em `/demo` da DEC-026 durante a fase de teste.
+
+## DEC-028: Catálogo inteiramente demonstrativo até o início das vendas
+
+- Data: 2026-09-22
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A Belleland ainda não vende e todas as peças exibidas servem à avaliação visual do site.
+- Decisão: Retirar a identificação individual “Amostra” da vitrine principal. Apresentar um aviso único de site demonstrativo no detalhe de todas as peças, sem botão de reserva. O WhatsApp permanece apenas como canal de contato.
+- Motivo: Evitar separar visualmente peças locais das cadastradas e não sugerir que alguma esteja à venda nesta fase.
+- Impactos: Fotos e preços continuam visíveis para validar a apresentação; peças locais continuam fora do Supabase e não editáveis no painel. A ativação de vendas e reservas exigirá revisão posterior do catálogo e dos textos.
+- Substitui: A identificação individual e a reserva de produtos cadastrados previstas na DEC-027 e nas decisões anteriores para a etapa comercial.

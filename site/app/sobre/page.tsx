@@ -29,9 +29,9 @@ export default function AboutPage() {
             escolher o que realmente combina com você.
           </p>
           <p>
-            Quando encontrar uma favorita, é só chamar no WhatsApp para tirar
-            dúvidas e combinar a reserva. Sem complicação e com uma conversa
-            próxima do começo ao fim.
+            Este catálogo ainda é uma demonstração. Por enquanto, você pode
+            conhecer a proposta e acompanhar as novidades; se quiser conversar
+            com a gente, o WhatsApp está sempre por perto.
           </p>
         </div>
       </section>
