@@ -55,6 +55,8 @@ test("contact validation and WhatsApp previews never send or persist personal da
   const requests: string[] = [];
   page.on("request", (request) => { if (!["GET", "HEAD"].includes(request.method())) requests.push(request.url()); });
   await page.goto(`${path}/imovel/casa-vivant-urbanova/`);
+  await expect(page.locator(".contact-buttons button").first()).toHaveText("Conversar pelo WhatsApp");
+  await expect(page.locator(".contact-buttons button").last()).toHaveText("Solicitar contato");
   await page.getByRole("button", { name: "Solicitar contato", exact: true }).click();
   await page.getByRole("button", { name: "Simular solicitação" }).click();
   await expect(page.getByRole("heading", { name: "Simulação concluída." })).toHaveCount(0);
@@ -89,6 +91,8 @@ test("all six direct detail pages load with photos and rentals omit financing", 
     expect(response?.status()).toBe(200);
     await expect(page.locator(".gallery-main img")).toBeVisible();
     await expect(page.locator(".gallery-main img")).not.toHaveJSProperty("naturalWidth", 0);
+    await expect(page.getByText("Vídeo 3D em preparação", { exact: true })).toBeVisible();
+    await expect(page.locator(".property-video video")).toHaveCount(0);
     const rental = slug === "casa-villa-de-santanna" || slug === "apartamento-casablanca-aquarius";
     await expect(page.locator(".financing")).toHaveCount(rental ? 0 : 1);
     if (rental) await expect(page.getByText("Total mensal informado", { exact: true })).toBeVisible();

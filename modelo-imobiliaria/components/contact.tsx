@@ -12,8 +12,8 @@ export function Contact({ property = "a seleção de imóveis", reference, varia
   const message = `Olá! Tenho interesse em ${property}${reference ? ` (ref. ${reference})` : ""} e gostaria de saber mais.`;
   return <>
     {variant === "buttons" ? <div className="contact-buttons">
-      <button className="button button-gold" onClick={() => open("form")}>Solicitar contato <ArrowUpRight size={18} /></button>
-      <button className="button button-outline" onClick={() => open("whatsapp")}><MessageCircle size={18} /> Conversar pelo WhatsApp</button>
+      <button className="button button-gold" onClick={() => open("whatsapp")}><MessageCircle size={18} /> Conversar pelo WhatsApp</button>
+      <button className="button button-outline" onClick={() => open("form")}>Solicitar contato <ArrowUpRight size={18} /></button>
       <p className="microcopy">Atendimento demonstrativo. Nenhuma mensagem é enviada.</p>
     </div> : <button className={variant === "header" ? "header-contact" : "text-link"} onClick={() => open("form")}>{variant === "header" ? "Contato" : "Experimentar o atendimento"}<ArrowUpRight size={16} /></button>}
     {mode && <Modal title={mode === "form" ? "Solicitar contato" : "Prévia do WhatsApp"} onClose={() => setMode(null)}>

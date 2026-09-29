@@ -1,5 +1,11 @@
 # Aldenn Imóveis: requisitos e decisões aprovados
 
+## Ajuste aprovado em 29/09/2026
+
+- Melhorar a apresentação da parcela, com valor destacado, prazo/juros legíveis e resumo separado; conservar o cálculo Price.
+- Inverter as ações: WhatsApp primeiro e dourado; solicitar contato como ação secundária.
+- Preparar vídeos 3D por imóvel para futura ferramenta que gera visualizações a partir das imagens. Sem geração ou integração externa nesta etapa. Cadastro opcional tipado, player sem autoplay e manifesto local das fotos. Ver `modelo-imobiliaria/docs/VIDEO-3D.md`.
+
 ## Escopo confirmado em 29/09/2026
 
 Site demonstrativo para o portfólio em `/demonstracao-imobiliaria`, com catálogo local, quatro vendas e duas locações, detalhes em `/imovel/[slug]`, fotografias próprias dos anúncios, filtros por finalidade/localização/tipo/dormitórios/preço e ordenação por preço. Marca Aldenn Imóveis com o SVG oficial, preto suave, bege, branco e dourado fosco. Cormorant Garamond nos títulos e Manrope no texto, hospedadas localmente.

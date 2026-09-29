@@ -1,5 +1,9 @@
 # Validação da entrega 0.1.0 — 29/09/2026
 
+## Atualização 0.2.0
+
+Lint, tipos, build, sete testes de cálculos/catálogo e sete testes Chromium aprovados. A conferência inclui a ordem das ações, os seis espaços de vídeo em preparação e a ausência de player ou vídeo fictício. Manifesto 3D verificado: seis referências e 48 caminhos locais existentes. Revisão visual do novo resumo financeiro no Splendor Garden; os cálculos permanecem iguais. O player está implementado para arquivos futuros, mas reprodução de um vídeo real depende da entrega desse arquivo.
+
 - Lint da imobiliária e tipos: aprovados, sem erros.
 - Build Next.js: aprovado, entrada, 404 e seis páginas de imóveis geradas.
 - Sete testes de cálculo/catálogo: aprovados, incluindo juros zero, entrada integral, limites, combinações, ordenação e fotos distintas.

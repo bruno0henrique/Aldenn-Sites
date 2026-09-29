@@ -1,6 +1,6 @@
 {
   "name": "aldenn-imoveis",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -14,7 +14,8 @@
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:browser": "playwright test",
     "media:import": "node scripts/import-properties.mjs",
-    "preview": "node scripts/preview.mjs"
+    "preview": "node scripts/preview.mjs",
+    "3d:inputs": "node scripts/export-3d-inputs.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

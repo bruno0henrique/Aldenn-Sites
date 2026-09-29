@@ -3,6 +3,13 @@ export type PropertyImage = {
   sourceUrl: string; sha256: string;
 };
 
+/** Arquivos locais em public/, sem basePath. Preenchido após gerar o vídeo. */
+export type PropertyVideo3D = {
+  src: string;
+  poster?: string;
+  captions?: string;
+};
+
 export type Property = {
   reference: string; slug: string; title: string; subtitle: string;
   purpose: "venda" | "locacao"; type: "Casa" | "Apartamento";
@@ -12,6 +19,7 @@ export type Property = {
   bedrooms: number; suites: number; bathrooms: number | null; parking: number;
   description: string[]; features: string[]; amenities: string[];
   sourceUrl: string; consultedAt: string; images: PropertyImage[];
+  video3d?: PropertyVideo3D;
 };
 
 export type Filters = {
