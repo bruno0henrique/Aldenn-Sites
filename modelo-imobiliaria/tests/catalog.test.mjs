@@ -20,17 +20,27 @@ test("ordering preserves the original catalog and price boundaries are inclusive
   assert.equal(records[0].price, 2950000);
   assert.equal(filterProperties(records, { ...defaultFilters, minPrice: "9800", maxPrice: "9800" }).length, 1);
 });
-test("six source listings have at least six distinct local photos from their own reference", () => {
-  const sources = JSON.parse(readFileSync(new URL("../data/sources.json", import.meta.url), "utf8"));
+test("six illustrative galleries have eight distinct local stock photos with source and license", () => {
+  const sources = JSON.parse(readFileSync(new URL("../data/illustrative-images.json", import.meta.url), "utf8"));
   assert.equal(sources.length, 6);
   assert.equal(new Set(sources.map((source) => source.reference)).size, 6);
   for (const source of sources) {
-    assert.ok(source.images.length >= 6);
+    assert.equal(source.images.length, 8);
+    assert.equal(source.coherentPropertyCapture, false);
     assert.equal(new Set(source.images.map((image) => image.sha256)).size, source.images.length);
     for (const image of source.images) {
-      assert.ok(image.sourceUrl.includes(`/foto_/`) && image.sourceUrl.includes(`/${source.reference}/`));
+      assert.equal(new URL(image.sourceUrl).hostname, "images.unsplash.com");
+      assert.equal(new URL(image.sourcePage).hostname, "unsplash.com");
+      assert.equal(image.license, "https://unsplash.com/license");
+      assert.ok(image.author && image.illustrative);
       assert.ok(existsSync(new URL(`../public${image.path}`, import.meta.url)));
       assert.ok(existsSync(new URL(`../public${image.thumbnail}`, import.meta.url)));
     }
   }
+});
+test("bedroom filter is an inclusive maximum and multiword regions match", () => {
+  const twoRooms = { ...records[1], bedrooms: 2 };
+  assert.deepEqual(filterProperties([...records, twoRooms], { ...defaultFilters, bedrooms: "2" }), [twoRooms]);
+  assert.equal(filterProperties(records, { ...defaultFilters, bedrooms: "3" }).length, 2);
+  assert.deepEqual(filterProperties(records, { ...defaultFilters, location: "Jardim das Industrias, Sao Jose dos Campos" }), [records[1]]);
 });

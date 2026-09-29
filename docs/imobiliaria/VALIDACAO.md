@@ -19,3 +19,7 @@ Os testes usam dados fictícios de contato e não submetem solicitações reais.
 
 Lint, tipos, build e sete testes de cálculo/catálogo aprovados. Oito testes Chromium aprovados, incluindo abertura breve não bloqueante, conteúdo sem JavaScript, busca mobile, movimento reduzido, seis páginas diretas e ausência de envios reais. Responsividade em 320, 390, 768, 1024, 1440 e 1920 px, sem rolagem horizontal. Revisão visual em desktop e celular. Financiamento, WhatsApp principal e preparação de vídeo 3D preservados.
 
+
+## Atualização 0.4.0
+
+Dez testes de cálculo, filtros e localização e onze testes Chromium aprovados na exportação. Limite máximo inclusivo de quartos, sugestões por teclado, CEP/rua com resposta controlada, CEP inexistente, serviço indisponível, campos parciais, galerias locais e ausência de envios reais de contato. 320, 390, 768, 1024, 1440 e 1920 px sem overflow, inclusive com sugestões abertas. 48 imagens e miniaturas verificadas visualmente, sem marcas d'água visíveis; origem e licença registradas. Consulta real ViaCEP confirmada; CSP institucional permite esse serviço exclusivamente na demonstração.

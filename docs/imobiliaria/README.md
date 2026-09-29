@@ -36,3 +36,11 @@ Solicitação confirmada em 29/09/2026: entrada mais sofisticada, logo em abertu
 
 Foto de entrada: próprio anúncio Alphaville II, referência 24477. Moldura curva e linhas douradas discretas. Abertura GSAP de 1,45 segundo usa o SVG oficial, é decorativa, não bloqueia cliques nem salva dados e possui ocultação de segurança após três segundos. Sem JavaScript, movimento reduzido ou acesso com filtros/âncoras, o conteúdo aparece diretamente. No mobile, busca precede a fotografia. Formulários usam fonte mínima de 16 px.
 
+
+## Busca e imagens, versão 0.4.0
+
+Solicitação de 29/09/2026 substitui a regra de usar fotos dos próprios anúncios: todas as imagens exibidas agora são exemplos sem marca d'água obtidos no Unsplash. O usuário pediu fotos da internet, portanto não houve geração por IA nem remoção de marca de fotografias alheias. 48 imagens distintas em seis galerias locais, verificadas visualmente; manifesto com autor, página, licença, URL, hash e consulta em data/illustrative-images.json. Dados/valores e rotas de referência anteriores foram conservados para continuidade, mas as fotos não representam esses imóveis. Avisos no hero, cards, galeria e rodapé explicitam o caráter ilustrativo. data/sources.json permanece como registro histórico dos dados de referência; arquivos de fotos antigos foram removidos da publicação.
+
+Busca: painel unificado; foco por sublinhado sem sobreposição; sugestões locais de cidade, bairro e condomínio. ViaCEP (https://viacep.com.br/, consultado em 29/09/2026) resolve CEPs de oito dígitos de todo o Brasil e pesquisa ruas nas cidades da seleção, São José dos Campos e Jacareí/SP. A seleção de uma rua/CEP filtra pelo bairro e cidade, pois não há endereços exatos dos imóveis. Sem correspondência, mostra estado vazio. Requisições GET debounced e canceláveis, timeout de 6,5 segundos, sem cookies/referrer; somente o termo de localização é consultado. Dados de formulário de contato não são enviados nem armazenados. Falhas do serviço preservam a busca por nomes locais.
+
+Dormitórios agora têm limite máximo inclusivo (até 1–5). Substitui a semântica anterior de mínimo. Rodapé da entrada com a lista de cidades retirado. Preparação 3D preservada, mas o manifesto sinaliza imagens de projetos distintos, inadequadas a reconstrução espacial fiel; para esse fim, serão necessárias fotos consistentes do mesmo imóvel.

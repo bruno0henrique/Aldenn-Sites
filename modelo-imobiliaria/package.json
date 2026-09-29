@@ -1,6 +1,6 @@
 {
   "name": "aldenn-imoveis",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:browser": "playwright test",
-    "media:import": "node scripts/import-properties.mjs",
+    "media:import": "node scripts/import-stock-images.mjs",
     "preview": "node scripts/preview.mjs",
     "3d:inputs": "node scripts/export-3d-inputs.mjs"
   },

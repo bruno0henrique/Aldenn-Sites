@@ -2,21 +2,25 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const root = new URL("../", import.meta.url);
-const sources = JSON.parse(await readFile(new URL("data/sources.json", root), "utf8"));
+const sources = JSON.parse(await readFile(new URL("data/illustrative-images.json", root), "utf8"));
 const manifest = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedAt: new Date().toISOString(),
   basePath: "/demonstracao-imobiliaria",
   properties: sources.map((property) => ({
     reference: property.reference,
-    title: property.title,
-    sourceUrl: property.url,
+    imageRole: "illustrative-stock-gallery",
+    suitableForSpatialReconstruction: false,
+    note: "Ambientes de diferentes projetos. Substituir por capturas consistentes do mesmo imóvel antes de gerar um tour 3D fiel.",
     images: property.images.map((image) => ({
       path: `public${image.path}`,
       publicUrl: `/demonstracao-imobiliaria${image.path}`,
       width: image.width,
       height: image.height,
       sourceUrl: image.sourceUrl,
+      sourcePage: image.sourcePage,
+      author: image.author,
+      license: image.license,
       sourceSha256: image.sha256,
     })),
     suggestedOutput: `public/media/${property.reference}/tour-3d.mp4`,

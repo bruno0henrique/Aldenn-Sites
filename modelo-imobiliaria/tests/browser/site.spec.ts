@@ -107,22 +107,82 @@ test("320-1920 px layouts and reduced motion stay usable", async ({ page }) => {
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
       await expect(page.locator("body")).not.toHaveCSS("visibility", "hidden");
+      if (!route) {
+        await page.getByLabel("Localização da busca", { exact: true }).click();
+        await expect(page.getByRole("listbox", { name: "Sugestões de localização" })).toBeVisible();
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+        await page.getByLabel("Localização da busca", { exact: true }).press("Escape");
+      }
     }
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${path}/`);
   await expect(page.locator(".brand-intro")).not.toBeVisible();
-  await expect(page.getByLabel("Localização da busca")).toHaveCSS("font-size", "16px");
+  await expect(page.getByLabel("Localização da busca", { exact: true })).toHaveCSS("font-size", "16px");
   await page.getByRole("button", { name: "Abrir menu" }).click();
   await page.getByRole("navigation").getByRole("link", { name: "Alugar", exact: true }).click();
   await expect(page.locator(".property-card")).toHaveCount(2);
+});
+test("bedrooms limit the maximum and suggestions work by keyboard", async ({ page }) => {
+  await page.goto(`${path}/?skip=opening`);
+  await page.getByLabel("Dormitórios", { exact: true }).selectOption("2");
+  await expect(page.locator(".property-card")).toHaveCount(0);
+  await page.getByLabel("Dormitórios", { exact: true }).selectOption("3");
+  await expect(page.locator(".property-card")).toHaveCount(3);
+  await page.getByLabel("Dormitórios", { exact: true }).selectOption("4");
+  await expect(page.locator(".property-card")).toHaveCount(5);
+  await page.getByLabel("Dormitórios", { exact: true }).selectOption("");
+  await page.getByLabel("Localização da busca", { exact: true }).fill("jacarei");
+  await page.getByLabel("Localização da busca", { exact: true }).press("ArrowDown");
+  await page.getByLabel("Localização da busca", { exact: true }).press("Enter");
+  await expect(page.getByLabel("Localização da busca", { exact: true })).toHaveValue("Jacareí");
+  await page.getByRole("group", { name: "Finalidade da busca" }).getByRole("button", { name: "Alugar" }).click();
+  await page.getByRole("button", { name: "Encontrar imóvel" }).click();
+  await expect(page.locator(".property-card")).toHaveCount(1);
+});
+test("CEP and street lookup resolve to the neighborhood and handle invalid or unavailable service", async ({ page }) => {
+  const address = { cep: "12246-000", logradouro: "Rua de Testes", bairro: "Jardim Aquarius", localidade: "São José dos Campos", uf: "SP" };
+  await page.route("https://viacep.com.br/ws/**", async (route) => {
+    const url = route.request().url();
+    if (url.includes("99999999")) return route.fulfill({ json: { erro: true } });
+    if (url.includes("88888888")) return route.abort();
+    return route.fulfill({ json: url.includes("/SP/") ? [address] : address });
+  });
+  await page.goto(`${path}/?skip=opening`);
+  await page.getByRole("group", { name: "Finalidade da busca" }).getByRole("button", { name: "Alugar" }).click();
+  await page.getByLabel("Localização da busca", { exact: true }).fill("12246-000");
+  await expect(page.getByRole("option", { name: /Rua de Testes/ })).toBeVisible();
+  await page.getByRole("button", { name: "Encontrar imóvel" }).click();
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await expect(page.locator(".property-card h3")).toHaveText("Apartamento no Casablanca");
+  await page.getByRole("button", { name: "Limpar localização da busca" }).click();
+  await page.getByLabel("Localização da busca", { exact: true }).fill("Rua de Testes");
+  await expect(page.getByRole("option", { name: /Rua de Testes/ })).toBeVisible();
+  await page.getByRole("option", { name: /Rua de Testes/ }).click();
+  await page.getByRole("button", { name: "Encontrar imóvel" }).click();
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "Limpar localização da busca" }).click();
+  await page.getByLabel("Localização da busca", { exact: true }).fill("99999-999");
+  await expect(page.getByRole("status")).toHaveText(/CEP não encontrado/);
+  await page.getByLabel("Localização da busca", { exact: true }).fill("88888-888");
+  await expect(page.getByRole("status")).toHaveText(/Consulta de endereços indisponível/);
+  await page.getByLabel("Localização da busca", { exact: true }).fill("123");
+  await expect(page.getByRole("status")).toHaveText(/8 números/);
+});
+test("all rendered property images use local illustrative galleries", async ({ page }) => {
+  await page.goto(`${path}/?skip=opening`);
+  await expect(page.locator(".hero-image")).toHaveAttribute("src", /\/media\/illustrative\//);
+  for (const image of await page.locator(".card-photo img").all()) await expect(image).toHaveAttribute("src", /\/media\/illustrative\//);
+  await page.goto(`${path}/imovel/apartamento-splendor-garden-venda/`);
+  await expect(page.getByText(/Galeria de inspiração/)).toBeVisible();
+  await expect(page.locator(".gallery-main img")).toHaveAttribute("src", /\/media\/illustrative\//);
 });
 test("brief decorative entrance clears and mobile hero search works", async ({ page, browser }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${path}/`);
   await expect(page.locator(".brand-intro")).toHaveCSS("pointer-events", "none");
   await expect(page.locator(".brand-intro")).not.toBeVisible({ timeout: 4000 });
-  await page.getByLabel("Localização da busca").fill("Aquarius");
+  await page.getByLabel("Localização da busca", { exact: true }).fill("Aquarius");
   await page.getByRole("group", { name: "Finalidade da busca" }).getByRole("button", { name: "Alugar" }).click();
   await page.getByRole("button", { name: "Encontrar imóvel" }).click();
   await expect(page.locator(".property-card")).toHaveCount(1);
@@ -135,4 +195,3 @@ test("brief decorative entrance clears and mobile hero search works", async ({ p
   await expect(plain.locator(".property-card")).toHaveCount(6);
   await noJs.close();
 });
-

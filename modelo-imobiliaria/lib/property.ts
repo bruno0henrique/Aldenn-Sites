@@ -1,6 +1,6 @@
 export type PropertyImage = {
   path: string; thumbnail: string; width: number; height: number;
-  sourceUrl: string; sha256: string;
+  sourceUrl: string; sha256: string; sourcePage?: string; author?: string; license?: string; illustrative?: boolean;
 };
 
 /** Arquivos locais em public/, sem basePath. Preenchido após gerar o vídeo. */
@@ -34,12 +34,12 @@ export function normalize(value: string) {
 }
 
 export function filterProperties<T extends Pick<Property, "purpose" | "type" | "price" | "city" | "neighborhood" | "development" | "bedrooms">>(properties: T[], filters: Filters): T[] {
-  const location = normalize(filters.location.trim());
+  const location = normalize(filters.location.trim()).split(/[\s,]+/).filter(Boolean);
   const result = properties.filter((property) =>
     (!filters.purpose || property.purpose === filters.purpose) &&
     (!filters.type || property.type === filters.type) &&
-    (!location || normalize(`${property.city} ${property.neighborhood} ${property.development}`).includes(location)) &&
-    (!filters.bedrooms || property.bedrooms >= Number(filters.bedrooms)) &&
+    (!location.length || location.every((token) => normalize(`${property.city} ${property.neighborhood} ${property.development}`).includes(token))) &&
+    (!filters.bedrooms || property.bedrooms <= Number(filters.bedrooms)) &&
     (!filters.minPrice || property.price >= Number(filters.minPrice)) &&
     (!filters.maxPrice || property.price <= Number(filters.maxPrice)));
   if (filters.sort === "lowest") result.sort((a, b) => a.price - b.price);

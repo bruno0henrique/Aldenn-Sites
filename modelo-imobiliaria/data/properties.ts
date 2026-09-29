@@ -1,4 +1,5 @@
 import sources from "./sources.json";
+import illustrations from "./illustrative-images.json";
 import { propertyVideos } from "./videos";
 import type { Property } from "../lib/property";
 
@@ -61,6 +62,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
 
 export const properties: Property[] = records.map((record) => {
   const source = sources.find((item) => item.reference === record.reference);
-  if (!source || source.images.length < 6) throw new Error(`Fonte incompleta: ${record.reference}`);
-  return { ...record, images: source.images, sourceUrl: source.url, consultedAt: source.consultedAt, video3d: propertyVideos[record.reference] };
+  const gallery = illustrations.find((item) => item.reference === record.reference);
+  if (!source || !gallery || gallery.images.length < 6) throw new Error(`Fonte incompleta: ${record.reference}`);
+  return { ...record, images: gallery.images, sourceUrl: source.url, consultedAt: source.consultedAt, video3d: propertyVideos[record.reference] };
 });

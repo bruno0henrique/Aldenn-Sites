@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.67.0] - 2026-09-29
+
+- Aldenn Imóveis 0.4.0: busca com sugestões de cidade, bairro, condomínio, rua e CEP via ViaCEP; painel integrado e foco corrigido.
+- Dormitórios filtrados pelo máximo escolhido. Removida a indicação de cidades no rodapé da entrada.
+- Todas as 48 imagens substituídas por ambientes ilustrativos do Unsplash sem marca d'água, com origem e licença registradas.
+
+
 ## [0.66.0] - 2026-09-29
 
 - Aldenn Imóveis 0.3.0: entrada editorial escura, fotografia em moldura e abertura breve da logo oficial com GSAP.
@@ -831,4 +838,3 @@
 ### Adicionado
 
 - Inicialização do repositório.
-

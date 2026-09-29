@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.3.0
+# Aldenn Imóveis — 0.4.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Não há painel, autenticação, banco de dados ou integração bancária.
 
@@ -33,3 +33,8 @@ Requisitos e decisões: [documentação aprovada](../docs/imobiliaria/README.md)
 
 Preparação da ferramenta e cadastro do vídeo 3D: [guia de integração](docs/VIDEO-3D.md). `npm run 3d:inputs` gera o manifesto local das fotografias, sem enviar arquivos.
 
+## Imagens e busca (0.4.0)
+
+Fotos atuais: Unsplash, galerias ilustrativas de diferentes projetos, sem marcas d'água. Créditos/licença em data/illustrative-images.json e na galeria ampliada. npm run media:import recupera e otimiza esses arquivos a partir do manifesto versionado. data/sources.json guarda apenas a origem histórica dos dados e valores.
+
+Busca com sugestões e teclado. CEPs via ViaCEP e ruas nas duas cidades do catálogo; resultados por bairro/cidade. Dormitórios por limite máximo. Nenhum contato real é enviado ou salvo. O manifesto 3D não declara essas imagens adequadas a reconstrução fiel.
