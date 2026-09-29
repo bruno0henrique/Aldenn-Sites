@@ -98,9 +98,9 @@ test("all six direct detail pages load with photos and rentals omit financing", 
     if (rental) await expect(page.getByText("Total mensal informado", { exact: true })).toBeVisible();
   }
 });
-test("320-1440 px layouts and reduced motion stay usable", async ({ page }) => {
+test("320-1920 px layouts and reduced motion stay usable", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const width of [320, 390, 768, 1024, 1440]) {
+  for (const width of [320, 390, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     for (const route of ["", "/imovel/casa-vivant-urbanova"]) {
       await page.goto(`${path}${route}/`);
@@ -111,7 +111,28 @@ test("320-1440 px layouts and reduced motion stay usable", async ({ page }) => {
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(`${path}/`);
+  await expect(page.locator(".brand-intro")).not.toBeVisible();
+  await expect(page.getByLabel("Localização da busca")).toHaveCSS("font-size", "16px");
   await page.getByRole("button", { name: "Abrir menu" }).click();
   await page.getByRole("navigation").getByRole("link", { name: "Alugar", exact: true }).click();
   await expect(page.locator(".property-card")).toHaveCount(2);
 });
+test("brief decorative entrance clears and mobile hero search works", async ({ page, browser }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(`${path}/`);
+  await expect(page.locator(".brand-intro")).toHaveCSS("pointer-events", "none");
+  await expect(page.locator(".brand-intro")).not.toBeVisible({ timeout: 4000 });
+  await page.getByLabel("Localização da busca").fill("Aquarius");
+  await page.getByRole("group", { name: "Finalidade da busca" }).getByRole("button", { name: "Alugar" }).click();
+  await page.getByRole("button", { name: "Encontrar imóvel" }).click();
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await expect(page.locator(".property-card h3")).toHaveText("Apartamento no Casablanca");
+  const noJs = await browser.newContext({ javaScriptEnabled: false });
+  const plain = await noJs.newPage();
+  await plain.goto(`${process.env.DEMO_TEST_URL ?? "http://127.0.0.1:5175"}${path}/`);
+  await expect(plain.locator(".brand-intro")).not.toBeVisible();
+  await expect(plain.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(plain.locator(".property-card")).toHaveCount(6);
+  await noJs.close();
+});
+

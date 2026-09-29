@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +11,7 @@ import { properties } from "@/data/properties";
 import { defaultFilters, filterProperties, type Filters } from "@/lib/property";
 import { asset } from "@/lib/format";
 import { PropertyCard } from "./property-card";
+import { BrandIntro } from "./brand-intro";
 
 function fromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -50,13 +52,14 @@ export function Catalog() {
   }, [signature]);
   const active = Object.entries(filters).some(([key, value]) => key !== "sort" && value !== "");
   return <>
-    <section className="hero" aria-labelledby="hero-title"><Image className="hero-image" src={asset(properties[0].images[0].path)} alt="Casa de arquitetura contemporânea no Vivant Urbanova" fill sizes="100vw" priority /><div className="hero-shade" />
-      <div className="container hero-content"><span className="eyebrow hero-eyebrow"><span /> IMÓVEIS SELECIONADOS</span><h1 id="hero-title">Há lugares.<br />E há <em>o seu lugar.</em></h1><p>Casas e apartamentos onde cada detalhe<br className="desktop-break" /> faz parte de uma nova história.</p>
+    <section className="hero hero-premium" aria-labelledby="hero-title"><BrandIntro />
+      <div className="container hero-stage"><div className="hero-art"><div className="hero-photo"><Image className="hero-image" src={asset(properties[2].images[0].path)} alt="Fachada contemporânea da casa no Alphaville II" fill sizes="(max-width: 700px) 100vw, 55vw" priority /><div className="hero-photo-shade" /></div><span className="hero-art-label">ARQUITETURA PARA VIVER</span><Link className="hero-featured" href={`/imovel/${properties[2].slug}`}><span>EM DESTAQUE</span><strong>Casa no Alphaville II</strong><small>280 m² construídos · 3 suítes <ArrowUpRight size={19} /></small></Link></div>
+      <div className="hero-content"><span className="eyebrow hero-eyebrow"><span /> UMA SELEÇÃO EXTRAORDINÁRIA</span><h1 id="hero-title"><span className="hero-line"><span>Há lugares.</span></span><span className="hero-line"><span>E há <em>o seu lugar.</em></span></span></h1><p>O encontro entre uma arquitetura que inspira<br className="desktop-break" /> e a vida que você quer viver.</p>
         <form className="hero-search" onSubmit={(event) => { event.preventDefault(); update({ purpose, location }); const target = document.getElementById("imoveis"); if (target) { if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) target.scrollIntoView(); else gsap.to(window, { scrollTo: { y: target, offsetY: 110, autoKill: true }, duration: 0.8, ease: "power2.inOut", overwrite: "auto" }); } }}>
           <div className="search-tabs" role="group" aria-label="Finalidade da busca"><button type="button" aria-pressed={purpose === "venda"} onClick={() => setPurpose("venda")}>Comprar</button><button type="button" aria-pressed={purpose === "locacao"} onClick={() => setPurpose("locacao")}>Alugar</button></div>
           <div className="search-body"><label><MapPin size={19} /><span><small>ONDE VOCÊ QUER MORAR?</small><input aria-label="Localização da busca" value={location} onChange={(event) => setLocation(event.target.value)} placeholder="Cidade, bairro ou condomínio" maxLength={100} /></span></label><button className="button button-gold" type="submit"><Search size={18} /> Encontrar imóvel</button></div>
         </form>
-      </div><div className="container hero-bottom"><span>São José dos Campos & Jacareí</span><a href="#imoveis">Explore a seleção <ArrowDown size={16} /></a></div>
+      </div></div><div className="container hero-bottom"><span>São José dos Campos <i /> Jacareí</span><a href="#imoveis">Conheça a seleção <span className="explore-circle"><ArrowDown size={16} /></span></a></div>
     </section>
     <main id="imoveis" className="catalog container"><div className="section-heading"><div><span className="eyebrow">SEU PRÓXIMO ENDEREÇO</span><h2>Escolhas que fazem<br /><em>você se sentir em casa.</em></h2></div><p>Espaços para morar, receber<br />e viver do seu jeito.</p></div>
       <div className="catalog-toolbar"><div className="catalog-tabs" role="group" aria-label="Filtrar por finalidade">{[["", "Todos os imóveis"], ["venda", "Comprar"], ["locacao", "Alugar"]].map(([value, label]) => <button key={value} aria-pressed={filters.purpose === value} onClick={() => { update({ purpose: value, minPrice: "", maxPrice: "" }); setPurpose(value || "venda"); }}>{label}</button>)}</div><button className="filter-toggle" aria-expanded={extra} aria-controls="extra-filters" onClick={() => setExtra(!extra)}><SlidersHorizontal size={16} /> Filtros {extra && <X size={15} />}</button></div>

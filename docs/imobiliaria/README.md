@@ -29,3 +29,10 @@ Referências de navegação: França Imobiliária, Chaves na Mão e Viva Real, i
 ## Critérios de entrega
 
 Lint, tipos, build, testes de cálculo e filtros, navegação real, estado vazio, galeria, validação de contatos e ausência de envio ou armazenamento. Verificar 320, 390, 768, 1024 e 1440 px, redução de movimento, páginas diretas, recarga, imagens e fontes locais. Copiar somente a exportação para o repositório institucional, registrar versões e publicar commits e tags.
+
+## Entrada refinada, versão 0.3.0
+
+Solicitação confirmada em 29/09/2026: entrada mais sofisticada, logo em abertura breve e responsividade mobile. Referências de estudo: [BARNES](https://www.barnes-international.com/en/) e [The Modern House](https://themodernhouse.com/), consultadas em 29/09/2026. Aproveitados destaque fotográfico, hierarquia editorial e navegação simples; preservados identidade, textos e fotografias locais da demonstração.
+
+Foto de entrada: próprio anúncio Alphaville II, referência 24477. Moldura curva e linhas douradas discretas. Abertura GSAP de 1,45 segundo usa o SVG oficial, é decorativa, não bloqueia cliques nem salva dados e possui ocultação de segurança após três segundos. Sem JavaScript, movimento reduzido ou acesso com filtros/âncoras, o conteúdo aparece diretamente. No mobile, busca precede a fotografia. Formulários usam fonte mínima de 16 px.
+

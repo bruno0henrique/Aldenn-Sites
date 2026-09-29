@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.66.0] - 2026-09-29
+
+- Aldenn Imóveis 0.3.0: entrada editorial escura, fotografia em moldura e abertura breve da logo oficial com GSAP.
+- Busca acessível antes da fotografia no celular, controles de toque e validação de 320 a 1920 px.
+
+
 ## [0.65.0] - 2026-09-29
 
 ### Alterado
@@ -825,3 +831,4 @@
 ### Adicionado
 
 - Inicialização do repositório.
+

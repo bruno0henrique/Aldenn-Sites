@@ -10,6 +10,7 @@ import { Footer } from "@/components/footer";
 import { Motion } from "@/components/motion";
 import { basePath } from "@/lib/format";
 import "./globals.css";
+import "./entrance.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"),

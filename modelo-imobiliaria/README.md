@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.2.0
+# Aldenn Imóveis — 0.3.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Não há painel, autenticação, banco de dados ou integração bancária.
 
@@ -32,3 +32,4 @@ GSAP anima entradas e a navegação interna, sem alterar a rolagem nativa. `pref
 Requisitos e decisões: [documentação aprovada](../docs/imobiliaria/README.md).
 
 Preparação da ferramenta e cadastro do vídeo 3D: [guia de integração](docs/VIDEO-3D.md). `npm run 3d:inputs` gera o manifesto local das fotografias, sem enviar arquivos.
+

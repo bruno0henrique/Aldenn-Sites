@@ -14,3 +14,8 @@ Lint, tipos, build, sete testes de cálculos/catálogo e sete testes Chromium ap
 - Dependências da imobiliária: npm audit sem vulnerabilidades. O repositório institucional já possui 16 alertas em dependências de seu runtime e ferramentas, incluindo react-server-dom-webpack, vinext, Vite e Wrangler. Correção global não faz parte desta entrega e não foram alteradas essas dependências.
 
 Os testes usam dados fictícios de contato e não submetem solicitações reais. Licenças das fontes estão em `public/licenses/`. Origem das imagens e data da consulta são registradas no manifesto de fontes.
+
+## Atualização 0.3.0
+
+Lint, tipos, build e sete testes de cálculo/catálogo aprovados. Oito testes Chromium aprovados, incluindo abertura breve não bloqueante, conteúdo sem JavaScript, busca mobile, movimento reduzido, seis páginas diretas e ausência de envios reais. Responsividade em 320, 390, 768, 1024, 1440 e 1920 px, sem rolagem horizontal. Revisão visual em desktop e celular. Financiamento, WhatsApp principal e preparação de vídeo 3D preservados.
+
