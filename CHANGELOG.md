@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.64.0] - 2026-09-29
+
+### Adicionado
+
+- Aldenn Imóveis 0.1.0 em `modelo-imobiliaria/`: catálogo com seis imóveis, galerias locais, filtros, contatos simulados e financiamento Price.
+- Fontes locais, GSAP acessível, exportação estática e validação entre 320 e 1440 px.
+- Requisitos, fontes e divergências registradas em `docs/imobiliaria/README.md`, incluindo a substituição aprovada pelo Casablanca 26556.
+
 ## [0.63.0] - 2026-09-20
 
 ### Alterado

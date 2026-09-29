@@ -1,5 +1,9 @@
 # Projetos de clientes: Aldenn Sites
 
+## Aldenn Imóveis
+
+Demonstração de alto padrão em `modelo-imobiliaria/`, publicada na rota institucional `/demonstracao-imobiliaria`. Veja [desenvolvimento e validação](modelo-imobiliaria/README.md) e [requisitos aprovados](docs/imobiliaria/README.md).
+
 Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/`. A vitrine real da FF Moda Festa é mantida no projeto independente `modelo-moda-festa/`.
 
 ## Belleland Closet
