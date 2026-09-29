@@ -44,3 +44,11 @@ Solicitação de 29/09/2026 substitui a regra de usar fotos dos próprios anúnc
 Busca: painel unificado; foco por sublinhado sem sobreposição; sugestões locais de cidade, bairro e condomínio. ViaCEP (https://viacep.com.br/, consultado em 29/09/2026) resolve CEPs de oito dígitos de todo o Brasil e pesquisa ruas nas cidades da seleção, São José dos Campos e Jacareí/SP. A seleção de uma rua/CEP filtra pelo bairro e cidade, pois não há endereços exatos dos imóveis. Sem correspondência, mostra estado vazio. Requisições GET debounced e canceláveis, timeout de 6,5 segundos, sem cookies/referrer; somente o termo de localização é consultado. Dados de formulário de contato não são enviados nem armazenados. Falhas do serviço preservam a busca por nomes locais.
 
 Dormitórios agora têm limite máximo inclusivo (até 1–5). Substitui a semântica anterior de mínimo. Rodapé da entrada com a lista de cidades retirado. Preparação 3D preservada, mas o manifesto sinaliza imagens de projetos distintos, inadequadas a reconstrução espacial fiel; para esse fim, serão necessárias fotos consistentes do mesmo imóvel.
+
+
+## Revisão mobile, versão 0.4.1
+
+Solicitação de 29/09/2026: corrigir controles estranhos no celular, incluindo o texto cortado de dormitórios. Filtros em coluna até 540 px, campos com altura de 50 px e fonte de 16 px; ordenação em linha própria, abaixo da contagem. Em 320 px, prazo e juros ficam separados, o título do contato é menor e o placeholder do nome é curto. Galeria mantém contador sem encolhimento, legenda quebrável e setas de 44 px. Sem alteração da regra de máximo de dormitórios ou das simulações.
+
+Validação: lint, tipos, build, dez testes unitários e doze testes de navegador. Verificação de encaixe das opções entre 320 e 700 px, ausência de rolagem horizontal até 1920 px, galerias, formulário, filtros e cálculos.
+Os placeholders da busca e do nome foram encurtados para evitar texto cortado em 320 px.

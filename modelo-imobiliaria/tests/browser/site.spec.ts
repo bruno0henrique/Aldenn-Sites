@@ -1,6 +1,47 @@
 import { test, expect } from "@playwright/test";
 
 const path = "/demonstracao-imobiliaria";
+test("mobile filter options fit and touch controls remain comfortable", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const width of [320, 360, 390, 430, 540, 600, 700]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(`${path}/?skip=opening#imoveis`);
+    await page.evaluate(() => document.fonts.ready);
+    const controls = await page.locator(".filters-primary select, .sort-label select").evaluateAll((elements) => elements.map((element) => {
+      const select = element as HTMLSelectElement;
+      const style = getComputedStyle(select);
+      const context = document.createElement("canvas").getContext("2d")!;
+      context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      return {
+        longest: Math.max(...Array.from(select.options, (option) => context.measureText(option.text).width)),
+        available: select.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 24,
+        height: select.getBoundingClientRect().height,
+        font: parseFloat(style.fontSize),
+      };
+    }));
+    for (const control of controls) {
+      expect(control.longest).toBeLessThanOrEqual(control.available);
+      expect(control.height).toBeGreaterThanOrEqual(44);
+      expect(control.font).toBeGreaterThanOrEqual(16);
+    }
+    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+    await expect(page.getByLabel("Preço máximo (R$)", { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  }
+  await page.setViewportSize({ width: 320, height: 700 });
+  await page.goto(`${path}/imovel/apartamento-splendor-garden-venda/`);
+  await page.getByRole("button", { name: "Ampliar foto 1 de Apartamento no Splendor Garden" }).click();
+  const dialog = page.getByRole("dialog");
+  expect(await dialog.evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await expect(dialog.getByText("1 / 8", { exact: true })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Solicitar contato", exact: true }).click();
+  expect(await page.getByRole("dialog").evaluate((element) => element.scrollWidth <= element.clientWidth)).toBe(true);
+  await page.getByLabel("Seu nome", { exact: true }).fill("Teste mobile");
+  await page.keyboard.press("Escape");
+  await expect(page.getByLabel("Juros efetivos (% a.a.)", { exact: true })).toBeVisible();
+});
 test("catalog filters, empty state, URL reload and header navigation", async ({ page }) => {
   await page.goto(`${path}/`);
   await expect(page.locator(".property-card")).toHaveCount(6);

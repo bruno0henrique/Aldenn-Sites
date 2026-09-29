@@ -12,6 +12,7 @@ import { basePath } from "@/lib/format";
 import "./globals.css";
 import "./entrance.css";
 import "./search.css";
+import "./mobile.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"),

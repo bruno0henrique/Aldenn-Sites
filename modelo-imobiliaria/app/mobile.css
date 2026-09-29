@@ -1,0 +1,95 @@
+/* Controles legíveis e confortáveis em telas pequenas. */
+@media (max-width: 700px) {
+  .filters-primary,
+  .filters-extra {
+    gap: 16px;
+  }
+  .filters-primary label,
+  .filters-extra label {
+    font-size: 12px;
+    gap: 8px;
+  }
+  .filters-primary input,
+  .filters-primary select,
+  .filters-extra input {
+    min-height: 50px;
+    padding-inline: 14px;
+  }
+  .catalog-results-line {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    font-size: 12px;
+    margin-bottom: 26px;
+  }
+  .catalog-results-line > div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .clear-filters {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .sort-label {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .sort-label select {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 50px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  .gallery-caption {
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  .gallery-caption > span {
+    flex-shrink: 0;
+  }
+  .gallery-arrow {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 540px) {
+  .filters-primary,
+  .filters-extra {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 360px) {
+  .modal:not(.gallery-modal) h2 {
+    font-size: 30px;
+  }
+  .field-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .catalog-toolbar {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .catalog-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .catalog-tabs button,
+  .filter-toggle {
+    min-height: 44px;
+    font-size: 12px;
+  }
+  .filter-toggle {
+    margin-left: auto;
+  }
+}

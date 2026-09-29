@@ -28,7 +28,7 @@ export function Contact({ property = "a seleção de imóveis", reference, varia
         <h2>Vamos falar sobre seu próximo endereço?</h2>
         <p>{reference ? `${property} · Ref. ${reference}` : "Experimente como seria solicitar um atendimento."}</p>
         <form className="contact-form" onSubmit={submit}>
-          <label>Seu nome<input name="name" autoComplete="off" placeholder="Como podemos chamar você?" required minLength={2} maxLength={100} pattern=".*\S.*" /></label>
+          <label>Seu nome<input name="name" autoComplete="off" placeholder="Seu nome completo" required minLength={2} maxLength={100} pattern=".*\S.*" /></label>
           <label>Telefone / WhatsApp<input name="phone" type="tel" inputMode="tel" autoComplete="off" placeholder="(11) 99999-9999" required maxLength={20} pattern="(?:\+?55\s?)?(?:\(?[1-9][0-9]\)?\s?)[0-9]{4,5}[\s-]?[0-9]{4}" title="Informe um telefone brasileiro com DDD e 10 ou 11 dígitos." /></label>
           <label>Mensagem<textarea name="message" required minLength={5} maxLength={1000} defaultValue={message} rows={3} /></label>
           <p className="notice">Formulário demonstrativo. Use dados fictícios para testar. Nada é enviado ou salvo.</p>

@@ -1,5 +1,12 @@
 # Histórico
 
+## 0.4.1 — 2026-09-29
+
+- Filtros em coluna até 540 px, com texto completo e campos de 50 px.
+- Ordenação separada da contagem de resultados, com fonte de 16 px e campo largo.
+- Prazo e juros separados em 320 px; título do contato mais compacto e placeholder curto.
+- Galeria com quebra de legenda e setas de 44 px. Teste de encaixe de todas as opções entre 320 e 700 px.
+
 ## 0.4.0 — 2026-09-29
 
 - Busca acessível com sugestões locais e consulta de CEP e ruas via ViaCEP, seleção por teclado, cancelamento de consultas e estados de erro.

@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## [0.67.1] - 2026-09-29
+
+- Aldenn Imóveis 0.4.1: filtros e ordenação legíveis no celular, controles de toque ampliados e ajustes de formulário, galeria e simulador em 320 px.
+
 ## [0.67.0] - 2026-09-29
 
 - Aldenn Imóveis 0.4.0: busca com sugestões de cidade, bairro, condomínio, rua e CEP via ViaCEP; painel integrado e foco corrigido.
