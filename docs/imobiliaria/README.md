@@ -76,3 +76,11 @@ Validação publicada em 30/09/2026: produção Vercel Ready, busca real OpenAI 
 Refinamento 0.5.1: ao selecionar Busca com IA, filtros e listagem manuais são ocultados até escolher outro modo ou Ver tudo. Isso evita exibir critérios anteriores contraditórios abaixo das sugestões. Estado manual é preservado ao fechar a IA. Validação real adicional: comprar apartamento até três dormitórios e R$ 1,5 milhão retornou Splendor Garden por R$ 1.250.000, com URL bedrooms=3/maxPrice=1500000.
 
 Refinamento 0.5.2: seletores de diferencial mostram critérios vindos da IA mesmo com variação de escrita ou combinação, sem esconder o filtro ativo. Terceira consulta real: casa à venda em Urbanova com piscina até R$ 3 milhões retornou Vivant Urbanova por R$ 2.950.000. Quatro testes adicionais passaram na publicação, incluindo seis acessos diretos, recarga, filtros e mobile.
+
+## Destaque da IA e Ver tudo — 0.5.3 (30/09/2026)
+
+Pedido confirmado: destacar a quarta opção discretamente e corrigir Ver tudo. O defeito foi reproduzido em teste de navegador: se o href já corresponde à URL atual (ex.: purpose=venda), o navegador pode realizar apenas navegação no mesmo documento; o painel IA não era desmontado e escondia a listagem. O clique comum agora chama o catálogo para substituir todos os filtros, atualizar URL, sair da IA, alinhar localização/finalidade e focar a contagem de resultados, com rolagem respeitando movimento reduzido. O href continua válido para nova aba, cliques com modificadores e acesso direto.
+
+Destaque visual: botão em cápsula bege com borda dourada e leve variação de cor/escala do ícone via GSAP (1,1 s de efeito e 6 s de intervalo). prefers-reduced-motion desativa animação e transição. Não houve alteração na API nem na chave. Teste regressivo falhou antes da correção e passou depois, cobrindo destino idêntico, filtros vazios, troca de locação para venda e recarga.
+
+Validação 0.5.3: lint, build com verificação de tipos e 18 testes Chromium passaram, incluindo URL idêntica, remoção de critérios antigos, recarga e layouts de 320 a 1920 px.

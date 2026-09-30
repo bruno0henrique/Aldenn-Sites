@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.68.3] - 2026-09-30
+
+- Busca com IA destacada com fundo bege, borda dourada suave e brilho discreto do ícone em GSAP, sem movimento quando reduzido.
+- Ver tudo aplica o conjunto completo de filtros e abre a listagem mesmo quando o destino é a URL atual; critérios antigos são substituídos e a recarga mantém a busca.
+
 ## [0.68.2] - 2026-09-30
 
 - Filtros abertos por Ver tudo exibem também o diferencial recebido da IA, incluindo variações de escrita e combinações.

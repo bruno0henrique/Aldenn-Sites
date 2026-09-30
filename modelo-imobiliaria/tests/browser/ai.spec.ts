@@ -47,3 +47,21 @@ test("AI feature spelling and multiple criteria remain visible after opening the
   await expect(page.getByLabel("Diferencial", { exact: true })).toHaveValue("Piscina|Elevador");
   await expect(page.getByLabel("Diferencial", { exact: true }).locator("option:checked")).toHaveText("Piscina, Elevador");
 });
+test("Ver tudo exits AI even when its destination is the current URL, and replaces previous criteria", async ({ page }) => {
+  let wanted = { ...defaultFilters, purpose: "venda" };
+  await page.route("**/api/imobiliaria/busca", (route) => route.fulfill({ contentType: "application/x-ndjson", body: JSON.stringify({ type: "complete", message: "Vou organizar os imóveis pedidos.", filters: wanted, count: wanted.purpose ? 4 : 6 }) + "\n" }));
+  for (const [initial, expected] of [["purpose=venda", 4], ["", 6], ["purpose=locacao&city=Jacare%C3%AD&maxPrice=10000", 4]] as const) {
+    wanted = { ...defaultFilters, purpose: expected === 4 ? "venda" : "" };
+    await page.goto(`/demonstracao-imobiliaria/?${initial}#imoveis`);
+    await page.getByRole("button", { name: "Busca com IA", exact: true }).click();
+    await page.getByLabel("O que você procura?").fill("Quero ver os imóveis disponíveis");
+    await page.getByRole("button", { name: "Buscar com IA", exact: true }).click();
+    await page.getByRole("link", { name: `Ver tudo ${expected}` }).click();
+    await expect(page.locator(".ai-search")).toHaveCount(0);
+    await expect(page.locator(".property-card")).toHaveCount(expected);
+    expect(new URL(page.url()).searchParams.get("city")).toBeNull();
+    expect(new URL(page.url()).searchParams.get("maxPrice")).toBeNull();
+    await page.reload();
+    await expect(page.locator(".property-card")).toHaveCount(expected);
+  }
+});

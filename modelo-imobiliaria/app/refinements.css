@@ -101,3 +101,24 @@
   .ai-match > svg { width: 14px; }
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.catalog-tabs .ai-tab {
+  align-self: center;
+  min-height: 44px;
+  margin-bottom: 7px;
+  padding: 9px 14px;
+  border: 1px solid #b39b6255;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #efe7d580, #fffefa);
+  color: #82682f;
+  font-weight: 500;
+  transition: background .2s, border-color .2s, box-shadow .2s;
+}
+.catalog-tabs .ai-tab svg { color: #927540; flex-shrink: 0; transform-origin: center; }
+.catalog-tabs .ai-tab:hover, .catalog-tabs .ai-tab[aria-pressed=true] {
+  border-color: #b39b6299;
+  background: #eee4cd;
+  box-shadow: 0 2px 10px #b39b6210;
+  color: #705723;
+}
+.catalog-results-line { scroll-margin-top: 115px; }
+@media (prefers-reduced-motion: reduce) { .catalog-tabs .ai-tab { transition: none; } }

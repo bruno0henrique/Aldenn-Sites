@@ -9,7 +9,7 @@ import { filterProperties, type Filters } from "@/lib/property";
 import { searchHref, validateSearch, type SearchEvent } from "@/lib/ai-search";
 import { asset, money } from "@/lib/format";
 
-export function AiSearch({ onClose, onManual }: { onClose: () => void; onManual: () => void }) {
+export function AiSearch({ onClose, onManual, onResults }: { onClose: () => void; onManual: () => void; onResults: (filters: Filters) => void }) {
   const [query, setQuery] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -53,7 +53,7 @@ export function AiSearch({ onClose, onManual }: { onClose: () => void; onManual:
     <small className="ai-privacy">Seu texto é enviado à OpenAI para interpretar a busca. Evite informar dados pessoais.</small>
     {busy && !message && <p className="ai-working" role="status"><LoaderCircle size={16} /> Organizando sua busca…</p>}
     {message && <div className={`ai-response ${busy ? "is-streaming" : ""}`}><Sparkles size={17} /><p>{message}<span className="ai-caret" aria-hidden="true" /></p></div>}
-    {!busy && filters && <div className="ai-matches"><p className="ai-count" role="status">{matches.length ? `${matches.length} ${matches.length === 1 ? "opção nesta seleção" : "opções nesta seleção"}` : "Ainda não temos um imóvel com esses critérios."}</p>{matches.slice(0, 3).map((property) => <Link href={`/imovel/${property.slug}`} className="ai-match" key={property.reference}><Image src={asset(property.images[0].thumbnail)} alt="" width={120} height={90} /><div><strong>{property.title}</strong><small>{property.neighborhood} · {property.bedrooms} dormitórios · {property.builtArea} m²</small><span>{money(property.price)}{property.purpose === "locacao" && " / mês"}</span></div><ArrowUpRight size={18} /></Link>)}<a className="button button-dark ai-view-all" href={searchHref(filters)}>Ver tudo <span>{matches.length}</span><ArrowUpRight size={16} /></a></div>}
+    {!busy && filters && <div className="ai-matches"><p className="ai-count" role="status">{matches.length ? `${matches.length} ${matches.length === 1 ? "opção nesta seleção" : "opções nesta seleção"}` : "Ainda não temos um imóvel com esses critérios."}</p>{matches.slice(0, 3).map((property) => <Link href={`/imovel/${property.slug}`} className="ai-match" key={property.reference}><Image src={asset(property.images[0].thumbnail)} alt="" width={120} height={90} /><div><strong>{property.title}</strong><small>{property.neighborhood} · {property.bedrooms} dormitórios · {property.builtArea} m²</small><span>{money(property.price)}{property.purpose === "locacao" && " / mês"}</span></div><ArrowUpRight size={18} /></Link>)}<a className="button button-dark ai-view-all" href={searchHref(filters)} onClick={(event) => { if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return; event.preventDefault(); onResults(filters); }}>Ver tudo <span>{matches.length}</span><ArrowUpRight size={16} /></a></div>}
     {error && <p className="ai-error" role="alert">{error}</p>}
     {(error || (filters && !matches.length)) && <button className="complete-search-link" onClick={onManual}>Ajustar na pesquisa completa <ArrowUpRight size={16} /></button>}
   </section>;
