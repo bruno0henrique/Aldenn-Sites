@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## [0.68.2] - 2026-09-30
+
+- Filtros abertos por Ver tudo exibem também o diferencial recebido da IA, incluindo variações de escrita e combinações.
+
 ## [0.68.1] - 2026-09-30
 
 - Aldenn Imóveis 0.5.1: busca com IA ocupa o modo selecionado; filtros e catálogo aparecem ao abrir Ver tudo, evitando contagens simultâneas e critérios visuais de uma busca anterior.

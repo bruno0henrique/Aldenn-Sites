@@ -1,5 +1,9 @@
 # Histórico
 
+## 0.5.2 — 2026-09-30
+
+- Filtros abertos por Ver tudo exibem também o diferencial recebido da IA, incluindo variações de escrita e combinações.
+
 ## 0.5.1 — 2026-09-30
 
 - Painel da IA exibe somente seu pedido e sugestões. Ver tudo abre a pesquisa manual com filtros aplicados; busca anterior não confunde os resultados atuais.

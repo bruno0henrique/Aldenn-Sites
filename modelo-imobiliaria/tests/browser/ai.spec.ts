@@ -40,3 +40,10 @@ test("AI errors allow manual search, no fabricated suggestions", async ({ page }
   await page.getByRole("button", { name: "Ajustar na pesquisa completa" }).click();
   await expect(page.getByLabel("Cidade", { exact: true })).toBeVisible();
 });
+test("AI feature spelling and multiple criteria remain visible after opening the filtered catalog", async ({ page }) => {
+  await page.goto("/demonstracao-imobiliaria/?feature=Piscina%7CElevador#imoveis");
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  await expect(page.getByLabel("Diferencial", { exact: true })).toHaveValue("Piscina|Elevador");
+  await expect(page.getByLabel("Diferencial", { exact: true }).locator("option:checked")).toHaveText("Piscina, Elevador");
+});
