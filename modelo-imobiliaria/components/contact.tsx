@@ -4,14 +4,14 @@ import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, MessageCircle, Send } from "lucide-react";
 import { Modal } from "./modal";
 
-export function Contact({ property = "a seleção de imóveis", reference, variant = "buttons" }: { property?: string; reference?: string; variant?: "buttons" | "header" | "footer" }) {
+export function Contact({ property = "a seleção de imóveis", reference, variant = "buttons" }: { property?: string; reference?: string; variant?: "buttons" | "header" | "footer" | "floating" }) {
   const [mode, setMode] = useState<"form" | "whatsapp" | null>(null);
   const [submitted, setSubmitted] = useState(false);
   function open(value: "form" | "whatsapp") { setSubmitted(false); setMode(value); }
   function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setSubmitted(true); }
   const message = `Olá! Tenho interesse em ${property}${reference ? ` (ref. ${reference})` : ""} e gostaria de saber mais.`;
   return <>
-    {variant === "buttons" ? <div className="contact-buttons">
+    {variant === "floating" ? <button className="whatsapp-floating" aria-label="Conversar pelo WhatsApp, atendimento demonstrativo" onClick={() => open("whatsapp")}><svg viewBox="0 0 32 32" width="25" height="25" aria-hidden="true"><path fill="currentColor" d="M16 .8A15.1 15.1 0 0 0 2.9 23.4L.8 31.2l8-2.1A15.2 15.2 0 1 0 16 .8Zm0 27.7a12.5 12.5 0 0 1-6.4-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5A12.6 12.6 0 1 1 16 28.5Zm7-9.4c-.4-.2-2.2-1.1-2.6-1.2-.3-.1-.6-.2-.8.2-.3.4-1 1.2-1.2 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7.4-.6c.1-.2 0-.5 0-.7l-1.2-2.8c-.3-.7-.6-.6-.8-.6h-.7c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1s1.3 3.5 1.5 3.7c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.7.9.3 1.8.2 2.5.1.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.7.2-1.8-.1-.2-.4-.3-.8-.5Z" /></svg></button> : variant === "buttons" ? <div className="contact-buttons">
       <button className="button button-gold" onClick={() => open("whatsapp")}><MessageCircle size={18} /> Conversar pelo WhatsApp</button>
       <button className="button button-outline" onClick={() => open("form")}>Solicitar contato <ArrowUpRight size={18} /></button>
       <p className="microcopy">Atendimento demonstrativo. Nenhuma mensagem é enviada.</p>

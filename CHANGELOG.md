@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## [0.68.0] - 2026-09-30
+
+- Aldenn Imóveis 0.5.0: pesquisa completa combinável e busca com IA em streaming, sugestões reais do catálogo e acesso com filtros aplicados.
+- Entrada com texto separado da fotografia, remoção de selos nas imagens e WhatsApp flutuante demonstrativo.
 ## [0.67.1] - 2026-09-29
 
 - Aldenn Imóveis 0.4.1: filtros e ordenação legíveis no celular, controles de toque ampliados e ajustes de formulário, galeria e simulador em 320 px.

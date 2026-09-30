@@ -44,3 +44,17 @@ test("bedroom filter is an inclusive maximum and multiword regions match", () =>
   assert.equal(filterProperties(records, { ...defaultFilters, bedrooms: "3" }).length, 2);
   assert.deepEqual(filterProperties(records, { ...defaultFilters, location: "Jardim das Industrias, Sao Jose dos Campos" }), [records[1]]);
 });
+
+test("advanced filters combine locations, features and inclusive ranges without treating unknown areas as zero", () => {
+  const detailed = [
+    { ...records[0], reference: "27236", suites: 4, bathrooms: 6, parking: 6, builtArea: 390, landArea: 452, features: ["Escritório", "Piscina"], amenities: [] },
+    { ...records[1], reference: "24060", suites: 1, bathrooms: null, parking: 2, builtArea: 100, landArea: null, features: ["Varanda gourmet"], amenities: ["Piscina", "Academia"] },
+  ];
+  assert.deepEqual(filterProperties(detailed, { ...defaultFilters, city: "São José dos Campos", neighborhood: "Jardim das Indústrias", development: "Splendor Garden", suites: "1", parking: "2", minArea: "100", maxArea: "100", feature: "academia", reference: "240" }), [detailed[1]]);
+  assert.deepEqual(filterProperties(detailed, { ...defaultFilters, bathrooms: "7" }), [detailed[0]]);
+  assert.deepEqual(filterProperties(detailed, { ...defaultFilters, areaType: "land", minArea: "0", maxArea: "452" }), [detailed[0]]);
+  for (const patch of [{ minArea: "200", maxArea: "100" }, { minPrice: "-1" }, { bathrooms: "abc" }, { maxArea: "Infinity" }]) {
+    assert.equal(filterProperties(detailed, { ...defaultFilters, ...patch }).length, 0);
+  }
+  assert.equal(filterProperties(detailed, { ...defaultFilters, feature: "piscina" }).length, 2);
+});

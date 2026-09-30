@@ -1,0 +1,21 @@
+import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
+import { resolve, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const argument = process.argv[2];
+if (!argument) throw new Error("Informe o checkout institucional aldenn como destino.");
+const destination = resolve(argument);
+const packageJson = JSON.parse(await readFile(join(destination, "package.json"), "utf8"));
+if (packageJson.name !== "aldenn-landing-page") throw new Error("O destino não é o repositório institucional.");
+const source = fileURLToPath(new URL("../", import.meta.url));
+await cp(join(source, "out"), join(destination, "public/demonstracao-imobiliaria"), { recursive: true });
+const library = join(destination, "lib/imobiliaria");
+await mkdir(library, { recursive: true });
+for (const file of ["property.ts", "ai-search.ts"]) await cp(join(source, "lib", file), join(library, file));
+await cp(join(source, "data/search-catalog.json"), join(library, "search-catalog.json"));
+const handler = (await readFile(join(source, "server/search-handler.ts"), "utf8")).replace('"../data/search-catalog.json"', '"./search-catalog.json"').replace('"../lib/property"', '"./property"').replace('"../lib/ai-search"', '"./ai-search"');
+await writeFile(join(library, "search-handler.ts"), handler);
+const route = join(destination, "app/api/imobiliaria/busca");
+await mkdir(route, { recursive: true });
+await writeFile(join(route, "route.ts"), 'export { POST } from "@/lib/imobiliaria/search-handler";\nexport const runtime = "nodejs";\nexport const maxDuration = 30;\nexport const dynamic = "force-dynamic";\n');
+console.log("Exportação e API da imobiliária copiadas; páginas institucionais preservadas.");

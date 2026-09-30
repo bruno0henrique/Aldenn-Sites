@@ -1,6 +1,6 @@
 {
   "name": "aldenn-imoveis",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -8,14 +8,15 @@
   },
   "scripts": {
     "dev": "next dev --port 5175",
-    "build": "next build",
+    "build": "npm run search:catalog && next build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:browser": "playwright test",
     "media:import": "node scripts/import-stock-images.mjs",
     "preview": "node scripts/preview.mjs",
-    "3d:inputs": "node scripts/export-3d-inputs.mjs"
+    "3d:inputs": "node scripts/export-3d-inputs.mjs",
+    "search:catalog": "node scripts/export-search-catalog.mjs"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",

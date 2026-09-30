@@ -1,5 +1,11 @@
 # Histórico
 
+## 0.5.0 — 2026-09-30
+
+- Pesquisa completa com cidade, bairro e condomínio dependentes; características, preço, áreas e código.
+- Busca com IA como quarta opção, resposta em streaming, três sugestões e Ver tudo com filtros na URL. Servidor institucional usa Responses API, sem expor chave.
+- Limites mínimo, máximo e quantidade exata preservados na busca natural. Filtros de dados desconhecidos não inventam valores.
+- Entrada sem foto sob o título; selos repetidos removidos e contato WhatsApp flutuante simulado.
 ## 0.4.1 — 2026-09-29
 
 - Filtros em coluna até 540 px, com texto completo e campos de 50 px.

@@ -1,0 +1,40 @@
+import { test, expect } from "@playwright/test";
+import { defaultFilters } from "../../lib/property";
+
+test("AI search shows streamed summary, real cards and opens all results with persistent filters", async ({ page }) => {
+  await page.route("**/api/imobiliaria/busca", async (route) => {
+    expect(route.request().postDataJSON().query).toContain("Aquarius");
+    await route.fulfill({ contentType: "application/x-ndjson", body: [
+      { type: "delta", text: "Vou buscar " }, { type: "delta", text: "aluguel no Aquarius." },
+      { type: "complete", message: "Vou buscar aluguel no Aquarius.", filters: { ...defaultFilters, purpose: "locacao", location: "Aquarius", minSuites: "2" }, count: 1 },
+    ].map((item) => JSON.stringify(item)).join("\n") + "\n" });
+  });
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
+    await page.getByRole("button", { name: "Busca com IA", exact: true }).click();
+    await page.getByLabel("O que você procura?").fill("Alugar no Aquarius com pelo menos duas suítes");
+    await page.getByRole("button", { name: "Buscar com IA", exact: true }).click();
+    await expect(page.locator(".ai-response")).toContainText("Vou buscar aluguel no Aquarius.");
+    await expect(page.locator(".ai-match")).toHaveCount(1);
+    await expect(page.locator(".ai-match")).toContainText("Casablanca");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.getByRole("link", { name: "Ver tudo 1" }).click();
+    await expect(page).toHaveURL(/minSuites=2/);
+    await expect(page.locator(".property-card")).toHaveCount(1);
+    await page.reload(); await expect(page.locator(".property-card")).toHaveCount(1);
+    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+    await expect(page.getByLabel("Mínimo de suítes", { exact: true })).toHaveValue("2");
+  }
+});
+test("AI errors allow manual search, no fabricated suggestions", async ({ page }) => {
+  await page.route("**/api/imobiliaria/busca", (route) => route.fulfill({ status: 503, contentType: "application/json", body: JSON.stringify({ message: "Temporariamente indisponível." }) }));
+  await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
+  await page.getByRole("button", { name: "Busca com IA", exact: true }).click();
+  await page.getByLabel("O que você procura?").fill("Uma casa em Urbanova");
+  await page.getByRole("button", { name: "Buscar com IA", exact: true }).click();
+  await expect(page.locator(".ai-error")).toContainText("indisponível");
+  await expect(page.locator(".ai-match")).toHaveCount(0);
+  await page.getByRole("button", { name: "Ajustar na pesquisa completa" }).click();
+  await expect(page.getByLabel("Cidade", { exact: true })).toBeVisible();
+});

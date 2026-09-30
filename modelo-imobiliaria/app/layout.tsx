@@ -7,12 +7,14 @@ import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { Contact } from "@/components/contact";
 import { Motion } from "@/components/motion";
 import { basePath } from "@/lib/format";
 import "./globals.css";
 import "./entrance.css";
 import "./search.css";
 import "./mobile.css";
+import "./refinements.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"),
@@ -22,5 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body><Motion><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header />{children}<Footer /></Motion></body></html>;
+  return <html lang="pt-BR"><body><Motion><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header />{children}<Footer /><Contact variant="floating" /></Motion></body></html>;
 }

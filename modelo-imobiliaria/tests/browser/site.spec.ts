@@ -215,8 +215,66 @@ test("all rendered property images use local illustrative galleries", async ({ p
   await expect(page.locator(".hero-image")).toHaveAttribute("src", /\/media\/illustrative\//);
   for (const image of await page.locator(".card-photo img").all()) await expect(image).toHaveAttribute("src", /\/media\/illustrative\//);
   await page.goto(`${path}/imovel/apartamento-splendor-garden-venda/`);
-  await expect(page.getByText(/Galeria de inspiração/)).toBeVisible();
+  await expect(page.locator(".source-note")).toContainText("Modelo demonstrativo");
   await expect(page.locator(".gallery-main img")).toHaveAttribute("src", /\/media\/illustrative\//);
+});
+
+test("complete search combines dependent fields, ranges, URL reload and empty results", async ({ page }) => {
+  await page.goto(`${path}/?skip=opening`);
+  await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Os detalhes do seu próximo lugar." })).toBeVisible();
+  await page.getByLabel("Cidade", { exact: true }).selectOption("São José dos Campos");
+  await page.getByLabel("Bairro", { exact: true }).selectOption("Jardim das Indústrias");
+  await page.getByLabel("Condomínio / empreendimento", { exact: true }).selectOption("Splendor Garden");
+  await page.getByLabel("Suítes", { exact: true }).selectOption("1");
+  await page.getByLabel("Vagas de garagem", { exact: true }).selectOption("2");
+  await page.getByLabel("Diferencial", { exact: true }).selectOption("academia");
+  await page.getByLabel("Área mínima (m²)", { exact: true }).fill("100");
+  await page.getByLabel("Área máxima (m²)", { exact: true }).fill("100");
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await expect(page.locator(".property-card h3")).toHaveText("Apartamento no Splendor Garden");
+  await page.reload();
+  await expect(page.locator(".property-card")).toHaveCount(1);
+  await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  await expect(page.getByLabel("Cidade", { exact: true })).toHaveValue("São José dos Campos");
+  await page.getByLabel("Área máxima (m²)", { exact: true }).fill("90");
+  await expect(page.locator(".advanced-search").getByRole("alert")).toContainText("mínimo deve ser menor");
+  await expect(page.locator(".property-card")).toHaveCount(0);
+  await page.getByLabel("Área máxima (m²)", { exact: true }).fill("100");
+  await page.getByLabel("Banheiros", { exact: true }).selectOption("7");
+  await expect(page.locator(".property-card")).toHaveCount(0);
+  await page.getByLabel("Cidade", { exact: true }).selectOption("Jacareí");
+  await expect(page.getByLabel("Bairro", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Condomínio / empreendimento", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Bairro", { exact: true }).locator("option")).toHaveCount(2);
+  await page.getByRole("button", { name: "Limpar filtros", exact: true }).click();
+  await expect(page.locator(".property-card")).toHaveCount(6);
+});
+
+test("hero separates text from photos and floating WhatsApp opens a simulated conversation", async ({ page }) => {
+  for (const width of [320, 390, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`${path}/?skip=opening`);
+    const title = await page.locator("#hero-title").boundingBox();
+    const photo = await page.locator(".hero-art").boundingBox();
+    expect(title && photo).toBeTruthy();
+    if (width > 700) expect(title!.x + title!.width).toBeLessThanOrEqual(photo!.x);
+    else expect(title!.y + title!.height).toBeLessThan(photo!.y);
+    const badge = await page.locator(".card-photo").first().evaluate((element) => getComputedStyle(element, "::after").content);
+    expect(badge).not.toContain("Imagem ilustrativa");
+    await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await expect(page.getByLabel("Cidade", { exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  }
+  const requests: string[] = [];
+  page.on("request", (request) => { if (!["GET", "HEAD"].includes(request.method())) requests.push(request.url()); });
+  await page.getByRole("button", { name: "Conversar pelo WhatsApp, atendimento demonstrativo", exact: true }).click();
+  await expect(page.getByRole("dialog", { name: "Prévia do WhatsApp" })).toBeVisible();
+  await expect(page.getByRole("dialog").getByText(/Não há envio ao WhatsApp/)).toBeVisible();
+  expect(requests).toEqual([]);
+  await page.getByRole("button", { name: "Fechar", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Conversar pelo WhatsApp, atendimento demonstrativo", exact: true })).toBeFocused();
 });
 test("brief decorative entrance clears and mobile hero search works", async ({ page, browser }) => {
   await page.setViewportSize({ width: 390, height: 844 });

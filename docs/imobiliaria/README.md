@@ -52,3 +52,20 @@ Solicitação de 29/09/2026: corrigir controles estranhos no celular, incluindo 
 
 Validação: lint, tipos, build, dez testes unitários e doze testes de navegador. Verificação de encaixe das opções entre 320 e 700 px, ausência de rolagem horizontal até 1920 px, galerias, formulário, filtros e cálculos.
 Os placeholders da busca e do nome foram encurtados para evitar texto cortado em 320 px.
+
+## Pesquisa completa e IA — 0.5.0 (30/09/2026)
+
+Pedidos aprovados: pesquisa completa, melhor separação do texto e fotografia na entrada, retirar selos Imagem ilustrativa das fotos e WhatsApp pequeno no canto. A quarta opção Busca com IA interpreta texto livre, mostra um resumo público progressivo, sugestões do catálogo e Ver tudo com parâmetros na URL e navegação completa. Referências React anexadas foram usadas apenas como inspiração visual; não impõem bibliotecas nem apresentação de raciocínio interno.
+
+Pesquisa manual combina finalidade, texto, cidade, bairro, condomínio, tipo, dormitórios, suítes, banheiros, vagas, diferencial, código, preços e áreas construída/terreno. Localizações dependentes são reiniciadas ao mudar cidade/bairro. Valores ausentes não satisfazem filtros numéricos. Campos de zona, permuta, mobiliado, financiamento e estágio da referência não foram inventados: não há esses dados no catálogo. Limites máximos existentes foram preservados; mínimos permitem reproduzir pedidos exatos da IA. Mais de um diferencial usa | e exige todos.
+
+A exportação continua estática. POST /api/imobiliaria/busca é uma função do Next institucional, com OPENAI_API_KEY somente no servidor Vercel, confirmada por metadados em Production em 30/09/2026, sem leitura da chave. Modelo padrão gpt-4.1-mini, opcional OPENAI_REAL_ESTATE_MODEL. Responses API com saída JSON estruturada, stream:true, store:false, limite de saída, timeout e validação de filtros. Não são usados tools, busca externa, raciocínio interno ou URLs indicadas pela IA. Dados do catálogo determinam recomendações e preços.
+
+Privacidade: o texto do pedido e catálogo público são enviados à OpenAI para interpretação; a interface informa isso e orienta não incluir dados pessoais. O app não salva o pedido nem envia formulários de contato. store:false não altera políticas de retenção do provedor. Limite de 600 caracteres/4KB, origem igual, limite por IP e global em memória por instância (melhor esforço; não substitui proteção distribuída). Nenhuma chave aparece no bundle. Falha, limite ou cancelamento preservam a pesquisa manual e não produzem resultados fictícios.
+
+O script search:catalog gera data/search-catalog.json a partir do cadastro factual versionado, sem galerias. scripts/package-institution.mjs copia somente a exportação e os módulos necessários à API, sem modificar a home. A prévia estática local não oferece API real: testes de UI interceptam o endpoint e testes do handler usam upstream simulado. Validação real da IA ocorre na publicação institucional.
+
+Avisos repetidos sobre fotos foram retirados a pedido do usuário. Caráter demonstrativo e fontes permanecem no rodapé e nos detalhes; as fotos Unsplash continuam sendo de projetos diferentes e não são adequadas à reconstrução 3D fiel. O botão flutuante usa a prévia de WhatsApp demonstrativa existente, sem enviar mensagens.
+
+Fontes técnicas consultadas em 30/09/2026: https://developers.openai.com/api/docs/guides/streaming-responses e https://developers.openai.com/api/docs/guides/structured-outputs .
+`nValidação da versão 0.5.0: lint, tipos, build estático, 15 testes unitários e 16 testes Chromium passaram. Conferência de controles e ausência de rolagem horizontal de 320 a 1920 px, filtros dependentes, recarga, acesso direto, galerias, simulação financeira e contatos sem envio real. Testes da IA verificam streaming fragmentado, filtros exatos/mínimos/máximos, erro, chave ausente, origem, tamanho e limite de requisições.
