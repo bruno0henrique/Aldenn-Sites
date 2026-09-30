@@ -45,7 +45,7 @@ test("mobile filter options fit and touch controls remain comfortable", async ({
 test("catalog filters, empty state, URL reload and header navigation", async ({ page }) => {
   await page.goto(`${path}/`);
   await expect(page.locator(".property-card")).toHaveCount(6);
-  await page.getByRole("group", { name: "Filtrar por finalidade" }).getByRole("button", { name: "Comprar", exact: true }).click();
+  await page.getByRole("group", { name: "Modo de busca" }).getByRole("button", { name: "Comprar", exact: true }).click();
   await expect(page.locator(".property-card")).toHaveCount(4);
   await page.getByLabel("Tipo de imóvel", { exact: true }).selectOption("Apartamento");
   await expect(page.locator(".property-card")).toHaveCount(1);

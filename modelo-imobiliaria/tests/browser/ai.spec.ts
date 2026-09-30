@@ -13,6 +13,8 @@ test("AI search shows streamed summary, real cards and opens all results with pe
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
     await page.getByRole("button", { name: "Busca com IA", exact: true }).click();
+    await expect(page.locator(".filters-primary")).toHaveCount(0);
+    await expect(page.locator(".property-grid")).toHaveCount(0);
     await page.getByLabel("O que você procura?").fill("Alugar no Aquarius com pelo menos duas suítes");
     await page.getByRole("button", { name: "Buscar com IA", exact: true }).click();
     await expect(page.locator(".ai-response")).toContainText("Vou buscar aluguel no Aquarius.");

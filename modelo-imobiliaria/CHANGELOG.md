@@ -1,5 +1,8 @@
 # Histórico
 
+## 0.5.1 — 2026-09-30
+
+- Painel da IA exibe somente seu pedido e sugestões. Ver tudo abre a pesquisa manual com filtros aplicados; busca anterior não confunde os resultados atuais.
 ## 0.5.0 — 2026-09-30
 
 - Pesquisa completa com cidade, bairro e condomínio dependentes; características, preço, áreas e código.

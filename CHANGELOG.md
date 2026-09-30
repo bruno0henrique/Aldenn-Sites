@@ -1,5 +1,8 @@
 # Histórico de versões
 
+## [0.68.1] - 2026-09-30
+
+- Aldenn Imóveis 0.5.1: busca com IA ocupa o modo selecionado; filtros e catálogo aparecem ao abrir Ver tudo, evitando contagens simultâneas e critérios visuais de uma busca anterior.
 ## [0.68.0] - 2026-09-30
 
 - Aldenn Imóveis 0.5.0: pesquisa completa combinável e busca com IA em streaming, sugestões reais do catálogo e acesso com filtros aplicados.
