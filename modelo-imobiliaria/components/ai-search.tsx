@@ -7,6 +7,8 @@ import { ArrowUp, ArrowUpRight, LoaderCircle, Sparkles, X } from "lucide-react";
 import { properties } from "@/data/properties";
 import { filterProperties, type Filters } from "@/lib/property";
 import { searchHref, validateSearch, type SearchEvent } from "@/lib/ai-search";
+import { usePromotions } from "./promotion-provider";
+import { prioritizePromotions } from "@/lib/promotions";
 import { asset, money } from "@/lib/format";
 
 export function AiSearch({ onClose, onManual, onResults }: { onClose: () => void; onManual: () => void; onResults: (filters: Filters) => void }) {
@@ -17,7 +19,8 @@ export function AiSearch({ onClose, onManual, onResults }: { onClose: () => void
   const [filters, setFilters] = useState<Filters | null>(null);
   const abort = useRef<AbortController | null>(null);
   useEffect(() => () => abort.current?.abort(), []);
-  const matches = filters ? filterProperties(properties, filters) : [];
+  const { campaigns } = usePromotions();
+  const { results: matches } = prioritizePromotions(filters ? filterProperties(properties, filters) : [], campaigns);
   async function search(event: React.FormEvent) {
     event.preventDefault();
     if (busy || query.trim().length < 3) return;
@@ -48,7 +51,7 @@ export function AiSearch({ onClose, onManual, onResults }: { onClose: () => void
   return <section className="ai-search" aria-labelledby="ai-search-title">
     <div className="ai-heading"><div><span className="eyebrow"><Sparkles size={15} /> BUSCA COM IA</span><h3 id="ai-search-title">Conte como é o seu lugar.</h3></div><button className="ai-close" aria-label="Fechar busca com IA" onClick={onClose}><X size={18} /></button></div>
     <p className="ai-intro">Diga o que procura. Eu organizo os critérios e encontro as opções desta seleção.</p>
-    <form onSubmit={search} className="ai-composer"><label className="sr-only" htmlFor="ai-query">O que você procura?</label><textarea id="ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Um apartamento para alugar no Aquarius, com pelo menos duas suítes…" rows={3} minLength={3} maxLength={600} required disabled={busy} /><div className="ai-composer-bottom"><small>Descreva localização, preço e os detalhes que importam.</small>{busy ? <button type="button" className="ai-submit" aria-label="Cancelar busca" onClick={() => { abort.current?.abort(); setBusy(false); setMessage(""); }}><X size={19} /></button> : <button className="ai-submit" aria-label="Buscar com IA" disabled={query.trim().length < 3}><ArrowUp size={19} /></button>}</div></form>
+    <form onSubmit={search} className="ai-composer"><label className="sr-only" htmlFor="ai-query">O que você procura?</label><textarea id="ai-query" value={query} onChange={(event) => setQuery(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.nativeEvent.keyCode !== 229) { event.preventDefault(); if (!busy) event.currentTarget.form?.requestSubmit(); } }} placeholder="Um apartamento para alugar no Aquarius, com pelo menos duas suítes…" rows={3} minLength={3} maxLength={600} required disabled={busy} /><div className="ai-composer-bottom"><small>Localização, preço, cor e detalhes. Enter envia; Shift+Enter quebra linha.</small>{busy ? <button type="button" className="ai-submit" aria-label="Cancelar busca" onClick={() => { abort.current?.abort(); setBusy(false); setMessage(""); }}><X size={19} /></button> : <button className="ai-submit" aria-label="Buscar com IA" disabled={query.trim().length < 3}><ArrowUp size={19} /></button>}</div></form>
     <div className="ai-examples" aria-label="Exemplos de busca">{["Casa em Urbanova até R$ 3 milhões", "Alugar no Aquarius", "Apartamento com 3 dormitórios"].map((example) => <button key={example} disabled={busy} onClick={() => setQuery(example)}>{example} <ArrowUpRight size={12} /></button>)}</div>
     <small className="ai-privacy">Seu texto é enviado à OpenAI para interpretar a busca. Evite informar dados pessoais.</small>
     {busy && !message && <p className="ai-working" role="status"><LoaderCircle size={16} /> Organizando sua busca…</p>}

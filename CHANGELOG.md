@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.69.0] - 2026-09-30
+
+- Busca com IA reconhece cor e aceita Enter para enviar (Shift+Enter mantém quebra de linha); filtro de cor persiste em Ver tudo e na pesquisa completa.
+- Promover no menu abre planos simulados, seleção de imóvel, confirmação e encerramento. Boosts locais com validade, contorno marrom e até três prioridades, sempre após todos os filtros.
+
+
 ## [0.68.3] - 2026-09-30
 
 - Busca com IA destacada com fundo bege, borda dourada suave e brilho discreto do ícone em GSAP, sem movimento quando reduzido.

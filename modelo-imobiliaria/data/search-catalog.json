@@ -36,6 +36,10 @@
       "Playground",
       "Pista de caminhada",
       "Salão de festas"
+    ],
+    "colors": [
+      "branca",
+      "bege"
     ]
   },
   {
@@ -66,7 +70,11 @@
       "Dependência de serviço",
       "8 vagas de garagem"
     ],
-    "amenities": []
+    "amenities": [],
+    "colors": [
+      "branca",
+      "marrom"
+    ]
   },
   {
     "reference": "24477",
@@ -96,7 +104,10 @@
       "Área de serviço",
       "4 vagas de garagem"
     ],
-    "amenities": []
+    "amenities": [],
+    "colors": [
+      "branca"
+    ]
   },
   {
     "reference": "24060",
@@ -135,6 +146,11 @@
       "Pet care",
       "Sauna",
       "Playground"
+    ],
+    "colors": [
+      "bege",
+      "branca",
+      "cinza"
     ]
   },
   {
@@ -165,7 +181,10 @@
       "Quarto e banheiro de apoio",
       "4 vagas de garagem"
     ],
-    "amenities": []
+    "amenities": [],
+    "colors": [
+      "bege"
+    ]
   },
   {
     "reference": "26556",
@@ -202,6 +221,11 @@
       "Salão de festas",
       "Churrasqueira",
       "Forno a lenha"
+    ],
+    "colors": [
+      "bege",
+      "cinza",
+      "branca"
     ]
   }
 ]

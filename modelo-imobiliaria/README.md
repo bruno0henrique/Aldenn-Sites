@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.5.3
+# Aldenn Imóveis — 0.6.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Não há painel, autenticação, banco de dados ou integração bancária.
 
@@ -54,3 +54,9 @@ O script search:catalog gera data/search-catalog.json a partir do cadastro factu
 Avisos repetidos sobre fotos foram retirados a pedido do usuário. Caráter demonstrativo e fontes permanecem no rodapé e nos detalhes; as fotos Unsplash continuam sendo de projetos diferentes e não são adequadas à reconstrução 3D fiel. O botão flutuante usa a prévia de WhatsApp demonstrativa existente, sem enviar mensagens.
 
 Fontes técnicas consultadas em 30/09/2026: https://developers.openai.com/api/docs/guides/streaming-responses e https://developers.openai.com/api/docs/guides/structured-outputs .
+
+## Promoções demonstrativas
+
+Menu Promover: 7 dias (R$ 49), 30 dias (R$ 149), até vender/alugar (R$ 299). Valores fictícios escolhidos para a demonstração; não há pagamento ou renovação. Campanhas em localStorage, apenas neste navegador; nenhum dado pessoal. Prazo começa na ativação, expiração automática e encerramento manual. Nova ativação do mesmo imóvel substitui a anterior.
+
+Filtrar primeiro, promover depois: até três campanhas compatíveis lideram resultados e sugestões da IA. Mais de três elegíveis: as mais recentes primeiro, sem duplicar imóveis; restantes seguem a ordenação comum. Adaptação pela região pesquisada, sem GPS, IP ou segmentação real entre usuários. Cores são tons das fotografias de capa demonstrativas (arquitetura/decor), não fatos das fichas França.

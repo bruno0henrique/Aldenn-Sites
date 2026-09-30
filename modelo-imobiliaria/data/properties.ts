@@ -5,7 +5,7 @@ import type { Property } from "../lib/property";
 
 const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
   {
-    reference: "27236", slug: "casa-vivant-urbanova", title: "Casa no Vivant Urbanova", subtitle: "Arquitetura contemporânea, espaços para viver.",
+    reference: "27236", colors: ["branca", "bege"], slug: "casa-vivant-urbanova", title: "Casa no Vivant Urbanova", subtitle: "Arquitetura contemporânea, espaços para viver.",
     purpose: "venda", type: "Casa", city: "São José dos Campos", neighborhood: "Urbanova", development: "Vivant Urbanova",
     price: 2950000, condominium: 937, iptu: 369, builtArea: 390, landArea: 452,
     bedrooms: 4, suites: 4, bathrooms: 6, parking: 6,
@@ -14,7 +14,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
     amenities: ["Portaria e monitoramento", "Piscinas e raia de 25 m", "Academia", "Beach tennis e squash", "Sauna e spa", "Playground", "Pista de caminhada", "Salão de festas"],
   },
   {
-    reference: "13027", slug: "sobrado-residencial-jaguary", title: "Sobrado no Residencial Jaguary", subtitle: "Amplitude e uma vista para a reserva.",
+    reference: "13027", colors: ["branca", "marrom"], slug: "sobrado-residencial-jaguary", title: "Sobrado no Residencial Jaguary", subtitle: "Amplitude e uma vista para a reserva.",
     purpose: "venda", type: "Casa", city: "São José dos Campos", neighborhood: "Urbanova", development: "Residencial Jaguary",
     price: 3200000, condominium: 400, iptu: 200, builtArea: 450, landArea: null,
     bedrooms: 5, suites: 5, bathrooms: 7, parking: 8,
@@ -23,7 +23,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
     amenities: [],
   },
   {
-    reference: "24477", slug: "casa-alphaville-ii", title: "Casa no Alphaville II", subtitle: "Privacidade, luz e espaço ao ar livre.",
+    reference: "24477", colors: ["branca"], slug: "casa-alphaville-ii", title: "Casa no Alphaville II", subtitle: "Privacidade, luz e espaço ao ar livre.",
     purpose: "venda", type: "Casa", city: "São José dos Campos", neighborhood: "Alphaville II", development: "Alphaville II",
     price: 2980000, condominium: 900, iptu: 150, builtArea: 280, landArea: 470,
     bedrooms: 3, suites: 3, bathrooms: null, parking: 4,
@@ -32,7 +32,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
     amenities: [],
   },
   {
-    reference: "24060", slug: "apartamento-splendor-garden-venda", title: "Apartamento no Splendor Garden", subtitle: "Vista livre e o sol da manhã.",
+    reference: "24060", colors: ["bege", "branca", "cinza"], slug: "apartamento-splendor-garden-venda", title: "Apartamento no Splendor Garden", subtitle: "Vista livre e o sol da manhã.",
     purpose: "venda", type: "Apartamento", city: "São José dos Campos", neighborhood: "Jardim das Indústrias", development: "Splendor Garden",
     price: 1250000, condominium: 595, iptu: null, builtArea: 100, landArea: null,
     bedrooms: 3, suites: 1, bathrooms: null, parking: 2,
@@ -41,7 +41,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
     amenities: ["Piscinas adulto, infantil e climatizada", "Quadras esportivas", "2 academias", "Salões de festas", "Espaço gourmet", "Pet care", "Sauna", "Playground"],
   },
   {
-    reference: "21457", slug: "casa-villa-de-santanna", title: "Casa no Villa de Santanna", subtitle: "Um refúgio amplo para morar.",
+    reference: "21457", colors: ["bege"], slug: "casa-villa-de-santanna", title: "Casa no Villa de Santanna", subtitle: "Um refúgio amplo para morar.",
     purpose: "locacao", type: "Casa", city: "Jacareí", neighborhood: "Altos de Santanna", development: "Villa de Santanna",
     price: 9800, condominium: 1690, iptu: 376, builtArea: 360, landArea: 850,
     bedrooms: 3, suites: 3, bathrooms: null, parking: 4,
@@ -50,7 +50,7 @@ const records: Omit<Property, "images" | "sourceUrl" | "consultedAt">[] = [
     amenities: [],
   },
   {
-    reference: "26556", slug: "apartamento-casablanca-aquarius", title: "Apartamento no Casablanca", subtitle: "Vista livre, amplitude e sol da manhã.",
+    reference: "26556", colors: ["bege", "cinza", "branca"], slug: "apartamento-casablanca-aquarius", title: "Apartamento no Casablanca", subtitle: "Vista livre, amplitude e sol da manhã.",
     purpose: "locacao", type: "Apartamento", city: "São José dos Campos", neighborhood: "Jardim Aquarius", development: "Casablanca",
     price: 8000, condominium: 1530, iptu: 260, builtArea: 153, landArea: null,
     bedrooms: 4, suites: 2, bathrooms: 4, parking: 3,

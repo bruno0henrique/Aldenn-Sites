@@ -84,3 +84,11 @@ Pedido confirmado: destacar a quarta opção discretamente e corrigir Ver tudo. 
 Destaque visual: botão em cápsula bege com borda dourada e leve variação de cor/escala do ícone via GSAP (1,1 s de efeito e 6 s de intervalo). prefers-reduced-motion desativa animação e transição. Não houve alteração na API nem na chave. Teste regressivo falhou antes da correção e passou depois, cobrindo destino idêntico, filtros vazios, troca de locação para venda e recarga.
 
 Validação 0.5.3: lint, build com verificação de tipos e 18 testes Chromium passaram, incluindo URL idêntica, remoção de critérios antigos, recarga e layouts de 320 a 1920 px.
+
+## Busca por cor e promoção — aprovado em 30/09/2026
+
+- Cor como critério da IA e pesquisa completa; Enter envia, Shift+Enter quebra linha, composição IME não envia. Tags visuais conferidas nas capas locais, sem atribuir pintura ao imóvel real de referência.
+- Menu Promover com imóvel, plano e valor total visível; confirmação demonstrativa sem cobrança. Valores iniciais de exemplo: 7 dias/R$ 49, 30 dias/R$ 149, até vender ou alugar/R$ 299. Valores comerciais não foram definidos pelo cliente.
+- Campanhas locais neste navegador, persistidas sem dados pessoais, com expiração automática, encerramento manual e substituição ao reativar o mesmo imóvel.
+- Reforço do usuário: somente imóveis que passam em todos os filtros podem ganhar prioridade. Até três aparecem primeiro e com contorno marrom. Mais de três elegíveis: os mais recentemente ativados. A região pesquisada adapta a seleção; não há geolocalização nem serviço de anúncios global.
+- Validado: lint, tipos, build, 19 testes unitários e 21 cenários de navegador (inclusive 320–1440 px, persistência, encerramento, prioridade após filtros, cor, Enter e recarga). Nenhuma requisição de pagamento é feita.

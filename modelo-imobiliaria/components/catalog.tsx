@@ -14,6 +14,8 @@ import { PropertyCard } from "./property-card";
 import { BrandIntro } from "./brand-intro";
 import { PropertySearch } from "./property-search";
 import { AdvancedSearch } from "./advanced-search";
+import { prioritizePromotions } from "@/lib/promotions";
+import { usePromotions } from "./promotion-provider";
 import { AiSearch } from "./ai-search";
 
 function fromUrl() {
@@ -53,7 +55,8 @@ export function Catalog() {
     Object.entries(next).forEach(([key, value]) => { if (value && value !== defaultFilters[key as keyof Filters]) params.set(key, value); });
     window.history.pushState(null, "", `${window.location.pathname}${params.size ? `?${params}` : ""}#imoveis`);
   }
-  const results = filterProperties(properties, filters);
+  const { campaigns } = usePromotions();
+  const { results, promoted } = prioritizePromotions(filterProperties(properties, filters), campaigns);
   const signature = results.map((item) => item.reference).join(",");
   useEffect(() => {
     if (!grid.current || !grid.current.children.length) return;
@@ -83,7 +86,8 @@ export function Catalog() {
       {!ai && <><div className="filters-primary"><label>Localização<input type="search" value={filters.location} onChange={(event) => { update({ location: event.target.value }); setLocation(event.target.value); }} placeholder="Cidade, bairro ou condomínio" maxLength={100} /></label><label>Tipo de imóvel<select aria-label="Tipo de imóvel" value={filters.type} onChange={(event) => update({ type: event.target.value })}><option value="">Todos os tipos</option><option>Casa</option><option>Apartamento</option></select></label><label>Dormitórios<select aria-label="Dormitórios" value={filters.bedrooms} onChange={(event) => update({ bedrooms: event.target.value })}><option value="">Qualquer quantidade</option><option value="1">Até 1 dormitório</option><option value="2">Até 2 dormitórios</option><option value="3">Até 3 dormitórios</option><option value="4">Até 4 dormitórios</option><option value="5">Até 5 dormitórios</option></select></label></div>
       {extra && <AdvancedSearch filters={filters} onChange={update} count={results.length} onResults={() => { setExtra(false); requestAnimationFrame(() => document.getElementById("catalog-results")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" })); }} />}
       <div className="catalog-results-line" id="catalog-results" tabIndex={-1}><div><span aria-live="polite">{results.length} {results.length === 1 ? "imóvel encontrado" : "imóveis encontrados"}</span>{active && <button className="clear-filters" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); }}>Limpar filtros <X size={12} /></button>}</div><label className="sort-label">Ordenar por<select aria-label="Ordenar imóveis" value={filters.sort} onChange={(event) => update({ sort: event.target.value })}><option value="selection">Nossa seleção</option><option value="lowest">Menor preço</option><option value="highest">Maior preço</option></select></label></div>
-      {results.length ? <div className="property-grid" ref={grid}>{results.map((property) => <PropertyCard key={property.reference} property={property} />)}</div> : <div className="empty-state"><Search size={30} strokeWidth={1} /><h3>Vamos encontrar outro caminho?</h3><p>Nenhum imóvel desta seleção corresponde aos filtros.</p><button className="button button-dark" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
+      {promoted.size > 0 && <p className="promotion-results-note"><ArrowUpRight size={14} /> {promoted.size} {promoted.size === 1 ? "imóvel promovido compatível" : "imóveis promovidos compatíveis"} com sua busca.</p>}
+      {results.length ? <div className="property-grid" ref={grid}>{results.map((property) => <PropertyCard key={property.reference} property={property} promoted={promoted.has(property.reference)} />)}</div> : <div className="empty-state"><Search size={30} strokeWidth={1} /><h3>Vamos encontrar outro caminho?</h3><p>Nenhum imóvel desta seleção corresponde aos filtros.</p><button className="button button-dark" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
       </>}
     </main>
   </>;

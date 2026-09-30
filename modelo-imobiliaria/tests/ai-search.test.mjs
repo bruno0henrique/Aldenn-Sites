@@ -70,3 +70,13 @@ test("API streams summary then authoritative catalog matches and handles interru
     assert.equal((await POST(request("Apartamento"))).status, 429);
   } finally { globalThis.fetch = oldFetch; if (oldKey) process.env.OPENAI_API_KEY = oldKey; else delete process.env.OPENAI_API_KEY; }
 });
+
+test("color filters match visual tags, combine with type and survive search links", () => {
+  const filters = { ...defaultFilters, color: "branca", type: "Casa" };
+  assert.equal(filterProperties(catalog, filters).length, 3);
+  assert.equal(filterProperties(catalog, { ...filters, color: "azul" }).length, 0);
+  assert.equal(filterProperties(catalog, { ...filters, city: "Jacareí" }).length, 0);
+  assert.equal(new URL(searchHref(filters), "https://www.aldenn.com.br").searchParams.get("color"), "branca");
+  assert.equal(validateSearch({ message: "Casas brancas", filters }).filters.color, "branca");
+  assert.throws(() => validateSearch({ message: "Casas", filters: { ...filters, color: "invalid" } }));
+});

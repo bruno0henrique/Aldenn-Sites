@@ -6,6 +6,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, Menu, X } from "lucide-react";
 import { asset } from "@/lib/format";
+import { Promote } from "./promote";
 import { Contact } from "./contact";
 
 export function Header() {
@@ -18,6 +19,7 @@ export function Header() {
       <nav className={open ? "navigation is-open" : "navigation"} aria-label="Navegação principal">
         <a href={asset("/?purpose=venda#imoveis")} onClick={() => setOpen(false)}>Comprar</a>
         <a href={asset("/?purpose=locacao#imoveis")} onClick={() => setOpen(false)}>Alugar</a>
+        <Promote onOpen={() => setOpen(false)} />
         <Contact variant="header" />
       </nav>
       <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button>

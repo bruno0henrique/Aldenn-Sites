@@ -20,6 +20,7 @@ export type Property = {
   description: string[]; features: string[]; amenities: string[];
   sourceUrl: string; consultedAt: string; images: PropertyImage[];
   video3d?: PropertyVideo3D;
+  colors?: string[]; // Tons visuais das fotografias demonstrativas, não da ficha original.
 };
 
 export type Filters = {
@@ -28,14 +29,14 @@ export type Filters = {
   city: string; neighborhood: string; development: string;
   bathrooms: string; suites: string; parking: string;
   minBedrooms: string; minBathrooms: string; minSuites: string; minParking: string;
-  areaType: string; minArea: string; maxArea: string; reference: string; feature: string;
+  areaType: string; minArea: string; maxArea: string; reference: string; feature: string; color: string;
 };
 
 export const defaultFilters: Filters = {
   purpose: "", location: "", type: "", bedrooms: "", minPrice: "", maxPrice: "", sort: "selection",
   city: "", neighborhood: "", development: "", bathrooms: "", suites: "", parking: "",
   minBedrooms: "", minBathrooms: "", minSuites: "", minParking: "",
-  areaType: "built", minArea: "", maxArea: "", reference: "", feature: "",
+  areaType: "built", minArea: "", maxArea: "", reference: "", feature: "", color: "",
 };
 
 export function normalize(value: string) {
@@ -43,7 +44,7 @@ export function normalize(value: string) {
 }
 
 type SearchableProperty = Pick<Property, "purpose" | "type" | "price" | "city" | "neighborhood" | "development" | "bedrooms"> &
-  Partial<Pick<Property, "bathrooms" | "suites" | "parking" | "builtArea" | "landArea" | "reference" | "features" | "amenities">>;
+  Partial<Pick<Property, "bathrooms" | "suites" | "parking" | "builtArea" | "landArea" | "reference" | "features" | "amenities" | "colors">>;
 
 export function filterProperties<T extends SearchableProperty>(properties: T[], filters: Filters): T[] {
   const location = normalize(filters.location.trim()).split(/[\s,]+/).filter(Boolean);
@@ -70,6 +71,7 @@ export function filterProperties<T extends SearchableProperty>(properties: T[], 
     matchesNumber(area, filters.maxArea) &&
     matchesNumber(property.price, filters.minPrice, true) &&
     matchesNumber(property.price, filters.maxPrice) &&
+    (!filters.color || (property.colors ?? []).includes(filters.color)) &&
     (!filters.reference || normalize(property.reference ?? "").includes(normalize(filters.reference.trim()))) &&
     (!filters.feature || filters.feature.split("|").every((term) => normalize([...(property.features ?? []), ...(property.amenities ?? [])].join(" ")).includes(normalize(term.trim()))))
     );
