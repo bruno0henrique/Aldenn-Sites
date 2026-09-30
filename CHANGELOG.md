@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.69.2] - 2026-09-30
+
+- Removido link Referência dos dados e valores dos detalhes.
+- Selo Melhor opção transferido para Até vender/Até alugar; retirado Mais tempo de 30 dias.
+
+
 ## [0.69.1] - 2026-09-30
 
 - Contraste do botão Promover corrigido no cabeçalho escuro, inclusive no menu mobile.

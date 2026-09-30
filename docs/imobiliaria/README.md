@@ -94,3 +94,7 @@ Validação 0.5.3: lint, build com verificação de tipos e 18 testes Chromium p
 - Validado: lint, tipos, build, 19 testes unitários e 21 cenários de navegador (inclusive 320–1440 px, persistência, encerramento, prioridade após filtros, cor, Enter e recarga). Nenhuma requisição de pagamento é feita.
 
 Publicação 0.6.1: OpenAI real validada com “casa cor branca” (3 resultados), Enter, Ver tudo com color=branca e boost Alphaville II no topo. Ajustado contraste de Promover no cabeçalho escuro. Produção Vercel pronta; preview da ramificação bloqueado antes do build pelo limite de branches da integração Neon, sem impacto no domínio.
+
+## Ajuste visual aprovado em 30/09/2026 — 0.6.2
+
+Usuário pediu remover o link externo Referência dos dados e valores e usar Melhor opção como selo do plano Até vender (Até alugar na locação), substituindo Mais tempo de 30 dias. Mantidos valores, escolha inicial e regras da simulação. Proveniência permanece no catálogo e na documentação.
