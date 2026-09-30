@@ -92,3 +92,5 @@ Validação 0.5.3: lint, build com verificação de tipos e 18 testes Chromium p
 - Campanhas locais neste navegador, persistidas sem dados pessoais, com expiração automática, encerramento manual e substituição ao reativar o mesmo imóvel.
 - Reforço do usuário: somente imóveis que passam em todos os filtros podem ganhar prioridade. Até três aparecem primeiro e com contorno marrom. Mais de três elegíveis: os mais recentemente ativados. A região pesquisada adapta a seleção; não há geolocalização nem serviço de anúncios global.
 - Validado: lint, tipos, build, 19 testes unitários e 21 cenários de navegador (inclusive 320–1440 px, persistência, encerramento, prioridade após filtros, cor, Enter e recarga). Nenhuma requisição de pagamento é feita.
+
+Publicação 0.6.1: OpenAI real validada com “casa cor branca” (3 resultados), Enter, Ver tudo com color=branca e boost Alphaville II no topo. Ajustado contraste de Promover no cabeçalho escuro. Produção Vercel pronta; preview da ramificação bloqueado antes do build pelo limite de branches da integração Neon, sem impacto no domínio.

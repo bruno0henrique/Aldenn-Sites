@@ -2,3 +2,5 @@
 @media(max-width:700px){.navigation .nav-promote{padding:13px 0;border-bottom:1px solid var(--line)}.promotion-modal .modal-inner{padding:35px 20px 24px}.promotion-modal h2{font-size:35px}.promotion-preview{gap:11px;padding:10px}.promotion-preview img{width:76px;height:76px}.promotion-preview strong{font-size:13px}.promotion-preview span,.promotion-preview small{font-size:10px}.boost-plans{grid-template-columns:1fr}.boost-plan{display:grid;grid-template-columns:18px 1fr;gap:10px;padding:16px}.boost-plan input{margin-top:3px}.boost-choice{flex-direction:row;justify-content:space-between;gap:10px}.boost-choice>strong{font-size:15px}.boost-choice>span{font-size:22px;text-align:right}.boost-plan>small{grid-column:2}.boost-recommendation{position:static;grid-column:2;font-size:9px}.boost-summary{padding:15px 0}.boost-summary>div{font-size:12px}.promotion-form{gap:16px}.promotion-results-note{font-size:10px}}
 
 @media(max-width:700px){.promotion-property-label select{font-size:16px}.active-boosts button{min-width:62px}}
+
+.header-home .nav-promote{color:#d1b893}.header-home .nav-promote:hover{color:#f3e3c8}

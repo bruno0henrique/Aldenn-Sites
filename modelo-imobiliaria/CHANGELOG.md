@@ -1,5 +1,10 @@
 # Histórico
 
+## 0.6.1 — 2026-09-30
+
+- Contraste do botão Promover corrigido no cabeçalho escuro, inclusive no menu mobile.
+
+
 ## 0.6.0 — 2026-09-30
 
 - Busca com IA reconhece cor e aceita Enter para enviar (Shift+Enter mantém quebra de linha); filtro de cor persiste em Ver tudo e na pesquisa completa.
