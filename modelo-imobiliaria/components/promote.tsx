@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Check, TrendingUp } from "lucide-react";
-import { properties } from "@/data/properties";
+import { useLocalCatalog } from "./local-catalog";
 import { asset, money } from "@/lib/format";
 import { boostPlans, type BoostPlan } from "@/lib/promotions";
 import { Modal } from "./modal";
@@ -13,6 +13,7 @@ import { usePromotions } from "./promotion-provider";
 
 const date = (timestamp: number) => new Date(timestamp).toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" });
 export function Promote({ onOpen }: { onOpen?: () => void }) {
+  const { properties } = useLocalCatalog();
   const pathname = usePathname();
   const { campaigns, promote, stop } = usePromotions();
   const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export function Promote({ onOpen }: { onOpen?: () => void }) {
   const selected = boostPlans.find((item) => item.id === plan)!;
   const existing = campaigns.find((item) => item.reference === reference);
   return <>
-    <button className="nav-promote" onClick={() => { setReference(properties.find((item) => pathname.includes(item.slug))?.reference || properties[0].reference); setConfirmed(null); setPreviewAt(Date.now()); setOpen(true); onOpen?.(); }}><TrendingUp size={15} /> Promover</button>
+    <button className="nav-promote" onClick={() => { setReference(properties.find((item) => item.reference.startsWith("LOCAL-") ? item.reference === new URLSearchParams(window.location.search).get("ref") : pathname.includes(item.slug))?.reference || properties[0].reference); setConfirmed(null); setPreviewAt(Date.now()); setOpen(true); onOpen?.(); }}><TrendingUp size={15} /> Promover</button>
     {open && createPortal(<Modal title="Promover imóvel" className="promotion-modal" onClose={() => setOpen(false)}>
       <span className="eyebrow"><TrendingUp size={15} /> MAIS VISIBILIDADE</span>
       <h2>Seu imóvel, em destaque.</h2>
@@ -42,7 +43,7 @@ export function Promote({ onOpen }: { onOpen?: () => void }) {
         {confirmed === reference ? <div className="boost-success" role="status"><Check size={19} /><div><strong>Promoção ativada.</strong><p>{saved ? "O boost continua ativo após recarregar esta demonstração." : "Seu navegador não permite salvar: o boost vale enquanto esta página estiver aberta."}</p></div></div> : <button className="button button-gold" type="submit">{existing ? "Atualizar boost simulado" : "Simular promoção"}<ArrowUpRight size={17} /></button>}
         {confirmed === reference && <button className="button button-dark" type="button" onClick={() => { setOpen(false); if (pathname !== "/") window.location.assign(asset("/#imoveis")); else document.getElementById("imoveis")?.scrollIntoView({ behavior: "instant" }); }}>Ver os destaques <ArrowUpRight size={17} /></button>}
       </form>
-      {campaigns.length > 0 && <section className="active-boosts" aria-label="Promoções ativas"><h3>Seus boosts ativos <span>{campaigns.length}</span></h3>{campaigns.map((campaign) => { const item = properties.find((item) => item.reference === campaign.reference)!; return <div key={campaign.reference}><div><strong>{item.title}</strong><small>{campaign.expiresAt === null ? "Até encerrar a promoção" : `Até ${date(campaign.expiresAt)}`} · Ref. {item.reference}</small></div><button type="button" aria-label={`Encerrar boost ${item.reference}`} onClick={() => { stop(item.reference); if (confirmed === item.reference) setConfirmed(null); }}>Encerrar</button></div>; })}</section>}
+      {campaigns.length > 0 && <section className="active-boosts" aria-label="Promoções ativas"><h3>Seus boosts ativos <span>{campaigns.length}</span></h3>{campaigns.filter((campaign) => properties.some((item) => item.reference === campaign.reference)).map((campaign) => { const item = properties.find((item) => item.reference === campaign.reference)!; return <div key={campaign.reference}><div><strong>{item.title}</strong><small>{campaign.expiresAt === null ? "Até encerrar a promoção" : `Até ${date(campaign.expiresAt)}`} · Ref. {item.reference}</small></div><button type="button" aria-label={`Encerrar boost ${item.reference}`} onClick={() => { stop(item.reference); if (confirmed === item.reference) setConfirmed(null); }}>Encerrar</button></div>; })}</section>}
     </Modal>, document.body)}
   </>;
 }

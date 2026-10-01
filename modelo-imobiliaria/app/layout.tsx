@@ -6,6 +6,7 @@ import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
 import { PromotionProvider } from "@/components/promotion-provider";
+import { LocalCatalog } from "@/components/local-catalog";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Contact } from "@/components/contact";
@@ -17,6 +18,7 @@ import "./search.css";
 import "./mobile.css";
 import "./refinements.css";
 import "./promotion.css";
+import "./profile.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"),
@@ -26,5 +28,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body><PromotionProvider><Motion><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header />{children}<Footer /><Contact variant="floating" /></Motion></PromotionProvider></body></html>;
+  return <html lang="pt-BR"><body><LocalCatalog><PromotionProvider><Motion><a className="skip-link" href="#conteudo">Pular para o conteúdo</a><Header />{children}<Footer /><Contact variant="floating" /></Motion></PromotionProvider></LocalCatalog></body></html>;
 }

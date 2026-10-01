@@ -1,12 +1,13 @@
 "use client";
 
 import { ArrowDown, MapPin, Ruler, SlidersHorizontal } from "lucide-react";
-import { properties } from "@/data/properties";
+import { useLocalCatalog } from "./local-catalog";
 import type { Filters } from "@/lib/property";
 
 export function AdvancedSearch({ filters, onChange, count, onResults }: {
   filters: Filters; onChange: (patch: Partial<Filters>) => void; count: number; onResults: () => void;
 }) {
+  const { properties } = useLocalCatalog();
   const cities = [...new Set(properties.map((property) => property.city))].sort();
   const region = properties.filter((property) => !filters.city || property.city === filters.city);
   const neighborhoods = [...new Set(region.map((property) => property.neighborhood))].sort();

@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ArrowDown, ArrowUpRight, Search, SlidersHorizontal, Sparkles, X } from "lucide-react";
-import { properties } from "@/data/properties";
+import { useLocalCatalog } from "./local-catalog";
 import { defaultFilters, filterProperties, type Filters } from "@/lib/property";
 import { asset } from "@/lib/format";
 import { PropertyCard } from "./property-card";
@@ -24,6 +24,7 @@ function fromUrl() {
 }
 
 export function Catalog() {
+  const { properties } = useLocalCatalog();
   const grid = useRef<HTMLDivElement>(null);
   const aiTab = useRef<HTMLButtonElement>(null);
   const [filters, setFilters] = useState<Filters>(defaultFilters);

@@ -98,3 +98,13 @@ Publicação 0.6.1: OpenAI real validada com “casa cor branca” (3 resultados
 ## Ajuste visual aprovado em 30/09/2026 — 0.6.2
 
 Usuário pediu remover o link externo Referência dos dados e valores e usar Melhor opção como selo do plano Até vender (Até alugar na locação), substituindo Mais tempo de 30 dias. Mantidos valores, escolha inicial e regras da simulação. Proveniência permanece no catálogo e na documentação.
+
+## Perfil e cadastro — aprovado em 30/09/2026
+
+O pedido atual amplia o limite original sem painel: área de funcionários simples e visível para explorar na demonstração. Login em pop-up, acesso de apresentação e formulário local; não implementar autenticação real ou banco nesta entrega. Sessão sem credenciais (marcador em sessionStorage), cadastros/fotos no navegador. Sem envios externos.
+
+Cadastro/edição/exclusão de até dez imóveis; título, finalidade, tipo, localização, valores, metragens, quartos, suítes, vagas, descrição, diferenciais e cor. Galeria existente ou até seis fotos próprias, JPG/PNG/WebP até 5 MB, reduzidas no cliente. Dados persistidos são validados; falha de quota mantém cadastro anterior e mostra mensagem.
+
+Listagem, filtros, localização e boost incluem novos imóveis. Página estática de detalhe consulta referência local; não é anúncio publicado para todos os visitantes. Credenciais de demonstração não são enviadas nem armazenadas. IA continua recebendo somente texto e catálogo base, sem fotos ou dados locais.
+
+Validação: lint, tipos/build, 20 testes unitários e 23 cenários de navegador, incluindo login sem envio/armazenamento de credenciais, 320–1440 px, upload real de imagem de teste, cadastro/detalhe/recarga/filtragem/boost/edição/exclusão e regressão dos seis anúncios.

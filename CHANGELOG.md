@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.70.0] - 2026-09-30
+
+- Perfil no cabeçalho com login em pop-up e acesso rápido à área da equipe; credenciais não são enviadas ou armazenadas.
+- Cadastro local de até dez imóveis, edição e exclusão, galeria inicial ou fotos JPG/PNG/WebP comprimidas no navegador.
+- Imóveis cadastrados aparecem no catálogo, filtros, sugestões de localização e promoção; detalhes em /imovel/cadastrado/?ref=... com galeria, contato e financiamento.
+- Sessão de apresentação na aba e dados locais no navegador, sem autenticação real, painel remoto ou banco.
+
+
 ## [0.69.2] - 2026-09-30
 
 - Removido link Referência dos dados e valores dos detalhes.

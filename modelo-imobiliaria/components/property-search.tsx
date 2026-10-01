@@ -2,10 +2,11 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowUpRight, LoaderCircle, MapPin, Search, X } from "lucide-react";
-import { properties } from "@/data/properties";
+import { useLocalCatalog } from "./local-catalog";
 import { addressSuggestion, localSuggestions, postalDigits, type LocationSuggestion, type PostalAddress } from "@/lib/location";
 
 export function PropertySearch({ value, purpose, onChange, onPurpose, onSearch }: { value: string; purpose: string; onChange: (value: string) => void; onPurpose: (value: string) => void; onSearch: (location: string) => void }) {
+  const { properties } = useLocalCatalog();
   const id = useId();
   const input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export function PropertySearch({ value, purpose, onChange, onPurpose, onSearch }
       } finally { clearTimeout(timeout); if (!controller.signal.aborted) setBusy(false); }
     }, 450);
     return () => { clearTimeout(timer); controller.abort(); };
-  }, [value, chosen]);
+  }, [value, chosen, properties]);
   function choose(suggestion: LocationSuggestion) { setSelected(suggestion); setRemote([]); onChange(suggestion.label); setOpen(false); setBusy(false); setMessage(""); input.current?.focus(); }
   function search() {
     const cep = postalDigits(value);

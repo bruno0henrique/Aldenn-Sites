@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { properties } from "@/data/properties";
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useLocalCatalog } from "./local-catalog";
 import { createPromotion, promotionStorageKey, restorePromotions, type BoostPlan, type Promotion } from "@/lib/promotions";
 
-const references = properties.map((item) => item.reference);
 const Context = createContext<{ campaigns: Promotion[]; promote: (reference: string, plan: BoostPlan) => boolean; stop: (reference: string) => void } | null>(null);
 export function PromotionProvider({ children }: { children: ReactNode }) {
+  const { properties } = useLocalCatalog();
+  const references = useMemo(() => properties.map((item) => item.reference), [properties]);
   const [campaigns, setCampaigns] = useState<Promotion[]>([]);
   useEffect(() => {
     const load = () => { try { setCampaigns(restorePromotions(JSON.parse(localStorage.getItem(promotionStorageKey) || "[]"), references)); } catch { setCampaigns([]); } };
@@ -15,7 +16,7 @@ export function PromotionProvider({ children }: { children: ReactNode }) {
     window.addEventListener("storage", sync);
     const timer = window.setInterval(() => setCampaigns((current) => { const next = restorePromotions(current, references); return next.length === current.length ? current : next; }), 1000);
     return () => { window.removeEventListener("storage", sync); window.clearInterval(timer); };
-  }, []);
+  }, [references]);
   function save(next: Promotion[]) {
     setCampaigns(next);
     try { if (next.length) localStorage.setItem(promotionStorageKey, JSON.stringify(next)); else localStorage.removeItem(promotionStorageKey); return true; } catch { return false; }

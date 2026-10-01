@@ -1,0 +1,51 @@
+import sharp from "sharp";
+import { test, expect } from "@playwright/test";
+import { localPropertyKey, staffSessionKey } from "../../lib/local-properties";
+test("profile opens on mobile and desktop, login never sends or stores credentials", async ({ page }) => {
+  let posts = 0; page.on("request", (request) => { if (request.method() === "POST") posts++; });
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 }); await page.goto("/demonstracao-imobiliaria/?skip=opening");
+    await page.getByRole("button", { name: "Entrar / perfil", exact: true }).click();
+    const modal = page.getByRole("dialog", { name: "Entrar no perfil" }); await expect(modal).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.getByLabel("E-mail", { exact: true }).fill("teste@example.com"); await page.getByLabel("Senha", { exact: true }).fill("exemplo123");
+    await page.getByRole("button", { name: "Entrar", exact: true }).click(); await expect(page.getByRole("heading", { name: "Olá, equipe." })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Cadastrar imóvel", exact: true })).toBeVisible();
+    expect(await page.evaluate(() => JSON.stringify({ ...localStorage, ...sessionStorage }))).not.toMatch(/teste@example|exemplo123/);
+    await page.getByRole("button", { name: "Sair", exact: true }).click(); await page.keyboard.press("Escape");
+    expect(await page.evaluate((key) => sessionStorage.getItem(key), staffSessionKey)).toBeNull();
+  }
+  expect(posts).toBe(0);
+});
+test("staff can publish a photo, open/reload details, filter, boost, edit and remove a local property", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  await page.goto("/demonstracao-imobiliaria/?skip=opening");
+  await page.getByRole("button", { name: "Entrar / perfil" }).click(); await page.getByRole("button", { name: "Conhecer a área da equipe" }).click();
+  await page.getByRole("button", { name: "Cadastrar imóvel", exact: true }).click();
+  await page.getByLabel("Título", { exact: true }).fill("Casa de teste com varanda");
+  await page.getByLabel("Cidade", { exact: true }).fill("Taubaté"); await page.getByLabel("Bairro", { exact: true }).fill("Centro");
+  await page.getByLabel("Descrição", { exact: true }).fill("Casa ampla com varanda e espaços integrados.");
+  await page.getByLabel("Preço de venda / aluguel mensal (R$)", { exact: true }).fill("900000");
+  await page.getByLabel("Área construída (m²)", { exact: true }).fill("180"); await page.getByRole("spinbutton", { name: "Dormitórios", exact: true }).fill("3");
+  await page.getByLabel("Suítes", { exact: true }).fill("1"); await page.getByLabel("Vagas", { exact: true }).fill("2");
+  await page.getByLabel("Cor / tom", { exact: true }).selectOption("branca");
+  await page.locator('input[type="file"]').setInputFiles({ name: "capa.png", mimeType: "image/png", buffer: await sharp({ create: { width: 32, height: 24, channels: 3, background: "#c9baa1" } }).png().toBuffer() });
+  await expect(page.locator(".staff-photo-strip img")).toHaveCount(1);
+  await expect(page.locator(".property-form .ai-error")).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Publicar imóvel" })).toBeEnabled();
+  expect(await page.getByRole("dialog").evaluate((element) => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
+  await page.getByRole("button", { name: "Publicar imóvel" }).click(); await expect(page.locator(".staff-list")).toContainText("Casa de teste com varanda");
+  await page.getByRole("link", { name: "Ver anúncio", exact: true }).click(); await expect(page).toHaveURL(/imovel\/cadastrado.*ref=LOCAL-/);
+  await expect(page.getByRole("heading", { name: "Casa de teste com varanda", exact: true })).toBeVisible(); await expect(page.locator(".gallery-mosaic.is-single")).toHaveCount(1);
+  await expect(page.locator(".gallery-main img")).toHaveAttribute("src", /^data:image\/webp/); await page.reload(); await expect(page.locator(".detail-price")).toContainText("900.000");
+  await page.getByRole("link", { name: "Voltar aos imóveis" }).click(); await page.getByLabel("Localização", { exact: true }).fill("Taubaté");
+  await expect(page.locator(".property-card")).toHaveCount(1); await expect(page.locator(".property-card")).toContainText("Casa de teste");
+  await page.getByRole("button", { name: "Abrir menu" }).click(); await page.getByRole("button", { name: "Promover", exact: true }).click();
+  const reference = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!)[0].reference, localPropertyKey);
+  await page.getByLabel("Imóvel para promover", { exact: true }).selectOption(reference); await page.getByRole("button", { name: "Simular promoção" }).click();
+  await page.getByRole("button", { name: "Ver os destaques" }).click(); await expect(page.locator(".is-promoted")).toHaveCount(1); await page.reload(); await expect(page.locator(".is-promoted")).toHaveCount(1);
+  await page.getByRole("button", { name: "Meu perfil", exact: true }).click(); await page.getByRole("button", { name: "Editar", exact: true }).click();
+  await page.getByLabel("Título", { exact: true }).fill("Casa editada"); await page.getByRole("button", { name: "Salvar alterações" }).click(); await expect(page.locator(".staff-list")).toContainText("Casa editada");
+  await page.getByRole("button", { name: "Excluir", exact: true }).click(); await page.getByRole("button", { name: "Confirmar exclusão", exact: true }).click();
+  await expect(page.locator(".staff-list")).toHaveCount(0); await page.keyboard.press("Escape"); await expect(page.locator(".property-card")).toHaveCount(0); await expect(page.locator(".is-promoted")).toHaveCount(0);
+});

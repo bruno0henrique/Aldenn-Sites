@@ -6,6 +6,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ArrowLeft, Menu, X } from "lucide-react";
 import { asset } from "@/lib/format";
+import { Profile } from "./profile";
 import { Promote } from "./promote";
 import { Contact } from "./contact";
 
@@ -22,7 +23,8 @@ export function Header() {
         <Promote onOpen={() => setOpen(false)} />
         <Contact variant="header" />
       </nav>
-      <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
+      <div className="header-tools"><Profile />
+      <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div>
     </div></header>
   </>;
 }

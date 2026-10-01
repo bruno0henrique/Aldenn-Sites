@@ -1,6 +1,6 @@
-# Aldenn Imóveis — 0.6.2
+# Aldenn Imóveis — 0.7.0
 
-Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Não há painel, autenticação, banco de dados ou integração bancária.
+Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
 ## Desenvolvimento e validação
 
@@ -60,3 +60,11 @@ Fontes técnicas consultadas em 30/09/2026: https://developers.openai.com/api/do
 Menu Promover: 7 dias (R$ 49), 30 dias (R$ 149), até vender/alugar (R$ 299). Valores fictícios escolhidos para a demonstração; não há pagamento ou renovação. Campanhas em localStorage, apenas neste navegador; nenhum dado pessoal. Prazo começa na ativação, expiração automática e encerramento manual. Nova ativação do mesmo imóvel substitui a anterior.
 
 Filtrar primeiro, promover depois: até três campanhas compatíveis lideram resultados e sugestões da IA. Mais de três elegíveis: as mais recentes primeiro, sem duplicar imóveis; restantes seguem a ordenação comum. Adaptação pela região pesquisada, sem GPS, IP ou segmentação real entre usuários. Cores são tons das fotografias de capa demonstrativas (arquitetura/decor), não fatos das fichas França.
+
+## Perfil e cadastro local
+
+Ícone de perfil no cabeçalho: login simulado ou Conhecer a área da equipe. Use credenciais fictícias; e-mail e senha são descartados, sem envio ou armazenamento. A sessão guarda apenas um marcador em sessionStorage; não protege dados ou funções de produção.
+
+Até dez imóveis locais por navegador: cadastrar, editar e excluir. Até seis fotos JPG/PNG/WebP (5 MB por arquivo), comprimidas para no máximo 1024 px e gravadas junto do cadastro em localStorage; sem uploads. Galerias existentes podem iniciar o cadastro. Falta de espaço impede gravar e informa o erro. Dados armazenados são validados ao restaurar. Os seis imóveis originais são imutáveis nesta área.
+
+Catálogo, filtros, sugestões locais e boosts incluem os cadastros. Detalhes usam rota estática /imovel/cadastrado/?ref=...; fora do navegador original mostram cadastro não encontrado. Busca com IA aplica seus critérios também aos cadastros locais no cliente, mas o servidor continua conhecendo somente o catálogo base: fotos e registros locais não são enviados à OpenAI. Não há sincronização entre dispositivos ou funcionários.
