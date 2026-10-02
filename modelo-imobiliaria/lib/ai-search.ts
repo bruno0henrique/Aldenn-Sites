@@ -1,7 +1,7 @@
-import { defaultFilters, type Filters } from "./property";
+import { defaultFilters, propertyTypes, type Filters } from "./property";
 
 const numericKeys = new Set(["bedrooms", "bathrooms", "suites", "parking", "minBedrooms", "minBathrooms", "minSuites", "minParking", "minPrice", "maxPrice", "minArea", "maxArea"]);
-const enums: Record<string, string[]> = { color: ["", "branca", "bege", "cinza", "preta", "marrom", "azul", "verde", "vermelha"], purpose: ["", "venda", "locacao"], type: ["", "Casa", "Apartamento"], areaType: ["built", "land"], sort: ["selection", "lowest", "highest"] };
+const enums: Record<string, string[]> = { purpose: ["", "venda", "locacao"], type: ["", ...propertyTypes], areaType: ["built", "land"], sort: ["selection", "lowest", "highest"] };
 export const searchSchema = {
   type: "object", additionalProperties: false, required: ["message", "filters"], properties: {
     message: { type: "string" },

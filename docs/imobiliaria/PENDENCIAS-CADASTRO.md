@@ -1,6 +1,6 @@
 # Ajustes futuros no cadastro de imóveis
 
-Registrado em 02/10/2026, a pedido do usuário. **Somente registro: não implementar nem publicar alterações nesta etapa.** A versão publicada permanece 0.7.0.
+Registrado em 02/10/2026, a pedido do usuário. O pedido inicial era somente registrar. Em 02/10/2026, o usuário autorizou executar tudo. **Implementado na versão 0.8.0**, com os critérios detalhados abaixo.
 
 ## Tela e rascunho
 
@@ -27,10 +27,10 @@ Registrado em 02/10/2026, a pedido do usuário. **Somente registro: não impleme
 - Proposta de logística para detalhar na execução: confirmar endereço obtido pelo CEP, tipo, finalidade e preço correspondente; solicitar área e características básicas relevantes se faltarem informações para um texto útil. Depois gerar título e descrição editáveis e preencher os fatos confirmados.
 - Manter os valores de venda e aluguel separados na finalidade conjunta. Falha da IA ou da consulta de CEP não impede o cadastro manual.
 
-## Pontos a fechar ao implementar
+## Decisões da implementação
 
-- Lista completa dos tipos de imóvel e padronização dos diferenciais, incluindo o tratamento de termos desconhecidos sem alterar seu significado.
-- Campos mínimos por tipo: terreno, por exemplo, não deve exigir dormitórios ou banheiros como uma casa.
-- Recuperação e limpeza dos rascunhos, inclusive limites de espaço para fotos no navegador.
+- Tipos: Casa, Apartamento, Sobrado, Cobertura, Duplex, Triplex, Studio, Kitnet, Loft, Flat, Terreno, Lote, Chácara, Sítio, Fazenda, Sala comercial, Loja, Galpão, Prédio, Ponto comercial e Outros. Tags usam padronização local e revisão ortográfica com IA; termos desconhecidos são preservados.
+- Terreno, Lote, Sítio e Fazenda exigem área do terreno. Campos de quartos/banheiros não são solicitados para esses tipos e tipos comerciais; os demais exigem área construída.
+- Rascunhos ficam no IndexedDB, separados dos anúncios no localStorage, com fotos comprimidas e até seis imagens. F5 recupera campos, tags, fotos e sugestão da IA. Confirmar dados novamente ao retomar. Rascunho é limpo após salvar, ou por descarte explícito. Falha de armazenamento é informada.
 
-As imagens anexadas ao pedido ilustram o formulário atual e os problemas descritos; não introduzem requisitos além da solicitação textual. Este registro atualiza a direção futura do cadastro de 30/09/2026, sem modificar sua implementação vigente.
+As imagens anexadas ao pedido ilustram o formulário atual e os problemas descritos; não introduzem requisitos além da solicitação textual. Este registro atualiza a direção futura do cadastro de 30/09/2026, substituindo o formulário modal anterior pelo cadastro em página própria.

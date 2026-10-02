@@ -78,5 +78,5 @@ test("color filters match visual tags, combine with type and survive search link
   assert.equal(filterProperties(catalog, { ...filters, city: "Jacareí" }).length, 0);
   assert.equal(new URL(searchHref(filters), "https://www.aldenn.com.br").searchParams.get("color"), "branca");
   assert.equal(validateSearch({ message: "Casas brancas", filters }).filters.color, "branca");
-  assert.throws(() => validateSearch({ message: "Casas", filters: { ...filters, color: "invalid" } }));
+  assert.equal(validateSearch({ message: "Casas", filters: { ...filters, color: "terracota" } }).filters.color, "terracota");
 });

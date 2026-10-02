@@ -101,7 +101,7 @@ Usuário pediu remover o link externo Referência dos dados e valores e usar Mel
 
 ## Perfil e cadastro — aprovado em 30/09/2026
 
-**Ajustes futuros registrados em 02/10/2026:** consultar [Pendências do cadastro](PENDENCIAS-CADASTRO.md). Pedido limitado a salvar os requisitos; implementação e publicação ficam para uma próxima etapa.
+**Ajustes futuros registrados em 02/10/2026:** consultar [Pendências do cadastro](PENDENCIAS-CADASTRO.md). Registro inicial somente documental; execução autorizada em 02/10/2026 e entregue na versão 0.8.0.
 
 O pedido atual amplia o limite original sem painel: área de funcionários simples e visível para explorar na demonstração. Login em pop-up, acesso de apresentação e formulário local; não implementar autenticação real ou banco nesta entrega. Sessão sem credenciais (marcador em sessionStorage), cadastros/fotos no navegador. Sem envios externos.
 
@@ -110,3 +110,16 @@ Cadastro/edição/exclusão de até dez imóveis; título, finalidade, tipo, loc
 Listagem, filtros, localização e boost incluem novos imóveis. Página estática de detalhe consulta referência local; não é anúncio publicado para todos os visitantes. Credenciais de demonstração não são enviadas nem armazenadas. IA continua recebendo somente texto e catálogo base, sem fotos ou dados locais.
 
 Validação: lint, tipos/build, 20 testes unitários e 23 cenários de navegador, incluindo login sem envio/armazenamento de credenciais, 320–1440 px, upload real de imagem de teste, cadastro/detalhe/recarga/filtragem/boost/edição/exclusão e regressão dos seis anúncios.
+
+
+## Cadastro completo — 0.8.0, aprovado em 02/10/2026
+
+A página /equipe/cadastro substitui o formulário em pop-up; o perfil e a lista de imóveis continuam no modal simples. IndexedDB conserva rascunho e fotografias por referência, inclusive sugestão da IA. Recuperação após recarga, descarte explícito e limpeza após salvar. Fotos próprias sem galeria pré-preenchida, adição/remoção e escolha de capa; até seis fotos de 5 MB comprimidas localmente. Anúncios continuam locais neste navegador, sem autenticação real nem compartilhamento.
+
+Tags confirmadas com Enter/vírgula, acentos e capitalização padronizados, remoção e deduplicação sem distinguir caixa. Revisão ortográfica automática chama OpenAI para termos desconhecidos, preservando significado; padronização local e entrada manual continuam disponíveis em falhas. Outros em cor aceita texto. Dormitórios e banheiros começam em um. Máscaras mostram R$ e m² com valores numéricos independentes. Tipos completos e campos por tipo conforme PENDENCIAS-CADASTRO.md. Finalidade ambos mantém preço de venda e rentPrice separado; a busca de locação projeta o valor mensal sem alterar o registro original, e a prioridade do Boost continua após todos os filtros.
+
+CEP consulta ViaCEP sem referrer e com cancelamento/timeout; preenche cidade, UF, bairro e rua disponíveis, sem sobrescrever edição manual durante a consulta. Número/S/N e condomínio são informados pelo usuário. Falhas permitem preenchimento manual. IA pede CEP, número, cidade, bairro, área, finalidade e preços; condomínio é opcional. Dados precisam ser confirmados antes de gerar. A sugestão é revisada e aplicada pelo usuário, editável antes de publicar.
+
+POST /api/imobiliaria/cadastro usa OPENAI_API_KEY somente no servidor institucional, Responses API, saída estruturada, store:false e timeout. Modos copy e tags, corpo limitado a 6 KB, origem igual e limite por IP/global em memória, sem autenticação real nesta demonstração. Whitelist envia somente tipo, finalidade, região, condomínio, valores, área, quartos, banheiros e diferenciais para texto. CEP, número, fotos, credenciais e campos alheios não são encaminhados. Tags são enviadas para correção. Não há logs de conteúdo.
+
+Validação: lint sem avisos, tipos/build, 25 testes unitários e 26 cenários de navegador, com regressões, F5, fotos próprias, CEP, tags, máscaras, cor personalizada, terreno com duas finalidades, filtros/preços, confirmação e aplicação da IA. Layouts do editor em 320, 390, 768 e 1440 px; regressões do catálogo até 1920 px. Referência técnica: https://developers.openai.com/api/docs/guides/structured-outputs (consultada em 02/10/2026).

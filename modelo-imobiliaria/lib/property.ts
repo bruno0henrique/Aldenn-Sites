@@ -1,3 +1,7 @@
+export const propertyTypes = ["Casa", "Apartamento", "Sobrado", "Cobertura", "Duplex", "Triplex", "Studio", "Kitnet", "Loft", "Flat", "Terreno", "Lote", "Chácara", "Sítio", "Fazenda", "Sala comercial", "Loja", "Galpão", "Prédio", "Ponto comercial", "Outros"] as const;
+export const landTypes = ["Terreno", "Lote", "Sítio", "Fazenda"];
+export const commercialTypes = ["Sala comercial", "Loja", "Galpão", "Prédio", "Ponto comercial"];
+export function purposeLabel(purpose: string) { return purpose === "ambos" ? "Venda ou locação" : purpose === "venda" ? "À venda" : "Para alugar"; }
 export type PropertyImage = {
   path: string; thumbnail: string; width: number; height: number;
   sourceUrl: string; sha256: string; sourcePage?: string; author?: string; license?: string; illustrative?: boolean;
@@ -12,7 +16,8 @@ export type PropertyVideo3D = {
 
 export type Property = {
   reference: string; slug: string; title: string; subtitle: string;
-  purpose: "venda" | "locacao"; type: "Casa" | "Apartamento";
+  purpose: "venda" | "locacao" | "ambos"; type: typeof propertyTypes[number];
+  rentPrice?: number; cep?: string; street?: string; addressNumber?: string; state?: string;
   city: string; neighborhood: string; development: string;
   price: number; condominium: number | null; iptu: number | null;
   builtArea: number | null; landArea: number | null;
@@ -44,21 +49,21 @@ export function normalize(value: string) {
 }
 
 type SearchableProperty = Pick<Property, "purpose" | "type" | "price" | "city" | "neighborhood" | "development" | "bedrooms"> &
-  Partial<Pick<Property, "bathrooms" | "suites" | "parking" | "builtArea" | "landArea" | "reference" | "features" | "amenities" | "colors">>;
+  Partial<Pick<Property, "bathrooms" | "suites" | "parking" | "builtArea" | "landArea" | "reference" | "features" | "amenities" | "colors" | "rentPrice" | "street" | "cep">>;
 
 export function filterProperties<T extends SearchableProperty>(properties: T[], filters: Filters): T[] {
   const location = normalize(filters.location.trim()).split(/[\s,]+/).filter(Boolean);
   const matchesNumber = (value: number | null | undefined, limit: string, minimum = false) =>
     !limit || (typeof value === "number" && Number.isFinite(Number(limit)) && Number(limit) >= 0 && (minimum ? value >= Number(limit) : value <= Number(limit)));
-  const result = properties.filter((property) => {
+  const result = properties.map((item) => filters.purpose === "locacao" && item.purpose === "ambos" ? { ...item, purpose: "locacao" as const, price: item.rentPrice ?? item.price } : item).filter((property) => {
     const area = filters.areaType === "land" ? property.landArea : property.builtArea;
     return (
-    (!filters.purpose || property.purpose === filters.purpose) &&
+    (!filters.purpose || (property.purpose === filters.purpose || property.purpose === "ambos")) &&
     (!filters.type || property.type === filters.type) &&
     (!filters.city || property.city === filters.city) &&
     (!filters.neighborhood || property.neighborhood === filters.neighborhood) &&
     (!filters.development || property.development === filters.development) &&
-    (!location.length || location.every((token) => normalize(`${property.city} ${property.neighborhood} ${property.development}`).includes(token))) &&
+    (!location.length || location.every((token) => normalize(`${property.city} ${property.neighborhood} ${property.development} ${property.street ?? ""} ${property.cep ?? ""}`).includes(token))) &&
     matchesNumber(property.bedrooms, filters.bedrooms) &&
     matchesNumber(property.bathrooms, filters.bathrooms) &&
     matchesNumber(property.suites, filters.suites) &&
@@ -71,7 +76,7 @@ export function filterProperties<T extends SearchableProperty>(properties: T[], 
     matchesNumber(area, filters.maxArea) &&
     matchesNumber(property.price, filters.minPrice, true) &&
     matchesNumber(property.price, filters.maxPrice) &&
-    (!filters.color || (property.colors ?? []).includes(filters.color)) &&
+    (!filters.color || (property.colors ?? []).some((color) => normalize(color) === normalize(filters.color))) &&
     (!filters.reference || normalize(property.reference ?? "").includes(normalize(filters.reference.trim()))) &&
     (!filters.feature || filters.feature.split("|").every((term) => normalize([...(property.features ?? []), ...(property.amenities ?? [])].join(" ")).includes(normalize(term.trim()))))
     );

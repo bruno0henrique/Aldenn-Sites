@@ -2,7 +2,7 @@
 
 import { ArrowDown, MapPin, Ruler, SlidersHorizontal } from "lucide-react";
 import { useLocalCatalog } from "./local-catalog";
-import type { Filters } from "@/lib/property";
+import { normalize, type Filters } from "@/lib/property";
 
 export function AdvancedSearch({ filters, onChange, count, onResults }: {
   filters: Filters; onChange: (patch: Partial<Filters>) => void; count: number; onResults: () => void;
@@ -29,7 +29,7 @@ export function AdvancedSearch({ filters, onChange, count, onResults }: {
       <label>Diferencial<select aria-label="Diferencial" value={filters.feature} onChange={(event) => onChange({ feature: event.target.value })}><option value="">Todos os diferenciais</option>{filters.feature && !["piscina", "gourmet", "elevador", "escritório", "academia", "closet"].includes(filters.feature) && <option value={filters.feature}>{filters.feature.split("|").join(", ")}</option>}<option value="piscina">Piscina</option><option value="gourmet">Espaço gourmet</option><option value="elevador">Elevador</option><option value="escritório">Escritório</option><option value="academia">Academia</option><option value="closet">Closet</option></select></label>
       {([["minBedrooms", "Mínimo de dormitórios"], ["minSuites", "Mínimo de suítes"], ["minBathrooms", "Mínimo de banheiros"], ["minParking", "Mínimo de vagas"]] as const).map(([key, label]) => <label key={key}>{label}<input aria-label={label} type="number" min="0" max="20" step="1" inputMode="numeric" value={filters[key]} onChange={(event) => onChange({ [key]: event.target.value })} placeholder="Sem mínimo" /></label>)}
       {filters.feature.includes("|") && <p className="advanced-combined">Diferenciais combinados: {filters.feature.split("|").join(", ")}. Escolha um diferencial acima para substituir.</p>}
-      <label>Cor / tom<select aria-label="Cor / tom" value={filters.color} onChange={(event) => onChange({ color: event.target.value })}><option value="">Todas as cores</option>{["branca", "bege", "cinza", "preta", "marrom", "azul", "verde", "vermelha"].map((color) => <option key={color} value={color}>{color[0].toUpperCase() + color.slice(1)}</option>)}</select><small>Tons das fotos desta demonstração.</small></label>
+      <label>Cor / tom<select aria-label="Cor / tom" value={filters.color} onChange={(event) => onChange({ color: event.target.value })}><option value="">Todas as cores</option>{[...new Set(["branca", "bege", "cinza", "preta", "marrom", "azul", "verde", "vermelha", ...properties.flatMap((item) => item.colors ?? []), ...(filters.color ? [filters.color] : [])].map(normalize))].map((color) => <option key={color} value={color}>{color[0].toUpperCase() + color.slice(1)}</option>)}</select><small>Tons das fotos desta demonstração.</small></label>
       <label>Código do imóvel<input type="search" value={filters.reference} onChange={(event) => onChange({ reference: event.target.value })} placeholder="Ex.: 24060" maxLength={20} /></label>
     </div></fieldset>
     <fieldset><legend><Ruler size={16} /> Valores e metragem</legend><div className="advanced-fields">

@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.7.0
+# Aldenn Imóveis — 0.8.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
@@ -68,3 +68,12 @@ Filtrar primeiro, promover depois: até três campanhas compatíveis lideram res
 Até dez imóveis locais por navegador: cadastrar, editar e excluir. Até seis fotos JPG/PNG/WebP (5 MB por arquivo), comprimidas para no máximo 1024 px e gravadas junto do cadastro em localStorage; sem uploads. Galerias existentes podem iniciar o cadastro. Falta de espaço impede gravar e informa o erro. Dados armazenados são validados ao restaurar. Os seis imóveis originais são imutáveis nesta área.
 
 Catálogo, filtros, sugestões locais e boosts incluem os cadastros. Detalhes usam rota estática /imovel/cadastrado/?ref=...; fora do navegador original mostram cadastro não encontrado. Busca com IA aplica seus critérios também aos cadastros locais no cliente, mas o servidor continua conhecendo somente o catálogo base: fotos e registros locais não são enviados à OpenAI. Não há sincronização entre dispositivos ou funcionários.
+
+
+## Cadastro 0.8.0
+
+No perfil, Cadastrar imóvel abre /equipe/cadastro. Fotos começam vazias. Rascunhos por imóvel ficam no IndexedDB e são retomados após F5; anúncio permanece no localStorage. Botão Descartar rascunho reinicia dados sem excluir anúncio já salvo. Fotos e rascunhos não são compartilhados nem enviados ao servidor.
+
+Campos incluem tipos ampliados, CEP/rua/número/UF, cor livre, tags normalizadas, máscaras e finalidade Venda ou locação com preços separados. Terrenos e tipos comerciais dispensam dormitórios e banheiros. ViaCEP ajuda a preencher, com edição manual disponível.
+
+Ajuda com IA pede o essencial e confirmação, oferece título/descrição editáveis. Nova API institucional /api/imobiliaria/cadastro usa a mesma variável de chave, no servidor; só fatos necessários para texto e tags para revisão vão à OpenAI. Fotos, CEP, número e credenciais ficam fora das requisições de IA. Sugestão é persistida no rascunho. A prévia estática não serve APIs; testes interceptam o endpoint e produção valida integração real. O script de empacotamento inclui editor-handler, editor-ai e editor para publicar a API.

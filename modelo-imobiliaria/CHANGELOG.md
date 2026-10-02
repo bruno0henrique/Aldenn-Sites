@@ -1,5 +1,13 @@
 # Histórico
 
+## 0.8.0 — 2026-10-02
+
+- Cadastro em página dedicada, com recuperação automática de rascunho e fotos após F5, etapas e descarte explícito.
+- Fotos próprias, tags de diferenciais com revisão de escrita, cor personalizada, tipos ampliados e máscaras de valores/áreas; quartos e banheiros começam em um.
+- CEP preenche endereço revisável; venda e locação simultâneas têm valores separados e participação nas duas buscas.
+- Ajuda com IA pede dados mínimos e confirmação, gera título/descrição revisáveis e preserva sugestão no rascunho. Nova API protegida por origem, limites e validação, sem fotos, CEP ou número enviados ao provedor.
+
+
 ## 0.7.0 — 2026-09-30
 
 - Perfil no cabeçalho com login em pop-up e acesso rápido à área da equipe; credenciais não são enviadas ou armazenadas.
