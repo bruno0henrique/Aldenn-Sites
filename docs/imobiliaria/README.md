@@ -127,3 +127,12 @@ Validação: lint sem avisos, tipos/build, 25 testes unitários e 26 cenários d
 ## Ajustes aprovados em 02/10/2026 — 0.9.0
 
 Referência: gravação enviada pelo usuário, com cards por bairro e página regional. Implementados cards por bairro do catálogo, contagens reais, preços iniciais, imóveis regionais e links de busca filtrada. Cadastro ampliado para leitura, atalhos numerados removidos, finalidade sem seleção automática, confirmação antes de gerar/publicar e acesso ao perfil corrigido. A prévia lateral usa recarga em tempo real e acesso seguro à API institucional. Validação: 25 testes unitários e 28 testes Chromium, lint, tipos e build; geração real e revisão de tags retornaram HTTP 200 no serviço publicado.
+
+## Ajustes de busca aprovados — 0.10.0
+
+Solicitações de 02/10/2026: organizar mobile; IA em linha própria centralizada, com efeito sutil; filtros em janela simples com fechamento e retorno sem vazio; remover limitação textual a SJC/Jacareí; seis referências locais de busca do Google; Ver todos/Ver mais; Boost inicial compatível e borda marrom; círculo/seta do convite para rolar; busca principal Comprar/Alugar/Código. Google autocomplete registrado como referência, não ranking comprovado. Boosts iniciais são simulados e encerráveis, sem reativar campanhas explicitamente encerradas.
+
+
+Busca inteligente: nomenclatura unificada, prévia de até três imóveis e Ver todas com filtros persistidos. Janela simplificada com Busca/Código, transação, tipo, cidade/bairro, botões 1+/2+/3+/4+ e preços mínimo/máximo; critérios adicionais em Mais filtros.
+
+Validação da entrega 0.10.0: 26 testes unitários e 33 cenários de navegador aprovados (incluindo repetição dos cinco cenários mobile após ajuste do rótulo acessível), lint, tipos e build.

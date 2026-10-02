@@ -1,6 +1,7 @@
 import sharp from "sharp";
 import { test, expect } from "@playwright/test";
 import { localPropertyKey, staffSessionKey } from "../../lib/local-properties";
+test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (localStorage.getItem("aldenn-imoveis-demo-boosts-v1") === null) localStorage.setItem("aldenn-imoveis-demo-boosts-v1", "[]"); }); });
 test("profile opens on mobile and desktop, login never sends or stores credentials", async ({ page }) => {
   let posts = 0; page.on("request", (request) => { if (request.method() === "POST") posts++; });
   for (const width of [320, 390, 768, 1440]) {
@@ -38,7 +39,7 @@ test("staff can publish a photo, open/reload details, filter, boost, edit and re
   await page.getByRole("link", { name: "Ver anúncio", exact: true }).click(); await expect(page).toHaveURL(/imovel\/cadastrado.*ref=LOCAL-/);
   await expect(page.getByRole("heading", { name: "Casa de teste com varanda", exact: true })).toBeVisible(); await expect(page.locator(".gallery-mosaic.is-single")).toHaveCount(1);
   await expect(page.locator(".gallery-main img")).toHaveAttribute("src", /^data:image\/webp/); await page.reload(); await expect(page.locator(".detail-price")).toContainText("900.000");
-  await page.getByRole("link", { name: "Voltar aos imóveis" }).click(); await page.getByLabel("Localização", { exact: true }).fill("Taubaté");
+  await page.getByRole("link", { name: "Voltar aos imóveis" }).click(); await page.getByRole("button", { name: "Filtros", exact: true }).click(); await page.locator(".more-search-filters summary").click(); await page.getByLabel("Localização", { exact: true }).fill("Taubaté"); await page.keyboard.press("Escape");
   await expect(page.locator(".property-card")).toHaveCount(1); await expect(page.locator(".property-card")).toContainText("Casa de teste");
   await page.getByRole("button", { name: "Abrir menu" }).click(); await page.getByRole("button", { name: "Promover", exact: true }).click();
   const reference = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!)[0].reference, localPropertyKey);

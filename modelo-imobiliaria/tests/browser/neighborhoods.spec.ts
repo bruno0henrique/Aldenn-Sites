@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (localStorage.getItem("aldenn-imoveis-demo-boosts-v1") === null) localStorage.setItem("aldenn-imoveis-demo-boosts-v1", "[]"); }); });
 test("neighborhood cards open a reloadable regional page and apply search filters", async ({ page }) => {
   await page.goto("/demonstracao-imobiliaria/?skip=opening#bairros");
   const card = page.locator(".neighborhood-card").filter({ hasText: "Urbanova" });

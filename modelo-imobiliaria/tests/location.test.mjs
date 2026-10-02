@@ -18,3 +18,12 @@ test("CEP accepts eight digits and address lookup resolves to region rather than
   assert.equal(result.label, "Rua de Teste");
   assert.equal(result.location, "Jardim Aquarius São José dos Campos");
 });
+
+test("Google reference suggestions stay capped at six and only include registered places", () => {
+  const properties = [{ city: "Curitiba", state: "PR", neighborhood: "Batel", development: "Edifício Exemplo" }, { city: "São José dos Campos", neighborhood: "Urbanova", development: "Vivant Urbanova" }, { city: "Jacareí", neighborhood: "Altos de Santanna", development: "Villa de Santanna" }];
+  const suggestions = localSuggestions(properties, "");
+  assert.equal(suggestions.length, 6);
+  assert.equal(suggestions[0].label, "São José dos Campos");
+  assert.equal(localSuggestions(properties, "curitiba")[0].detail, "PR");
+  assert.equal(localSuggestions(properties, "batel")[0].label, "Batel");
+});

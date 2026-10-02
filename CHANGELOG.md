@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.73.0] - 2026-10-02
+
+- Busca mobile com IA centralizada abaixo das opções, brilho discreto e redução de movimento respeitada; filtros em janela com X, Escape e retorno à lista sem espaço vazio.
+- Comprar, Alugar e Código separados na busca principal; códigos não passam pela consulta de CEP. Convite para rolar com círculo/seta mais visíveis.
+- Sugestões locais limitadas a seis, com referência documentada do Google autocomplete, sem afirmar ranking de volume ou enviar buscas de visitantes ao Google. Regiões cadastradas continuam pesquisáveis.
+- Três Boosts demonstrativos na primeira visita, elegíveis após todos os filtros, persistência de encerramentos e contorno marrom. Ver todos ao fim das listas e Ver mais somente quando há anúncios adicionais.
+- Busca inteligente: nomenclatura unificada, prévia de até três imóveis e Ver todas com filtros persistidos. Janela simplificada com Busca/Código, transação, tipo, cidade/bairro, botões 1+/2+/3+/4+ e preços mínimo/máximo; critérios adicionais em Mais filtros.
+
 ## [0.72.0] - 2026-10-02
 
 - Exploração por bairros com cards, páginas regionais, quantidades e buscas filtradas, preservando a prioridade de Boost elegível.

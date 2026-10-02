@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 const path = "/demonstracao-imobiliaria";
+test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (localStorage.getItem("aldenn-imoveis-demo-boosts-v1") === null) localStorage.setItem("aldenn-imoveis-demo-boosts-v1", "[]"); }); });
 test("mobile filter options fit and touch controls remain comfortable", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const width of [320, 360, 390, 430, 540, 600, 700]) {
@@ -24,10 +25,10 @@ test("mobile filter options fit and touch controls remain comfortable", async ({
       expect(control.height).toBeGreaterThanOrEqual(44);
       expect(control.font).toBeGreaterThanOrEqual(16);
     }
-    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+    await page.getByRole("button", { name: "Filtros", exact: true }).click(); await page.locator(".more-search-filters summary").click();
     await expect(page.getByLabel("Preço máximo (R$)", { exact: true })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+    await page.getByRole("dialog", { name: "Filtros de imóveis" }).getByRole("button", { name: "Fechar", exact: true }).click();
   }
   await page.setViewportSize({ width: 320, height: 700 });
   await page.goto(`${path}/imovel/apartamento-splendor-garden-venda/`);
@@ -62,11 +63,11 @@ test("catalog filters, empty state, URL reload and header navigation", async ({ 
 });
 test("combined price filters, sorting and browser back", async ({ page }) => {
   await page.goto(`${path}/?purpose=venda#imoveis`);
-  await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  await page.getByRole("button", { name: "Filtros", exact: true }).click(); await page.locator(".more-search-filters summary").click();
   await page.getByLabel("Preço mínimo (R$)", { exact: true }).fill("2950000");
   await page.getByLabel("Preço máximo (R$)", { exact: true }).fill("2980000");
   await expect(page.locator(".property-card")).toHaveCount(2);
-  await page.getByLabel("Ordenar imóveis").selectOption("highest");
+  await page.getByRole("dialog", { name: "Filtros de imóveis" }).getByRole("button", { name: "Fechar", exact: true }).click(); await page.getByLabel("Ordenar imóveis").selectOption("highest");
   await expect(page.locator(".property-card h3").first()).toHaveText("Casa no Alphaville II");
   await page.getByLabel("Ordenar imóveis").selectOption("lowest");
   await expect(page.locator(".property-card h3").first()).toHaveText("Casa no Vivant Urbanova");
@@ -110,7 +111,7 @@ test("contact validation and WhatsApp previews never send or persist personal da
   await expect(page.getByRole("dialog").getByText(/Não há envio ao WhatsApp/)).toBeVisible();
   expect(requests).toEqual([]);
   const storage = await page.evaluate(() => ({ local: { ...localStorage }, session: { ...sessionStorage } }));
-  expect(storage).toEqual({ local: {}, session: {} });
+  expect(storage).toEqual({ local: { "aldenn-imoveis-demo-boosts-v1": "[]" }, session: {} });
 });
 test("financing uses zero interest, full entry and rejects empty or impossible input", async ({ page }) => {
   await page.goto(`${path}/imovel/casa-vivant-urbanova/`);
@@ -221,8 +222,8 @@ test("all rendered property images use local illustrative galleries", async ({ p
 
 test("complete search combines dependent fields, ranges, URL reload and empty results", async ({ page }) => {
   await page.goto(`${path}/?skip=opening`);
-  await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click();
-  await expect(page.getByRole("heading", { name: "Os detalhes do seu próximo lugar." })).toBeVisible();
+  await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click(); await page.locator(".more-search-filters summary").click();
+  await expect(page.getByRole("dialog", { name: "Filtros de imóveis" })).toBeVisible();
   await page.getByLabel("Cidade", { exact: true }).selectOption("São José dos Campos");
   await page.getByLabel("Bairro", { exact: true }).selectOption("Jardim das Indústrias");
   await page.getByLabel("Condomínio / empreendimento", { exact: true }).selectOption("Splendor Garden");
@@ -235,7 +236,7 @@ test("complete search combines dependent fields, ranges, URL reload and empty re
   await expect(page.locator(".property-card h3")).toHaveText("Apartamento no Splendor Garden");
   await page.reload();
   await expect(page.locator(".property-card")).toHaveCount(1);
-  await page.getByRole("button", { name: "Filtros", exact: true }).click();
+  await page.getByRole("button", { name: "Filtros", exact: true }).click(); await page.locator(".more-search-filters summary").click();
   await expect(page.getByLabel("Cidade", { exact: true })).toHaveValue("São José dos Campos");
   await page.getByLabel("Área máxima (m²)", { exact: true }).fill("90");
   await expect(page.locator(".advanced-search").getByRole("alert")).toContainText("mínimo deve ser menor");
@@ -247,7 +248,7 @@ test("complete search combines dependent fields, ranges, URL reload and empty re
   await expect(page.getByLabel("Bairro", { exact: true })).toHaveValue("");
   await expect(page.getByLabel("Condomínio / empreendimento", { exact: true })).toHaveValue("");
   await expect(page.getByLabel("Bairro", { exact: true }).locator("option")).toHaveCount(2);
-  await page.getByRole("button", { name: "Limpar filtros", exact: true }).click();
+  if (await page.getByRole("dialog", { name: "Filtros de imóveis" }).isVisible()) await page.keyboard.press("Escape"); await page.getByRole("button", { name: "Limpar filtros", exact: true }).click();
   await expect(page.locator(".property-card")).toHaveCount(6);
 });
 
@@ -262,10 +263,10 @@ test("hero separates text from photos and floating WhatsApp opens a simulated co
     else expect(title!.y + title!.height).toBeLessThan(photo!.y);
     const badge = await page.locator(".card-photo").first().evaluate((element) => getComputedStyle(element, "::after").content);
     expect(badge).not.toContain("Imagem ilustrativa");
-    await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click();
+    await page.getByRole("button", { name: "Pesquisa completa", exact: true }).click(); await page.locator(".more-search-filters summary").click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.getByLabel("Cidade", { exact: true })).toBeVisible();
-    await page.getByRole("button", { name: "Filtros", exact: true }).click();
+    await page.getByRole("dialog", { name: "Filtros de imóveis" }).getByRole("button", { name: "Fechar", exact: true }).click();
   }
   const requests: string[] = [];
   page.on("request", (request) => { if (!["GET", "HEAD"].includes(request.method())) requests.push(request.url()); });

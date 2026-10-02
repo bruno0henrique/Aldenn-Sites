@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.9.0
+# Aldenn Imóveis — 0.10.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
@@ -85,3 +85,17 @@ A seção Bairros agrupa o catálogo por cidade e bairro. Cada card abre /bairro
 O cadastro inicia sem finalidade. Fotos, tags e dados alterados invalidam a confirmação de publicação. O perfil pode ser aberto diretamente na página dedicada. Campos e textos auxiliares receberam tamanho e contraste maiores.
 
 Em npm run dev, a porta 5176 oferece um proxy restrito às duas APIs de IA institucionais, aceitando apenas origens locais na porta 5175 e POST de até 6 KB. A prévia usa a IA real publicada; a chave permanece no Vercel. npm run preview serve apenas a exportação estática e não inicia esse proxy.
+
+## Busca mobile — 0.10.0
+
+No celular, filtros básicos/completos só aparecem no modal, fechado por X, Escape ou Ver resultados. No desktop, filtros básicos permanecem no catálogo; pesquisa completa usa o mesmo modal. A IA tem linha própria centralizada e animação discreta, desativada para redução de movimento. Comprar, Alugar e Código aparecem claramente na abertura; referência do anúncio é filtro distinto do CEP.
+
+Listas mostram até seis imóveis inicialmente, Ver mais acrescenta seis quando disponíveis e Ver todos remove os filtros para mostrar o catálogo completo. Não existe botão de mais resultados quando todos já estão visíveis.
+
+Na primeira visita sem armazenamento de Boost, Vivant Urbanova, Alphaville II e Casablanca recebem campanhas de sete dias demonstrativas. Campanhas existentes não são sobrescritas e encerrar todos grava uma lista vazia, impedindo reativação. Continua local por navegador/origem, sem cobrança ou anúncios externos. Os três primeiros compatíveis têm contorno marrom; o convite para rolar não menciona promoção.
+
+Sugestões vazias: até seis regiões do catálogo, priorizadas pela referência consultada no Google autocomplete em 02/10/2026 (pt-BR, BR). Fontes, consultas e respostas estão em data/location-google-reference.json. Autocomplete não mede volume nem comprova ranking; não usamos o rótulo mais buscados no produto. Digitação busca todos os locais cadastrados. Consulta de rua usa cidade/UF dos registros (SP como compatibilidade com o catálogo original sem UF).
+
+Busca inteligente: nomenclatura unificada, prévia de até três imóveis e Ver todas com filtros persistidos. Janela simplificada com Busca/Código, transação, tipo, cidade/bairro, botões 1+/2+/3+/4+ e preços mínimo/máximo; critérios adicionais em Mais filtros.
+
+Validação da entrega 0.10.0: 26 testes unitários e 33 cenários de navegador aprovados (incluindo repetição dos cinco cenários mobile após ajuste do rótulo acessível), lint, tipos e build.

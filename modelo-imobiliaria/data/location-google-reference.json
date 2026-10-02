@@ -1,0 +1,90 @@
+{
+  "queries": [
+    {
+      "query": "imoveis sao jose dos campos",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=imoveis%20sao%20jose%20dos%20campos",
+      "suggestions": [
+        "imoveis sao jose dos campos",
+        "imoveis sao jose dos campos venda",
+        "imoveis sao jose dos campos aluguel",
+        "imoveis sao jose dos campos leilao",
+        "imoveis sao jose dos campos sp",
+        "zap imoveis sao jose dos campos",
+        "pirâmide imóveis são josé dos campos",
+        "geração imoveis sao jose dos campos",
+        "invest imóveis são josé dos campos",
+        "olx imoveis sao jose dos campos"
+      ]
+    },
+    {
+      "query": "imoveis jacarei",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=imoveis%20jacarei",
+      "suggestions": [
+        "imoveis jacarei",
+        "imoveis jacarei venda",
+        "imoveis jacarei aluguel",
+        "imoveis jacarei olx",
+        "frança imoveis jacarei",
+        "mattana imoveis jacarei",
+        "emilia imoveis jacarei",
+        "leilao imoveis jacarei",
+        "facil imoveis jacarei",
+        "cartorio imoveis jacarei"
+      ]
+    },
+    {
+      "query": "imoveis urbanova",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=imoveis%20urbanova",
+      "suggestions": [
+        "imoveis urbanova sjc",
+        "imoveis urbanova",
+        "urbanova imoveis prime",
+        "urbanova imoveis guararema",
+        "piramide imoveis urbanova",
+        "ferreirinha imoveis urbanova",
+        "horizonte imóveis urbanova comentários",
+        "horizonte imóveis urbanova",
+        "maciel imoveis urbanova",
+        "imoveis a venda urbanova sjc"
+      ]
+    },
+    {
+      "query": "imoveis jardim aquarius",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=imoveis%20jardim%20aquarius",
+      "suggestions": [
+        "imoveis jardim aquarius sao jose dos campos",
+        "imoveis jardim aquarius",
+        "imoveis a venda jardim aquarius sjc"
+      ]
+    },
+    {
+      "query": "imoveis jardim das industrias",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=imoveis%20jardim%20das%20industrias",
+      "suggestions": [
+        "imoveis jardim das industrias sjc",
+        "imoveis jardim das industrias",
+        "imoveis a venda jardim das industrias sjc",
+        "imoveis para alugar jardim das industrias sjc",
+        "imoveis para alugar jardim das industrias"
+      ]
+    },
+    {
+      "query": "vivant urbanova",
+      "source": "https://suggestqueries.google.com/complete/search?client=firefox&hl=pt-BR&gl=br&q=vivant%20urbanova",
+      "suggestions": [
+        "vivant urbanova",
+        "condomínio vivant urbanova",
+        "condomínio vivant urbanova fotos",
+        "terreno vivant urbanova",
+        "condomínio vivant urbanova endereço",
+        "loteamento vivant urbanova",
+        "condominio vivant urbanova sjc",
+        "casa vivant urbanova",
+        "residencial vivant urbanova",
+        "condomínio vivant urbanova photos"
+      ]
+    }
+  ],
+  "consultedAt": "2026-10-02",
+  "method": "Google autocomplete pt-BR/BR. Não é ranking de volume; prioriza regiões existentes no catálogo. Apenas snapshot local, sem enviar pesquisas de visitantes ao Google."
+}

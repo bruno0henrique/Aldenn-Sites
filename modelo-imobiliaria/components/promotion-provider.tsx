@@ -10,7 +10,7 @@ export function PromotionProvider({ children }: { children: ReactNode }) {
   const references = useMemo(() => properties.map((item) => item.reference), [properties]);
   const [campaigns, setCampaigns] = useState<Promotion[]>([]);
   useEffect(() => {
-    const load = () => { try { setCampaigns(restorePromotions(JSON.parse(localStorage.getItem(promotionStorageKey) || "[]"), references)); } catch { setCampaigns([]); } };
+    const load = () => { try { const stored = localStorage.getItem(promotionStorageKey); const initial = ["27236", "24477", "26556"].filter((reference) => references.includes(reference)).map((reference, index) => createPromotion(reference, "week", Date.now() - index)); if (stored === null) localStorage.setItem(promotionStorageKey, JSON.stringify(initial)); setCampaigns(restorePromotions(stored === null ? initial : JSON.parse(stored), references)); } catch { setCampaigns([]); } };
     load();
     const sync = (event: StorageEvent) => { if (event.key === promotionStorageKey) load(); };
     window.addEventListener("storage", sync);
@@ -19,7 +19,7 @@ export function PromotionProvider({ children }: { children: ReactNode }) {
   }, [references]);
   function save(next: Promotion[]) {
     setCampaigns(next);
-    try { if (next.length) localStorage.setItem(promotionStorageKey, JSON.stringify(next)); else localStorage.removeItem(promotionStorageKey); return true; } catch { return false; }
+    try { localStorage.setItem(promotionStorageKey, JSON.stringify(next)); return true; } catch { return false; }
   }
   return <Context.Provider value={{ campaigns, promote: (reference, plan) => save([...campaigns.filter((item) => item.reference !== reference), createPromotion(reference, plan)]), stop: (reference) => { save(campaigns.filter((item) => item.reference !== reference)); } }}>{children}</Context.Provider>;
 }
