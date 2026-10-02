@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.71.1] - 2026-10-02
+
+- Tipagem explícita da resposta do provedor para compatibilidade com o build institucional e normalização de finais de linha do perfil.
+
+
 ## [0.71.0] - 2026-10-02
 
 - Cadastro em página dedicada, com recuperação automática de rascunho e fotos após F5, etapas e descarte explícito.

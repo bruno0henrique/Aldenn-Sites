@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.8.0
+# Aldenn Imóveis — 0.8.1
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
