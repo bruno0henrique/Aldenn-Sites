@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 0.73.1 — 2026-10-02
+
+- Fundo da abertura imobiliária com textura discreta, linhas verticais e arcos arquitetônicos em dourado suave; decoração estática, adaptada ao celular e sem bloquear controles.
+
 ## [0.73.0] - 2026-10-02
 
 - Busca mobile com IA centralizada abaixo das opções, brilho discreto e redução de movimento respeitada; filtros em janela com X, Escape e retorno à lista sem espaço vazio.

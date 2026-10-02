@@ -165,3 +165,60 @@
   .more-search-filters { margin-top: 10px; }
   .search-filter-modal .advanced-bottom { margin-top: 10px; }
 }
+/* Traços arquitetônicos e textura de papel no fundo da abertura. */
+.hero-background-detail {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 15% 42%, #ac936019, transparent 58%),
+    linear-gradient(90deg, #bda6750a 1px, transparent 1px);
+  background-size: auto, 160px 100%;
+  mask-image: linear-gradient(90deg, #000, #0009 65%, transparent);
+}
+.hero-background-detail::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.22' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+.hero-outline {
+  position: absolute;
+  display: block;
+  border: 1px solid #bda67524;
+  border-radius: 50% 50% 0 0;
+}
+.hero-outline-left {
+  width: 660px;
+  height: 970px;
+  left: -330px;
+  top: 110px;
+  transform: rotate(-28deg);
+
+}
+.hero-outline-right {
+  width: 860px;
+  height: 1060px;
+  right: -120px;
+  top: -600px;
+  transform: rotate(30deg);
+  border-color: #bda67518;
+}
+.hero-premium .hero-stage, .hero-premium .hero-bottom { z-index: 1; }
+@media (max-width: 700px) {
+  .hero-background-detail { background-size: auto, 110px 100%; }
+  .hero-outline-left { width: 440px; height: 720px; left: -330px; top: 40px; }
+  .hero-outline-right { width: 500px; height: 680px; right: -270px; top: -480px; }
+}
+
+.hero-outline-left::before, .hero-outline-left::after {
+  content: "";
+  position: absolute;
+  inset: -36px;
+  border: 1px solid #bda67513;
+  border-radius: inherit;
+}
+.hero-outline-left::after { inset: -73px; border-color: #bda6750d; }

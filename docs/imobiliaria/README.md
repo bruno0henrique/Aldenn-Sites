@@ -136,3 +136,7 @@ Solicitações de 02/10/2026: organizar mobile; IA em linha própria centralizad
 Busca inteligente: nomenclatura unificada, prévia de até três imóveis e Ver todas com filtros persistidos. Janela simplificada com Busca/Código, transação, tipo, cidade/bairro, botões 1+/2+/3+/4+ e preços mínimo/máximo; critérios adicionais em Mais filtros.
 
 Validação da entrega 0.10.0: 26 testes unitários e 33 cenários de navegador aprovados (incluindo repetição dos cinco cenários mobile após ajuste do rótulo acessível), lint, tipos e build.
+
+## Fundo da abertura — 0.10.1
+
+Pedido aprovado em 02/10/2026: adicionar detalhes ao fundo da abertura. Aplicados arcos e traços arquitetônicos dourados, luz suave e textura local de papel; estáticos, decorativos, fora da árvore acessível e sem capturar cliques. Dimensões adaptadas ao celular e recortadas dentro da abertura.
