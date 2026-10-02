@@ -14,7 +14,7 @@ export type EditorDraft = {
   aiOpen: boolean; aiConfirmed: boolean; aiProposal: { title: string; description: string } | null; savedAt: string;
 };
 export function initialDraft(property?: Property): EditorDraft {
-  const values: Record<string, string> = { title: "", subtitle: "", description: "", purpose: "venda", type: "Casa", city: "", neighborhood: "", development: "", cep: "", street: "", addressNumber: "", state: "", price: "", rentPrice: "", condominium: "", iptu: "", builtArea: "", landArea: "", bedrooms: "1", bathrooms: "1", suites: "0", parking: "0", color: "", otherColor: "" };
+  const values: Record<string, string> = { title: "", subtitle: "", description: "", purpose: "", type: "Casa", city: "", neighborhood: "", development: "", cep: "", street: "", addressNumber: "", state: "", price: "", rentPrice: "", condominium: "", iptu: "", builtArea: "", landArea: "", bedrooms: "1", bathrooms: "1", suites: "0", parking: "0", color: "", otherColor: "" };
   if (property) { for (const key of Object.keys(values)) { const value = property[key as keyof Property]; if (typeof value === "string" || typeof value === "number") values[key] = String(value); } values.description = property.description.join("\n\n"); const color = property.colors?.[0] ?? ""; values.color = colors.includes(normalize(color)) ? normalize(color) : color ? "other" : ""; values.otherColor = values.color === "other" ? color : ""; }
   return { values, photos: property?.images ?? [], tags: featureTags(property?.features ?? []), tagInput: "", aiOpen: false, aiConfirmed: false, aiProposal: null, savedAt: "" };
 }

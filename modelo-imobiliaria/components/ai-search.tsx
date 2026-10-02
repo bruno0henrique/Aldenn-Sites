@@ -1,4 +1,5 @@
 "use client";
+import { apiUrl } from "@/lib/api-url";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -29,7 +30,7 @@ export function AiSearch({ onClose, onManual, onResults }: { onClose: () => void
     abort.current?.abort(); const controller = new AbortController(); abort.current = controller;
     setBusy(true); setError(""); setMessage(""); setFilters(null);
     try {
-      const response = await fetch("/api/imobiliaria/busca", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: query.trim() }), signal: AbortSignal.any([controller.signal, AbortSignal.timeout(30000)]) });
+      const response = await fetch(apiUrl("/api/imobiliaria/busca"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: query.trim() }), signal: AbortSignal.any([controller.signal, AbortSignal.timeout(30000)]) });
       if (!response.ok) { const body = await response.json().catch(() => ({})); throw new Error(body.message || "A busca está indisponível. Use a pesquisa completa."); }
       if (!response.body) throw new Error("Não recebi uma resposta. Tente novamente.");
       const reader = response.body.getReader(), decoder = new TextDecoder(); let buffer = "", complete = false;

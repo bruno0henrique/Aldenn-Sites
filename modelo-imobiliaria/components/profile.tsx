@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import { useLocalCatalog } from "./local-catalog";
 export function Profile() {
   const { staff, login, logout, local, remove } = useLocalCatalog();
   const [open, setOpen] = useState(false), [deleting, setDeleting] = useState<string | null>(null), [error, setError] = useState("");
+  useEffect(() => { const show = () => setOpen(true); window.addEventListener("aldenn:profile", show); return () => window.removeEventListener("aldenn:profile", show); }, []);
   return <>
     <button className="icon-button profile-button" aria-label={staff ? "Meu perfil" : "Entrar / perfil"} onClick={() => { setDeleting(null); setError(""); setOpen(true); }}><UserRound size={19} /><span className="profile-dot" hidden={!staff} /></button>
     {open && createPortal(<Modal title={staff ? "Área da equipe" : "Entrar no perfil"} className={staff ? "staff-modal" : "profile-modal"} onClose={() => setOpen(false)}>

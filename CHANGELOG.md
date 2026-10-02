@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## [0.72.0] - 2026-10-02
+
+- Exploração por bairros com cards, páginas regionais, quantidades e buscas filtradas, preservando a prioridade de Boost elegível.
+- Cadastro mais legível, sem atalhos numerados; finalidade vazia inicialmente e confirmação obrigatória, invalidada ao editar o anúncio.
+- Acesso ao perfil na tela de cadastro e conexão da prévia local à API publicada de IA, sem chave local. Atualização em tempo real habilitada no navegador lateral.
+- Validados lint, tipos, build, 25 testes unitários e 28 testes de navegador, incluindo recarga e layouts de 320 a 1440 px.
+
+
 ## [0.71.1] - 2026-10-02
 
 - Tipagem explícita da resposta do provedor para compatibilidade com o build institucional e normalização de finais de linha do perfil.

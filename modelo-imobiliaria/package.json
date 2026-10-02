@@ -1,13 +1,13 @@
 {
   "name": "aldenn-imoveis",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "next dev --port 5175",
+    "dev": "node scripts/dev.mjs",
     "build": "npm run search:catalog && next build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

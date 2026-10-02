@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.8.1
+# Aldenn Imóveis — 0.9.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
@@ -77,3 +77,11 @@ No perfil, Cadastrar imóvel abre /equipe/cadastro. Fotos começam vazias. Rascu
 Campos incluem tipos ampliados, CEP/rua/número/UF, cor livre, tags normalizadas, máscaras e finalidade Venda ou locação com preços separados. Terrenos e tipos comerciais dispensam dormitórios e banheiros. ViaCEP ajuda a preencher, com edição manual disponível.
 
 Ajuda com IA pede o essencial e confirmação, oferece título/descrição editáveis. Nova API institucional /api/imobiliaria/cadastro usa a mesma variável de chave, no servidor; só fatos necessários para texto e tags para revisão vão à OpenAI. Fotos, CEP, número e credenciais ficam fora das requisições de IA. Sugestão é persistida no rascunho. A prévia estática não serve APIs; testes interceptam o endpoint e produção valida integração real. O script de empacotamento inclui editor-handler, editor-ai e editor para publicar a API.
+
+## Bairros e prévia — 0.9.0
+
+A seção Bairros agrupa o catálogo por cidade e bairro. Cada card abre /bairro/ com contagens e imóveis reais da seleção; as ações Comprar/Alugar aplicam cidade, bairro e finalidade. Nenhuma estatística externa é inventada. Os anúncios promovidos só lideram se pertencerem à região.
+
+O cadastro inicia sem finalidade. Fotos, tags e dados alterados invalidam a confirmação de publicação. O perfil pode ser aberto diretamente na página dedicada. Campos e textos auxiliares receberam tamanho e contraste maiores.
+
+Em npm run dev, a porta 5176 oferece um proxy restrito às duas APIs de IA institucionais, aceitando apenas origens locais na porta 5175 e POST de até 6 KB. A prévia usa a IA real publicada; a chave permanece no Vercel. npm run preview serve apenas a exportação estática e não inicia esse proxy.
