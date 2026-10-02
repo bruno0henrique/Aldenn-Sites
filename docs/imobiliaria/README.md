@@ -101,6 +101,8 @@ Usuário pediu remover o link externo Referência dos dados e valores e usar Mel
 
 ## Perfil e cadastro — aprovado em 30/09/2026
 
+**Ajustes futuros registrados em 02/10/2026:** consultar [Pendências do cadastro](PENDENCIAS-CADASTRO.md). Pedido limitado a salvar os requisitos; implementação e publicação ficam para uma próxima etapa.
+
 O pedido atual amplia o limite original sem painel: área de funcionários simples e visível para explorar na demonstração. Login em pop-up, acesso de apresentação e formulário local; não implementar autenticação real ou banco nesta entrega. Sessão sem credenciais (marcador em sessionStorage), cadastros/fotos no navegador. Sem envios externos.
 
 Cadastro/edição/exclusão de até dez imóveis; título, finalidade, tipo, localização, valores, metragens, quartos, suítes, vagas, descrição, diferenciais e cor. Galeria existente ou até seis fotos próprias, JPG/PNG/WebP até 5 MB, reduzidas no cliente. Dados persistidos são validados; falha de quota mantém cadastro anterior e mostra mensagem.

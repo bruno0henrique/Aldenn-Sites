@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## Pendências registradas — 2026-10-02
+
+- Documentados os próximos ajustes do cadastro: página dedicada com rascunho, fotos próprias, tags de diferenciais, campos ampliados, máscaras, CEP e assistência de IA. Somente documentação, sem alteração da versão publicada ou implementação.
+
 ## [0.70.0] - 2026-09-30
 
 - Perfil no cabeçalho com login em pop-up e acesso rápido à área da equipe; credenciais não são enviadas ou armazenadas.
