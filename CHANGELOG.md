@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 0.74.0 — 2026-10-03
+
+- Página dedicada da equipe: acesso direto pelo perfil, seis imóveis iniciais, busca por código/região, ficha, edição e cadastro.
+- Informações internas de situação/responsável, imobiliária/localização/identificação da chave e anotações com data persistem localmente e ficam fora dos anúncios.
+- Cadastro/edição de empreendimentos e sugestões no editor de imóveis; alterações dos imóveis originais são validadas e aplicadas ao catálogo/detalhes sem duplicação.
+
 ## 0.73.1 — 2026-10-02
 
 - Fundo da abertura imobiliária com textura discreta, linhas verticais e arcos arquitetônicos em dourado suave; decoração estática, adaptada ao celular e sem bloquear controles.

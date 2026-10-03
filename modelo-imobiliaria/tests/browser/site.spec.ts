@@ -7,6 +7,7 @@ test("mobile filter options fit and touch controls remain comfortable", async ({
   for (const width of [320, 360, 390, 430, 540, 600, 700]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto(`${path}/?skip=opening#imoveis`);
+    await expect(page.locator(".filters-primary")).toHaveCount(0);
     await page.evaluate(() => document.fonts.ready);
     const controls = await page.locator(".filters-primary select, .sort-label select").evaluateAll((elements) => elements.map((element) => {
       const select = element as HTMLSelectElement;
@@ -282,6 +283,7 @@ test("brief decorative entrance clears and mobile hero search works", async ({ p
   await page.goto(`${path}/`);
   await expect(page.locator(".brand-intro")).toHaveCSS("pointer-events", "none");
   await expect(page.locator(".brand-intro")).not.toBeVisible({ timeout: 4000 });
+  await expect(page.locator(".filters-primary")).toHaveCount(0);
   await page.getByLabel("Localização da busca", { exact: true }).fill("Aquarius");
   await page.getByRole("group", { name: "Finalidade da busca" }).getByRole("button", { name: "Alugar" }).click();
   await page.getByRole("button", { name: "Encontrar imóvel" }).click();

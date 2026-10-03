@@ -140,3 +140,15 @@ Validação da entrega 0.10.0: 26 testes unitários e 33 cenários de navegador 
 ## Fundo da abertura — 0.10.1
 
 Pedido aprovado em 02/10/2026: adicionar detalhes ao fundo da abertura. Aplicados arcos e traços arquitetônicos dourados, luz suave e textura local de papel; estáticos, decorativos, fora da árvore acessível e sem capturar cliques. Dimensões adaptadas ao celular e recortadas dentro da abertura.
+
+## Área da equipe — 0.11.0
+
+Pedido aprovado em 02/10/2026: Conhecer a área da equipe abre /equipe diretamente, com acesso demonstrativo, seis imóveis existentes, busca por código/região/empreendimento, ficha e links de cadastro/edição. A sessão continua sem credenciais reais.
+
+Ficha interna inclui situação, responsável, localização/identificação/cópias da chave e imobiliária que a mantém. Anotações possuem data/hora e remoção. Dados ficam em aldenn-imoveis-gestao-v1 no localStorage, com validação na restauração, até 30 empreendimentos e últimas 30 notas por imóvel. Situação é interna; não oculta automaticamente o anúncio. Esses campos não entram no anúncio nem nas APIs de IA.
+
+Empreendimentos são registros internos editáveis, com nome, cidade, bairro, endereço, estágio e descrição. Sugestões por datalist no editor; vínculos por nome original/atual preservam contagem após renomear o registro. Alterar o nome do empreendimento não reescreve automaticamente as fichas dos imóveis: o campo é editável na ficha.
+
+Imóveis da seleção original podem ser editados pelo formulário existente; edições são validadas por referência/slug e salvas em aldenn-imoveis-edicoes-v1, sem duplicação e sem modificar as fontes originais. Catálogo e detalhes públicos usam a versão local. Cadastros novos continuam no armazenamento anterior. Editor de imóveis originais começa com até seis fotos e conserva rascunho. Tudo permanece por navegador/origem, sem autenticação, sincronização compartilhada ou backend de gestão.
+
+Validação: lint, tipos/build, 28 testes unitários e 36 cenários Chromium. Verificados F5, edição de imóvel original nos detalhes públicos e catálogo, anotações e chaves ausentes do anúncio, cadastro/edição de empreendimentos e sugestões no formulário, regressões 320–1920 px.

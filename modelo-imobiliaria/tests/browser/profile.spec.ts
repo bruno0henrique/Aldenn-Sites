@@ -21,7 +21,7 @@ test("profile opens on mobile and desktop, login never sends or stores credentia
 test("staff can publish a photo, open/reload details, filter, boost, edit and remove a local property", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.goto("/demonstracao-imobiliaria/?skip=opening");
-  await page.getByRole("button", { name: "Entrar / perfil" }).click(); await page.getByRole("button", { name: "Conhecer a área da equipe" }).click();
+  await page.getByRole("button", { name: "Entrar / perfil" }).click(); await page.getByRole("link", { name: "Conhecer a área da equipe" }).click();
   await page.getByRole("link", { name: "Cadastrar imóvel", exact: true }).click();
   await page.getByLabel("Título", { exact: true }).fill("Casa de teste com varanda");
   await page.getByLabel("Cidade", { exact: true }).fill("Taubaté"); await page.getByLabel("Bairro", { exact: true }).fill("Centro");

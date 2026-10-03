@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { properties } from "@/data/properties";
 import { basePath } from "@/lib/format";
-import { PropertyDetail } from "@/components/property-detail";
+import { CatalogDetail } from "@/components/catalog-detail";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return properties.map(({ slug }) => ({ slug })); }
@@ -16,5 +16,5 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
   const { slug } = await params;
   const property = properties.find((item) => item.slug === slug);
   if (!property) notFound();
-  return <PropertyDetail property={property} allProperties={properties} />;
+  return <CatalogDetail property={property} />;
 }

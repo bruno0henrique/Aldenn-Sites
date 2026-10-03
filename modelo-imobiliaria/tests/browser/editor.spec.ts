@@ -1,6 +1,6 @@
 import sharp from "sharp";
 import { test, expect } from "@playwright/test";
-async function enter(page: import("@playwright/test").Page) { await page.goto("/demonstracao-imobiliaria/equipe/cadastro/"); await page.getByRole("button", { name: "Conhecer a área da equipe" }).click(); await expect(page.locator(".editor-form")).toBeVisible(); }
+async function enter(page: import("@playwright/test").Page) { await page.goto("/demonstracao-imobiliaria/equipe/cadastro/"); await page.getByRole("link", { name: "Conhecer a área da equipe" }).click(); await page.getByRole("link", { name: "Cadastrar imóvel", exact: true }).click(); await expect(page.locator(".editor-form")).toBeVisible(); }
 test("dedicated editor restores tags, masks, address and own photos after reload, with responsive layouts", async ({ page }) => {
   await page.route("https://viacep.com.br/**", (route) => route.fulfill({ json: { localidade: "Taubaté", uf: "SP", bairro: "Centro", logradouro: "Rua de exemplo" } }));
   await page.route("**/api/imobiliaria/cadastro", (route) => route.fulfill({ json: { tags: ["Piscina", "Escritório"] } }));
