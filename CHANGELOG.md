@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## 0.74.1 — 2026-10-03
+
+- Teste da equipe aceita a URL canônica da hospedagem com ou sem barra final. Três cenários de gestão confirmados no site público; aplicação imobiliária permanece 0.11.0.
+
 ## 0.74.0 — 2026-10-03
 
 - Página dedicada da equipe: acesso direto pelo perfil, seis imóveis iniciais, busca por código/região, ficha, edição e cadastro.
