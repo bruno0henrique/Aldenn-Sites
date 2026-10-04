@@ -5,15 +5,15 @@ import { createPromotion, promotionStorageKey } from "../../lib/promotions";
 test.beforeEach(async ({ page }) => { await page.addInitScript(() => { if (localStorage.getItem("aldenn-imoveis-demo-boosts-v1") === null) localStorage.setItem("aldenn-imoveis-demo-boosts-v1", "[]"); }); });
 test("Enter sends a color search once; Shift+Enter retains newline and Ver todas retains color", async ({ page }) => {
   let requests = 0;
-  await page.route("**/api/imobiliaria/busca", (route) => { requests++; return route.fulfill({ contentType: "application/x-ndjson", body: JSON.stringify({ type: "complete", message: "Casas de tons brancos.", filters: { ...defaultFilters, type: "Casa", color: "branca" }, count: 3 }) + "\n" }); });
+  await page.route("**/api/imobiliaria/busca", (route) => { requests++; return route.fulfill({ contentType: "application/x-ndjson", body: JSON.stringify({ type: "complete", message: "Casas de tons brancos.", filters: { ...defaultFilters, type: "Casa", color: "branca" }, count: 7 }) + "\n" }); });
   await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
   await page.getByRole("button", { name: "Busca inteligente", exact: true }).click();
   const query = page.getByLabel("O que você procura?");
   await query.fill("casa cor branca"); await query.press("Shift+Enter");
   expect(requests).toBe(0); await expect(query).toHaveValue("casa cor branca\n");
   await query.press("Enter"); await expect(page.locator(".ai-match")).toHaveCount(3); expect(requests).toBe(1);
-  await page.getByRole("link", { name: "Ver todas 3" }).click(); await expect(page).toHaveURL(/color=branca/);
-  await expect(page.locator(".property-card")).toHaveCount(3); await page.reload(); await expect(page.locator(".property-card")).toHaveCount(3);
+  await page.getByRole("link", { name: "Ver todas 7" }).click(); await expect(page).toHaveURL(/color=branca/);
+  await expect(page.locator(".property-card")).toHaveCount(7); await page.reload(); await expect(page.locator(".property-card")).toHaveCount(7);
   await page.getByRole("button", { name: "Filtros", exact: true }).click(); await expect(page.getByLabel("Cor / tom", { exact: true })).toHaveValue("branca");
 });
 test("promotion dialog is usable from 320 to 1440, shows prices and stores only demo campaign", async ({ page }) => {

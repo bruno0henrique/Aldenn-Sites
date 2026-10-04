@@ -1,0 +1,88 @@
+import { test, expect } from "@playwright/test";
+
+test("separate owner and tenant directories restore drafts, persist full records and link internally", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto("/demonstracao-imobiliaria/?skip=opening");
+  await page.getByRole("button", { name: "Abrir menu", exact: true }).click();
+  await page.locator(".header-registrations summary").click();
+  await page.getByRole("link", { name: "Todos os cadastros", exact: true }).click();
+  await expect(page.locator(".registration-directories > a")).toHaveCount(3);
+  await page.getByRole("link", { name: /^Proprietários/ }).click();
+  await page.getByRole("button", { name: "Novo proprietário", exact: true }).click();
+  await page.getByLabel("Nome completo / razão social", { exact: true }).fill("Proprietária de exemplo Clara");
+  await page.getByLabel("CPF / CNPJ", { exact: true }).fill("000.000.000-00");
+  await page.reload(); await expect(page.getByLabel("Nome completo / razão social", { exact: true })).toHaveValue("Proprietária de exemplo Clara");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByLabel("E-mail", { exact: true }).fill("clara@example.com");
+  await page.getByLabel("Rua", { exact: true }).fill("Rua de exemplo");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByLabel("Participação na propriedade (%)", { exact: true }).fill("100");
+  await page.getByLabel("Observações internas", { exact: true }).fill("Contato privado de exemplo.");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByRole("checkbox", { name: /Casa no Vivant Urbanova/ }).check();
+  await expect(page.getByRole("button", { name: "Salvar cadastro", exact: true })).toBeDisabled();
+  await page.getByRole("checkbox", { name: "Conferi os dados deste cadastro." }).check();
+  await page.getByRole("button", { name: "Salvar cadastro", exact: true }).click();
+  await page.reload(); await expect(page.locator(".people-list")).toContainText("Proprietária de exemplo Clara");
+  await page.goto("/demonstracao-imobiliaria/equipe/inquilinos/");
+  await page.getByRole("button", { name: "Novo inquilino", exact: true }).click();
+  await page.getByLabel("Nome completo / razão social", { exact: true }).fill("Inquilino de exemplo Pedro");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByLabel("Renda mensal (R$)", { exact: true }).fill("15000");
+  await page.getByLabel("Garantia pretendida", { exact: true }).selectOption("Seguro-fiança");
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByRole("checkbox", { name: /Casa no Vivant Urbanova/ }).check();
+  await page.getByRole("checkbox", { name: "Conferi os dados deste cadastro." }).check();
+  await page.getByRole("button", { name: "Salvar cadastro", exact: true }).click();
+  await page.goto("/demonstracao-imobiliaria/equipe/?ref=27236");
+  await expect(page.locator(".team-private-details")).toContainText("Proprietária de exemplo Clara");
+  await expect(page.locator(".team-private-details")).toContainText("Inquilino de exemplo Pedro");
+  await page.getByRole("link", { name: "Ver anúncio", exact: true }).click();
+  await expect(page.getByText("Proprietária de exemplo Clara", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("000.000.000-00", { exact: true })).toHaveCount(0);
+  for (const width of [320, 768, 1440]) { await page.setViewportSize({ width, height: 900 }); await page.goto("/demonstracao-imobiliaria/equipe/cadastros/"); expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true); }
+});
+
+test("complete property extras survive editing and remain outside public listings and AI requests", async ({ page }) => {
+  const bodies: string[] = [];
+  await page.route("**/api/imobiliaria/cadastro", async (route) => { const body = route.request().postDataJSON(); bodies.push(JSON.stringify(body)); await route.fulfill({ json: { tags: body.tags || [] } }); });
+  await page.goto("/demonstracao-imobiliaria/equipe/cadastro/?ref=27236");
+  await expect(page.locator(".editor-form")).toBeVisible();
+  await page.getByRole("link", { name: "Construção", exact: true }).click();
+  await page.getByLabel("Área útil (m²)", { exact: true }).fill("350");
+  await page.getByLabel("Estado de conservação", { exact: true }).selectOption("Excelente");
+  await page.getByRole("link", { name: "Documentação", exact: true }).click();
+  await page.getByLabel("Matrícula do imóvel", { exact: true }).fill("Registro privado EXEMPLO-42");
+  await page.getByLabel("Aceita financiamento", { exact: true }).selectOption("A confirmar");
+  await page.getByLabel("Corretor responsável", { exact: true }).fill("Corretor exemplo");
+  await page.getByLabel("Imobiliária com a chave", { exact: true }).fill("Agência de exemplo");
+  await page.getByRole("checkbox", { name: "Conferi os dados, valores e fotografias" }).check();
+  await page.getByRole("button", { name: "Salvar alterações", exact: true }).click();
+  await expect(page.locator(".editor-success")).toBeVisible();
+  await page.goto("/demonstracao-imobiliaria/equipe/?ref=27236");
+  await expect(page.locator(".team-private-details")).toContainText("Registro privado EXEMPLO-42");
+  await expect(page.getByLabel("Imobiliária com a chave", { exact: true })).toHaveValue("Agência de exemplo");
+  await page.getByRole("link", { name: "Editar dados", exact: true }).click();
+  await page.getByRole("link", { name: "Documentação", exact: true }).click();
+  await expect(page.getByLabel("Matrícula do imóvel", { exact: true })).toHaveValue("Registro privado EXEMPLO-42");
+  expect(bodies.join(" ")).not.toMatch(/EXEMPLO-42|Corretor exemplo|Agência de exemplo/);
+  await page.goto("/demonstracao-imobiliaria/imovel/casa-vivant-urbanova/");
+  await expect(page.getByText("Registro privado EXEMPLO-42", { exact: true })).toHaveCount(0);
+});
+
+test("expanded selection has sixteen listings, ten additional houses, and a usable financing banner before neighborhoods", async ({ page }) => {
+  await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
+  await page.getByRole("button", { name: "Ver todos os imóveis", exact: true }).click();
+  await expect(page.locator(".property-card")).toHaveCount(16);
+  await expect(page.locator('.property-card a[href*="casa-"]')).not.toHaveCount(0);
+  expect(await page.evaluate(() => Boolean(document.querySelector(".financing-opportunity")!.compareDocumentPosition(document.querySelector("#bairros")!) & Node.DOCUMENT_POSITION_FOLLOWING))).toBe(true);
+  await page.getByRole("button", { name: "Explorar financiamento", exact: true }).click();
+  await expect(page.getByRole("dialog", { name: "Planejar financiamento" })).toBeVisible();
+  await page.getByLabel("Valor do imóvel para simular", { exact: true }).fill("950000");
+  await expect(page.locator(".opportunity-modal .finance-error")).toHaveCount(0);
+  await page.getByRole("button", { name: "Fechar simulação", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await page.goto("/demonstracao-imobiliaria/imovel/casa-jardim-sao-dimas/");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Casa térrea no São Dimas");
+});

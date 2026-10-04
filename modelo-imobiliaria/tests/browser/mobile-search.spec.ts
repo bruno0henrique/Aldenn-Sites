@@ -4,7 +4,7 @@ test("mobile IA is centered below tabs; filters open and close without hiding th
   for (const width of [320, 390, 700, 1440]) {
     await page.setViewportSize({ width, height: 850 });
     await page.goto("/demonstracao-imobiliaria/?skip=opening&purpose=locacao#imoveis");
-    await expect(page.locator(".property-card")).toHaveCount(2);
+    await expect(page.locator(".property-card")).toHaveCount(5);
     if (width <= 700) {
       await expect(page.getByLabel("Tipo de imóvel", { exact: true })).toHaveCount(0);
       const ai = await page.locator(".ai-tab").boundingBox(); const tabs = await page.locator(".catalog-tabs").boundingBox();
@@ -16,7 +16,7 @@ test("mobile IA is centered below tabs; filters open and close without hiding th
     await dialog.getByRole("button", { name: "Fechar", exact: true }).click();
     await expect(dialog).toHaveCount(0); await expect(page.locator(".property-card")).toHaveCount(1);
     await expect(page.locator(".property-card")).toBeVisible();
-    await page.getByRole("button", { name: "Ver todos os imóveis", exact: true }).click(); await expect(page.locator(".property-card")).toHaveCount(6);
+    await page.getByRole("button", { name: "Ver todos os imóveis", exact: true }).click(); await expect(page.locator(".property-card")).toHaveCount(16);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
 });
@@ -35,7 +35,7 @@ test("more appends available entries; all resets an exhausted filtered selection
   await page.addInitScript(({ key, local }) => localStorage.setItem(key, JSON.stringify([local])), { key: localPropertyKey, local });
   await page.goto("/demonstracao-imobiliaria/?skip=opening#imoveis");
   await expect(page.locator(".property-card")).toHaveCount(6);
-  await page.getByRole("button", { name: "Ver mais imóveis", exact: true }).click(); await expect(page.locator(".property-card")).toHaveCount(7);
+  await page.getByRole("button", { name: "Ver mais imóveis", exact: true }).click(); await expect(page.locator(".property-card")).toHaveCount(12); await page.getByRole("button", { name: "Ver mais imóveis", exact: true }).click(); await expect(page.locator(".property-card")).toHaveCount(17);
   await expect(page.getByRole("button", { name: "Ver mais imóveis", exact: true })).toHaveCount(0);
 });
 test("initial Boost examples lead compatible results and can be ended without returning on reload", async ({ page }) => {

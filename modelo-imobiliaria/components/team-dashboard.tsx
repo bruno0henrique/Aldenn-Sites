@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Building2, KeyRound, Plus, Search } from "lucide-react";
+import { readExtras } from "@/lib/registrations";
+import { PropertyInternalDetails } from "./property-internal-details";
 import { useLocalCatalog } from "./local-catalog";
 import { asset, money } from "@/lib/format";
 import { normalize, purposeLabel, type Property } from "@/lib/property";
@@ -32,16 +34,17 @@ export function TeamDashboard() {
   if (!ready || !data) return <main id="conteudo" className="container team-page"><p>Preparando a área da equipe…</p></main>;
   const selected = properties.find((item) => item.reference === reference);
   const visible = properties.filter((item) => normalize(`${item.reference} ${item.title} ${item.city} ${item.neighborhood} ${item.development}`).includes(normalize(query)));
-  const record = selected ? data.records[selected.reference] ?? emptyRecord() : null;
+  const extra = selected ? readExtras(selected.reference) : {};
+  const record = selected ? data.records[selected.reference] ?? { ...emptyRecord(), responsible: extra.broker || "", keyAgency: extra.keyAgency || "", keyLocation: extra.keyLocation || "", keyCount: extra.keyId || "" } : null;
   return <main id="conteudo" className={`container team-page${selected ? " team-detail" : ""}`}>
     <Link className="back-link" href="/"> <ArrowLeft size={15} /> Voltar ao site</Link>
-    <header className="team-heading"><div><span className="eyebrow">ÁREA DA EQUIPE</span><h1>{selected ? "Ficha do imóvel" : "Área da equipe"}</h1>{!selected && <p>Consulte os imóveis e organize os próximos atendimentos.</p>}</div><Link className="button button-gold" href="/equipe/cadastro/"><Plus size={17} /> Cadastrar imóvel</Link></header>
+    <header className="team-heading"><div><span className="eyebrow">ÁREA DA EQUIPE</span><h1>{selected ? "Ficha do imóvel" : "Área da equipe"}</h1>{!selected && <p>Consulte os imóveis e organize os próximos atendimentos.</p>}</div><div className="team-actions"><Link className="text-link" href="/equipe/cadastros/">Todos os cadastros <ArrowUpRight size={15} /></Link><Link className="button button-gold" href="/equipe/cadastro/"><Plus size={17} /> Cadastrar imóvel</Link></div></header>
     {!selected && <div className="team-summary"><div><strong>{properties.length}</strong><span>Imóveis na seleção</span></div><div><strong>{data.developments.length}</strong><span>Empreendimentos</span></div><div><strong>{Object.values(data.records).filter((item) => item.keyStatus === "Retirada para visita").length}</strong><span>Chaves em visita</span></div></div>}
     {error && <p className="ai-error" role="alert">{error}</p>}
     {reference && !selected ? <section className="team-panel"><h2>Imóvel não encontrado.</h2><Link href="/equipe/">Voltar aos imóveis</Link></section> : selected && record ? <>
       <Link className="back-link" href="/equipe/"><ArrowLeft size={15} /> Todos os imóveis</Link>
       <div className="team-property-overview"><Image src={asset(selected.images[0].path)} width={520} height={340} alt={selected.title} /><div><span className="eyebrow">REF. {selected.reference}</span><h2>{selected.title}</h2><p>{selected.neighborhood} · {selected.city}</p><strong>{money(selected.price)}{selected.purpose === "locacao" && " / mês"}</strong><div className="team-actions"><Link className="button button-dark" href={`/equipe/cadastro/?ref=${encodeURIComponent(selected.reference)}`}>Editar dados <ArrowUpRight size={16} /></Link><Link className="text-link" href={propertyHref(selected)}>Ver anúncio <ArrowUpRight size={15} /></Link></div></div></div>
-      <PropertyFacts property={selected} />
+      <PropertyFacts property={selected} /><PropertyInternalDetails reference={selected.reference} />
       {selected.reference.startsWith("LOCAL-") && <div className="team-delete">{deleting ? <><span>Excluir este cadastro?</span><button className="text-link" onClick={() => { try { remove(selected.reference); window.location.assign(asset("/equipe/")); } catch (reason) { setError((reason as Error).message); } }}>Confirmar exclusão</button><button className="text-link" onClick={() => setDeleting(false)}>Cancelar</button></> : <button className="text-link" onClick={() => setDeleting(true)}>Excluir imóvel</button>}</div>}
       <RecordEditor key={selected.reference} property={selected} record={record} onSave={(next) => save({ ...data, records: { ...data.records, [selected.reference]: next } })} />
     </> : <>

@@ -49,15 +49,16 @@ export function Catalog() {
     return () => media.revert();
   }, []);
   useEffect(() => {
-    const sync = () => { const current = fromUrl(); setFilters(current); setLocation(current.location); setPurpose(current.purpose || "venda"); };
+    const sync = () => { const current = fromUrl(); setFilters(current); setLocation(current.location); setPurpose(current.purpose || "venda"); setVisibleCount(new URLSearchParams(window.location.search).get("all") === "1" ? Number.MAX_SAFE_INTEGER : 6); };
     sync(); window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
   }, []);
-  function update(patch: Partial<Filters>) {
+  function update(patch: Partial<Filters>, showAll = false) {
     const next = { ...filters, ...patch };
-    setFilters(next); setVisibleCount(6);
+    setFilters(next); setVisibleCount(showAll ? Number.MAX_SAFE_INTEGER : 6);
     const params = new URLSearchParams();
     Object.entries(next).forEach(([key, value]) => { if (value && value !== defaultFilters[key as keyof Filters]) params.set(key, value); });
+    if (showAll) params.set("all", "1");
     window.history.pushState(null, "", `${window.location.pathname}${params.size ? `?${params}` : ""}#imoveis`);
   }
   const { campaigns } = usePromotions();
@@ -88,13 +89,13 @@ export function Catalog() {
     </section>
     <main id="imoveis" className="catalog container"><div className="section-heading"><div><span className="eyebrow">SEU PRÓXIMO ENDEREÇO</span><h2>Escolhas que fazem<br /><em>você se sentir em casa.</em></h2></div><p>Espaços para morar, receber<br />e viver do seu jeito.</p></div>
       <div className="catalog-toolbar"><div className="catalog-tabs" role="group" aria-label="Modo de busca">{[["", "Todos os imóveis"], ["venda", "Comprar"], ["locacao", "Alugar"]].map(([value, label]) => <button key={value} aria-pressed={!ai && filters.purpose === value} onClick={() => { setAi(false); update({ purpose: value, minPrice: "", maxPrice: "" }); setPurpose(value || "venda"); }}>{label}</button>)}<button className="ai-tab" ref={aiTab} aria-pressed={ai} onClick={() => { setAi(!ai); setExtra(false); }}><Sparkles size={14} /> Busca inteligente</button></div><button className="filter-toggle" aria-expanded={extra} aria-controls="extra-filters" onClick={() => { setAi(false); setExtra(!extra); }}><SlidersHorizontal size={16} /> Filtros {extra && <X size={15} />}</button></div>
-      {ai && <AiSearch onClose={() => setAi(false)} onManual={showAdvanced} onResults={(next) => { update(next); setLocation(next.location); setPurpose(next.purpose || "venda"); setAi(false); setExtra(false); requestAnimationFrame(() => { const target = document.getElementById("catalog-results"); target?.focus({ preventScroll: true }); target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }); }); }} />}
+      {ai && <AiSearch onClose={() => setAi(false)} onManual={showAdvanced} onResults={(next) => { update(next, true); setLocation(next.location); setPurpose(next.purpose || "venda"); setAi(false); setExtra(false); requestAnimationFrame(() => { const target = document.getElementById("catalog-results"); target?.focus({ preventScroll: true }); target?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" }); }); }} />}
       {!ai && <>{!mobile && !extra && basicFilters}
       {extra && <Modal title="Filtros de imóveis" className="search-filter-modal" onClose={() => setExtra(false)}><AdvancedSearch filters={filters} onChange={update} count={results.length} onResults={() => { setExtra(false); requestAnimationFrame(() => document.getElementById("catalog-results")?.scrollIntoView({ behavior: "smooth", block: "start" })); }} /></Modal>}
       <div className="catalog-results-line" id="catalog-results" tabIndex={-1}><div><span aria-live="polite">{results.length} {results.length === 1 ? "imóvel encontrado" : "imóveis encontrados"}</span>{active && <button className="clear-filters" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); }}>Limpar filtros <X size={12} /></button>}</div><label className="sort-label">Ordenar por<select aria-label="Ordenar imóveis" value={filters.sort} onChange={(event) => update({ sort: event.target.value })}><option value="selection">Nossa seleção</option><option value="lowest">Menor preço</option><option value="highest">Maior preço</option></select></label></div>
 
-      {results.length ? <div className="property-grid" ref={grid}>{results.slice(0, visibleCount).map((property) => <PropertyCard key={property.reference} property={property} promoted={promoted.has(property.reference)} />)}</div> : <div className="empty-state"><Search size={30} strokeWidth={1} /><h3>Vamos encontrar outro caminho?</h3><p>Nenhum imóvel desta seleção corresponde aos filtros.</p><button className="button button-dark" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
-      {results.length > 0 && <div className="catalog-more">{results.length > visibleCount && <button className="button button-outline" onClick={() => setVisibleCount((count) => count + 6)}>Ver mais imóveis <ArrowDown size={17} /></button>}<button className="button button-dark" onClick={() => { update(defaultFilters); setLocation(""); setPurpose("venda"); setVisibleCount(properties.length); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
+      {results.length ? <div className="property-grid" ref={grid}>{results.slice(0, visibleCount).map((property) => <PropertyCard key={property.reference} property={property} promoted={promoted.has(property.reference)} />)}</div> : <div className="empty-state"><Search size={30} strokeWidth={1} /><h3>Vamos encontrar outro caminho?</h3><p>Nenhum imóvel desta seleção corresponde aos filtros.</p><button className="button button-dark" onClick={() => { update(defaultFilters, true); setLocation(""); setPurpose("venda"); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
+      {results.length > 0 && <div className="catalog-more">{results.length > visibleCount && <button className="button button-outline" onClick={() => setVisibleCount((count) => count + 6)}>Ver mais imóveis <ArrowDown size={17} /></button>}<button className="button button-dark" onClick={() => { update(defaultFilters, true); setLocation(""); setPurpose("venda"); }}>Ver todos os imóveis <ArrowUpRight size={17} /></button></div>}
       </>}
     </main>
   </>;

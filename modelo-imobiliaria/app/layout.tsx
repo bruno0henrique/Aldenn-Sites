@@ -20,6 +20,7 @@ import "./refinements.css";
 import "./promotion.css";
 import "./profile.css";
 import "./team.css";
+import "./registrations.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"),

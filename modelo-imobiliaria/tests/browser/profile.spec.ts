@@ -48,5 +48,5 @@ test("staff can publish a photo, open/reload details, filter, boost, edit and re
   await page.getByRole("link", { name: "Equipe", exact: true }).click(); await page.locator(`.team-item[href*="${reference}"]`).click(); await page.getByRole("link", { name: "Editar dados", exact: true }).click();
   await page.getByLabel("Título", { exact: true }).fill("Casa editada"); await page.getByRole("checkbox", { name: "Conferi os dados, valores e fotografias" }).check(); await page.getByRole("button", { name: "Salvar alterações" }).click(); await expect(page.locator(".editor-success")).toContainText("Casa editada"); await page.goto(`/demonstracao-imobiliaria/equipe/?ref=${reference}`);
   await page.getByRole("button", { name: "Excluir imóvel", exact: true }).click(); await page.getByRole("button", { name: "Confirmar exclusão", exact: true }).click();
-  await expect(page.locator(".team-item")).toHaveCount(6); await page.goto("/demonstracao-imobiliaria/?location=Taubat%C3%A9#imoveis"); await expect(page.locator(".property-card")).toHaveCount(0); await expect(page.locator(".is-promoted")).toHaveCount(0);
+  await expect(page.locator(".team-item")).toHaveCount(16); await page.goto("/demonstracao-imobiliaria/?location=Taubat%C3%A9#imoveis"); await expect(page.locator(".property-card")).toHaveCount(0); await expect(page.locator(".is-promoted")).toHaveCount(0);
 });

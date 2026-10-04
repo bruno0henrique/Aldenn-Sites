@@ -25,7 +25,7 @@ test("public summary streaming preserves escaped Unicode and ignores incomplete 
   assert.equal(partialMessage('{"message":"Uma \\"casa\\""'), 'Uma "casa"');
 });
 test("exact and minimum quantities differ from maximum, all features must match", () => {
-  assert.equal(filterProperties(catalog, { ...defaultFilters, minBedrooms: "3", bedrooms: "3" }).length, 3);
+  assert.equal(filterProperties(catalog, { ...defaultFilters, minBedrooms: "3", bedrooms: "3" }).length, 10);
   assert.equal(filterProperties(catalog, { ...defaultFilters, minBedrooms: "5" }).length, 1);
   assert.equal(filterProperties(catalog, { ...defaultFilters, feature: "piscina|elevador" }).length, 1);
   const filters = { ...defaultFilters, purpose: "locacao", minSuites: "2", location: "Aquarius" };
@@ -73,7 +73,7 @@ test("API streams summary then authoritative catalog matches and handles interru
 
 test("color filters match visual tags, combine with type and survive search links", () => {
   const filters = { ...defaultFilters, color: "branca", type: "Casa" };
-  assert.equal(filterProperties(catalog, filters).length, 3);
+  assert.equal(filterProperties(catalog, filters).length, 7);
   assert.equal(filterProperties(catalog, { ...filters, color: "azul" }).length, 0);
   assert.equal(filterProperties(catalog, { ...filters, city: "Jacareí" }).length, 0);
   assert.equal(new URL(searchHref(filters), "https://www.aldenn.com.br").searchParams.get("color"), "branca");

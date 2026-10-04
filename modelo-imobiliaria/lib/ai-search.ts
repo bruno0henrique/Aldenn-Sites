@@ -29,9 +29,10 @@ export function partialMessage(json: string): string {
   try { return JSON.parse(`"${match[1]}"`); } catch { return ""; }
 }
 
-export function searchHref(filters: Filters) {
+export function searchHref(filters: Filters, showAll = false) {
   const params = new URLSearchParams();
   Object.entries(filters).forEach(([key, value]) => { if (value !== defaultFilters[key as keyof Filters]) params.set(key, value); });
+  if (showAll) params.set("all", "1");
   return `/demonstracao-imobiliaria/?${params}#imoveis`;
 }
 

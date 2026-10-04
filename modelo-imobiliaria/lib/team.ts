@@ -21,7 +21,7 @@ export function restoreTeam(value: unknown, fallback: TeamData): TeamData {
   const records: TeamData["records"] = {};
   if (data.records && typeof data.records === "object" && !Array.isArray(data.records)) {
     for (const [reference, item] of Object.entries(data.records).slice(0, 50)) {
-      if (!/^(?:[0-9]{1,20}|LOCAL-[a-f0-9-]{36})$/.test(reference) || !item || typeof item !== "object") continue;
+      if (!/^(?:[0-9]{1,20}|DEMO-[0-9]{1,20}|LOCAL-[a-f0-9-]{36})$/.test(reference) || !item || typeof item !== "object") continue;
       if (!propertyStatuses.includes(item.status) || !keyStatuses.includes(item.keyStatus) || ![item.responsible, item.keyAgency, item.keyLocation, item.keyCount].every((value) => text(value))) continue;
       const notes = Array.isArray(item.notes) ? item.notes.filter((note) => note && text(note.id) && text(note.text, 2000) && text(note.at) && Number.isFinite(Date.parse(note.at))).slice(-30) : [];
       records[reference] = { ...emptyRecord(), status: item.status, responsible: item.responsible, keyAgency: item.keyAgency, keyLocation: item.keyLocation, keyCount: item.keyCount, keyStatus: item.keyStatus, notes };

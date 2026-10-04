@@ -5,7 +5,7 @@ test("team preview opens a dedicated page; keys and private notes persist indepe
   await page.goto("/demonstracao-imobiliaria/?skip=opening");
   await page.getByRole("link", { name: "Equipe", exact: true }).click();
   await expect(page).toHaveURL(/\/equipe\/?$/);
-  await expect(page.locator(".team-item")).toHaveCount(6);
+  await expect(page.locator(".team-item")).toHaveCount(16);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.locator('.team-item[href*="27236"]').click();
   await expect(page.locator(".team-property-data")).toContainText("390 m²");

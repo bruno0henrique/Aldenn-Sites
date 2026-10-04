@@ -48,7 +48,7 @@ test("catalog filters, empty state, URL reload and header navigation", async ({ 
   await page.goto(`${path}/`);
   await expect(page.locator(".property-card")).toHaveCount(6);
   await page.getByRole("group", { name: "Modo de busca" }).getByRole("button", { name: "Comprar", exact: true }).click();
-  await expect(page.locator(".property-card")).toHaveCount(4);
+  await expect(page.locator(".property-card")).toHaveCount(6);
   await page.getByLabel("Tipo de imóvel", { exact: true }).selectOption("Apartamento");
   await expect(page.locator(".property-card")).toHaveCount(1);
   await page.reload();
@@ -56,11 +56,11 @@ test("catalog filters, empty state, URL reload and header navigation", async ({ 
   await page.getByLabel("Localização", { exact: true }).fill("Curitiba");
   await expect(page.getByText("Nenhum imóvel desta seleção corresponde aos filtros.")).toBeVisible();
   await page.getByRole("button", { name: "Ver todos os imóveis", exact: true }).click();
-  await expect(page.locator(".property-card")).toHaveCount(6);
+  await expect(page.locator(".property-card")).toHaveCount(16);
   await page.getByRole("navigation", { name: "Navegação principal" }).getByRole("link", { name: "Alugar", exact: true }).click();
-  await expect(page.locator(".property-card")).toHaveCount(2);
+  await expect(page.locator(".property-card")).toHaveCount(5);
   await page.getByRole("navigation", { name: "Navegação principal" }).getByRole("link", { name: "Comprar", exact: true }).click();
-  await expect(page.locator(".property-card")).toHaveCount(4);
+  await expect(page.locator(".property-card")).toHaveCount(6);
 });
 test("combined price filters, sorting and browser back", async ({ page }) => {
   await page.goto(`${path}/?purpose=venda#imoveis`);
@@ -164,16 +164,16 @@ test("320-1920 px layouts and reduced motion stay usable", async ({ page }) => {
   await expect(page.getByLabel("Localização da busca", { exact: true })).toHaveCSS("font-size", "16px");
   await page.getByRole("button", { name: "Abrir menu" }).click();
   await page.getByRole("navigation").getByRole("link", { name: "Alugar", exact: true }).click();
-  await expect(page.locator(".property-card")).toHaveCount(2);
+  await expect(page.locator(".property-card")).toHaveCount(5);
 });
 test("bedrooms limit the maximum and suggestions work by keyboard", async ({ page }) => {
   await page.goto(`${path}/?skip=opening`);
   await page.getByLabel("Dormitórios", { exact: true }).selectOption("2");
   await expect(page.locator(".property-card")).toHaveCount(0);
   await page.getByLabel("Dormitórios", { exact: true }).selectOption("3");
-  await expect(page.locator(".property-card")).toHaveCount(3);
+  await expect(page.locator(".property-card")).toHaveCount(6);
   await page.getByLabel("Dormitórios", { exact: true }).selectOption("4");
-  await expect(page.locator(".property-card")).toHaveCount(5);
+  await expect(page.locator(".property-card")).toHaveCount(6);
   await page.getByLabel("Dormitórios", { exact: true }).selectOption("");
   await page.getByLabel("Localização da busca", { exact: true }).fill("jacarei");
   await page.getByLabel("Localização da busca", { exact: true }).press("ArrowDown");

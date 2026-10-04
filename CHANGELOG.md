@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## 0.76.0 — 2026-10-04
+
+- Catálogo com dez casas demonstrativas adicionais (16 anúncios), usando fotografias ilustrativas locais com procedência preservada.
+- Área Cadastros no header e páginas próprias para imóveis, proprietários e inquilinos. Fichas de pessoas em etapas, rascunho, revisão, vínculos e edição/exclusão locais.
+- Cadastro de imóvel com construção, documentação, negociação, pessoas e operação; complementos opcionais, revisão antes de publicar e persistência após F5. Dados internos separados do anúncio e da IA.
+- Banner discreto de financiamento entre imóveis e bairros abre simulação editável, sem promessa de aprovação.
+
 ## 0.75.0 — 2026-10-04
 
 - Ficha da equipe reorganizada por localização, características, valores e apresentação, com rótulos/valores alinhados e seções contínuas sem caixas repetidas. Resumo numérico somente na lista.

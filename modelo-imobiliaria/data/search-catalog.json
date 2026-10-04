@@ -227,5 +227,285 @@
       "cinza",
       "branca"
     ]
+  },
+  {
+    "reference": "DEMO-31001",
+    "slug": "casa-jardim-sao-dimas",
+    "title": "Casa térrea no São Dimas",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim São Dimas",
+    "development": "",
+    "price": 950000,
+    "builtArea": 170,
+    "landArea": 280,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 3,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "branca"
+    ]
+  },
+  {
+    "reference": "DEMO-31002",
+    "slug": "casa-vila-ema",
+    "title": "Casa com jardim na Vila Ema",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Vila Ema",
+    "development": "",
+    "price": 1750000,
+    "builtArea": 260,
+    "landArea": 420,
+    "bedrooms": 4,
+    "suites": 2,
+    "bathrooms": 4,
+    "parking": 3,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "bege"
+    ]
+  },
+  {
+    "reference": "DEMO-31003",
+    "slug": "casa-esplanada",
+    "title": "Casa contemporânea no Esplanada",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim Esplanada",
+    "development": "",
+    "price": 2250000,
+    "builtArea": 320,
+    "landArea": 480,
+    "bedrooms": 4,
+    "suites": 3,
+    "bathrooms": 5,
+    "parking": 4,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "cinza"
+    ]
+  },
+  {
+    "reference": "DEMO-31004",
+    "slug": "casa-bosque-ipes",
+    "title": "Casa no Bosque dos Ipês",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Bosque dos Ipês",
+    "development": "",
+    "price": 720000,
+    "builtArea": 140,
+    "landArea": 220,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 2,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "branca"
+    ]
+  },
+  {
+    "reference": "DEMO-31005",
+    "slug": "casa-jardim-satelite",
+    "title": "Casa com quintal no Satélite",
+    "purpose": "locacao",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim Satélite",
+    "development": "",
+    "price": 5800,
+    "builtArea": 185,
+    "landArea": 300,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 3,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "bege"
+    ]
+  },
+  {
+    "reference": "DEMO-31006",
+    "slug": "casa-jardim-colinas",
+    "title": "Casa no Jardim das Colinas",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim das Colinas",
+    "development": "",
+    "price": 1980000,
+    "builtArea": 285,
+    "landArea": 450,
+    "bedrooms": 4,
+    "suites": 3,
+    "bathrooms": 5,
+    "parking": 4,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "cinza"
+    ]
+  },
+  {
+    "reference": "DEMO-31007",
+    "slug": "casa-vista-verde",
+    "title": "Casa térrea no Vista Verde",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Vista Verde",
+    "development": "",
+    "price": 880000,
+    "builtArea": 165,
+    "landArea": 300,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 3,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "branca"
+    ]
+  },
+  {
+    "reference": "DEMO-31008",
+    "slug": "casa-floradas",
+    "title": "Casa com varanda no Floradas",
+    "purpose": "locacao",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Floradas de São José",
+    "development": "",
+    "price": 6200,
+    "builtArea": 210,
+    "landArea": 330,
+    "bedrooms": 3,
+    "suites": 2,
+    "bathrooms": 4,
+    "parking": 3,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "bege"
+    ]
+  },
+  {
+    "reference": "DEMO-31009",
+    "slug": "casa-jardim-america",
+    "title": "Casa no Jardim América",
+    "purpose": "venda",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim América",
+    "development": "",
+    "price": 690000,
+    "builtArea": 150,
+    "landArea": 250,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 2,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "cinza"
+    ]
+  },
+  {
+    "reference": "DEMO-31010",
+    "slug": "casa-jardim-oriente",
+    "title": "Casa com espaço gourmet no Oriente",
+    "purpose": "locacao",
+    "type": "Casa",
+    "city": "São José dos Campos",
+    "neighborhood": "Jardim Oriente",
+    "development": "",
+    "price": 4800,
+    "builtArea": 175,
+    "landArea": 280,
+    "bedrooms": 3,
+    "suites": 1,
+    "bathrooms": 3,
+    "parking": 2,
+    "features": [
+      "Jardim",
+      "Varanda",
+      "Cozinha planejada",
+      "Área de serviço",
+      "Espaço gourmet"
+    ],
+    "amenities": [],
+    "colors": [
+      "branca"
+    ]
   }
 ]

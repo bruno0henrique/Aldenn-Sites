@@ -50,9 +50,9 @@ test("AI feature spelling and multiple criteria remain visible after opening the
 });
 test("Ver todas exits AI even when its destination is the current URL, and replaces previous criteria", async ({ page }) => {
   let wanted = { ...defaultFilters, purpose: "venda" };
-  await page.route("**/api/imobiliaria/busca", (route) => route.fulfill({ contentType: "application/x-ndjson", body: JSON.stringify({ type: "complete", message: "Vou organizar os imóveis pedidos.", filters: wanted, count: wanted.purpose ? 4 : 6 }) + "\n" }));
-  for (const [initial, expected] of [["purpose=venda", 4], ["", 6], ["purpose=locacao&city=Jacare%C3%AD&maxPrice=10000", 4]] as const) {
-    wanted = { ...defaultFilters, purpose: expected === 4 ? "venda" : "" };
+  await page.route("**/api/imobiliaria/busca", (route) => route.fulfill({ contentType: "application/x-ndjson", body: JSON.stringify({ type: "complete", message: "Vou organizar os imóveis pedidos.", filters: wanted, count: wanted.purpose ? 11 : 16 }) + "\n" }));
+  for (const [initial, expected] of [["purpose=venda&all=1", 11], ["", 16], ["purpose=locacao&city=Jacare%C3%AD&maxPrice=10000", 11]] as const) {
+    wanted = { ...defaultFilters, purpose: expected === 11 ? "venda" : "" };
     await page.goto(`/demonstracao-imobiliaria/?${initial}#imoveis`);
     await page.getByRole("button", { name: "Busca inteligente", exact: true }).click();
     await page.getByLabel("O que você procura?").fill("Quero ver os imóveis disponíveis");

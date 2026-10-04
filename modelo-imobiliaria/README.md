@@ -1,4 +1,4 @@
-# Aldenn Imóveis — 0.12.0
+# Aldenn Imóveis — 0.13.0
 
 Demonstração de imóveis de alto padrão em https://www.aldenn.com.br/demonstracao-imobiliaria. Next.js, React e TypeScript com exportação estática, catálogo local tipado e páginas previamente geradas. Há uma área local de cadastro para apresentação. Não há autenticação real, banco de dados, painel remoto ou integração bancária.
 
@@ -117,3 +117,17 @@ Validação: lint, tipos/build, 28 testes unitários e 36 cenários Chromium. Ve
 ## Ajuste aprovado — 0.12.0
 
 Equipe passa a ter acesso visível no header, separado do perfil simples. Fichas usam seções contínuas por assunto e valores sem recuo; contagens somente na listagem. Exclusão de cadastros locais permanece no painel com confirmação. A busca principal perde o texto Seu próximo endereço. Mantida persistência local e privacidade das informações internas.
+
+## Cadastros e seleção ampliada — 0.13.0
+
+Usuário autorizou pelo menos dez novas casas, cadastro completo dos imóveis pelos corretores, fichas separadas de proprietários e inquilinos, diretórios no header e banner de oportunidades de financiamento entre seleção e bairros. Catálogo total: 16 imóveis. Novos registros DEMO-31001 a DEMO-31010 são exemplos fictícios com valores/características demonstrativos; usam galerias Unsplash já licenciadas e locais, com capas alternadas e procedência original, sem representar os imóveis reais das fotos. As seis referências anteriores permanecem intactas.
+
+/equipe/cadastros reúne os três cadastros, /equipe/proprietarios e /equipe/inquilinos separam as fichas de pessoas. Etapas: identificação, contato/endereço, propriedade ou locação, vínculos/revisão. Cadastro, consulta/edição, exclusão confirmada, rascunho após F5 e vínculo com os imóveis. Campos pessoais/contratuais são opcionais além do nome; dados de exemplo somente. Limite local de 100 pessoas, whitelist e limites de comprimento; sem autenticação real/banco compartilhado.
+
+Imóveis mantêm o editor dedicado, rascunho IndexedDB e IA de texto. Acrescentados área útil/frente/profundidade, ano/reforma, pavimentos/unidade, conservação, mobília/sol, salas/lavabos/vagas cobertas, pisos/acessibilidade/infraestrutura; matrícula/cartório/inscrição municipal, escritura/habite-se, financiamento/FGTS a confirmar, permuta, comissão/exclusividade/validade; proprietários/inquilinos, corretor/CRECI, ocupação/disponibilidade/visitas e chaves. Complementos recolhíveis; revisão do anúncio antes de publicar. Números não negativos e campos opcionais sem obrigar informações desconhecidas.
+
+Pessoas ficam em aldenn-imoveis-pessoas-v1 e rascunho por tipo; fichas privadas em aldenn-imoveis-fichas-internas-v1:<referência>. Esses dados não entram nos objetos públicos Property, exportação de busca ou requisições da IA. propertyRefs das pessoas determina os vínculos. Edição do imóvel atualiza vínculos/chaves e preserva notas internas; falha ao salvar o anúncio restaura registros locais auxiliares. Fichas pessoais recuperáveis somente no navegador utilizado; não é um cadastro de produção.
+
+Banner abre calculadora Price já existente com valor/entrada/prazo/juros ajustáveis, hipótese demonstrativa e limites originais; não oferece crédito bancário, taxas reais ou aprovação.
+
+Validação: 30 testes unitários e 39 cenários de navegador (incluindo a nova seleção, fichas privadas, rascunhos e vínculos). Ver todas/Ver todos usam all=1 para manter a seleção integral após recarga, preservando todos os filtros e a prioridade de Boost elegível. Menu Cadastros lista diretamente os três diretórios; fecha por seleção, Escape e toque fora.

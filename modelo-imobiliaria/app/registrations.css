@@ -1,0 +1,96 @@
+.registration-page { padding-block: 36px 70px; }
+.registration-heading { margin: 34px 0; max-width: 850px; }
+.registration-heading h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 16px 0; }
+.registration-heading h1 em { color: #8a7046; }
+.registration-heading p, .registration-guidance { color: #687060; font-size: 15px; line-height: 1.8; }
+.registration-directories { border-top: 1px solid #d8d2c4; }
+.registration-directories > a { display: grid; grid-template-columns: 50px 1fr 30px; gap: 28px; padding: 32px 10px; align-items: center; border-bottom: 1px solid #d8d2c4; transition: background .2s; }
+.registration-directories > a:hover { background: #f4efe3; }
+.registration-directories svg { color: #8a7046; }
+.registration-directories h2 { font-size: 33px; margin-bottom: 8px; }
+.registration-directories p { font-size: 14px; max-width: 650px; line-height: 1.8; color: #666c60; }
+.registration-toolbar { display: flex; gap: 24px; justify-content: space-between; align-items: start; }
+.registration-toolbar .team-search { flex: 1; }
+.registration-toolbar .button { flex-shrink: 0; }
+.registration-steps { display: flex; gap: 12px; border-block: 1px solid #d8d2c4; padding: 16px 0; margin-bottom: 32px; flex-wrap: wrap; }
+.registration-steps button { display: flex; gap: 8px; align-items: center; font-size: 14px; padding: 8px 12px; min-height: 44px; color: #6e7368; }
+.registration-steps button span { border: 1px solid #cdc3ae; border-radius: 50%; width: 26px; height: 26px; display: grid; place-items: center; }
+.registration-steps button[aria-current=step] { color: #5d472b; background: #eee6d5; }
+.people-form { max-width: 950px; }
+.people-form fieldset { border: 0; padding: 0; }
+.people-form legend, .people-form h2 { font-family: var(--sans); font-size: 24px; margin-bottom: 26px; }
+.people-form .staff-fields { gap: 24px; }
+.people-form > p { font-size: 14px; line-height: 1.8; color: #69705f; }
+.registration-footer { display: flex; justify-content: space-between; gap: 20px; align-items: center; border-top: 1px solid #d8d2c4; padding-top: 24px; margin-top: 34px; }
+.registration-empty { padding: 50px 0; }
+.registration-empty h2 { font-size: 30px; margin-bottom: 12px; }
+.registration-empty p { font-size: 14px; color: #717765; }
+.registration-success { display: flex; gap: 10px; align-items: center; color: #486145; margin: 22px 0; }
+.people-list article { display: flex; justify-content: space-between; align-items: center; gap: 28px; border-bottom: 1px solid #ded8cc; padding: 28px 0; }
+.people-list h2 { font-family: var(--sans); font-size: 22px; margin-bottom: 12px; }
+.people-list p, .people-list small { font-size: 13px; line-height: 1.8; color: #69705f; overflow-wrap: anywhere; }
+.registration-property-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; margin: 24px 0 36px; }
+.registration-property-links label { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #ded8cc; font-size: 14px; }
+.registration-property-links input { width: 18px; height: 18px; flex-shrink: 0; accent-color: #9d8150; }
+.registration-property-links small { display: block; color: #757a6e; font-size: 11px; margin-top: 6px; }
+.registration-review > div, .property-review dl > div { display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px; border-bottom: 1px solid #e5dfd2; padding: 14px 0; }
+.registration-review dt, .property-review dt { font-size: 14px; color: #73796a; }
+.registration-review dd, .property-review dd { margin: 0; font-size: 14px; white-space: pre-line; overflow-wrap: anywhere; }
+.property-flow { display: flex; gap: 8px 18px; flex-wrap: wrap; padding: 18px 0; margin: 25px 0 16px; border-block: 1px solid #d8d2c4; }
+.property-flow a { padding: 9px 0; min-height: 44px; font-size: 14px; color: #76613e; }
+.property-flow a:hover { text-decoration: underline; }
+.editor-form fieldset { scroll-margin-top: 110px; }
+.editor-form fieldset > .editor-note { margin-bottom: 22px; }
+.editor-form #pessoas .staff-fields + .staff-fields { margin-top: 28px; }
+.editor-form #pessoas label > a { font-size: 12px; color: #856842; display: flex; gap: 6px; align-items: center; min-height: 32px; }
+.property-review { border-top: 1px solid #ded8cc; padding: 26px 0; scroll-margin-top: 110px; }
+.property-review h2 { font-family: var(--sans); font-size: 25px; margin-bottom: 18px; }
+.property-review p { font-size: 14px; line-height: 1.8; color: #6e7665; margin-bottom: 22px; }
+.financing-opportunity { background: #252d25; color: #f6f2e8; padding: 55px 0; position: relative; overflow: hidden; }
+.financing-opportunity::after { content: ""; position: absolute; right: -120px; top: -220px; width: 620px; height: 620px; border: 1px solid #b19a6240; border-radius: 50%; pointer-events: none; }
+.financing-opportunity-inner { display: grid; grid-template-columns: 70px 1fr auto; gap: 34px; align-items: center; position: relative; z-index: 1; }
+.financing-opportunity-mark { border: 1px solid #b29a6150; border-radius: 50%; height: 70px; width: 70px; display: grid; place-items: center; color: #c0a66d; }
+.financing-opportunity h2 { font-size: clamp(28px, 3vw, 40px); line-height: 1.15; margin: 15px 0; }
+.financing-opportunity h2 em { color: #c9b27f; }
+.financing-opportunity p { font-size: 14px; line-height: 1.8; color: #c3c9b8; max-width: 550px; }
+.financing-opportunity .button { white-space: nowrap; }
+.opportunity-modal .modal-inner { max-width: 780px; }
+.opportunity-modal h2 { font-size: 36px; margin-block: 16px 26px; }
+.opportunity-price { display: grid; gap: 10px; font-size: 14px; }
+.opportunity-price input { padding: 13px; min-height: 48px; border: 1px solid #ded8cc; font-size: 16px; width: 100%; }
+.opportunity-modal .financing { padding: 25px 0; margin: 20px 0; border-top: 1px solid #ded8cc; }
+@media (max-width: 1100px) and (min-width: 701px) { .header .navigation { gap: 17px; } .header .header-inner { gap: 15px; } .header .brand > span { display: none; } .financing-opportunity-inner { grid-template-columns: 1fr auto; } .financing-opportunity-mark { display: none; } }
+@media (max-width: 700px) {
+  .registration-heading h1 { font-size: 40px; }
+  .registration-directories > a { grid-template-columns: 32px 1fr 22px; gap: 15px; padding: 26px 0; }
+  .registration-directories h2 { font-size: 28px; }
+  .registration-toolbar { flex-direction: column; gap: 14px; }
+  .registration-toolbar .team-search, .registration-toolbar > .button { width: 100%; }
+  .people-form .staff-fields, .registration-property-links { grid-template-columns: 1fr; }
+  .people-list article { align-items: start; flex-direction: column; }
+  .registration-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .registration-steps button { padding: 8px 0; font-size: 12px; }
+  .registration-footer .button { padding-inline: 16px; }
+  .financing-opportunity { padding: 38px 0; }
+  .financing-opportunity-inner { grid-template-columns: 1fr; gap: 22px; }
+  .financing-opportunity-mark { display: none; }
+  .financing-opportunity .button { width: 100%; }
+  .registration-review > div { grid-template-columns: 1fr; gap: 8px; }
+}
+
+.editor-form > fieldset { border: 0; border-top: 1px solid #d8d2c4; border-radius: 0; background: transparent; padding: 32px 0; }
+.property-optional { border-top: 1px solid #d8d2c4; padding: 26px 0; scroll-margin-top: 110px; }
+.property-optional > summary { cursor: pointer; font-family: var(--sans); font-size: 22px; color: #333c2d; }
+.property-optional > summary small { display: block; font-size: 13px; color: #737b69; margin: 10px 0 0 22px; }
+.property-optional > fieldset { padding-top: 26px; }
+.property-optional .staff-fields { margin-top: 20px; }
+@media (max-width: 700px) { .editor-form > fieldset { padding: 28px 0; } }
+
+.header-registrations { position: relative; }
+.header-registrations summary { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 10px 0; list-style: none; }
+.header-registrations summary::-webkit-details-marker { display: none; }
+.header-registrations[open] summary svg { transform: rotate(180deg); }
+.header-registrations > div { position: absolute; left: -18px; top: calc(100% + 12px); width: 235px; padding: 10px; border: 1px solid #d8d2c4; border-radius: 3px; background: #fcfbf8; color: #273025; box-shadow: 0 15px 35px #10181018; }
+.header-registrations > div a { display: block; padding: 13px 12px; font-size: 14px; }
+.header-registrations > div a:hover { background: #eee8db; }
+@media (max-width: 700px) { .header-registrations { width: 100%; } .header-registrations summary { padding: 14px 0; border-bottom: 1px solid #ded8cc; } .header-registrations > div { position: static; width: 100%; padding: 0 10px; box-shadow: none; border: 0; border-left: 1px solid #b9a16f; margin: 10px 0; background: transparent; color: inherit; } .header-registrations > div a { font-size: 14px; } }
