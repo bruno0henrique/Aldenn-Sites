@@ -23,7 +23,7 @@ export function Header() {
         <Promote onOpen={() => setOpen(false)} />
         <Contact variant="header" />
       </nav>
-      <div className="header-tools"><Profile />
+      <div className="header-tools"><Link className="header-team" href="/equipe/" onClick={() => setOpen(false)}>Equipe</Link><Profile />
       <button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>{open ? <X /> : <Menu />}</button></div>
     </div></header>
   </>;

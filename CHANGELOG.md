@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## 0.75.0 — 2026-10-04
+
+- Ficha da equipe reorganizada por localização, características, valores e apresentação, com rótulos/valores alinhados e seções contínuas sem caixas repetidas. Resumo numérico somente na lista.
+- Equipe acessível diretamente no header inclusive no celular; perfil reduzido à conta/entrada/saída. Edição e exclusão de cadastros locais ficam no painel dedicado.
+- Removido o texto Seu próximo endereço da busca principal.
+
 ## 0.74.1 — 2026-10-03
 
 - Teste da equipe aceita a URL canônica da hospedagem com ou sem barra final. Três cenários de gestão confirmados no site público; aplicação imobiliária permanece 0.11.0.

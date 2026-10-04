@@ -11,10 +11,11 @@ import { propertyHref } from "@/lib/local-properties";
 import { emptyRecord, keyStatuses, propertyStatuses, restoreTeam, seedTeam, teamKey, type Development, type PropertyRecord, type TeamData } from "@/lib/team";
 
 export function TeamDashboard() {
-  const { properties, ready, staff, login } = useLocalCatalog();
+  const { properties, ready, staff, login, remove } = useLocalCatalog();
   const reference = useSearchParams().get("ref");
   const [data, setData] = useState<TeamData | null>(null), [tab, setTab] = useState("properties"), [query, setQuery] = useState(""), [error, setError] = useState("");
   const [development, setDevelopment] = useState<Development | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const entered = useRef(false);
   useEffect(() => { if (!ready || entered.current) return; entered.current = true; if (!staff) login(); }, [ready, staff, login]);
   useEffect(() => {
@@ -32,15 +33,16 @@ export function TeamDashboard() {
   const selected = properties.find((item) => item.reference === reference);
   const visible = properties.filter((item) => normalize(`${item.reference} ${item.title} ${item.city} ${item.neighborhood} ${item.development}`).includes(normalize(query)));
   const record = selected ? data.records[selected.reference] ?? emptyRecord() : null;
-  return <main id="conteudo" className="container team-page">
+  return <main id="conteudo" className={`container team-page${selected ? " team-detail" : ""}`}>
     <Link className="back-link" href="/"> <ArrowLeft size={15} /> Voltar ao site</Link>
-    <header className="team-heading"><div><span className="eyebrow">ÁREA DA EQUIPE</span><h1>{selected ? "Tudo sobre este endereço." : "Seu dia, organizado."}</h1><p>Imóveis, empreendimentos e informações para o próximo atendimento.</p></div><Link className="button button-gold" href="/equipe/cadastro/"><Plus size={17} /> Cadastrar imóvel</Link></header>
-    <div className="team-summary"><div><strong>{properties.length}</strong><span>Imóveis na seleção</span></div><div><strong>{data.developments.length}</strong><span>Empreendimentos</span></div><div><strong>{Object.values(data.records).filter((item) => item.keyStatus === "Retirada para visita").length}</strong><span>Chaves em visita</span></div></div>
+    <header className="team-heading"><div><span className="eyebrow">ÁREA DA EQUIPE</span><h1>{selected ? "Ficha do imóvel" : "Área da equipe"}</h1>{!selected && <p>Consulte os imóveis e organize os próximos atendimentos.</p>}</div><Link className="button button-gold" href="/equipe/cadastro/"><Plus size={17} /> Cadastrar imóvel</Link></header>
+    {!selected && <div className="team-summary"><div><strong>{properties.length}</strong><span>Imóveis na seleção</span></div><div><strong>{data.developments.length}</strong><span>Empreendimentos</span></div><div><strong>{Object.values(data.records).filter((item) => item.keyStatus === "Retirada para visita").length}</strong><span>Chaves em visita</span></div></div>}
     {error && <p className="ai-error" role="alert">{error}</p>}
     {reference && !selected ? <section className="team-panel"><h2>Imóvel não encontrado.</h2><Link href="/equipe/">Voltar aos imóveis</Link></section> : selected && record ? <>
       <Link className="back-link" href="/equipe/"><ArrowLeft size={15} /> Todos os imóveis</Link>
       <div className="team-property-overview"><Image src={asset(selected.images[0].path)} width={520} height={340} alt={selected.title} /><div><span className="eyebrow">REF. {selected.reference}</span><h2>{selected.title}</h2><p>{selected.neighborhood} · {selected.city}</p><strong>{money(selected.price)}{selected.purpose === "locacao" && " / mês"}</strong><div className="team-actions"><Link className="button button-dark" href={`/equipe/cadastro/?ref=${encodeURIComponent(selected.reference)}`}>Editar dados <ArrowUpRight size={16} /></Link><Link className="text-link" href={propertyHref(selected)}>Ver anúncio <ArrowUpRight size={15} /></Link></div></div></div>
-      <section className="team-panel"><h2>Ficha do imóvel</h2><dl className="team-facts">{[["Finalidade", purposeLabel(selected.purpose)], ["Tipo", selected.type], ["Condomínio / empreendimento", selected.development || "Não informado"], ["Endereço", [selected.street, selected.addressNumber, selected.cep].filter(Boolean).join(" · ") || "Não informado"], ["Área construída", selected.builtArea ? `${selected.builtArea} m²` : "Não informada"], ["Área do terreno", selected.landArea ? `${selected.landArea} m²` : "Não informada"], ["Dormitórios", selected.bedrooms], ["Banheiros", selected.bathrooms ?? "Não informado"], ["Suítes", selected.suites], ["Vagas", selected.parking], ["Condomínio mensal", selected.condominium === null ? "Não informado" : money(selected.condominium)], ["IPTU mensal", selected.iptu === null ? "Não informado" : money(selected.iptu)]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><p>{selected.description.join("\n\n")}</p><div className="feature-tags">{selected.features.map((feature) => <span key={feature}>{feature}</span>)}</div></section>
+      <PropertyFacts property={selected} />
+      {selected.reference.startsWith("LOCAL-") && <div className="team-delete">{deleting ? <><span>Excluir este cadastro?</span><button className="text-link" onClick={() => { try { remove(selected.reference); window.location.assign(asset("/equipe/")); } catch (reason) { setError((reason as Error).message); } }}>Confirmar exclusão</button><button className="text-link" onClick={() => setDeleting(false)}>Cancelar</button></> : <button className="text-link" onClick={() => setDeleting(true)}>Excluir imóvel</button>}</div>}
       <RecordEditor key={selected.reference} property={selected} record={record} onSave={(next) => save({ ...data, records: { ...data.records, [selected.reference]: next } })} />
     </> : <>
       <div className="team-tabs" role="group" aria-label="Organização da equipe"><button aria-pressed={tab === "properties"} onClick={() => setTab("properties")}>Imóveis</button><button aria-pressed={tab === "developments"} onClick={() => setTab("developments")}>Empreendimentos</button></div>
@@ -49,6 +51,34 @@ export function TeamDashboard() {
     </>}
     <p className="team-cache">Informações da equipe salvas neste navegador.</p>
   </main>;
+}
+
+function PropertyFacts({ property: p }: { property: Property }) {
+  const groups: { title: string; facts: [string, string | number][] }[] = [
+    { title: "Localização", facts: [
+      ["Cidade / UF", [p.city, p.state].filter(Boolean).join(" / ")],
+      ["Bairro", p.neighborhood || "Não informado"],
+      ["Condomínio / empreendimento", p.development || "Não informado"],
+      ["Rua e número", [p.street, p.addressNumber].filter(Boolean).join(", ") || "Não informado"],
+      ["CEP", p.cep || "Não informado"],
+    ] },
+    { title: "Características", facts: [
+      ["Tipo", p.type], ["Área construída", p.builtArea === null ? "Não informada" : `${p.builtArea} m²`],
+      ["Área do terreno", p.landArea === null ? "Não informada" : `${p.landArea} m²`],
+      ["Dormitórios", p.bedrooms], ["Suítes", p.suites], ["Banheiros", p.bathrooms ?? "Não informado"], ["Vagas", p.parking],
+    ] },
+    { title: "Valores", facts: [
+      ["Finalidade", purposeLabel(p.purpose)],
+      [p.purpose === "locacao" ? "Aluguel mensal" : "Preço de venda", money(p.price)],
+      ...(p.purpose === "ambos" ? [["Aluguel mensal", p.rentPrice === undefined ? "Não informado" : money(p.rentPrice)] as [string, string]] : []),
+      ["Condomínio mensal", p.condominium === null ? "Não informado" : money(p.condominium)],
+      ["IPTU mensal", p.iptu === null ? "Não informado" : money(p.iptu)],
+    ] },
+  ];
+  return <section className="team-property-data" aria-label="Dados do imóvel">
+    {groups.map((group) => <div className="team-data-section" key={group.title}><h2>{group.title}</h2><dl className="team-facts">{group.facts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>)}
+    <div className="team-data-section"><h2>Apresentação</h2><div className="team-description">{p.description.map((text, index) => <p key={index}>{text}</p>)}<div className="feature-tags">{p.features.map((feature) => <span key={feature}>{feature}</span>)}</div></div></div>
+  </section>;
 }
 
 function RecordEditor({ property, record, onSave }: { property: Property; record: PropertyRecord; onSave: (value: PropertyRecord) => boolean }) {

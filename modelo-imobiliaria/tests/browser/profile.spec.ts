@@ -10,8 +10,8 @@ test("profile opens on mobile and desktop, login never sends or stores credentia
     const modal = page.getByRole("dialog", { name: "Entrar no perfil" }); await expect(modal).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.getByLabel("E-mail", { exact: true }).fill("teste@example.com"); await page.getByLabel("Senha", { exact: true }).fill("exemplo123");
-    await page.getByRole("button", { name: "Entrar", exact: true }).click(); await expect(page.getByRole("heading", { name: "Olá, equipe." })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Cadastrar imóvel", exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "Entrar", exact: true }).click(); await expect(page.getByRole("heading", { name: "Meu perfil", exact: true })).toBeVisible();
+    await expect(page.getByRole("dialog").getByRole("link", { name: "Cadastrar imóvel", exact: true })).toHaveCount(0);
     expect(await page.evaluate(() => JSON.stringify({ ...localStorage, ...sessionStorage }))).not.toMatch(/teste@example|exemplo123/);
     await page.getByRole("button", { name: "Sair", exact: true }).click(); await page.keyboard.press("Escape");
     expect(await page.evaluate((key) => sessionStorage.getItem(key), staffSessionKey)).toBeNull();
@@ -21,7 +21,7 @@ test("profile opens on mobile and desktop, login never sends or stores credentia
 test("staff can publish a photo, open/reload details, filter, boost, edit and remove a local property", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 900 });
   await page.goto("/demonstracao-imobiliaria/?skip=opening");
-  await page.getByRole("button", { name: "Entrar / perfil" }).click(); await page.getByRole("link", { name: "Conhecer a área da equipe" }).click();
+  await page.getByRole("link", { name: "Equipe", exact: true }).click();
   await page.getByRole("link", { name: "Cadastrar imóvel", exact: true }).click();
   await page.getByLabel("Título", { exact: true }).fill("Casa de teste com varanda");
   await page.getByLabel("Cidade", { exact: true }).fill("Taubaté"); await page.getByLabel("Bairro", { exact: true }).fill("Centro");
@@ -45,8 +45,8 @@ test("staff can publish a photo, open/reload details, filter, boost, edit and re
   const reference = await page.evaluate((key) => JSON.parse(localStorage.getItem(key)!)[0].reference, localPropertyKey);
   await page.getByLabel("Imóvel para promover", { exact: true }).selectOption(reference); await page.getByRole("button", { name: "Simular promoção" }).click();
   await page.getByRole("button", { name: "Ver os destaques" }).click(); await expect(page.locator(".is-promoted")).toHaveCount(1); await page.reload(); await expect(page.locator(".is-promoted")).toHaveCount(1);
-  await page.getByRole("button", { name: "Meu perfil", exact: true }).click(); await page.getByRole("link", { name: "Editar", exact: true }).click();
-  await page.getByLabel("Título", { exact: true }).fill("Casa editada"); await page.getByRole("checkbox", { name: "Conferi os dados, valores e fotografias" }).check(); await page.getByRole("button", { name: "Salvar alterações" }).click(); await expect(page.locator(".editor-success")).toContainText("Casa editada"); await page.goto("/demonstracao-imobiliaria/?location=Taubat%C3%A9#imoveis"); await page.getByRole("button", { name: "Meu perfil", exact: true }).click();
-  await page.getByRole("button", { name: "Excluir", exact: true }).click(); await page.getByRole("button", { name: "Confirmar exclusão", exact: true }).click();
-  await expect(page.locator(".staff-list")).toHaveCount(0); await page.keyboard.press("Escape"); await expect(page.locator(".property-card")).toHaveCount(0); await expect(page.locator(".is-promoted")).toHaveCount(0);
+  await page.getByRole("link", { name: "Equipe", exact: true }).click(); await page.locator(`.team-item[href*="${reference}"]`).click(); await page.getByRole("link", { name: "Editar dados", exact: true }).click();
+  await page.getByLabel("Título", { exact: true }).fill("Casa editada"); await page.getByRole("checkbox", { name: "Conferi os dados, valores e fotografias" }).check(); await page.getByRole("button", { name: "Salvar alterações" }).click(); await expect(page.locator(".editor-success")).toContainText("Casa editada"); await page.goto(`/demonstracao-imobiliaria/equipe/?ref=${reference}`);
+  await page.getByRole("button", { name: "Excluir imóvel", exact: true }).click(); await page.getByRole("button", { name: "Confirmar exclusão", exact: true }).click();
+  await expect(page.locator(".team-item")).toHaveCount(6); await page.goto("/demonstracao-imobiliaria/?location=Taubat%C3%A9#imoveis"); await expect(page.locator(".property-card")).toHaveCount(0); await expect(page.locator(".is-promoted")).toHaveCount(0);
 });

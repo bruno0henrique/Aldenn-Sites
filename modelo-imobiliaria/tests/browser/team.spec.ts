@@ -3,13 +3,12 @@ import { test, expect } from "@playwright/test";
 test("team preview opens a dedicated page; keys and private notes persist independently of public listings", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/demonstracao-imobiliaria/?skip=opening");
-  await page.getByRole("button", { name: "Entrar / perfil", exact: true }).click();
-  await page.getByRole("link", { name: "Conhecer a área da equipe", exact: true }).click();
+  await page.getByRole("link", { name: "Equipe", exact: true }).click();
   await expect(page).toHaveURL(/\/equipe\/?$/);
   await expect(page.locator(".team-item")).toHaveCount(6);
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await page.locator('.team-item[href*="27236"]').click();
-  await expect(page.locator(".team-facts")).toContainText("390 m²");
+  await expect(page.locator(".team-property-data")).toContainText("390 m²");
   await page.getByLabel("Situação da chave", { exact: true }).selectOption("Retirada para visita");
   await page.getByLabel("Imobiliária com a chave", { exact: true }).fill("Imobiliária de exemplo B");
   await page.getByLabel("Local / responsável pela chave", { exact: true }).fill("Equipe de visitas");
@@ -21,7 +20,7 @@ test("team preview opens a dedicated page; keys and private notes persist indepe
   await page.reload();
   await expect(page.getByLabel("Imobiliária com a chave", { exact: true })).toHaveValue("Imobiliária de exemplo B");
   await expect(page.locator(".team-notes")).toContainText("Conferir iluminação da varanda");
-  await expect(page.locator(".team-summary")).toContainText("Chaves em visita");
+  await expect(page.locator(".team-summary")).toHaveCount(0);
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

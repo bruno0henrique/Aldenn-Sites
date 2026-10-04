@@ -1,5 +1,11 @@
 # Histórico
 
+## 0.12.0 — 2026-10-04
+
+- Ficha da equipe reorganizada por localização, características, valores e apresentação, com rótulos/valores alinhados e seções contínuas sem caixas repetidas. Resumo numérico somente na lista.
+- Equipe acessível diretamente no header inclusive no celular; perfil reduzido à conta/entrada/saída. Edição e exclusão de cadastros locais ficam no painel dedicado.
+- Removido o texto Seu próximo endereço da busca principal.
+
 ## 0.11.0 — 2026-10-03
 
 - Página dedicada da equipe: acesso direto pelo perfil, seis imóveis iniciais, busca por código/região, ficha, edição e cadastro.

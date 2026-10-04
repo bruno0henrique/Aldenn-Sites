@@ -73,3 +73,37 @@
 }
 
 .team-item > div, .team-development-list article > div { min-width: 0; overflow-wrap: anywhere; }
+
+/* Ficha contínua: alinhamento pelo mesmo eixo e agrupamento por assunto. */
+.team-summary { display: flex; flex-wrap: wrap; gap: 26px; padding: 18px 0; border-block: 1px solid #ded8cc; }
+.team-summary > div { display: flex; align-items: baseline; gap: 9px; border: 0; padding: 0; background: transparent; }
+.team-summary strong { font-size: 22px; }
+.team-detail .team-heading { margin-bottom: 20px; }
+.team-detail .team-heading h1 { font-size: clamp(34px, 4vw, 48px); }
+.team-property-overview { padding-bottom: 32px; }
+.team-data-section { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: 32px; padding: 30px 0; border-top: 1px solid #ded8cc; }
+.team-data-section h2 { font-family: var(--sans); font-size: 19px; font-weight: 500; margin: 0; line-height: 1.5; }
+.team-facts { display: block; margin: 0; }
+.team-facts > div { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(0,1.2fr); gap: 24px; padding: 10px 0; border-bottom: 1px solid #e9e5dc; align-items: baseline; }
+.team-facts > div:first-child { padding-top: 0; }
+.team-facts > div:last-child { border-bottom: 0; }
+.team-facts dt { font-size: 14px; margin: 0; line-height: 1.6; }
+.team-facts dd { margin: 0; font-size: 15px; line-height: 1.6; color: #252b22; }
+.team-description p { font-size: 15px; line-height: 1.8; margin: 0 0 18px; }
+.team-detail .team-panel { border: 0; border-top: 1px solid #ded8cc; background: transparent; padding: 30px 0; margin: 0; }
+.team-detail .team-panel h2 { font-family: var(--sans); font-size: 20px; font-weight: 500; }
+.team-fields label { color: #50584c; }
+.team-delete { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 16px 0; font-size: 14px; }
+.header-team { font-size: 14px; color: inherit; padding: 12px 2px; border-bottom: 1px solid #a78954; }
+.profile-modal .profile-signout { margin-top: 24px; }
+@media (max-width: 700px) {
+  .team-summary { gap: 14px 24px; }
+  .team-summary span { font-size: 12px; }
+  .team-data-section { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+  .team-facts > div { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+  .team-facts dt { font-size: 13px; }
+  .team-facts dd { font-size: 14px; }
+  .header-tools { gap: 8px; }
+  .header-team { font-size: 13px; }
+}
+@media (max-width: 380px) { .header .brand > span { display: none; } }

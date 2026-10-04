@@ -152,3 +152,7 @@ Empreendimentos são registros internos editáveis, com nome, cidade, bairro, en
 Imóveis da seleção original podem ser editados pelo formulário existente; edições são validadas por referência/slug e salvas em aldenn-imoveis-edicoes-v1, sem duplicação e sem modificar as fontes originais. Catálogo e detalhes públicos usam a versão local. Cadastros novos continuam no armazenamento anterior. Editor de imóveis originais começa com até seis fotos e conserva rascunho. Tudo permanece por navegador/origem, sem autenticação, sincronização compartilhada ou backend de gestão.
 
 Validação: lint, tipos/build, 28 testes unitários e 36 cenários Chromium. Verificados F5, edição de imóvel original nos detalhes públicos e catálogo, anotações e chaves ausentes do anúncio, cadastro/edição de empreendimentos e sugestões no formulário, regressões 320–1920 px.
+
+## Ajuste aprovado — 0.12.0
+
+Equipe passa a ter acesso visível no header, separado do perfil simples. Fichas usam seções contínuas por assunto e valores sem recuo; contagens somente na listagem. Exclusão de cadastros locais permanece no painel com confirmação. A busca principal perde o texto Seu próximo endereço. Mantida persistência local e privacidade das informações internas.

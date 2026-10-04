@@ -17,7 +17,7 @@ test("editor login opens and publication requires a fresh review", async ({ page
   await page.goto("/demonstracao-imobiliaria/equipe/cadastro/");
   await page.getByRole("button", { name: "Entrar no perfil", exact: true }).click();
   await expect(page.getByRole("dialog", { name: "Entrar no perfil" })).toBeVisible();
-  await page.getByRole("dialog", { name: "Entrar no perfil" }).getByRole("link", { name: "Conhecer a área da equipe" }).click();
+  await page.keyboard.press("Escape"); await page.getByRole("link", { name: "Equipe", exact: true }).click();
   await page.getByRole("link", { name: "Cadastrar imóvel", exact: true }).click();
   await expect(page.getByLabel("Finalidade", { exact: true })).toHaveValue("");
   await expect(page.locator(".editor-steps")).toHaveCount(0);
