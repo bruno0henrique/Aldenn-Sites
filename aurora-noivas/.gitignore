@@ -1,0 +1,9 @@
+/node_modules/
+/.next/
+/out/
+/coverage/
+/.vercel/
+/.env*
+/next-env.d.ts
+/tsconfig.tsbuildinfo
+/output/validation/

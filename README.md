@@ -27,3 +27,7 @@ Os requisitos aprovados da Belleland estão em [docs/REQUISITOS-APROVADOS.md](do
 ## Aldenn Noivas
 
 Modelo demonstrativo para lojas e ateliês de noivas em `modelo-noivas/`. Publicação: https://www.aldenn.com.br/demonstracao-noiva/. Requisitos em `docs/modelo-noivas/README.md`.
+
+## Aurora Noivas
+
+Demonstração fictícia independente em `aurora-noivas/`, com paleta rosé e ameixa e doze modelos organizados em Noivas, Madrinhas, Debutantes e Gala. [Desenvolvimento e prévia local](aurora-noivas/README.md) · [Requisitos aprovados](docs/aurora-noivas/README.md). Sem publicação pública nesta entrega.

@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.78.0] - 2026-10-05
+
+- Aurora Noivas 0.1.0: nova demonstração fictícia independente em rosé e ameixa, com doze imagens editoriais próprias.
+- Amostras em abas Noivas, Madrinhas, Debutantes e Gala, carrossel acessível e referência integrada ao planejador com contato da Aldenn.
+- Exportação estática, prévia local, testes e documentação; projetos e alterações anteriores preservados.
+
 ## [0.77.0] - 2026-10-05
 
 - Aldenn Noivas 0.3.0 substitui a demonstração comercial anterior por um modelo fictício com contatos da Aldenn e localização de exemplo em Jacareí.

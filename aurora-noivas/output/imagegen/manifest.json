@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-10-05",
+  "assets": [
+    {
+      "id": "noiva-jasmim",
+      "tool": "image_gen",
+      "sourceFile": "exec-09c75b69-5004-4def-af8d-409334d4c858.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: A Black Brazilian adult woman with deep brown skin and voluminous natural black curly hair, wearing an ivory bridal gown with delicate floral lace long sleeves, a fitted bodice and full flowing skirt with train. Quiet joyful expression.",
+      "output": "public/media/noiva-jasmim.webp"
+    },
+    {
+      "id": "noiva-magnolia",
+      "tool": "image_gen",
+      "sourceFile": "exec-00a2f99b-391c-4a92-b959-dec559d5e222.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: A Brazilian adult woman with medium dark brown skin and shoulder-length dark natural curls, wearing an ivory minimalist satin bridal gown, architectural square neckline and sculptural A-line skirt with train. Graceful relaxed pose.",
+      "output": "public/media/noiva-magnolia.webp"
+    },
+    {
+      "id": "noiva-camelia",
+      "tool": "image_gen",
+      "sourceFile": "exec-a052f800-4694-4b7d-ae56-83060eb08dc2.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman with light olive skin and dark loosely wavy hair, wearing an ivory romantic bridal gown with sheer floral lace upper bodice, short sleeves and flowing tulle skirt. Simple veil behind her.",
+      "output": "public/media/noiva-camelia.webp"
+    },
+    {
+      "id": "madrinha-peonia",
+      "tool": "image_gen",
+      "sourceFile": "exec-5538db37-3bf9-4183-9a0c-695e60b67a81.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Black Brazilian woman with deep brown skin and elegant natural curly hair, wearing a dusty rose chiffon bridesmaid gown with draped one-shoulder neckline and soft flowing skirt.",
+      "output": "public/media/madrinha-peonia.webp"
+    },
+    {
+      "id": "madrinha-lavanda",
+      "tool": "image_gen",
+      "sourceFile": "exec-04d75a0c-1b14-4f77-acf9-d2447fa77c00.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman with medium dark brown skin and dark natural curls, wearing a muted lavender lilac bridesmaid gown with flutter sleeves, subtly ruched waist and fluid full-length skirt.",
+      "output": "public/media/madrinha-lavanda.webp"
+    },
+    {
+      "id": "madrinha-oliva",
+      "tool": "image_gen",
+      "sourceFile": "exec-ba60ea49-ec2a-4d0d-8b35-8277462d270c.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman with light olive skin and straight dark brown hair, wearing a sage green satin bridesmaid gown with draped cowl neckline and graceful floor-length skirt.",
+      "output": "public/media/madrinha-oliva.webp"
+    },
+    {
+      "id": "debutante-aurora",
+      "tool": "image_gen",
+      "sourceFile": "exec-7c516bd2-ba34-403b-93eb-f8fdb91be20f.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman aged 20 with deep brown skin and long natural black curly hair, wearing an elegant dusty pink debutante celebration ball gown, floral embroidered bodice and voluminous tulle skirt. Joyful, modest and graceful.",
+      "output": "public/media/debutante-aurora.webp"
+    },
+    {
+      "id": "debutante-lua",
+      "tool": "image_gen",
+      "sourceFile": "exec-52bde4de-eb1c-4f90-9c3e-e2c71078ae77.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman aged 20 with medium dark brown skin and shoulder-length natural dark curls, wearing a lilac debutante celebration ball gown with softly structured neckline, subtle sparkling embroidery and full tulle skirt. Modest elegant presentation.",
+      "output": "public/media/debutante-lua.webp"
+    },
+    {
+      "id": "debutante-estrela",
+      "tool": "image_gen",
+      "sourceFile": "exec-ecfa976f-3ce3-4b5d-a3bc-6ca5ae45683b.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman aged 20 with fair skin and auburn wavy hair, wearing a champagne pale gold debutante ball gown with delicate beaded bodice and wide flowing skirt. Modest elegant presentation.",
+      "output": "public/media/debutante-estrela.webp"
+    },
+    {
+      "id": "gala-ametista",
+      "tool": "image_gen",
+      "sourceFile": "exec-579fdc19-8d17-4d6d-a1b3-020ff2d08b8a.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Black Brazilian woman with deep brown skin and dramatic natural dark curly hair, wearing a sophisticated rich plum evening gown, graceful long sleeves, architectural draping and a fitted floor-length skirt. Confident elegant posture.",
+      "output": "public/media/gala-ametista.webp"
+    },
+    {
+      "id": "gala-onix",
+      "tool": "image_gen",
+      "sourceFile": "exec-39cafa89-6462-497e-a2da-22e5662110a3.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman with medium dark brown skin and a natural curly updo, wearing a sophisticated black formal evening gown with sculptural asymmetrical neckline and a flowing floor-length skirt, understated jewelry.",
+      "output": "public/media/gala-onix.webp"
+    },
+    {
+      "id": "gala-rubi",
+      "tool": "image_gen",
+      "sourceFile": "exec-9b24905f-66b9-419b-b6da-e390f8bfe33e.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: original editorial photograph for a fictional bridal boutique website. Photorealistic fashion photography, natural skin texture and textile detail, refined ivory and dusty rose studio interior, gentle window light. Exactly one adult female model, fully clothed in an elegant formal dress. Full body from head to hem visible with generous room above hair and below dress, portrait 2:3 composition. Natural hands and posture. No words, no logo, no watermark, no collage, no price. The dress must be the focus, commercially polished but natural.\nSubject: An adult Brazilian woman with light olive skin and dark long wavy hair, wearing a rich burgundy formal evening gown with subtle tonal beadwork, elegant high neckline and fluid full-length skirt.",
+      "output": "public/media/gala-rubi.webp"
+    }
+  ]
+}
