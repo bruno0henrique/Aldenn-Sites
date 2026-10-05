@@ -1,6 +1,5 @@
 import { ArrowDown, ArrowRight, Camera, MapPin, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import { DressShowroom } from "@/components/aurora/dress-showroom";
 import { MotionProvider } from "@/components/aurora/motion-provider";
 import { SiteHeader, Wordmark } from "@/components/aurora/site-header";
 import { VisitPlanner } from "@/components/aurora/visit-planner";
@@ -37,8 +36,8 @@ export default function Home() {
           <VisitPlanner />
         </section>
         <section className="process section-pad" id="processo" aria-labelledby="process-title">
-          <DressShowroom />
-          <div className="process-copy"><p className="eyebrow" data-reveal>UM NOVO PONTO DE VISTA</p><h2 id="process-title" data-reveal>Encanto<br /><em>em cada ângulo.</em></h2><p className="showroom-description">Gire o vestido e descubra a silhueta.</p><a className="button" href="#vestidos">Escolher uma referência<ArrowRight size={17} aria-hidden="true" /></a></div>
+          <div className="process-photo"><Image src={`${basePath}/media/noiva-magnolia.webp`} alt="Modelo morena de cabelo cacheado com vestido de noiva em cetim marfim" width={1024} height={1536} sizes="(max-width: 760px) 86vw, 43vw" /></div>
+          <div className="process-copy"><p className="eyebrow" data-reveal>DO SEU JEITO</p><h2 id="process-title" data-reveal>Encontre o que<br /><em>combina com você.</em></h2><p className="showroom-description">Guarde suas referências e comece a conversa.</p><a className="button" href="#vestidos">Escolher uma referência<ArrowRight size={17} aria-hidden="true" /></a></div>
         </section>
         <section className="contact section-pad" id="contato" aria-labelledby="contact-title">
           <div className="contact-intro"><p className="eyebrow">TRANSFORME INSPIRAÇÃO EM PRESENÇA</p><h2 id="contact-title">Imagine essa experiência<br /><em>na sua loja.</em></h2><p>A Aurora Noivas é uma marca fictícia criada para apresentar uma possibilidade de site. Para conversar sobre seu projeto, fale com a Aldenn.</p><a className="button button-light" href={contact.whatsapp} target="_blank" rel="noreferrer">Falar com a Aldenn<MessageCircle size={18} aria-hidden="true" /></a></div>

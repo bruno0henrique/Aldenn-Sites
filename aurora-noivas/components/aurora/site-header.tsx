@@ -60,7 +60,7 @@ export function SiteHeader() {
         </a>
         <nav aria-label="Navegação principal">
           <a href="#vestidos">Vestidos</a>
-          <a href="#processo">Explore em 3D</a>
+          <a href="#processo">Inspire-se</a>
           <a href="#contato">Contato</a>
         </nav>
         <a className="header-contact" href="#planejador">

@@ -1,6 +1,6 @@
 # Aurora Noivas
 
-Versão **0.2.0**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
+Versão **0.2.1**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
 
 ## Desenvolvimento e prévia
 
@@ -28,11 +28,11 @@ A prévia usa a mesma URL e porta do desenvolvimento; execute apenas um servidor
 - `lib/catalog.ts`: categorias e doze modelos ilustrativos; marca e canais ficam em `lib/brand.ts`.
 - `lib/planner.ts`: valida escolhas e prepara a mensagem do WhatsApp. Não há banco, coleta persistente ou envio automático.
 
-## Cena de vestido
+## Movimento e fotografia
 
-`components/aurora/dress-showroom.tsx` carrega `lib/dress-scene.ts` somente quando a cena se aproxima da área visível. Three.js desenha uma malha procedural de cetim, sem modelos externos, imagens de textura ou rotação automática. O cenário usa a paleta do site. O giro responde ao arraste, às setas do teclado e aos dois controles visuais.
+A versão 0.2.1 retira temporariamente a cena 3D por solicitação do usuário e usa uma fotografia estática em moldura sem arco. Three.js não faz parte das dependências atuais. A cena anterior pode ser recuperada do histórico Git da versão 0.2.0.
 
-A renderização ocorre ao interagir, redimensionar ou retomar a cena; fica suspensa fora da tela e com a página oculta. A resolução é limitada a 1,5 vez a densidade CSS. Uma ilustração SVG permanece quando WebGL está indisponível. A referência 3D é um estudo de silhueta, sem associação aos modelos fotografados.
+A rolagem usa o navegador, sem mover a página inteira com ScrollSmoother. Entradas pontuais usam IntersectionObserver e Web Animations; movimento reduzido desativa as animações. O carrossel mantém a perspectiva, transição de categoria, cartões laterais e os mesmos controles.
 
 ## Validação
 
@@ -45,9 +45,10 @@ npx playwright install chromium webkit
 npm run preview
 # Em outro terminal:
 npm run test:browser
+npm run test:performance
 ```
 
-Os testes de navegador usam Chromium em 360, 390, 768 e 1440 px e WebKit em 390 e 1440 px; também verificam rolagem animada em desktop. `AURORA_TEST_URL` permite testar outra prévia. Capturas e relatórios locais ficam em `output/validation/`, ignorado pelo Git. O mapa externo é substituído por um conteúdo neutro nos testes.
+Os testes de navegador usam Chromium em 360, 390, 768 e 1440 px e WebKit em 390 e 1440 px; também verificam a rolagem nativa suave em desktop. `AURORA_TEST_URL` permite testar outra prévia. Capturas e relatórios locais ficam em `output/validation/`, ignorado pelo Git. O mapa externo é substituído por um conteúdo neutro nos testes.
 
 ## Conteúdo demonstrativo
 
@@ -62,3 +63,5 @@ A infraestrutura de sequência e seus testes foram preservados da base, mas não
 ## Histórico e publicação
 
 Fontes iniciais recuperados do commit `d9450af5d4952e4b7d29b213a9fd70f2f6979f8d`, sem restaurar arquivos removidos de outros projetos. A entrega atual é uma prévia local. Não foi realizado deploy público. Requisitos e decisões estão em `../docs/aurora-noivas/README.md`.
+
+A medição de desempenho usa Chromium com CPU limitada a quatro vezes o tempo normal, um mapa substituído e uma sequência fixa de rolagem/troca de categorias. Registra quadros e tarefas longas em `output/validation/performance-current.json`. Os números dependem da máquina e não substituem uma verificação no navegador usado pela pessoa.

@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.80.0] - 2026-10-05
+
+- Aurora Noivas 0.2.1: cena 3D retirada temporariamente por solicitação do usuário e substituída por fotografia estática.
+- Rolagem nativa e transições sem desfoque para reduzir travadas; medições de desempenho e testes atualizados.
+
 ## [0.79.0] - 2026-10-05
 
 - Aurora Noivas 0.2.0: galeria clicável com CTA principal, controles sobre as fotos, categorias animadas e molduras renovadas.

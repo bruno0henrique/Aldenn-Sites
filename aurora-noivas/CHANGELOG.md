@@ -1,5 +1,13 @@
 # Histórico — Aurora Noivas
 
+## 0.2.1 — 2026-10-05
+
+- Modelo 3D retirado a pedido do usuário; fotografia estática de cetim assume o bloco, com texto e navegação correspondentes.
+- Three.js e tipos removidos das dependências.
+- Rolagem nativa substitui a movimentação da página inteira por ScrollSmoother; entradas discretas preservadas com animações pontuais do navegador.
+- Desfoques removidos do cabeçalho, controles e transição das fotos para reduzir o custo de pintura.
+- Verificação de desempenho reproduzível com CPU limitada e testes de navegação atualizados.
+
 ## 0.2.0 — 2026-10-05
 
 - Galeria com fotos clicáveis, setas discretas nos cantos, sem contador, molduras retangulares suaves e botão principal de referência integrado ao planejador.

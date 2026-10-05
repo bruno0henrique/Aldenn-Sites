@@ -3,61 +3,21 @@ import { useEffect, useRef } from "react";
 export function MotionProvider({ children }: { children: React.ReactNode }) {
  const wrapper = useRef<HTMLDivElement>(null);
  useEffect(() => {
-  let dispose: (() => void) | undefined;
-  let cancelled = false;
-  async function setup() {
-   const [{ gsap }, { ScrollTrigger }, { ScrollSmoother }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger"), import("gsap/ScrollSmoother")]);
-   if (cancelled || !wrapper.current) return;
-   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-   const mm = gsap.matchMedia();
-   mm.add({ desktop: "(min-width: 1001px) and (pointer: fine)", motion: "(prefers-reduced-motion: no-preference)" }, (context) => {
-    if (!context.conditions?.motion) return;
-    const smoother = context.conditions.desktop ? ScrollSmoother.create({ wrapper: wrapper.current!, content: wrapper.current!.firstElementChild as HTMLElement, smooth: 1, smoothTouch: 0, effects: false, onFocusIn: () => false }) : null;
-    gsap.from(".hero-reveal", { y: 22, opacity: 0, stagger: 0.09, duration: 0.85, ease: "power2.out", clearProps: "all" });
-    gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-     gsap.from(element, { y: 25, opacity: 0, duration: 0.8, ease: "power2.out", clearProps: "all", scrollTrigger: { trigger: element, start: "top 93%", once: true } });
-    });
-    const scrollToTarget = (target: HTMLElement, smooth = true) => {
-     if (!smoother) return;
-     smoother.scrollTo(target, smooth, "top 144px");
-    };
-    const navigate = (event: MouseEvent) => {
-     if (!smoother || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-     const anchor = (event.target as Element).closest<HTMLAnchorElement>('a[href^="#"]');
-     if (!anchor?.hash) return;
-     const target = document.getElementById(decodeURIComponent(anchor.hash.slice(1)));
-     if (!target) return;
-     event.preventDefault();
-     history.pushState(null, "", anchor.hash);
-     scrollToTarget(target);
-     const previousTabIndex = target.getAttribute("tabindex");
-     target.tabIndex = -1;
-     target.focus({ preventScroll: true });
-     if (previousTabIndex === null) target.removeAttribute("tabindex");
-     else target.setAttribute("tabindex", previousTabIndex);
-    };
-    const navigateSection = (event: Event) => {
-     if (!smoother) return;
-     const id = (event as CustomEvent<unknown>).detail;
-     if (typeof id !== "string") return;
-     const target = document.getElementById(id);
-     if (!target) return;
-     event.preventDefault();
-     scrollToTarget(target);
-    };
-    document.addEventListener("click", navigate);
-    window.addEventListener("aurora:navigate", navigateSection);
-    if (smoother && location.hash) {
-     const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-     if (initialTarget) requestAnimationFrame(() => scrollToTarget(initialTarget, false));
-    }
-    return () => { document.removeEventListener("click", navigate); window.removeEventListener("aurora:navigate", navigateSection); smoother?.kill(); };
-   });
-   document.fonts.ready.then(() => { if (!cancelled) ScrollTrigger.refresh(); });
-   dispose = () => mm.revert();
-  }
-  setup().catch(() => { /* Native page remains usable without motion. */ });
-  return () => { cancelled = true; dispose?.(); };
+  const preference = matchMedia("(prefers-reduced-motion: reduce)");
+  if (preference.matches) return;
+  const animations: Animation[] = [];
+  const animate = (element: HTMLElement, delay = 0) => {
+   animations.push(element.animate([{ opacity: 0, transform: "translateY(22px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 650, delay, easing: "cubic-bezier(.2,.7,.3,1)", fill: "backwards" }));
+  };
+  wrapper.current?.querySelectorAll<HTMLElement>(".hero-reveal").forEach((element, index) => animate(element, index * 70));
+  const observer = new IntersectionObserver(entries => {
+   for (const entry of entries) if (entry.isIntersecting) { animate(entry.target as HTMLElement); observer.unobserve(entry.target); }
+  }, { rootMargin: "0px 0px -7% 0px" });
+  wrapper.current?.querySelectorAll<HTMLElement>("[data-reveal]").forEach(element => observer.observe(element));
+  const stop = () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); };
+  const preferenceChanged = () => { if (preference.matches) stop(); };
+  preference.addEventListener("change", preferenceChanged);
+  return () => { preference.removeEventListener("change", preferenceChanged); stop(); };
  }, []);
  return <div ref={wrapper} id="smooth-wrapper"><div id="smooth-content">{children}</div></div>;
 }

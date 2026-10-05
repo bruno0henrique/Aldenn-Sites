@@ -1,13 +1,13 @@
 # Aurora Noivas — requisitos aprovados
 
-Versão **0.2.0** · 2026-10-05 · Plano aprovado pelo usuário e implementado.
+Versão **0.2.1** · 2026-10-05 · Plano aprovado pelo usuário e implementado.
 
 ## Identidade e escopo
 
 - Projeto independente em `aurora-noivas/`, rota `/demonstracao-aurora-noivas/` e marca integralmente fictícia Aurora Noivas.
 - Paleta aprovada: rosé e ameixa, com base marfim. Sem identidade ou dados de lojas reais.
 - Destaque inicial e maioria das modelos com pele mais escura e cabelo cacheado, preservando diversidade no conjunto.
-- Página atual com abertura, vestidos de amostra, localização, planejador, vestido 3D e contato. A ordem inicial com detalhes editoriais/processo foi substituída pela revisão aprovada em 0.2.0.
+- Página atual com abertura, vestidos de amostra, localização, planejador, fotografia editorial e contato. A ordem inicial com detalhes editoriais/processo foi substituída pela revisão aprovada em 0.2.0.
 - Abas na ordem Noivas, Madrinhas, Debutantes e Gala, com três modelos ilustrativos em cada categoria e um único carrossel.
 - Referência escolhida preenche a ocasião do planejador e entra na mensagem. Ao mudar a ocasião, a referência anterior é removida; clicar novamente na mesma ocasião a preserva.
 - Nenhum preço, disponibilidade, avaliação ou tempo de atuação fictício apresentado como fato.
@@ -46,3 +46,14 @@ Solicitação direta de 2026-10-05, com seis capturas de referência:
 - Texto lateral reduzido ao título, instrução curta e ação de retorno às referências.
 
 Essas decisões substituem o bloco editorial e o processo textual da versão 0.1.0; identidade, categorias, canais e comportamento do planejador permanecem aprovados.
+
+## Correção de desempenho — 0.2.1
+
+Em 2026-10-05, o usuário relatou travadas e depois solicitou explicitamente a retirada temporária do modelo 3D. Essa solicitação substitui a decisão de usar a cena 3D em 0.2.0.
+
+- Fotografia de cetim no lugar da cena, sem moldura em arco e sem ampliar o texto lateral.
+- Navegação “Inspire-se” no lugar de “Explore em 3D”.
+- Rolagem nativa, sem transladar a página inteira; animações pontuais de entrada preservadas.
+- Sem desfoque animado das fotos ou filtros sobre o conteúdo em movimento.
+- Identidade, categorias e seleção de referência/planejador preservados.
+- Cena anterior disponível no histórico; sem Three.js ou canvas na versão atual.
