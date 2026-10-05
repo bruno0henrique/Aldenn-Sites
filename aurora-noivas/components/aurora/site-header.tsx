@@ -53,17 +53,20 @@ export function SiteHeader() {
       className={`site-header${hidden ? " site-header--hidden" : ""}`}
       onFocusCapture={() => setHidden(false)}
     >
-      <a href="#inicio" aria-label="Aurora Noivas, início">
-        <Wordmark />
-      </a>
-      <nav aria-label="Navegação principal">
-        <a href="#vestidos">Vestidos</a>
-        <a href="#processo">Como funciona</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <a className="header-contact" href="#planejador">
-        Meu momento
-      </a>
+      <div className="demo-banner"><span>Feito pela Aldenn</span><a href="https://www.aldenn.com.br/">← Voltar à Aldenn</a></div>
+      <div className="site-header-main">
+        <a href="#inicio" aria-label="Aurora Noivas, início">
+          <Wordmark />
+        </a>
+        <nav aria-label="Navegação principal">
+          <a href="#vestidos">Vestidos</a>
+          <a href="#processo">Explore em 3D</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a className="header-contact" href="#planejador">
+          Meu momento
+        </a>
+      </div>
     </header>
   );
 }

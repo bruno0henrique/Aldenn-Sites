@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.79.0] - 2026-10-05
+
+- Aurora Noivas 0.2.0: galeria clicável com CTA principal, controles sobre as fotos, categorias animadas e molduras renovadas.
+- Cena de vestido 3D sob demanda, mapa reposicionado, faixa de retorno à Aldenn e redução dos textos editoriais.
+- Testes de navegador ampliados, documentação e versão próprias; entrega em prévia local.
+
 ## [0.78.0] - 2026-10-05
 
 - Aurora Noivas 0.1.0: nova demonstração fictícia independente em rosé e ameixa, com doze imagens editoriais próprias.

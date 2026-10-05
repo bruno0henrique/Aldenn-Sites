@@ -1,5 +1,14 @@
 # Histórico — Aurora Noivas
 
+## 0.2.0 — 2026-10-05
+
+- Galeria com fotos clicáveis, setas discretas nos cantos, sem contador, molduras retangulares suaves e botão principal de referência integrado ao planejador.
+- Categorias mais próximas, opção selecionada ampliada, entrada sequencial dos modelos e divisor entre ocasião e amostras.
+- Faixa da Aldenn com retorno ao site; mapa transferido para o lugar dos detalhes editoriais.
+- Vestido 3D procedural, girável por arraste e teclado, em cenário rosé; carregamento sob demanda e ilustração alternativa sem WebGL.
+- Textos laterais reduzidos; iluminação sem rotação automática ou animação contínua.
+- Validação ampliada para clique nas fotos, carregamento da cena, giro e alternativa ilustrada.
+
 ## 0.1.0 — 2026-10-05
 
 - Demonstração fictícia independente com abertura em rosé e ameixa, tipografia editorial e fotografia de modelo de pele escura e cabelo cacheado.

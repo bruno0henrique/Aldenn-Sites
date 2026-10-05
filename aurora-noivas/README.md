@@ -1,6 +1,6 @@
 # Aurora Noivas
 
-Versão **0.1.0**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
+Versão **0.2.0**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
 
 ## Desenvolvimento e prévia
 
@@ -28,6 +28,12 @@ A prévia usa a mesma URL e porta do desenvolvimento; execute apenas um servidor
 - `lib/catalog.ts`: categorias e doze modelos ilustrativos; marca e canais ficam em `lib/brand.ts`.
 - `lib/planner.ts`: valida escolhas e prepara a mensagem do WhatsApp. Não há banco, coleta persistente ou envio automático.
 
+## Cena de vestido
+
+`components/aurora/dress-showroom.tsx` carrega `lib/dress-scene.ts` somente quando a cena se aproxima da área visível. Three.js desenha uma malha procedural de cetim, sem modelos externos, imagens de textura ou rotação automática. O cenário usa a paleta do site. O giro responde ao arraste, às setas do teclado e aos dois controles visuais.
+
+A renderização ocorre ao interagir, redimensionar ou retomar a cena; fica suspensa fora da tela e com a página oculta. A resolução é limitada a 1,5 vez a densidade CSS. Uma ilustração SVG permanece quando WebGL está indisponível. A referência 3D é um estudo de silhueta, sem associação aos modelos fotografados.
+
 ## Validação
 
 ```bash
@@ -47,7 +53,7 @@ Os testes de navegador usam Chromium em 360, 390, 768 e 1440 px e WebKit em 390 
 
 Marca, vestidos, fotografias e endereço são ilustrativos. Os canais de contato pertencem à Aldenn. Não há preços, estoque, avaliações ou histórico comercial. A ordem das abas é Noivas, Madrinhas, Debutantes e Gala. Cada aba reinicia no primeiro modelo quando a categoria muda.
 
-As doze fotografias foram geradas com a ferramenta integrada `image_gen`; os prompts e os nomes dos arquivos originais estão em `output/imagegen/manifest.json`. Os arquivos finais estão em `public/media/`. A abertura e o cartão do processo reutilizam fotografias desse conjunto. Detalhes neutros de renda foram reaproveitados da base editorial histórica.
+As doze fotografias foram geradas com a ferramenta integrada `image_gen`; os prompts e os nomes dos arquivos originais estão em `output/imagegen/manifest.json`. Os arquivos finais estão em `public/media/`. A abertura reutiliza uma fotografia desse conjunto. O antigo bloco de detalhes editoriais foi substituído pela localização ilustrativa na versão 0.2.0.
 
 `scripts/prepare-media.mjs` otimiza originais com Sharp e gera a imagem de compartilhamento. Para repetir o processamento, forneça um JSON local com objetos `{ "id": "noiva-jasmim", "path": "caminho absoluto do original" }`. Os originais locais não são necessários para rodar o site; todas as imagens finais estão versionadas.
 

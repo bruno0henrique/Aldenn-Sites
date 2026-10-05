@@ -30,15 +30,15 @@ function Slide({ slide, index, current, count, handleSlideClick, onAction }: Sli
    frameRef.current = null;
   });
  };
- return <li ref={slideRef} className={`dress-slide relative ${active ? "is-current" : ""}`} style={{ "--offset": offset } as CSSProperties}
-  aria-hidden={!active} onClick={() => handleSlideClick(index)} onPointerMove={handleMove} onPointerLeave={reset}>
-  <div className="dress-slide-image">
+ return <li ref={slideRef} className={`dress-slide relative ${active ? "is-current" : ""}`} style={{ "--offset": offset, "--entry-order": Math.abs(offset) } as CSSProperties}
+  onClick={() => handleSlideClick(index)} onPointerMove={handleMove} onPointerLeave={reset}>
+  <button type="button" className="dress-slide-image" tabIndex={active ? 0 : -1} aria-label={active ? `Usar ${slide.title} como referência` : `Ver vestido ${slide.title}`} onClick={(event) => { event.stopPropagation(); if (active) onAction?.(slide); else handleSlideClick(index); }}>
    {/* Already optimized locally; preserve the portrait and the whole dress. */}
    {/* eslint-disable-next-line @next/next/no-img-element */}
    <img src={slide.src} alt={slide.alt} width={1024} height={1536} loading={index === 0 ? "eager" : "lazy"} decoding="async" draggable={false} />
-  </div>
-  <article className="dress-slide-copy"><span className="dress-model-label">MODELO ILUSTRATIVO</span><h3>{slide.title}</h3><p>{slide.description}</p>
-   <button type="button" className="dress-reference-button" tabIndex={active ? 0 : -1} disabled={!active}
+  </button>
+  <article className="dress-slide-copy" aria-hidden={!active}><span className="dress-model-label">MODELO ILUSTRATIVO</span><h3>{slide.title}</h3>
+   <button type="button" className="button dress-reference-button" tabIndex={active ? 0 : -1} disabled={!active}
     onClick={(event) => { event.stopPropagation(); onAction?.(slide); }}>{slide.button}<IconArrowNarrowRight size={19} aria-hidden="true" /></button>
   </article>
  </li>;
@@ -47,6 +47,7 @@ export interface CarouselProps { slides: SlideData[]; label: string; className?:
 export function Carousel({ slides, label, className, onAction }: CarouselProps) {
  const [current, setCurrent] = useState(0);
  const id = useId();
+ const swiped = useRef(false);
  const touch = useRef<{ x: number; y: number } | null>(null);
  const safeCurrent = Math.min(current, Math.max(0, slides.length - 1));
  const go = (direction: number) => setCurrent(nextSlide(safeCurrent, direction, slides.length));
@@ -58,21 +59,22 @@ export function Carousel({ slides, label, className, onAction }: CarouselProps) 
     if (event.key === "Home") { event.preventDefault(); setCurrent(0); }
     if (event.key === "End") { event.preventDefault(); setCurrent(slides.length - 1); }
    }}
-   onPointerDown={(event) => { if (event.pointerType !== "mouse") touch.current = { x: event.clientX, y: event.clientY }; }}
+   onClickCapture={(event) => { if (swiped.current && event.detail > 0) { event.preventDefault(); event.stopPropagation(); swiped.current = false; } }}
+   onPointerDown={(event) => { swiped.current = false; if (event.pointerType !== "mouse") touch.current = { x: event.clientX, y: event.clientY }; }}
    onPointerUp={(event) => {
     if (!touch.current) return;
     const x = event.clientX - touch.current.x, y = event.clientY - touch.current.y;
     touch.current = null;
-    if (Math.abs(x) > 45 && Math.abs(x) > Math.abs(y) * 1.3) go(x < 0 ? 1 : -1);
+    if (Math.abs(x) > 45 && Math.abs(x) > Math.abs(y) * 1.3) { swiped.current = true; go(x < 0 ? 1 : -1); }
    }} onPointerCancel={() => { touch.current = null; }}>
    <ul className="dress-carousel-track" id={`dress-slides-${id}`}>
     {slides.map((slide, index) => <Slide key={slide.id} slide={slide} index={index} current={safeCurrent} count={slides.length} handleSlideClick={setCurrent} onAction={onAction} />)}
    </ul>
-  </div>
   <div className="dress-carousel-controls">
    {slides.length > 1 && <button type="button" aria-label="Vestido anterior" aria-controls={`dress-slides-${id}`} onClick={() => go(-1)}><IconArrowNarrowRight className="rotate-180" size={23} aria-hidden="true" /></button>}
-   <span className="dress-carousel-position" aria-live="polite" aria-atomic="true">{safeCurrent + 1} <span>/</span> {slides.length}<span className="sr-only"> · {slides[safeCurrent].title}</span></span>
+   <span className="sr-only" aria-live="polite" aria-atomic="true">{slides[safeCurrent].title}</span>
    {slides.length > 1 && <button type="button" aria-label="Próximo vestido" aria-controls={`dress-slides-${id}`} onClick={() => go(1)}><IconArrowNarrowRight size={23} aria-hidden="true" /></button>}
+  </div>
   </div>
  </div>;
 }
