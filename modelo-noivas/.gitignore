@@ -44,7 +44,6 @@ next-env.d.ts
 /outputs/
 /work/
 /app/chatgpt-auth.ts
-/build/
 /cloudflare-env.d.ts
 /components.json
 /components/ui/

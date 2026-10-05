@@ -1,10 +1,10 @@
-import sharp from "../../taeko/node_modules/sharp/lib/index.js";
+import sharp from "../../modelo-noivas/node_modules/sharp/lib/index.js";
 import { fileURLToPath } from "node:url";
 
 const width = 1080;
 const height = 1350;
 const output = fileURLToPath(new URL("./aldenn-sites-ads-feed-v2.png", import.meta.url));
-const photoPath = fileURLToPath(new URL("../../taeko/public/media/hero-editorial.webp", import.meta.url));
+const photoPath = fileURLToPath(new URL("../../modelo-noivas/public/media/hero-editorial.webp", import.meta.url));
 
 const photo = await sharp(photoPath)
   .resize(444, 470, { fit: "cover", position: "right" })
@@ -45,7 +45,7 @@ const artwork = `
     <circle cx="540" cy="683" r="5" fill="#FF6B66"/>
     <circle cx="558" cy="683" r="5" fill="#E7C34A"/>
     <circle cx="576" cy="683" r="5" fill="#62B56A"/>
-    <text x="606" y="688" fill="#BDBDBD" font-family="Arial, Helvetica, sans-serif" font-size="12">aldenn.com.br/demonstracao-taeko</text>
+    <text x="606" y="688" fill="#BDBDBD" font-family="Arial, Helvetica, sans-serif" font-size="12">aldenn.com.br/demonstracao-noiva</text>
   </g>
 
   <g fill="#111111" font-family="Arial, Helvetica, sans-serif">
@@ -84,7 +84,7 @@ await sharp(Buffer.from(artwork))
             </linearGradient>
           </defs>
           <rect width="438" height="430" fill="url(#shade)"/>
-          <text x="22" y="36" fill="#FFFFFF" font-family="Georgia, serif" font-size="19">Taeko Noivas</text>
+          <text x="22" y="36" fill="#FFFFFF" font-family="Georgia, serif" font-size="19">Aldenn Noivas</text>
           <text x="22" y="330" fill="#FFFFFF" font-family="Georgia, serif" font-size="34">O seu sonho,</text>
           <text x="22" y="371" fill="#FFFFFF" font-family="Georgia, serif" font-size="34">feito sob medida.</text>
           <rect x="22" y="392" width="122" height="2" fill="#FFFFFF" opacity="0.75"/>
@@ -96,7 +96,7 @@ await sharp(Buffer.from(artwork))
       input: Buffer.from(`
         <svg width="438" height="32" xmlns="http://www.w3.org/2000/svg">
           <rect width="438" height="32" fill="#6D2438"/>
-          <text x="20" y="21" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2">PROJETO REAL · TAEKO NOIVAS</text>
+          <text x="20" y="21" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2">MODELO DEMONSTRATIVO · ALDENN NOIVAS</text>
         </svg>`),
       left: 540,
       top: 1136,

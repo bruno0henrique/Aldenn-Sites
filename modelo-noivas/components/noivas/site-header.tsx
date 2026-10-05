@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export function Wordmark() {
   return (
     <span className="wordmark">
-      taeko<span>NOIVAS</span>
+      aldenn<span>NOIVAS</span>
     </span>
   );
 }
@@ -53,13 +53,13 @@ export function SiteHeader() {
       className={`site-header${hidden ? " site-header--hidden" : ""}`}
       onFocusCapture={() => setHidden(false)}
     >
-      <a href="#inicio" aria-label="Taeko Noivas, início">
+      <a href="#inicio" aria-label="Aldenn Noivas, início">
         <Wordmark />
       </a>
       <nav aria-label="Navegação principal">
         <a href="#ocasioes">Opções</a>
         <a href="#processo">Como funciona</a>
-        <a href="#visite">Visite a loja</a>
+        <a href="#visite">Localização</a>
       </nav>
       <a className="header-contact" href="#planejador">
         Encontrar meu vestido

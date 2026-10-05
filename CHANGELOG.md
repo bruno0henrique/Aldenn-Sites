@@ -1,5 +1,11 @@
 # Histórico de versões
 
+## [0.77.0] - 2026-10-05
+
+- Aldenn Noivas 0.3.0 substitui a demonstração comercial anterior por um modelo fictício com contatos da Aldenn e localização de exemplo em Jacareí.
+- Fonte e documentação comercial antiga retiradas do estado atual; histórico Git preservado.
+
+
 ## [0.55.0] - 2026-09-17
 
 ### Corrigido
@@ -10,7 +16,6 @@
 
 ### Alterado
 
-- Mensagem preparada pelo formulário da Taeko ganhou saudação acolhedora, respiros entre os blocos e escolhas organizadas em tópicos.
 - Fechamento da conversa passou a pedir os próximos passos de forma mais natural.
 
 ## [0.53.0] - 2026-09-17
@@ -71,7 +76,6 @@
 ### Alterado
 
 - Contraste da legenda sobre a fotografia do processo reforçado com texto claro, sombra suave e degradê mais profundo.
-- Textos da demonstração Taeko revisados para uma conversa mais acolhedora, delicada e natural.
 - Mensagem preparada para o WhatsApp deixou de mencionar a demonstração e passou a iniciar o atendimento de forma direta.
 
 ## [0.46.0] - 2026-09-12
@@ -105,7 +109,6 @@
 
 ### Alterado
 
-- Cena quadro a quadro da Taeko substituída por fotografia editorial estática para eliminar flickers.
 - Imagens exclusivas para desktop e celular destacam renda, bordado e acabamento do vestido.
 - Entrada da cena reduzida a uma transição GSAP curta, sem pinagem ou progresso ligado à rolagem.
 
@@ -178,7 +181,6 @@
 - Sequência reconstruída com os 240 quadros originais em WebP de qualidade elevada, sem descarte de quadros intermediários.
 - Carregador passou a antecipar a transferência da sequência e manter uma janela maior de quadros decodificados para eliminar pausas e saltos durante a rolagem.
 - Degradê da cena ficou contínuo, partindo do fundo claro e chegando ao bege da identidade sem divisões visíveis.
-- Abertura ganhou uma apresentação curta sobre os 40 anos e a confecção sob medida da Taeko em Jacareí.
 
 ## [0.34.0] - 2026-09-10
 
@@ -208,7 +210,6 @@
 ### Alterado
 
 - Botões receberam formato arredondado, relevo e preenchimento animado baseado na referência enviada.
-- Cores do efeito adaptadas para a paleta rosé e vinho da Taeko.
 - Estados selecionados do formulário ganharam destaque preenchido em desktop e celular.
 
 ## [0.30.0] - 2026-09-10
@@ -230,7 +231,6 @@
 
 ### Alterado
 
-- Demonstração da Taeko reduzida aos blocos essenciais: abertura, inspirações, atendimento e contato.
 - Abertura simplificada para uma única ação, sem setas ou chamadas concorrentes.
 - Planejador reduzido para duas escolhas antes de preparar a mensagem de WhatsApp.
 
@@ -246,13 +246,10 @@
 
 ### Adicionado
 
-- Site independente da Taeko Noivas com direção editorial, contatos fornecidos, GSAP e rolagem suave em telas adequadas.
 - Estrutura de fundo preparada para receber uma sequência quadro a quadro controlada pela rolagem, com poster e comportamento alternativo.
-- Imagens editoriais ilustrativas identificadas na interface, aguardando os arquivos oficiais da Taeko.
 
 ### Publicado
 
-- Demonstração em `https://aldenn.com.br/demonstracao-taeko` por meio do repositório institucional da Aldenn.
 
 ## [0.25.1] - 2026-09-09
 

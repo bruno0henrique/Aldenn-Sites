@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { contact } from "@/lib/taeko";
+import { contact } from "@/lib/noivas";
 
 const moments = ["Casamento", "Debutante", "Madrinha", "Outro momento"];
 const preferences = [
@@ -57,8 +57,8 @@ export function VisitPlanner() {
       const moment = (event as CustomEvent<string>).detail;
       if (moments.includes(moment)) setMoment(moment);
     };
-    window.addEventListener("taeko:select-moment", selectMoment);
-    return () => window.removeEventListener("taeko:select-moment", selectMoment);
+    window.addEventListener("noivas:select-moment", selectMoment);
+    return () => window.removeEventListener("noivas:select-moment", selectMoment);
   }, []);
 
   const completed = Boolean(moment && preference && stage);
@@ -68,9 +68,9 @@ export function VisitPlanner() {
       ? new Intl.DateTimeFormat("pt-BR", { timeZone: "UTC" }).format(new Date(`${eventDate}T12:00:00Z`))
       : "Ainda não definida";
     const message = [
-      "Oi, Taeko!",
+      "Olá, Aldenn!",
       "",
-      "Gostaria de conversar sobre um vestido feito sob medida.",
+      "Vi o modelo Aldenn Noivas e gostaria de conversar sobre um site para minha loja de noivas.",
       "",
       "Estas são as minhas escolhas:",
       `• Ocasião: ${moment}`,
@@ -106,7 +106,7 @@ export function VisitPlanner() {
 
       <div className="planner-date">
         <label htmlFor="event-date">Quando será o evento?</label>
-        <p>Se a data já estiver definida, você pode contar para a Taeko agora.</p>
+        <p>Se a data já estiver definida, você pode incluí-la na conversa.</p>
         <input
           id="event-date"
           type="date"

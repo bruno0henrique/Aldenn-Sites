@@ -1,14 +1,14 @@
 import { ArrowRight, Camera, MapPin, MessageCircle, Route, Scissors, Sparkles } from "lucide-react";
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import { FrameSequenceBackground } from "@/components/taeko/frame-sequence-background";
-import { EditorialFabricScene } from "@/components/taeko/editorial-fabric-scene";
-import { MotionProvider } from "@/components/taeko/motion-provider";
-import { OccasionShowcase } from "@/components/taeko/occasion-showcase";
-import { SiteHeader, Wordmark } from "@/components/taeko/site-header";
-import { VisitPlanner } from "@/components/taeko/visit-planner";
+import { FrameSequenceBackground } from "@/components/noivas/frame-sequence-background";
+import { EditorialFabricScene } from "@/components/noivas/editorial-fabric-scene";
+import { MotionProvider } from "@/components/noivas/motion-provider";
+import { OccasionShowcase } from "@/components/noivas/occasion-showcase";
+import { SiteHeader, Wordmark } from "@/components/noivas/site-header";
+import { VisitPlanner } from "@/components/noivas/visit-planner";
 import { heroMedia } from "@/lib/hero-media";
-import { contact } from "@/lib/taeko";
+import { contact } from "@/lib/noivas";
 
 export default function Home() {
   return (
@@ -26,16 +26,16 @@ export default function Home() {
             <div className="hero-shade" />
             <div className="hero-copy">
               <p className="eyebrow hero-reveal">
-                VESTIDOS SOB MEDIDA · JACAREÍ
+                MODELO PARA LOJAS E ATELIÊS DE NOIVAS
               </p>
               <h1 id="hero-title">
-                <span className="hero-reveal">O seu sonho,</span>
+                <span className="hero-reveal">O seu momento,</span>
                 <span className="hero-reveal">
-                  feito <em>sob medida.</em>
+                  vestido <em>de você.</em>
                 </span>
               </h1>
               <p className="hero-description hero-reveal">
-                Vestidos sob medida para noivas, debutantes e madrinhas em Jacareí, criados com cuidado para que você se reconheça em cada detalhe.
+                Uma experiência delicada para descobrir estilos, reunir referências e começar a conversa sobre o vestido que combina com a sua história.
               </p>
               <div className="hero-actions hero-reveal" aria-label="Próximos passos">
                 <a className="button hero-primary-action" href="#planejador">
@@ -48,9 +48,9 @@ export default function Home() {
                 </a>
               </div>
               <div className="hero-history hero-reveal">
-                <p className="eyebrow">HÁ 40 ANOS</p>
+                <p className="eyebrow">MODELO DEMONSTRATIVO</p>
                 <p>
-                  Há 40 anos, a Taeko acolhe mulheres de Jacareí e região para transformar ideias, referências e sonhos em vestidos feitos sob medida.
+                  Aldenn Noivas é um modelo demonstrativo da Aldenn para lojas e ateliês de noivas. Explore uma possibilidade para o site da sua marca.
                 </p>
               </div>
             </div>
@@ -94,14 +94,14 @@ export default function Home() {
           <section className="process section-pad" id="processo" aria-labelledby="process-title">
             <div className="process-visual" data-reveal>
               <Image
-                src="/demonstracao-taeko/media/editorial-portrait.webp"
+                src="/demonstracao-noiva/media/editorial-portrait.webp"
                 alt="Detalhes de um vestido de noiva durante a criação"
                 width={1024}
                 height={1536}
                 sizes="(max-width: 1100px) 88vw, 40vw"
               />
               <div className="process-visual-caption">
-                <span>FEITO EM JACAREÍ</span>
+                <span>CRIADO COM CUIDADO</span>
                 <p>Da primeira conversa ao último ajuste.</p>
               </div>
             </div>
@@ -143,17 +143,17 @@ export default function Home() {
           </section>
 
           <section className="contact section-pad" id="visite" aria-labelledby="visit-title">
-            <p className="eyebrow" data-reveal>VENHA NOS CONHECER</p>
+            <p className="eyebrow" data-reveal>LOCALIZAÇÃO DE EXEMPLO</p>
             <h2 id="visit-title" data-reveal>
-              Será um prazer receber você <em>em Jacareí.</em>
+              Um ponto de referência <em>em Jacareí.</em>
             </h2>
             <p className="visit-intro" data-reveal>
-              Veja o endereço, planeje o caminho e acompanhe as novidades da Taeko pelo Instagram.
+              A Igreja Matriz aparece aqui apenas como exemplo de localização. Para conversar sobre este modelo de site, fale com a Aldenn.
             </p>
             <div className="visit-composition">
               <article className="visit-map-card">
                 <iframe
-                  title="Mapa da Taeko Noivas em Jacareí"
+                  title="Localização de exemplo: Igreja Matriz Imaculada Conceição em Jacareí"
                   src={contact.mapEmbed}
                   loading="eager"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -161,14 +161,15 @@ export default function Home() {
                 <div className="visit-address">
                   <MapPin size={22} strokeWidth={1.25} />
                   <div>
-                    <p className="eyebrow">ENDEREÇO</p>
+                    <p className="eyebrow">LOCALIZAÇÃO DE EXEMPLO</p>
                     <p>
-                      Av. Adhemar Pereira de Barros, 1737
-                      <br /> Jacareí · SP · 12328-300
+                      Igreja Matriz Imaculada Conceição
+                      <br /> Praça Padre Anchieta, 150 · Centro
+                      <br /> Jacareí · SP · 12327-200
                     </p>
                     <a className="visit-route-link" href={contact.map} target="_blank" rel="noreferrer">
                       <Route size={16} strokeWidth={1.4} aria-hidden="true" />
-                      Traçar rota no Google Maps
+                      Ver localização de exemplo
                     </a>
                   </div>
                 </div>
@@ -177,15 +178,15 @@ export default function Home() {
                 <Camera size={26} strokeWidth={1.25} />
                 <p className="eyebrow">REDES SOCIAIS</p>
                 <a className="social-handle" href={contact.instagram} target="_blank" rel="noreferrer">
-                  @taekonoivas
+                  @aldenn.com.br
                 </a>
-                <p>No Instagram, você encontra vestidos, detalhes de acabamento e trabalhos recentes da Taeko.</p>
+                <p>No Instagram da Aldenn, você acompanha novos projetos, modelos e experiências digitais.</p>
                 <a
                   className="instagram-button"
                   href={contact.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="Abrir Instagram da Taeko Noivas"
+                  aria-label="Abrir Instagram da Aldenn"
                 >
                   <span className="instagram-button-outline" aria-hidden="true" />
                   <span className="instagram-button-state" aria-hidden="true">
@@ -214,7 +215,7 @@ export default function Home() {
           <a href="#inicio" aria-label="Voltar ao início">
             <Wordmark />
           </a>
-          <span>Taeko Noivas · Jacareí</span>
+          <span>Aldenn Noivas · modelo demonstrativo da Aldenn</span>
         </footer>
       </MotionProvider>
     </>

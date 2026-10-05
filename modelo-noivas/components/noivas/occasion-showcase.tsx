@@ -33,7 +33,7 @@ export function OccasionShowcase() {
   const [isDragging, setIsDragging] = useState(false);
 
   const chooseOccasion = (moment: string) => {
-    window.dispatchEvent(new CustomEvent("taeko:select-moment", { detail: moment }));
+    window.dispatchEvent(new CustomEvent("noivas:select-moment", { detail: moment }));
     history.pushState(null, "", "#planejador");
     document.getElementById("planejador")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
@@ -121,9 +121,9 @@ export function OccasionShowcase() {
         {occasions.map((occasion) => (
           <article className="occasion-card" key={occasion.label} data-reveal>
             <picture>
-              <source type="image/avif" srcSet={`/demonstracao-taeko/media/occasion-${occasion.image}.avif`} />
+              <source type="image/avif" srcSet={`/demonstracao-noiva/media/occasion-${occasion.image}.avif`} />
               <img
-                src={`/demonstracao-taeko/media/occasion-${occasion.image}.webp`}
+                src={`/demonstracao-noiva/media/occasion-${occasion.image}.webp`}
                 alt={occasion.alt}
                 width={512}
                 height={820}

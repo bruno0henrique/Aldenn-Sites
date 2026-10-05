@@ -1,6 +1,6 @@
 # Projetos de clientes: Aldenn Sites
 
-Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/` e não compartilha conteúdo ou regras de negócio com a Belleland.
+Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. O modelo Aldenn Noivas fica em `modelo-noivas/`, com contatos da Aldenn e dados ilustrativos.
 
 ## Belleland Closet
 
@@ -24,6 +24,6 @@ Os documentos dessa pasta são modelos de referência. Somente requisitos preenc
 
 Os requisitos aprovados da Belleland estão em [docs/REQUISITOS-APROVADOS.md](docs/REQUISITOS-APROVADOS.md).
 
-## Taeko Noivas
+## Aldenn Noivas
 
-A demonstração editorial está em `taeko/`. O planejamento e o contrato para a futura sequência de quadros estão em [docs/taeko-noivas/README.md](docs/taeko-noivas/README.md).
+Modelo demonstrativo para lojas e ateliês de noivas em `modelo-noivas/`. Publicação: https://www.aldenn.com.br/demonstracao-noiva/. Requisitos em `docs/modelo-noivas/README.md`.
