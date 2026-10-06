@@ -1,5 +1,11 @@
 # Histórico
 
+## [0.2.1] - 2026-10-06
+
+- Banner vermelho adicionado primeiro, com tom próximo ao da logo e versões mobile/desktop.
+- Banners lilás e azul preservados; rotação automática a cada seis segundos, com pausa durante interação, fora da tela e em aba oculta.
+- Controle para pausar/iniciar e respeito à preferência de movimento reduzido.
+
 ## [0.2.0] - 2026-10-06
 
 - Abertura substituída pelos banners editoriais Reserve já e Destaques fornecidos pelo usuário, com artes próprias para mobile e desktop.

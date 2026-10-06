@@ -27,3 +27,7 @@ Check, cinco testes e build aprovados. Navegador revisado em 360, 390, 430, 768,
 ## Revisão 0.2.0
 
 Check, cinco testes e build aprovados. Banners revisados em 360, 390, 430, 1280 e 1920 px; imagens mobile/desktop corretas, uma arte visível por vez, sem rolagem horizontal. Carregamento do segundo banner em 360 px confirmado após a imagem lazy carregar. Setas, indicadores e teclado alternam os dois banners; gesto lateral implementado, sem simulação de toque real neste navegador. Cards de ocasiões revisados em 360, 390, 430 e 1280 px: imagens carregadas, texto sem transbordamento, Madrinhas filtra cinco vestidos. CTAs levam ao catálogo, destaques e WhatsApp oficial contextual. Capturas v020-*.png em output/validation. Artes ilustrativas identificadas, sem promoção ou novidades não comprovadas. Sem publicação.
+
+## Revisão 0.2.1
+
+Check, cinco testes e build aprovados. Primeiro banner vermelho carregado em 360, 390, 430 e 1280 px, sem transbordamento; versões específicas corretas. Três banners preservados, vermelho abrindo a página. Rotação automática observada no navegador após espera; botão Pausar manteve o mesmo banner durante espera adicional de sete segundos e passou a exibir Iniciar troca automática. Recorte mobile preserva a imagem inteira do vestido vermelho. Captura v021-vermelho-mobile.png. Movimento reduzido, foco, mouse, toque, visibilidade e presença na tela controlam a rotação no código; não houve emulação de todas essas condições nesta revisão. Sem publicação.

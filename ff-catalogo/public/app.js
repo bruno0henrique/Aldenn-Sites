@@ -1,20 +1,30 @@
 import {products,filterProducts,whatsappUrl} from './data/catalog.js';
 import {card,escape,icon} from './lib/render.mjs';
 const $ = selector => document.querySelector(selector);
-// Carrossel manual: sem troca automática durante a leitura ou o toque.
+// Rotação a cada seis segundos, com pausa durante interação ou fora da tela.
 const campaign=$('.campaign');
 if(campaign){
  const slides=[...campaign.querySelectorAll('.campaign-slide')];
  const dots=[...campaign.querySelectorAll('.campaign-dots button')];
- let current=0,startX=null,startY=null;
- const show=index=>{current=(index+slides.length)%slides.length;campaign.dataset.active=String(current);slides.forEach((slide,i)=>{slide.hidden=i!==current;});dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===current)));$('#campaign-status').textContent=`Banner ${current+1} de ${slides.length}: ${current?'Destaques':'Reserve já'}`;};
+ let current=0,startX=null,startY=null,timer,userPaused=matchMedia('(prefers-reduced-motion: reduce)').matches,hovered=false,inView=true;
+ const rotation=campaign.querySelector('.campaign-rotation');
+ const schedule=()=>{clearTimeout(timer);if(!userPaused&&!hovered&&!campaign.contains(document.activeElement)&&!document.hidden&&inView)timer=setTimeout(()=>show(current+1),6000);};
+ const show=index=>{current=(index+slides.length)%slides.length;campaign.dataset.active=String(current);slides.forEach((slide,i)=>{slide.hidden=i!==current;});dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===current)));$('#campaign-status').textContent=`Banner ${current+1} de ${slides.length}: ${slides[current].dataset.label}`;schedule();};
+ const updateRotation=()=>{rotation.setAttribute('aria-label',userPaused?'Iniciar troca automática':'Pausar troca automática');rotation.innerHTML=userPaused?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z" fill="currentColor"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke="currentColor" stroke-width="3"/></svg>';};
+ rotation.addEventListener('click',()=>{userPaused=!userPaused;updateRotation();schedule();});
+ campaign.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'){hovered=true;schedule();}});
+ campaign.addEventListener('pointerleave',()=>{hovered=false;schedule();});
+ campaign.addEventListener('focusin',schedule);campaign.addEventListener('focusout',()=>queueMicrotask(schedule));
+ document.addEventListener('visibilitychange',schedule);
+ new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;schedule();},{threshold:0.15}).observe(campaign);
+ updateRotation();schedule();
  campaign.querySelector('.previous').addEventListener('click',()=>show(current-1));
  campaign.querySelector('.next').addEventListener('click',()=>show(current+1));
  dots.forEach((dot,i)=>dot.addEventListener('click',()=>show(i)));
  const stage=campaign.querySelector('.campaign-stage');
  stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();show(current+(event.key==='ArrowLeft'?-1:1));}});
- stage.addEventListener('touchstart',event=>{startX=event.touches[0].clientX;startY=event.touches[0].clientY;},{passive:true});
- stage.addEventListener('touchend',event=>{if(startX===null)return;const dx=event.changedTouches[0].clientX-startX,dy=event.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){show(current+(dx>0?-1:1));stage.dataset.swiped='true';}startX=null;},{passive:true});
+ stage.addEventListener('touchstart',event=>{clearTimeout(timer);startX=event.touches[0].clientX;startY=event.touches[0].clientY;},{passive:true});
+ stage.addEventListener('touchend',event=>{if(startX===null)return;const dx=event.changedTouches[0].clientX-startX,dy=event.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){show(current+(dx>0?-1:1));stage.dataset.swiped='true';}startX=null;schedule();},{passive:true});
  stage.addEventListener('click',event=>{if(stage.dataset.swiped){event.preventDefault();delete stage.dataset.swiped;}},true);
 }
 const keys={q:'busca',occasion:'ocasiao',color:'cor',size:'tamanho',model:'modelo',fabric:'tecido',length:'comprimento',category:'categoria'};

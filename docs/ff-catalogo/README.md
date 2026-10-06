@@ -51,3 +51,7 @@ A seção de ocasiões usa blocos tipográficos para evitar fotografias repetida
 ## Direção aprovada — 0.2.0
 
 Pedido de 2026-10-06 substitui a abertura dividida por banners completos e substitui os cards tipográficos de ocasiões pelo exemplo fotográfico enviado. Artes editoriais ilustrativas fornecidas pelo usuário, distintas do estoque real. Usadas Reserve já e Destaques; Promoção e Novidades foram omitidas por ausência de comprovação comercial. Versões verticais com recorte apenas do rodapé que continha indicadores desenhados; controles funcionais são HTML. Categorias usam recortes das fotografias do exemplo, com texto HTML para legibilidade, toque e acessibilidade. Nenhuma imagem ilustrativa é associada à página de um vestido real.
+
+## Ajuste aprovado — 0.2.1
+
+Vermelho primeiro, seguido por lilás e azul. Rotação automática solicitada substitui a decisão manual anterior. Intervalo de seis segundos e controles de pausa/início. Artes e prompt registrados em ARTE-VERMELHA.md.

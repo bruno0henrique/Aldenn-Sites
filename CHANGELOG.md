@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## [0.86.0] - 2026-10-06
+
+- FF Catálogo 0.2.1: abertura vermelha coordenada com a logo e rotação automática dos três banners.
+
 ## [0.85.0] - 2026-10-06
 
 - FF Catálogo 0.2.0: banners responsivos e categorias fotográficas baseados nas novas artes fornecidas pelo usuário.

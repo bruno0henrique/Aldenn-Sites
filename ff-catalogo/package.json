@@ -1,5 +1,5 @@
 {
-  "name": "ff-catalogo", "version": "0.2.0", "private": true, "type": "module",
+  "name": "ff-catalogo", "version": "0.2.1", "private": true, "type": "module",
   "engines": {"node": ">=22"},
   "scripts": {
     "build": "node scripts/build.mjs", "dev": "node scripts/build.mjs && node scripts/serve.mjs",
