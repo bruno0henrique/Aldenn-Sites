@@ -1,5 +1,12 @@
 # Histórico — Aurora Noivas
 
+## 0.3.0 — 2026-10-05
+
+- Demonstração preparada para publicação em `/demonstracao-noiva-dois` no site da Aldenn, com caminhos locais de imagens, fontes, scripts e metadados ajustados.
+- Prévia antiga redireciona para a rota atual; processo local reiniciado em segundo plano após interrupção que causou falha no carregamento das novas fotos.
+- Testes de navegador ampliados para verificar o carregamento real dos doze vestidos nas quatro categorias.
+- Exportação independente integrada ao menu Modelos do institucional; primeira demonstração preservada.
+
 ## 0.2.1 — 2026-10-05
 
 - Modelo 3D retirado a pedido do usuário; fotografia estática de cetim assume o bloco, com texto e navegação correspondentes.

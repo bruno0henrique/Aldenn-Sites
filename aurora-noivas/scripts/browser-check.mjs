@@ -1,7 +1,7 @@
 import {chromium,webkit,expect} from "@playwright/test";
 import assert from "node:assert/strict";
 import {mkdir,writeFile} from "node:fs/promises";
-const url=process.env.AURORA_TEST_URL??"http://127.0.0.1:5184/demonstracao-aurora-noivas/";
+const url=process.env.AURORA_TEST_URL??"http://127.0.0.1:5184/demonstracao-noiva-dois/";
 await mkdir("output/validation",{recursive:true});
 const results=[];
 const suites=[{name:"chromium",engine:chromium,widths:[360,390,768,1440]},{name:"webkit",engine:webkit,widths:[390,1440]}];
@@ -31,9 +31,11 @@ for(const suite of suites){
    for(const collection of collections){
     await page.getByRole("tab",{name:collection.category,exact:true}).click();
     await expect(page.locator(".dress-slide.is-current h3")).toHaveText(collection.titles[0]);
+    await expect(page.locator(".dress-slide.is-current img")).toHaveJSProperty("naturalWidth",1024);
     for(let index=1;index<3;index++){
      await page.getByRole("button",{name:"Próximo vestido",exact:true}).click();
      await expect(page.locator(".dress-slide.is-current h3")).toHaveText(collection.titles[index]);
+     await expect(page.locator(".dress-slide.is-current img")).toHaveJSProperty("naturalWidth",1024);
     }
     await page.getByRole("button",{name:"Próximo vestido",exact:true}).click();
     await expect(page.locator(".dress-slide.is-current h3")).toHaveText(collection.titles[0]);

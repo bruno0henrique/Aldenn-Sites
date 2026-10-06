@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.81.0] - 2026-10-05
+
+- Aurora Noivas 0.3.0: nova rota `/demonstracao-noiva-dois` para publicação no site da Aldenn.
+- Metadados e arquivos ajustados ao prefixo público; todas as fotografias verificadas em navegador e prévia local restabelecida.
+
 ## [0.80.0] - 2026-10-05
 
 - Aurora Noivas 0.2.1: cena 3D retirada temporariamente por solicitação do usuário e substituída por fotografia estática.

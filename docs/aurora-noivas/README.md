@@ -1,10 +1,10 @@
 # Aurora Noivas — requisitos aprovados
 
-Versão **0.2.1** · 2026-10-05 · Plano aprovado pelo usuário e implementado.
+Versão **0.3.0** · 2026-10-05 · Plano aprovado pelo usuário e implementado.
 
 ## Identidade e escopo
 
-- Projeto independente em `aurora-noivas/`, rota `/demonstracao-aurora-noivas/` e marca integralmente fictícia Aurora Noivas.
+- Projeto independente em `aurora-noivas/`, rota `/demonstracao-noiva-dois/` e marca integralmente fictícia Aurora Noivas.
 - Paleta aprovada: rosé e ameixa, com base marfim. Sem identidade ou dados de lojas reais.
 - Destaque inicial e maioria das modelos com pele mais escura e cabelo cacheado, preservando diversidade no conjunto.
 - Página atual com abertura, vestidos de amostra, localização, planejador, fotografia editorial e contato. A ordem inicial com detalhes editoriais/processo foi substituída pela revisão aprovada em 0.2.0.
@@ -26,7 +26,7 @@ As escolhas ficam somente na memória da página. Nenhum dado é enviado até a 
 - Organizar as amostras em abas, com Noivas selecionada inicialmente. Gala é a categoria de vestidos para festas sofisticadas.
 - Adaptar o carrossel fornecido, manter o destaque central e a perspectiva, acrescentar teclado/toque e respeitar movimento reduzido.
 - Preservar os projetos e alterações anteriores. Fontes recuperados do histórico, sem reverter exclusões preexistentes.
-- Entrega local com commit, tag e push. Publicação pública não faz parte desta entrega.
+- Entrega com commit, tag e push. A restrição inicial à prévia local foi substituída pelo pedido de publicação de 0.3.0.
 
 ## Materiais e validação
 
@@ -57,3 +57,12 @@ Em 2026-10-05, o usuário relatou travadas e depois solicitou explicitamente a r
 - Sem desfoque animado das fotos ou filtros sobre o conteúdo em movimento.
 - Identidade, categorias e seleção de referência/planejador preservados.
 - Cena anterior disponível no histórico; sem Three.js ou canvas na versão atual.
+
+## Publicação aprovada — 0.3.0
+
+Em 2026-10-05, o usuário solicitou ajuste das imagens e publicação em `aldenn/demonstracao-noiva-dois`. Esta solicitação substitui a restrição inicial de entrega somente local.
+
+- Rota canônica `/demonstracao-noiva-dois/` no domínio `www.aldenn.com.br`.
+- HTML, fotos, fontes, scripts e favicon usam o prefixo público da demonstração.
+- Integração isolada no repositório institucional Aldenn, com entrada Aurora Noivas no menu Modelos e preservação da primeira demonstração.
+- Fotografias originais íntegros; o servidor local havia parado e as requisições de fotos ainda não carregadas eram recusadas. Prévia restabelecida em processo separado e todas as fotos conferidas por carregamento real.

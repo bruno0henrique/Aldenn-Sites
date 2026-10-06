@@ -1,6 +1,6 @@
 # Aurora Noivas
 
-Versão **0.2.1**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
+Versão **0.3.0**. Demonstração fictícia independente, com paleta rosé e ameixa, vestidos ilustrativos e contato da Aldenn.
 
 ## Desenvolvimento e prévia
 
@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Acesse `http://127.0.0.1:5184/demonstracao-aurora-noivas/`.
+Acesse `http://127.0.0.1:5184/demonstracao-noiva-dois/`.
 Para verificar exatamente o produto exportado:
 
 ```bash
@@ -62,6 +62,6 @@ A infraestrutura de sequência e seus testes foram preservados da base, mas não
 
 ## Histórico e publicação
 
-Fontes iniciais recuperados do commit `d9450af5d4952e4b7d29b213a9fd70f2f6979f8d`, sem restaurar arquivos removidos de outros projetos. A entrega atual é uma prévia local. Não foi realizado deploy público. Requisitos e decisões estão em `../docs/aurora-noivas/README.md`.
+Fontes iniciais recuperados do commit `d9450af5d4952e4b7d29b213a9fd70f2f6979f8d`, sem restaurar arquivos removidos de outros projetos. O usuário autorizou a publicação em `https://www.aldenn.com.br/demonstracao-noiva-dois/`. O institucional Aldenn recebe a exportação de `out/` em `public/demonstracao-noiva-dois/`, com rewrite e acesso pelo menu Modelos. A primeira demonstração permanece em `/demonstracao-noiva`. Requisitos e decisões estão em `../docs/aurora-noivas/README.md`.
 
 A medição de desempenho usa Chromium com CPU limitada a quatro vezes o tempo normal, um mapa substituído e uma sequência fixa de rolagem/troca de categorias. Registra quadros e tarefas longas em `output/validation/performance-current.json`. Os números dependem da máquina e não substituem uma verificação no navegador usado pela pessoa.

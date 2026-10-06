@@ -1,6 +1,6 @@
-# Validação — Aurora Noivas 0.2.1
+# Validação — Aurora Noivas 0.3.0
 
-Data: 2026-10-05. Exportação estática Next.js; prévia em `/demonstracao-aurora-noivas/`.
+Data: 2026-10-05. Exportação estática Next.js; prévia em `/demonstracao-noiva-dois/`.
 
 - Lint, TypeScript, nove testes unitários e build de produção aprovados.
 - Oito cenários de navegador: Chromium em 360, 390, 768 e 1440 px; WebKit em 390 e 1440 px; ambos com movimento normal em desktop e rolagem nativa.
@@ -16,7 +16,7 @@ Capturas e relatórios ficam em `../../aurora-noivas/output/validation/`, dispon
 
 Permanecem oito alertas nas dependências da base (Next.js, ferramentas de lint e Sharp), registrados em `output/validation/audit.json`. A revisão dessas dependências deve acompanhar a preparação da publicação; esta entrega mantém o framework existente e utiliza exportação estática.
 
-Nenhum deploy público realizado. Demais projetos e alterações anteriores preservados.
+Publicação solicitada para `https://www.aldenn.com.br/demonstracao-noiva-dois/`, pela integração estática com o repositório institucional. Demais projetos e alterações anteriores preservados.
 
 ## Medição de desempenho
 
@@ -32,3 +32,10 @@ Na amostra desta máquina:
 | Quadros acima de 35 ms | 4 | 0 |
 
 Relatórios locais: `performance-baseline.json` e `performance-current.json`. Na troca de categorias ainda houve picos de até 105 ms com CPU limitada e fotografias carregadas pela primeira vez; esta medição não demonstra melhora nesse cenário. A verificação de funcionamento passou, e os resultados não garantem a mesma taxa de quadros em todo aparelho. A melhoria mais clara foi na rolagem após retirar a inicialização do 3D e o deslocamento artificial da página.
+
+## Verificação da publicação — 0.3.0
+
+- Confirmado: fontes e arquivos exportados contêm os doze WebP íntegros. A falha local era conexão recusada ao servidor de prévia interrompido.
+- Preview em processo separado, com redirecionamento do caminho anterior; requisições de Noivas, Madrinhas, Debutantes e Gala retornam HTTP 200.
+- Oito cenários de navegador conferem `naturalWidth` de cada modelo nas quatro abas, além de seleção, planejador e WhatsApp.
+- Bundle completo copiado para `public/demonstracao-noiva-dois` do institucional; teste verifica imagens e arquivos referenciados no HTML, rota canônica e preservação da primeira rota.

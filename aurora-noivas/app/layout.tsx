@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 const title = "Aurora Noivas | Um vestido com a sua essência";
 const description = "Explore inspirações para noivas, madrinhas, debutantes e gala. Uma experiência editorial fictícia criada pela Aldenn.";
-const route = "/demonstracao-aurora-noivas/";
+const route = "/demonstracao-noiva-dois/";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aldenn.com.br"), title, description,
   alternates: { canonical: route },

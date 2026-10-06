@@ -1,6 +1,6 @@
 import {chromium} from "@playwright/test";
 import {writeFile,mkdir} from "node:fs/promises";
-const url=process.env.AURORA_TEST_URL??"http://127.0.0.1:5184/demonstracao-aurora-noivas/";
+const url=process.env.AURORA_TEST_URL??"http://127.0.0.1:5184/demonstracao-noiva-dois/";
 await mkdir("output/validation",{recursive:true});
 const browser=await chromium.launch({headless:true});
 try{

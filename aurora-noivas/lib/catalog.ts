@@ -1,7 +1,7 @@
 export const categories = ["Noivas", "Madrinhas", "Debutantes", "Gala"] as const;
 export type Category = (typeof categories)[number];
 export type Dress = { id: string; title: string; category: Category; description: string; alt: string; src: string };
-export const basePath = "/demonstracao-aurora-noivas";
+export const basePath = "/demonstracao-noiva-dois";
 const dress = (id: string, title: string, category: Category, description: string, alt: string): Dress => ({ id, title, category, description, alt, src: `${basePath}/media/${id}.webp` });
 export const dresses: Dress[] = [
  dress("noiva-jasmim", "Jasmim", "Noivas", "Renda floral, mangas delicadas e uma saia que acompanha o seu sim.", "Modelo de pele escura e cabelo cacheado com vestido de noiva em renda e saia ampla"),
