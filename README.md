@@ -31,3 +31,7 @@ Modelo demonstrativo para lojas e ateliês de noivas em `modelo-noivas/`. Public
 ## Aurora Noivas
 
 Demonstração fictícia independente em `aurora-noivas/`, com paleta rosé e ameixa e doze modelos organizados em Noivas, Madrinhas, Debutantes e Gala. [Desenvolvimento e prévia local](aurora-noivas/README.md) · [Requisitos aprovados](docs/aurora-noivas/README.md). Destino público autorizado: https://www.aldenn.com.br/demonstracao-noiva-dois/.
+
+## Novo catálogo FF Moda Festa
+
+Projeto independente em `ff-catalogo/`, criado do zero para locação. Oito vestidos reais, fotografias oficiais, filtros, páginas individuais, WhatsApp e loja física. [Desenvolvimento](ff-catalogo/README.md) · [Requisitos e fontes](docs/ff-catalogo/README.md). Prévia local: http://127.0.0.1:5186/. Os modelos anteriores permanecem preservados.

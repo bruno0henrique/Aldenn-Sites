@@ -1,5 +1,12 @@
 # Histórico de versões
 
+## [0.83.0] - 2026-10-06
+
+- FF Catálogo 0.1.0: novo projeto independente de locação com direção editorial baseada na Viva Dress.
+- Oito vestidos e dez fotografias reais da FF, busca, filtros, páginas individuais e WhatsApp contextual.
+- Loja física e mapa com informações verificadas; estrutura de venda futura desativada.
+- Modelos anteriores preservados; entrega em prévia local.
+
 ## [0.81.0] - 2026-10-05
 
 - Aurora Noivas 0.3.0: nova rota `/demonstracao-noiva-dois` para publicação no site da Aldenn.
