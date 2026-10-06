@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowLeft, Camera } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -30,7 +30,7 @@ export default function ProductPage() {
           <a className="back-link" href="/">
             <ArrowLeft size={18} /> Voltar
           </a>
-          <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+          <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
         </nav>
         <div
           className="catalog-empty"
@@ -51,7 +51,7 @@ export default function ProductPage() {
         <a className="back-link" href="/">
           <ArrowLeft size={18} /> Voltar
         </a>
-        <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+        <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
       </nav>
       <article className="product-detail">
         <div className="product-detail-grid">
@@ -78,7 +78,7 @@ export default function ProductPage() {
           </div>
           <div className="product-info">
             <span className="eyebrow">
-              {product.category || 'Belleland Closet'}
+              {product.category || 'Veloura Closet'}
             </span>
             <h1>{product.name}</h1>
             {product.sale_price_cents ? (
@@ -97,22 +97,11 @@ export default function ProductPage() {
             )}
             <p className="product-note">
               Site demonstrativo. Fotos e preços mostram como ficará o catálogo;
-              a Belleland ainda não realiza vendas ou reservas.
+              a Veloura ainda não realiza vendas ou reservas.
             </p>
             <a className="button-pop button-primary full" href="/#colecao">
               Voltar à coleção
             </a>
-            {product.instagram_url && (
-              <a
-                className="back-link"
-                style={{ marginTop: 18 }}
-                href={product.instagram_url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Camera size={17} /> Ver publicação original
-              </a>
-            )}
           </div>
         </div>
       </article>

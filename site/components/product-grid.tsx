@@ -41,14 +41,12 @@ export function ProductGrid({
             ? 'Tente buscar por outro nome ou categoria.'
             : emptyCategory
               ? 'Em breve teremos novidades nessa categoria.'
-              : 'A primeira seleção Belleland está sendo preparada com carinho.'}
+              : 'A primeira seleção Veloura está sendo preparada com carinho.'}
         </p>
         <a
-          href="https://instagram.com/bellelandcloset"
-          target="_blank"
-          rel="noreferrer"
+          href="/sobre"
         >
-          Acompanhar no Instagram <ArrowRight size={16} />
+          Conhecer a proposta <ArrowRight size={16} />
         </a>
       </div>
     );

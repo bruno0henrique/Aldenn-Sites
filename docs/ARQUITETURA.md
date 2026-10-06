@@ -2,7 +2,7 @@
 
 ## Fluxo
 
-1. O botão Atualizar executa o scraper protegido e procura publicações ainda não registradas de `@bellelandcloset`.
+1. O botão Atualizar executa o scraper protegido e procura publicações ainda não registradas no perfil definido em `INSTAGRAM_PROFILE`; sem essa variável, a integração permanece desativada.
 2. As imagens são copiadas para o bucket público `product-media` com caminhos UUID.
 3. A captura entra em `pending_review`; nada é publicado automaticamente.
 4. A proprietária ou uma conta administradora escolhe capa e fotos, revisa os dados e informa o preço.

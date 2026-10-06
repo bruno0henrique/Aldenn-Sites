@@ -24,7 +24,7 @@ export default function DemoPage() {
     <main className="min-h-screen overflow-hidden bg-cream text-cocoa demo-storefront">
       <header className="brand-header demo-storefront-header">
         <a href="/demo" aria-label="Vitrine de demonstração, início">
-          <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+          <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
         </a>
         <a className="demo-real-link" href="/">Ver loja real</a>
       </header>
@@ -79,7 +79,7 @@ export default function DemoPage() {
         </div>
       </section>
       <footer className="demo-footer">
-        <span>Belleland Closet · prévia com conteúdo ilustrativo</span>
+        <span>Veloura Closet · prévia com conteúdo ilustrativo</span>
         <a href="/">Voltar à loja real</a>
       </footer>
     </main>

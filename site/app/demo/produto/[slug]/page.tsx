@@ -15,7 +15,7 @@ export default function DemoProductPage() {
         <a className="back-link" href="/demo#colecao">
           <ArrowLeft size={18} /> Voltar à demonstração
         </a>
-        <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+        <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
       </nav>
       <div className="demo-notice" role="note">
         <strong>Demonstração</strong>

@@ -2,7 +2,7 @@
 
 Versão documental: 0.29.0 • Data: 17/09/2026 • Estado: demonstração implementada e publicada.
 
-O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Belleland Closet e permanece independente.
+O site da Taeko é uma aplicação independente em `taeko/` e sua demonstração pública fica em `https://aldenn.com.br/demonstracao-taeko`. O aplicativo existente em `site/` pertence à Veloura Closet e permanece independente.
 
 O cabeçalho fixo se recolhe quando a visitante avança pela página e reaparece ao rolar para cima ou retornar ao início, preservando mais espaço para as fotografias e o conteúdo no celular.
 
@@ -66,7 +66,7 @@ Com o Instagram fornecido, a redação preferencial passa a ser **“O seu sonho
 
 A seleção principal continua focada em noivas. Debutantes e madrinhas podem aparecer como caminhos secundários, caso a oferta seja confirmada. Miss, Bromélia e CasaBlanca não viram páginas ou coleções por inferência. Propor uma seção “Noivas Taeko” com fotografias autorizadas de clientes, sem inventar depoimentos, avaliações ou nomes. Os prints servem para planejar essa seleção; solicitar os arquivos originais para exibição em boa qualidade.
 
-O caminho de conversão proposto é contato com a loja. Não há solicitação de carrinho, checkout, conta de cliente, painel administrativo ou integração com banco de dados. Não transportar funcionalidades nem dados da Belleland para este projeto.
+O caminho de conversão proposto é contato com a loja. Não há solicitação de carrinho, checkout, conta de cliente, painel administrativo ou integração com banco de dados. Não transportar funcionalidades nem dados da Veloura para este projeto.
 
 ## Movimento e rolagem
 
@@ -121,7 +121,7 @@ Se um quadro ainda não chegou, manter o último válido; se houver falha persis
 
 ## Estrutura proposta para implementação
 
-Criar aplicativo próprio para Taeko, com React/Next.js e TypeScript como proposta compatível com o ambiente atual. Local e hospedagem ainda não estão definidos; não usar a implantação da Belleland por inferência.
+Criar aplicativo próprio para Taeko, com React/Next.js e TypeScript como proposta compatível com o ambiente atual. Local e hospedagem ainda não estão definidos; não usar a implantação da Veloura por inferência.
 
 Componentes previstos: `SiteHeader`, `Hero`, `FrameSequenceBackground`, `MotionProvider`, `DressGallery`, `AboutTaeko`, `ContactSection` e `SiteFooter`. Separar conteúdo comercial da configuração de movimento e mídia. Iniciar sem backend, pois nenhuma operação que o exija foi solicitada.
 
@@ -147,7 +147,7 @@ Esses dados não impedem o planejamento; são necessários para concluir conteú
 ## Decisões registradas
 
 - Solicitação confirmada: referência editorial, GSAP, rolagem fluida e preparação para sequência futura.
-- Decisão de organização: planejamento próprio da Taeko, sem modificar o aplicativo Belleland.
+- Decisão de organização: planejamento próprio da Taeko, sem modificar o aplicativo Veloura.
 - Confirmação posterior do usuário: são dois sites distintos; capturas do Instagram fornecem os dados comerciais descritos neste documento.
 - Proposta técnica: ScrollTrigger + ScrollSmoother, sequência em canvas e poster como alternativa permanente.
 - Proposta comercial e visual: página institucional com vestidos e contato; noivas, debutantes e madrinhas aparecem como caminhos de atendimento a partir da solicitação aprovada em 11/09/2026. Paleta e fotografias continuam sujeitas ao material real da marca.

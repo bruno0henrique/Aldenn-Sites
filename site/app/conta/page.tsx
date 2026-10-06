@@ -107,7 +107,7 @@ function AccountPageContent() {
         <a className="back-link" href="/">
           <ArrowLeft size={18} /> Site
         </a>
-        <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+        <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
       </nav>
       <section className="account-shell">
         <header className="account-heading">
@@ -115,7 +115,7 @@ function AccountPageContent() {
             <UserRound />
           </span>
           <div>
-            <p>Sua Belleland</p>
+            <p>Sua Veloura</p>
             <h1>Minha conta</h1>
           </div>
         </header>
@@ -165,7 +165,7 @@ function AccountPageContent() {
                 onChange={(event) => setMarketingOptIn(event.target.checked)}
               />
               <span>
-                Quero receber promoções, novidades e lançamentos da Belleland
+                Quero receber promoções, novidades e lançamentos da Veloura
                 por e-mail.
               </span>
             </label>

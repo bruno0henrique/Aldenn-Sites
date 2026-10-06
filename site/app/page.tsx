@@ -153,7 +153,7 @@ function HomeContent() {
               <span className="search-stage-icon" aria-hidden="true">
                 <Search />
               </span>
-              <p>Pesquisa Belleland</p>
+              <p>Pesquisa Veloura</p>
               <h1 id="search-title">Encontre seu próximo favorito</h1>
               <form className="search-form" onSubmit={submitSearch}>
                 <Search aria-hidden="true" />

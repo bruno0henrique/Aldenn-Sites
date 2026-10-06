@@ -2,14 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import {
-  Camera,
+  CircleHelp,
   ChevronDown,
   ClipboardCheck,
   Home,
   LayoutDashboard,
   LogIn,
   Menu,
-  MessageCircle,
   Search,
   Shirt,
   Sparkles,
@@ -19,7 +18,6 @@ import { useState } from 'react';
 import { getAccountSnapshot, isStaff } from '@/lib/account';
 import { getCatalogCategories } from '@/lib/catalog';
 import { withSampleCategories } from '@/lib/demo-catalog';
-import { whatsappUrl } from '@/lib/whatsapp';
 import {
   Collapsible,
   CollapsibleContent,
@@ -61,8 +59,8 @@ export function BrandHeader() {
           aria-label="Menu principal"
         >
           <div className="drawer-brand">
-            <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
-            <SheetTitle>Menu Belleland</SheetTitle>
+            <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
+            <SheetTitle>Menu Veloura</SheetTitle>
             <SheetDescription>
               Navegue pelo catálogo e fale com a gente.
             </SheetDescription>
@@ -123,28 +121,15 @@ export function BrandHeader() {
               </>
             )}
           </nav>
-          <div className="drawer-contact">
-            <a
-              href="https://instagram.com/bellelandcloset"
-              target="_blank"
-              rel="noreferrer"
-              onClick={close}
-            >
-              <Camera /> Instagram
-            </a>
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noreferrer"
-              onClick={close}
-            >
-              <MessageCircle /> WhatsApp
-            </a>
+          <div className="drawer-contact" aria-label="Contato">
+            <span>
+              <CircleHelp /> Canais em definição
+            </span>
           </div>
         </SheetContent>
       </Sheet>
-      <a href="/" aria-label="Belleland Closet, início">
-        <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+      <a href="/" aria-label="Veloura Closet, início">
+        <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
       </a>
       <div className="header-actions">
         <a className="icon-button" href="/?busca=" aria-label="Pesquisar">
@@ -152,12 +137,10 @@ export function BrandHeader() {
         </a>
         <a
           className="icon-button"
-          href={whatsappUrl()}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Falar pelo WhatsApp"
+          href="/#fale-com-a-gente"
+          aria-label="Informações de contato"
         >
-          <MessageCircle />
+          <CircleHelp />
         </a>
       </div>
     </header>

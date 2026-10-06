@@ -5,7 +5,7 @@
 - Data: 2026-09-01
 - Estado: Aprovada
 - Decidido por: Cliente
-- Contexto: Qualquer visitante pode criar conta, enquanto apenas a dona da Belleland precisa acessar a curadoria.
+- Contexto: Qualquer visitante pode criar conta, enquanto apenas a dona da Veloura precisa acessar a curadoria.
 - Decisão: Permitir cadastro por e-mail para visitantes, registrar consentimento promocional e limitar `staff_members` a uma única proprietária.
 - Motivo: Separar relacionamento com clientes da autorização administrativa.
 - Impactos: Contas comuns retornam ao catálogo após entrar. Somente a conta presente em `staff_members` acessa e publica no painel.
@@ -95,7 +95,7 @@
 - Decidido por: Cliente
 - Contexto: A referência aprovada usa menu lateral com tópicos, banners e carrosséis próximos, sem blocos soltos ou grandes espaços.
 - Decisão: Usar menu lateral completo, filtro compacto, carrosséis por categoria e banners vinculados a produtos publicados. Categorias e banners são organizados na área Vitrine do painel.
-- Motivo: Aproximar a navegação da referência mantendo a estética Belleland e a reserva pelo WhatsApp.
+- Motivo: Aproximar a navegação da referência mantendo a estética Veloura e a reserva pelo WhatsApp.
 - Impactos: `Novidades` é automática. Categorias podem ser ocultadas sem remover produtos. Banners nunca usam uploads independentes.
 - Substitui: Os quatro blocos fixos de categoria da página inicial.
 
@@ -183,7 +183,7 @@
 - Decidido por: Cliente
 - Contexto: O primeiro rodapé informativo ocupava espaço demais e sua cor escura se afastava do rosa usado pela marca.
 - Decisão: Reduzir drasticamente o rodapé, usar o rosa principal com texto escuro de alto contraste e manter apenas acessos compactos para Sobre, Contato, Ajuda e conta. O conteúdo institucional passa para uma página Sobre dedicada.
-- Motivo: Encerrar a página sem competir com os produtos e preservar a identidade visual da Belleland.
+- Motivo: Encerrar a página sem competir com os produtos e preservar a identidade visual da Veloura.
 - Impactos: A página inicial perde o bloco institucional grande. O ícone de conta aparece depois do texto e `/sobre` concentra a explicação da marca e do atendimento.
 - Substitui: Parte do rodapé definida na DEC-016; a pesquisa dedicada permanece válida.
 
@@ -204,7 +204,7 @@
 - Estado: Aprovada
 - Decidido por: Cliente
 - Contexto: Os três blocos em formato de caixa deixavam a página Sobre fragmentada e com aparência artificial.
-- Decisão: Manter a apresentação principal à esquerda e substituir os três blocos por um único texto natural à direita sobre a ideia, a proposta e o atendimento da Belleland.
+- Decisão: Manter a apresentação principal à esquerda e substituir os três blocos por um único texto natural à direita sobre a ideia, a proposta e o atendimento da Veloura.
 - Motivo: Criar uma leitura mais simples, humana e coerente com a identidade editorial do site.
 - Impactos: A página Sobre deixa de usar cartões informativos e passa a ter uma composição limpa em duas colunas no desktop e sequencial no celular.
 - Substitui: A composição inicial da página Sobre criada na DEC-017.
@@ -257,9 +257,9 @@
 - Data: 2026-09-19
 - Estado: Aprovada
 - Decidido por: Cliente
-- Contexto: Uma ligação local incorreta publicou a Belleland no projeto Vercel do site institucional da Aldenn.
+- Contexto: Uma ligação local incorreta publicou a Veloura no projeto Vercel do site institucional da Aldenn.
 - Decisão: Vincular este repositório exclusivamente ao projeto Vercel `aldenn-sites` e manter `.vercel` fora do versionamento.
-- Motivo: Impedir que uma publicação da Belleland substitua `aldenn.com.br` ou outras rotas institucionais.
+- Motivo: Impedir que uma publicação da Veloura substitua `aldenn.com.br` ou outras rotas institucionais.
 - Impactos: Publicações locais deste repositório usam o projeto `aldenn-sites`; o site institucional permanece isolado no projeto `aldenn`.
 - Substitui: Não se aplica.
 
@@ -268,13 +268,13 @@
 - Data: 2026-09-19
 - Estado: Aprovada
 - Decidido por: Cliente
-- Contexto: Uma nova publicação da Belleland voltou a substituir a página inicial de `aldenn.com.br`, apesar da correção do vínculo local.
-- Decisão: Reservar permanentemente `aldenn.com.br` e a raiz `/` ao site institucional da Aldenn. Projetos de clientes e demonstrações só podem aparecer em projetos separados ou em caminhos posteriores à raiz. O build da Belleland deve falhar quando executado fora do projeto Vercel `aldenn-sites`.
+- Contexto: Uma nova publicação da Veloura voltou a substituir a página inicial de `aldenn.com.br`, apesar da correção do vínculo local.
+- Decisão: Reservar permanentemente `aldenn.com.br` e a raiz `/` ao site institucional da Aldenn. Projetos de clientes e demonstrações só podem aparecer em projetos separados ou em caminhos posteriores à raiz. O build da Veloura deve falhar quando executado fora do projeto Vercel `aldenn-sites`.
 - Motivo: Impedir que um vínculo local incorreto volte a substituir o site principal.
-- Impactos: Publicações da Belleland validam o ID do projeto antes do build; `aldenn` permanece como projeto exclusivo do site institucional.
+- Impactos: Publicações da Veloura validam o ID do projeto antes do build; `aldenn` permanece como projeto exclusivo do site institucional.
 - Substitui: Complementa a DEC-024.
 
-## DEC-026: Amostras isoladas para validar a vitrine Belleland
+## DEC-026: Amostras isoladas para validar a vitrine Veloura
 
 - Data: 2026-09-21
 - Estado: Aprovada
@@ -301,8 +301,19 @@
 - Data: 2026-09-22
 - Estado: Aprovada
 - Decidido por: Cliente
-- Contexto: A Belleland ainda não vende e todas as peças exibidas servem à avaliação visual do site.
+- Contexto: A Veloura ainda não vende e todas as peças exibidas servem à avaliação visual do site.
 - Decisão: Retirar a identificação individual “Amostra” da vitrine principal. Apresentar um aviso único de site demonstrativo no detalhe de todas as peças, sem botão de reserva. O WhatsApp permanece apenas como canal de contato.
 - Motivo: Evitar separar visualmente peças locais das cadastradas e não sugerir que alguma esteja à venda nesta fase.
 - Impactos: Fotos e preços continuam visíveis para validar a apresentação; peças locais continuam fora do Supabase e não editáveis no painel. A ativação de vendas e reservas exigirá revisão posterior do catálogo e dos textos.
 - Substitui: A identificação individual e a reserva de produtos cadastrados previstas na DEC-027 e nas decisões anteriores para a etapa comercial.
+
+## DEC-029: Identidade integralmente fictícia para a demonstração
+
+- Data: 2026-10-06
+- Estado: Aprovada
+- Decidido por: Cliente
+- Contexto: A demonstração não deve continuar vinculada à identidade, ao telefone ou às redes sociais da cliente original.
+- Decisão: Adotar a marca fictícia Veloura Closet em todo o site e nos materiais da Aldenn, com logotipo e imagem de compartilhamento próprios. Retirar contatos reais e manter integrações sociais desativadas até configuração explícita.
+- Motivo: Transformar o projeto em uma demonstração reutilizável, sem associação pública com a cliente original.
+- Impactos: O domínio técnico `aldenn-sites.vercel.app`, o projeto Vercel `aldenn-sites` e a infraestrutura Supabase permanecem por segurança operacional; seus nomes não são exibidos como marca. Dados de autenticação de usuários não são alterados.
+- Substitui: Referências de marca e contatos presentes nas decisões anteriores; os requisitos funcionais e visuais permanecem.

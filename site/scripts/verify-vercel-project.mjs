@@ -10,7 +10,7 @@ if (!currentProjectId) {
 if (currentProjectId !== ALLOWED_PROJECT_ID) {
   console.error(
     [
-      "Publicacao bloqueada: a Belleland nao pode ser implantada neste projeto Vercel.",
+      "Publicacao bloqueada: a Veloura nao pode ser implantada neste projeto Vercel.",
       `Projeto recebido: ${currentProjectId}`,
       `Projeto permitido: ${ALLOWED_PROJECT_NAME} (${ALLOWED_PROJECT_ID})`,
       "O dominio aldenn.com.br pertence exclusivamente ao site institucional da Aldenn.",

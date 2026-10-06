@@ -180,5 +180,5 @@
 - Estrutura da página, proposta de animações GSAP e rolagem suave responsiva.
 - Contrato de mídia e estratégia para sequência de quadros com poster, carregamento progressivo e controle de memória.
 - Etapas de implementação, critérios de aceite e materiais necessários.
-- Entrega documental independente do aplicativo Belleland existente.
+- Entrega documental independente do aplicativo Veloura existente.
 - Dados do Instagram fornecido incorporados com rastreabilidade: confecção sob medida, 40 anos informados na bio, contato e endereço; proposta de curadoria de fotografias reais.

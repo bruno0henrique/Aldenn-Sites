@@ -1,16 +1,16 @@
-# Requisitos aprovados: Belleland Closet
+# Requisitos aprovados: Veloura Closet
 
-Versão: 0.25.6
+Versão: 0.26.0
 
-- Site mobile-first de demonstração do catálogo de roupas, sem checkout, venda ou reserva enquanto a Belleland não iniciar as vendas.
-- A Belleland é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
-- Visual claro, criativo e fiel às referências da Belleland.
-- A marca principal usa o SVG enviado pela cliente em 2026-09-02, preservado como vetor e com a prancheta ajustada para os cabeçalhos.
+- Site mobile-first de demonstração do catálogo de roupas, sem checkout, venda ou reserva enquanto a Veloura não iniciar as vendas.
+- A Veloura é publicada somente no projeto Vercel `aldenn-sites`; o domínio `aldenn.com.br` e a raiz `/` pertencem exclusivamente ao site institucional da Aldenn.
+- Visual claro, criativo e fiel às referências da Veloura.
+- A marca demonstrativa usa o nome fictício Veloura Closet e um logotipo vetorial próprio, mantendo a estética rosa e editorial.
 - Paleta principal: `#F8E8A6`, `#E73F8C`, `#7B4F3F`, `#F7F1EA`.
 - Fontes: Playfair Display para títulos e Instrument Sans para interface e textos.
-- Produtos abrem em página própria. O WhatsApp `(12) 98107-3663` é apenas um canal de contato nesta fase.
-- A página inicial apresenta um bloco compacto com Instagram `@bellelandcloset` e WhatsApp `(12) 98107-3663`; o e-mail será incluído após a definição do endereço profissional.
-- O menu principal ocupa a lateral e apresenta início, First Drop, produtos por categoria, conta, áreas administrativas autorizadas, Instagram e WhatsApp.
+- Produtos abrem em página própria, sem canal de compra ou reserva nesta fase.
+- A página inicial não publica telefone, e-mail, usuário de rede social ou outro contato real. Os canais serão definidos antes do lançamento.
+- O menu principal ocupa a lateral e apresenta início, First Drop, produtos por categoria, conta e áreas administrativas autorizadas.
 - A lista de produtos do menu inicia recolhida e abre somente após o toque, com transição sutil e respeito à redução de movimento.
 - A página inicial mostra o carrossel de novidades antes do filtro. Abaixo do filtro, exibe somente a coleção selecionada em grade de duas peças por linha no celular.
 - Hero First Drop e Novidades aparecem somente na tela principal. Ao selecionar Todos ou uma categoria pelo filtro ou menu, a visualização começa diretamente na coleção.
@@ -25,8 +25,8 @@ Versão: 0.25.6
 - A área Vitrine centraliza a gestão do carrossel de chegada, do carrossel de Novidades e dos tópicos de produtos exibidos no menu lateral.
 - Os tópicos de produtos do menu podem ser adicionados, renomeados, ordenados e ocultados pela gestão de categorias.
 - `Novidades` permite selecionar, ordenar, ocultar e remover produtos. Enquanto nenhuma seleção manual existir, usa automaticamente os produtos mais recentes.
-- A infraestrutura de mensagem de reserva com nome, preço e link público fica inativa enquanto o site for demonstrativo; o WhatsApp permanece como contato geral.
-- Instagram `@bellelandcloset` é fonte de captura sob demanda. Ao clicar em Atualizar, publicações ainda não registradas entram na fila, sem exigir hashtag.
+- A infraestrutura de mensagem de reserva fica inativa enquanto o site for demonstrativo.
+- A captura sob demanda do Instagram só é habilitada quando um perfil for configurado por variável de ambiente; nenhum perfil real fica gravado no código.
 - Um post representa um produto; imagens de carrossel representam fotos da mesma peça.
 - Durante a fase demonstrativa em `aldenn-sites.vercel.app`, as dez peças locais aparecem junto das peças cadastradas, sem rótulo individual de amostra; nenhuma peça pode ser comprada ou reservada. Um aviso uniforme no detalhe explica que fotos e preços servem para visualizar o catálogo. Antes de iniciar vendas, substituir peças e dados fictícios. Sem itens, exibir “Em breve, novos produtos”.
 - Proprietária e administradores entram com e-mail e senha via Supabase e revisam capturas antes de publicar.

@@ -14,7 +14,7 @@ from pathlib import Path
 import instaloader
 import requests
 
-PROFILE = "bellelandcloset"
+PROFILE = os.getenv("INSTAGRAM_PROFILE", "").strip()
 BUCKET = "product-media"
 
 
@@ -99,6 +99,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Captura novos posts do Instagram para revisão.")
     parser.add_argument("--full", action="store_true", help="Percorre todos os posts e sinaliza fontes removidas.")
     args = parser.parse_args()
+    if not PROFILE:
+        raise RuntimeError("Defina INSTAGRAM_PROFILE antes de sincronizar publicações.")
     settings = Settings.from_env()
     api = SupabaseRest(settings)
     posts = instaloader.Profile.from_username(loader(settings).context, PROFILE).get_posts()

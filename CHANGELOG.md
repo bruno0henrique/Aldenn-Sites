@@ -1,17 +1,26 @@
 # Histórico de versões
 
+## [0.82.0] - 2026-10-06
+
+### Alterado
+
+- A antiga identidade foi substituída integralmente pela marca fictícia Veloura Closet no site, painel, metadados, documentação e mensagens de conta.
+- Novo logotipo vetorial e nova imagem de compartilhamento preservam a estética rosa e editorial da demonstração.
+- Telefone, WhatsApp, perfil do Instagram e links de origem reais deixaram de ser expostos; os canais de contato ficam como “em definição”.
+- A integração opcional com Instagram exige `INSTAGRAM_PROFILE` e permanece desligada sem configuração explícita.
+
 ## [0.63.4] - 2026-09-22
 
 ### Alterado
 
 - A vitrine demonstrativa não diferencia as peças locais com o rótulo “Amostra”; o detalhe usa o mesmo aviso para todas e não oferece reserva.
-- Textos do destaque, da página Sobre e da prévia separada deixam claro que a Belleland ainda não vende.
+- Textos do destaque, da página Sobre e da prévia separada deixam claro que a Veloura ainda não vende.
 
 ## [0.63.3] - 2026-09-21
 
 ### Alterado
 
-- O ambiente de teste Belleland mostra as dez amostras junto dos produtos reais na página inicial, em Novidades, no carrossel de chegada, na busca e nos filtros.
+- O ambiente de teste Veloura mostra as dez amostras junto dos produtos reais na página inicial, em Novidades, no carrossel de chegada, na busca e nos filtros.
 - Amostras são identificadas e abrem detalhes sem reserva; os três produtos reais e o Supabase permanecem intactos.
 
 ## [0.63.2] - 2026-09-21
@@ -24,7 +33,7 @@
 
 ### Adicionado
 
-- Belleland recebe dez peças ilustrativas no modo demonstração para testar a grade, o filtro, Novidades e o carrossel de chegada.
+- Veloura recebe dez peças ilustrativas no modo demonstração para testar a grade, o filtro, Novidades e o carrossel de chegada.
 - Prévia independente em `/demo`, com detalhes demonstrativos sem reserva e aviso visível de conteúdo fictício.
 
 ### Segurança
@@ -60,7 +69,7 @@
 ### Corrigido
 
 - Site institucional da Aldenn restaurado como produção de `aldenn.com.br` e `www.aldenn.com.br`.
-- Build da Belleland passa a bloquear publicações direcionadas a qualquer projeto Vercel diferente de `aldenn-sites`.
+- Build da Veloura passa a bloquear publicações direcionadas a qualquer projeto Vercel diferente de `aldenn-sites`.
 
 ### Decisão
 
@@ -110,7 +119,7 @@
 ### Corrigido
 
 - Vínculo local da Vercel movido do projeto institucional `aldenn` para o projeto correto `aldenn-sites`.
-- Diretório `.vercel` ignorado e destino de publicação documentado para evitar que a Belleland substitua novamente o site institucional.
+- Diretório `.vercel` ignorado e destino de publicação documentado para evitar que a Veloura substitua novamente o site institucional.
 
 ## [0.58.1] - 2026-09-18
 
@@ -446,7 +455,7 @@
 ### Alterado
 
 - Página Sobre simplificada para duas áreas de texto, sem caixas auxiliares.
-- A proposta da Belleland ganhou uma explicação mais natural e direta.
+- A proposta da Veloura ganhou uma explicação mais natural e direta.
 
 ## [0.23.1] - 2026-09-04
 
@@ -459,7 +468,7 @@
 
 ### Adicionado
 
-- Página Sobre dedicada, com apresentação da Belleland e explicação do processo de consulta e reserva.
+- Página Sobre dedicada, com apresentação da Veloura e explicação do processo de consulta e reserva.
 
 ### Alterado
 
@@ -611,7 +620,7 @@
 
 ### Adicionado
 
-- Bloco compacto de contato na página inicial com Instagram e WhatsApp da Belleland.
+- Bloco compacto de contato na página inicial com Instagram e WhatsApp da Veloura.
 - A estrutura visual permite incluir o e-mail profissional quando o endereço for definido.
 
 ## [0.12.4] - 2026-09-02
@@ -769,13 +778,13 @@
 
 ### Corrigido
 
-- Endereços antigos da Vercel agora redirecionam para o domínio ativo da Belleland.
+- Endereços antigos da Vercel agora redirecionam para o domínio ativo da Veloura.
 
 ## [0.5.0] - 2026-09-01
 
 ### Adicionado
 
-- Conexão do site com o projeto Supabase da Belleland.
+- Conexão do site com o projeto Supabase da Veloura.
 - Cadastro e login para contas comuns, com redirecionamento separado da proprietária.
 - Consentimento promocional e perfil persistido automaticamente no banco.
 - Sessões em cookies com `@supabase/ssr` e atualização no proxy.
@@ -815,7 +824,7 @@
 
 ### Adicionado
 
-- Mockup funcional e responsivo da Belleland Closet, fiel à identidade aprovada.
+- Mockup funcional e responsivo da Veloura Closet, fiel à identidade aprovada.
 - Catálogo público, página individual de produto e reserva pelo WhatsApp.
 - Login Supabase por e-mail e senha para a proprietária.
 - Painel de curadoria com revisão de imagens, edição, preço, publicação otimista e restauração.

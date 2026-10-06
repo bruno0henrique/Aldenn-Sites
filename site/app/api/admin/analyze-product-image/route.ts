@@ -23,7 +23,7 @@ const ProductImageAnalysis = z.object({
   warnings: z.array(z.string().max(180)).max(5),
 });
 
-const ANALYSIS_INSTRUCTIONS = `Você é a barreira de qualidade do catálogo de roupas femininas da Belleland Closet.
+const ANALYSIS_INSTRUCTIONS = `Você é a barreira de qualidade do catálogo de roupas femininas da Veloura Closet.
 
 Primeiro classifique o assunto principal da imagem em catalog_classification:
 - clothing: existe uma peça de roupa clara como produto principal. Exemplos aceitos: blusa, top, camiseta, body, cropped, vestido, saia, shorts, calça, conjunto, corset, jaqueta, cardigan, moda praia e saída de praia.
@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
     if (analysis.catalog_classification !== 'clothing') {
       const error =
         analysis.catalog_classification === 'not_clothing'
-          ? 'A imagem não mostra uma peça de roupa. Escolha uma foto ou arte de produto da Belleland.'
+          ? 'A imagem não mostra uma peça de roupa. Escolha uma foto ou arte de produto da Veloura.'
           : 'Não foi possível identificar uma peça de roupa com segurança. Escolha uma imagem mais clara do produto.';
       return json({ error }, 422);
     }

@@ -1,6 +1,6 @@
-# Fotos da vitrine de demonstração Belleland
+# Fotos da vitrine de demonstração Veloura
 
-As dez imagens abaixo são ilustrativas e não representam estoque da Belleland. Os nomes e preços são fictícios. Cópias locais otimizadas das fotos ficam em `site/public/demo/`. As peças aparecem junto das cadastradas na vitrine demonstrativa, além da prévia `/demo`; não são salvas no Supabase nem editáveis pelo painel. Nenhuma peça está disponível para compra ou reserva nesta fase, conforme aviso uniforme no detalhe. Retirar ou substituir estas peças antes de iniciar vendas.
+As dez imagens abaixo são ilustrativas e não representam estoque da Veloura. Os nomes e preços são fictícios. Cópias locais otimizadas das fotos ficam em `site/public/demo/`. As peças aparecem junto das cadastradas na vitrine demonstrativa, além da prévia `/demo`; não são salvas no Supabase nem editáveis pelo painel. Nenhuma peça está disponível para compra ou reserva nesta fase, conforme aviso uniforme no detalhe. Retirar ou substituir estas peças antes de iniciar vendas.
 
 Licença: https://www.pexels.com/license/ (uso gratuito em sites; não atribuir endosso dos modelos à loja).
 

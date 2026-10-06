@@ -1,16 +1,16 @@
 # Projetos de clientes: Aldenn Sites
 
-Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/`. A vitrine real da FF Moda Festa é mantida no projeto independente `modelo-moda-festa/`.
+Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Veloura Closet. A demonstração da Taeko Noivas fica em `taeko/`. O modelo fictício Maison Amora fica em `modelo-noivas/`. A vitrine real da FF Moda Festa é mantida no projeto independente `modelo-moda-festa/`.
 
-## Belleland Closet
+## Veloura Closet
 
 ### Publicação na Vercel
 
 Este repositório deve ser vinculado exclusivamente ao projeto Vercel `aldenn-sites` (`prj_71WVeaHZOX71NTKImubStZU34NHv`). O projeto `aldenn` pertence ao site institucional e não pode receber publicações deste repositório.
 
-O build da Belleland valida automaticamente o ID do projeto e é interrompido caso seja direcionado a qualquer projeto diferente de `aldenn-sites`. `aldenn.com.br` e a rota `/` são exclusivos do site principal da Aldenn; demonstrações devem usar caminhos posteriores ou projetos isolados.
+O build da Veloura valida automaticamente o ID do projeto e é interrompido caso seja direcionado a qualquer projeto diferente de `aldenn-sites`. `aldenn.com.br` e a rota `/` são exclusivos do site principal da Aldenn; demonstrações devem usar caminhos posteriores ou projetos isolados.
 
-Catálogo mobile-first de roupas com reserva direcionada ao WhatsApp e painel de revisões integrado ao Supabase.
+Vitrine demonstrativa mobile-first de moda feminina, sem vendas ou contatos reais, com painel de revisões integrado ao Supabase.
 
 ## Desenvolvimento
 
@@ -28,7 +28,7 @@ Antes de criar ou implementar funcionalidades, revise a [base de projeto para cl
 
 Os documentos dessa pasta são modelos de referência. Somente requisitos preenchidos, revisados e aprovados passam a orientar a implementação.
 
-Os requisitos aprovados da Belleland estão em [docs/REQUISITOS-APROVADOS.md](docs/REQUISITOS-APROVADOS.md).
+Os requisitos aprovados da Veloura estão em [docs/REQUISITOS-APROVADOS.md](docs/REQUISITOS-APROVADOS.md).
 
 ## Taeko Noivas
 

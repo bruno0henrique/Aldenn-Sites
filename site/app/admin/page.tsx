@@ -40,9 +40,9 @@ const tabs = [
 
 const demoCapture: Capture = {
   id: -1,
-  instagram_shortcode: 'demo-belleland',
-  source_url: 'https://www.instagram.com/bellelandcloset/',
-  proposed_name: 'Peça de teste Belleland',
+  instagram_shortcode: 'demo-veloura',
+  source_url: '',
+  proposed_name: 'Peça de teste Veloura',
   proposed_description:
     'Captura de demonstração para testar as revisões antes da conexão com o Supabase.',
   proposed_category: 'Novidades',
@@ -52,7 +52,7 @@ const demoCapture: Capture = {
   capture_media: [
     {
       id: -11,
-      public_url: '/brand/dear-belle-girl.jpeg',
+      public_url: '/brand/editorial-model.jpeg',
       decision: 'primary',
       source_position: 0,
     },
@@ -138,7 +138,7 @@ function AdminPageContent() {
   const demoProducts: Product[] = demoPublished.map((capture) => ({
     id: capture.id,
     slug: `demo-${capture.id}`,
-    name: capture.proposed_name || 'Peça Belleland',
+    name: capture.proposed_name || 'Peça Veloura',
     description: capture.proposed_description,
     category: capture.proposed_category,
     price_cents: capture.price_cents || 0,
@@ -334,7 +334,7 @@ function AdminPageContent() {
     <main className="admin-page">
       <header className="admin-header">
         <a href="/">
-          <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+          <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
         </a>
         <div>
           <a className="admin-site-link" href={previewMode ? '/demo' : '/'} target="_blank">

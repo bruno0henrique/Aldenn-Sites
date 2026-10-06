@@ -60,11 +60,9 @@ export function ProductCarousel({
           </h3>
           <p>Em breve teremos novidades nessa categoria.</p>
           <a
-            href="https://instagram.com/bellelandcloset"
-            target="_blank"
-            rel="noreferrer"
+            href="/sobre"
           >
-            Acompanhar no Instagram <ArrowRight size={16} />
+            Conhecer a proposta <ArrowRight size={16} />
           </a>
         </div>
       </section>
@@ -75,7 +73,7 @@ export function ProductCarousel({
     <section className="product-rail" aria-labelledby={`rail-${title}`}>
       <div className="rail-heading">
         <div>
-          <span>Seleção Belleland</span>
+          <span>Seleção Veloura</span>
           <h2 id={`rail-${title}`}>{title}</h2>
         </div>
         {helpHref && <a href={helpHref}>Precisa de ajuda?</a>}

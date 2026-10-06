@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 210" role="img" aria-labelledby="title desc">
+  <title id="title">Veloura Closet</title>
+  <desc id="desc">Logotipo rosa da marca fictícia Veloura Closet</desc>
+  <g fill="none" stroke="#e73f8c" stroke-linecap="round">
+    <path d="M64 58c10-22 25-33 46-35-12 9-18 22-18 39 13-14 29-20 48-18-17 8-29 20-36 36" stroke-width="6"/>
+    <path d="M501 42l5 15 15 5-15 5-5 15-5-15-15-5 15-5 5-15Z" stroke-width="4"/>
+    <path d="M546 82l3 9 9 3-9 3-3 9-3-9-9-3 9-3 3-9Z" stroke-width="3"/>
+  </g>
+  <text x="310" y="126" text-anchor="middle" fill="#e73f8c" font-family="'Playfair Display', Georgia, serif" font-size="94" font-weight="700" font-style="italic" letter-spacing="-4">Veloura</text>
+  <text x="315" y="174" text-anchor="middle" fill="#7b4f3f" font-family="'Instrument Sans', Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="12">CLOSET</text>
+</svg>

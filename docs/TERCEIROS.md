@@ -1,7 +1,7 @@
 # Componentes de terceiros
 
 - GSAP 3.13.0: animações sutis de entrada e elementos decorativos.
-- Uiverse: inspiração visual para o brilho e microinterações dos botões; padrão reimplementado no tema Belleland. Licença MIT.
+- Uiverse: inspiração visual para o brilho e microinterações dos botões; padrão reimplementado no tema Veloura. Licença MIT.
 - Instaloader 4.15.3: leitura sob demanda e não oficial de posts públicos do Instagram. Licença MIT.
 - Supabase: autenticação, PostgreSQL, RLS e Storage.
 - `@supabase/ssr`: sessão Supabase em cookies para navegador, servidor e proxy do Next.js.

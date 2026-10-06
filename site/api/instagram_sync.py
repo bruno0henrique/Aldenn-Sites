@@ -39,6 +39,9 @@ class handler(BaseHTTPRequestHandler):
         if not supabase_url or not api_key:
             self.send_json(503, {"error": "Supabase não configurado no servidor."})
             return
+        if not PROFILE:
+            self.send_json(503, {"error": "Perfil do Instagram ainda não configurado."})
+            return
         if not authorization.startswith("Bearer "):
             self.send_json(401, {"error": "Sessão expirada."})
             return

@@ -1,10 +1,9 @@
 'use client';
 
-import { MessageCircle, Sparkles } from 'lucide-react';
+import { Info, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import type { HomeBanner } from '@/lib/types';
 import { formatPrice } from '@/lib/format';
-import { whatsappUrl } from '@/lib/whatsapp';
 import {
   Carousel,
   CarouselContent,
@@ -127,7 +126,7 @@ function BannerHero({ banner }: { banner: HomeBanner }) {
     ? banner.product.sale_price_cents || banner.product.price_cents
     : null;
   const title = banner.title || banner.product?.name || '';
-  const eyebrow = banner.eyebrow || 'Destaque Belleland';
+  const eyebrow = banner.eyebrow || 'Destaque Veloura';
   const ctaLabel = banner.cta_label || 'Ver peça';
   const ctaUrl =
     banner.cta_url ||
@@ -185,11 +184,9 @@ function DefaultHero({
           ) : (
             <a
               className="button-pop button-outline"
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noreferrer"
+              href="/sobre"
             >
-              <MessageCircle size={18} /> Falar pelo WhatsApp
+              <Info size={18} /> Sobre esta vitrine
             </a>
           )}
         </div>

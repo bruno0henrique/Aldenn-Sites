@@ -79,7 +79,7 @@ function AdminLoginContent() {
         setMarketingOptIn(false);
         setMode('login');
         setMessage(
-          'Conta criada. Confirme seu e-mail para concluir o cadastro e receber novidades da Belleland.',
+          'Conta criada. Confirme seu e-mail para concluir o cadastro e receber novidades da Veloura.',
         );
       } else {
         const { data, error: authError } =
@@ -101,15 +101,15 @@ function AdminLoginContent() {
         <a className="back-link" href="/">
           <ArrowLeft size={18} /> Site
         </a>
-        <img src="/brand/belleland-logo.svg" alt="Belleland Closet" />
+        <img src="/brand/veloura-logo.svg" alt="Veloura Closet" />
       </nav>
       <form className="form-card" onSubmit={submit}>
         <LockKeyhole color="#e73f8c" />
-        <h1>{mode === 'login' ? 'Sua conta Belleland' : 'Criar conta'}</h1>
+        <h1>{mode === 'login' ? 'Sua conta Veloura' : 'Criar conta'}</h1>
         <p>
           {mode === 'login'
-            ? 'Entre na sua conta para acompanhar a Belleland.'
-            : 'Crie sua conta para receber novidades, promoções e lançamentos da Belleland.'}
+            ? 'Entre na sua conta para acompanhar a Veloura.'
+            : 'Crie sua conta para receber novidades, promoções e lançamentos da Veloura.'}
         </p>
         {error && (
           <div className="form-error" role="alert">
@@ -170,7 +170,7 @@ function AdminLoginContent() {
                 onChange={(e) => setMarketingOptIn(e.target.checked)}
               />
               <span>
-                Quero receber promoções, novidades e lançamentos da Belleland
+                Quero receber promoções, novidades e lançamentos da Veloura
                 por e-mail.
               </span>
             </label>
