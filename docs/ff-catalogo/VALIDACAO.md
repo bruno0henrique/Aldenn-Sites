@@ -31,3 +31,7 @@ Check, cinco testes e build aprovados. Banners revisados em 360, 390, 430, 1280 
 ## Revisão 0.2.1
 
 Check, cinco testes e build aprovados. Primeiro banner vermelho carregado em 360, 390, 430 e 1280 px, sem transbordamento; versões específicas corretas. Três banners preservados, vermelho abrindo a página. Rotação automática observada no navegador após espera; botão Pausar manteve o mesmo banner durante espera adicional de sete segundos e passou a exibir Iniciar troca automática. Recorte mobile preserva a imagem inteira do vestido vermelho. Captura v021-vermelho-mobile.png. Movimento reduzido, foco, mouse, toque, visibilidade e presença na tela controlam a rotação no código; não houve emulação de todas essas condições nesta revisão. Sem publicação.
+
+## Revisão 0.2.2
+
+Check, cinco testes e build aprovados. Botão de pausa ausente no DOM; WhatsApp confirmado em rgb(37, 211, 102). Rotação contínua observada mesmo com foco dentro do carrossel. Mobile revisado em 360, 390 e 430 px sem transbordamento. Captura v022-whatsapp-mobile.png. Código usa setInterval de 5000 ms, sem condicionais de pausa por foco, mouse, toque ou visibilidade.

@@ -1,5 +1,9 @@
 # Histórico de versões
 
+## [0.87.0] - 2026-10-06
+
+- FF Catálogo 0.2.2: rotação contínua a cada cinco segundos e botão WhatsApp no verde característico.
+
 ## [0.86.0] - 2026-10-06
 
 - FF Catálogo 0.2.1: abertura vermelha coordenada com a logo e rotação automática dos três banners.

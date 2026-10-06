@@ -55,3 +55,7 @@ Pedido de 2026-10-06 substitui a abertura dividida por banners completos e subst
 ## Ajuste aprovado — 0.2.1
 
 Vermelho primeiro, seguido por lilás e azul. Rotação automática solicitada substitui a decisão manual anterior. Intervalo de seis segundos e controles de pausa/início. Artes e prompt registrados em ARTE-VERMELHA.md.
+
+## Ajuste aprovado — 0.2.2
+
+Pedido direto do usuário substitui os controles de pausa e intervalo anteriores: remover o botão, trocar continuamente a cada cinco segundos e não interromper por interação. Verde do botão flutuante e seu pulso: #25D366. A preferência de movimento reduzido continua desativando as transições CSS, sem interromper a rotação solicitada.

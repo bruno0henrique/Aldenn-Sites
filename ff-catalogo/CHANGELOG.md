@@ -1,5 +1,10 @@
 # Histórico
 
+## [0.2.2] - 2026-10-06
+
+- Botão de pausa removido; carrossel troca continuamente a cada cinco segundos, inclusive durante interação.
+- Botão flutuante WhatsApp em verde #25D366, com pulso correspondente.
+
 ## [0.2.1] - 2026-10-06
 
 - Banner vermelho adicionado primeiro, com tom próximo ao da logo e versões mobile/desktop.

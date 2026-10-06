@@ -1,6 +1,6 @@
 # F&F Moda Festa — novo catálogo
 
-Versão 0.2.1. Projeto independente criado do zero. Não altera Belleland, Aldenn Noivas ou Aurora Noivas.
+Versão 0.2.2. Projeto independente criado do zero. Não altera Belleland, Aldenn Noivas ou Aurora Noivas.
 
 ## Rodar e validar
 
