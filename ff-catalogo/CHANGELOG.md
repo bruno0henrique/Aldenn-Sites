@@ -1,5 +1,12 @@
 # Histórico
 
+## [0.2.0] - 2026-10-06
+
+- Abertura substituída pelos banners editoriais Reserve já e Destaques fornecidos pelo usuário, com artes próprias para mobile e desktop.
+- Carrossel manual com setas, indicadores, teclado e gesto lateral, mantendo CTAs reais.
+- Categorias com fotografias editoriais do exemplo fornecido e texto HTML legível no mobile.
+- Imagens ilustrativas separadas dos oito vestidos reais; sem alegar promoção ou novidades não confirmadas.
+
 ## [0.1.1] - 2026-10-06
 
 - Faixa padrão de demonstração Aldenn adaptada à paleta FF em todas as páginas.

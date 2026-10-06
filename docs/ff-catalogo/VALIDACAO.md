@@ -23,3 +23,7 @@ Limites: o navegador validou a preparação dos links de WhatsApp, sem enviar me
 ## Revisão 0.1.1
 
 Check, cinco testes e build aprovados. Navegador revisado em 360, 390, 430, 768, 1024 e 1280 px, sem rolagem horizontal. Hambúrguer somente abaixo de 768 px. Faixa Aldenn presente na home e no produto, SVG WhatsApp visível com pulso. Categorias sem imagens: link Madrinhas filtrou cinco vestidos. Menu mobile abriu e fechou corretamente; consulta individual manteve nome e código do vestido. Capturas em output/validation/ajustes-*.png. Sem publicação.
+
+## Revisão 0.2.0
+
+Check, cinco testes e build aprovados. Banners revisados em 360, 390, 430, 1280 e 1920 px; imagens mobile/desktop corretas, uma arte visível por vez, sem rolagem horizontal. Carregamento do segundo banner em 360 px confirmado após a imagem lazy carregar. Setas, indicadores e teclado alternam os dois banners; gesto lateral implementado, sem simulação de toque real neste navegador. Cards de ocasiões revisados em 360, 390, 430 e 1280 px: imagens carregadas, texto sem transbordamento, Madrinhas filtra cinco vestidos. CTAs levam ao catálogo, destaques e WhatsApp oficial contextual. Capturas v020-*.png em output/validation. Artes ilustrativas identificadas, sem promoção ou novidades não comprovadas. Sem publicação.

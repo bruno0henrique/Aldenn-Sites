@@ -1,6 +1,22 @@
 import {products,filterProducts,whatsappUrl} from './data/catalog.js';
 import {card,escape,icon} from './lib/render.mjs';
 const $ = selector => document.querySelector(selector);
+// Carrossel manual: sem troca automática durante a leitura ou o toque.
+const campaign=$('.campaign');
+if(campaign){
+ const slides=[...campaign.querySelectorAll('.campaign-slide')];
+ const dots=[...campaign.querySelectorAll('.campaign-dots button')];
+ let current=0,startX=null,startY=null;
+ const show=index=>{current=(index+slides.length)%slides.length;campaign.dataset.active=String(current);slides.forEach((slide,i)=>{slide.hidden=i!==current;});dots.forEach((dot,i)=>dot.setAttribute('aria-pressed',String(i===current)));$('#campaign-status').textContent=`Banner ${current+1} de ${slides.length}: ${current?'Destaques':'Reserve já'}`;};
+ campaign.querySelector('.previous').addEventListener('click',()=>show(current-1));
+ campaign.querySelector('.next').addEventListener('click',()=>show(current+1));
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>show(i)));
+ const stage=campaign.querySelector('.campaign-stage');
+ stage.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();show(current+(event.key==='ArrowLeft'?-1:1));}});
+ stage.addEventListener('touchstart',event=>{startX=event.touches[0].clientX;startY=event.touches[0].clientY;},{passive:true});
+ stage.addEventListener('touchend',event=>{if(startX===null)return;const dx=event.changedTouches[0].clientX-startX,dy=event.changedTouches[0].clientY-startY;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)){show(current+(dx>0?-1:1));stage.dataset.swiped='true';}startX=null;},{passive:true});
+ stage.addEventListener('click',event=>{if(stage.dataset.swiped){event.preventDefault();delete stage.dataset.swiped;}},true);
+}
 const keys={q:'busca',occasion:'ocasiao',color:'cor',size:'tamanho',model:'modelo',fabric:'tecido',length:'comprimento',category:'categoria'};
 const readFilters = () => Object.fromEntries(Object.entries(keys).map(([key,param])=>[key,new URLSearchParams(location.search).get(param) || '']));
 let filters=readFilters();

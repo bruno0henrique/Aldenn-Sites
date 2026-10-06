@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.85.0] - 2026-10-06
+
+- FF Catálogo 0.2.0: banners responsivos e categorias fotográficas baseados nas novas artes fornecidas pelo usuário.
+- Carrossel acessível com controle manual; catálogo real e conversão de locação preservados.
+
 ## [0.84.0] - 2026-10-06
 
 - FF Catálogo 0.1.1: faixa demonstrativa Aldenn, categorias sem fotografias repetidas, ícone WhatsApp e pulso discreto.

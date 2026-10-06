@@ -46,3 +46,8 @@ Tamanhos e disponibilidade por data dependem do atendimento. O build é demonstr
 ## Ajuste aprovado — 0.1.1
 
 A seção de ocasiões usa blocos tipográficos para evitar fotografias repetidas. A faixa “Uma experiência demonstrativa da Aldenn” é padrão dos modelos, com cores adaptadas ao projeto e retorno a https://www.aldenn.com.br/. Menu compacto somente abaixo de 768 px. WhatsApp usa o SVG do Bootstrap Icons (https://github.com/twbs/icons/blob/main/icons/whatsapp.svg), com licença MIT preservada e pulso discreto sem animação quando o visitante prefere movimento reduzido.
+
+
+## Direção aprovada — 0.2.0
+
+Pedido de 2026-10-06 substitui a abertura dividida por banners completos e substitui os cards tipográficos de ocasiões pelo exemplo fotográfico enviado. Artes editoriais ilustrativas fornecidas pelo usuário, distintas do estoque real. Usadas Reserve já e Destaques; Promoção e Novidades foram omitidas por ausência de comprovação comercial. Versões verticais com recorte apenas do rodapé que continha indicadores desenhados; controles funcionais são HTML. Categorias usam recortes das fotografias do exemplo, com texto HTML para legibilidade, toque e acessibilidade. Nenhuma imagem ilustrativa é associada à página de um vestido real.
