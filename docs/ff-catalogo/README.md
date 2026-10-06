@@ -41,3 +41,8 @@ Rejeitadas montagens, selfie no espelho e peças com enquadramento parcial inade
 ## Limites reais
 
 Tamanhos e disponibilidade por data dependem do atendimento. O build é demonstrativo e estático. Mapa e abertura do WhatsApp dependem dos serviços externos. Checkout/estoque/pagamento estão preparados no modelo de dados e nos pontos de apresentação, mas ainda não integrados.
+
+
+## Ajuste aprovado — 0.1.1
+
+A seção de ocasiões usa blocos tipográficos para evitar fotografias repetidas. A faixa “Uma experiência demonstrativa da Aldenn” é padrão dos modelos, com cores adaptadas ao projeto e retorno a https://www.aldenn.com.br/. Menu compacto somente abaixo de 768 px. WhatsApp usa o SVG do Bootstrap Icons (https://github.com/twbs/icons/blob/main/icons/whatsapp.svg), com licença MIT preservada e pulso discreto sem animação quando o visitante prefere movimento reduzido.

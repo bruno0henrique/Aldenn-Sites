@@ -19,3 +19,7 @@ Data: 2026-10-06. Build estático servido em `http://127.0.0.1:5186/`.
 Capturas, prancha e relatório de navegador ficam em `ff-catalogo/output/validation/`, localmente e fora do Git. Não houve publicação nem alteração dos projetos anteriores.
 
 Limites: o navegador validou a preparação dos links de WhatsApp, sem enviar mensagem. Estoque por data e numeração dependem da loja. Checkout de venda permanece fora do escopo atual.
+
+## Revisão 0.1.1
+
+Check, cinco testes e build aprovados. Navegador revisado em 360, 390, 430, 768, 1024 e 1280 px, sem rolagem horizontal. Hambúrguer somente abaixo de 768 px. Faixa Aldenn presente na home e no produto, SVG WhatsApp visível com pulso. Categorias sem imagens: link Madrinhas filtrou cinco vestidos. Menu mobile abriu e fechou corretamente; consulta individual manteve nome e código do vestido. Capturas em output/validation/ajustes-*.png. Sem publicação.

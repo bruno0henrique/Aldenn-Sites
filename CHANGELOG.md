@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.84.0] - 2026-10-06
+
+- FF Catálogo 0.1.1: faixa demonstrativa Aldenn, categorias sem fotografias repetidas, ícone WhatsApp e pulso discreto.
+- Menu com opções visíveis a partir de 768 px; hambúrguer apenas no mobile.
+
 ## [0.83.0] - 2026-10-06
 
 - FF Catálogo 0.1.0: novo projeto independente de locação com direção editorial baseada na Viva Dress.
