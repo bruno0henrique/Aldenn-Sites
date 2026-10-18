@@ -15,7 +15,9 @@ Abra http://127.0.0.1:5187/ e http://127.0.0.1:5187/demo/. Não é necessário i
 
 ## Publicar
 
-Publique o conteúdo de `dist/` em hospedagem estática. Entrada: `index.html`; demonstração: `demo/index.html`. Os caminhos relativos permitem hospedar em subpasta, preservando a barra final da URL. Destino e alteração do portfólio ainda precisam ser definidos; esta entrega faz a importação para o Git.
+Destino institucional: [Nixo na Aldenn](https://www.aldenn.com.br/nixo), com [demonstração interativa](https://www.aldenn.com.br/nixo/demo). Integração Aldenn 0.65.0, em `bruno0henrique/aldenn`, branch `codex/nixo-portfolio`, commit `3e37e5a`.
+
+`dist/` preserva a importação original. A exportação publicada fica em `public/nixo/` no repositório institucional e inclui bases de caminho, fontes locais e aviso de demonstração. Para atualizar a publicação, reaplicar essas adaptações e validar as duas rotas antes do deploy. Entrada: `index.html`; demonstração: `demo/index.html`.
 
 O Sites original permanece em https://nixo-studio-bruno.souza-bruno-souza07.chatgpt.site/ com seu acesso preservado. A publicação externa não recebe automaticamente a restrição de acesso do Sites.
 

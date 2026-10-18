@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.89.0] - 2026-10-18
+
+- Registrada a integração Nixo na Aldenn 0.65.0: `/nixo`, `/nixo/demo`, card no portfólio e menu Apps.
+- Documentados o destino Vercel, a exportação institucional adaptada e a separação entre a importação original e o código publicado.
+
 ## [0.88.0] - 2026-10-18
 
 - Nixo Studio 0.1.0: importação integral do site e da demonstração do Sites versão 21 em projeto independente.

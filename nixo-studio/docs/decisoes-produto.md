@@ -13,12 +13,12 @@
 - Prévia depende de Node.js; site publicado requer apenas hospedagem estática. Fontes externas dependem do Google Fonts.
 - Sem credenciais incluídas. Estado da demonstração permanece no navegador de cada visitante; não usar dados sensíveis.
 
-## Pendente de definição antes da publicação
+## Atualização aprovada em 18/10/2026
 
-- Domínio/rota de destino e projeto institucional que receberá o item de portfólio.
-- Hospedagem e orçamento: nenhum novo serviço contratado nesta entrega.
-- Publicação externa torna os arquivos acessíveis conforme as regras da hospedagem escolhida; revisar as capturas antes de expor publicamente.
+- O titular autorizou publicação e inclusão no portfólio. Destino definido: `https://www.aldenn.com.br/nixo`, com demonstração em `/nixo/demo`.
+- Hospedagem: Vercel já usada pelo institucional, sem novo serviço contratado, mudança de DNS, banco ou login.
+- Integração em `bruno0henrique/aldenn`, branch `codex/nixo-portfolio`, versão 0.65.0: card na galeria, menu Apps, faixa demonstrativa, fontes locais e caminhos adaptados à subpasta. Documentação de implantação e rollback em `docs/NIXO.md` desse repositório.
 
-## Proposta para a etapa seguinte
+## Fonte e exportação institucional
 
-Reaproveitar `dist/` em hospedagem estática existente, mantendo a demonstração em `demo/`. Não exige banco nem executor e reduz manutenção. Validar rotas, navegação, imagens e celular no destino; manter o commit anterior para reversão. Inclusão no portfólio depende do código institucional correto e do endereço final aprovado.
+`dist/` permanece a importação original do Sites. A exportação adaptada para o domínio está em `public/nixo/` no repositório institucional, commit `3e37e5a`. Atualizações futuras devem preservar as bases `/nixo/` e `/nixo/demo/`, fontes locais, aviso de demonstração e a política de segurança. Sem banco ou executor. O Sites original e o aplicativo Nixo permanecem independentes.
