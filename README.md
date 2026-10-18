@@ -1,6 +1,12 @@
 # Projetos de clientes: Aldenn Sites
 
+**Versão vigente: 0.88.0**
+
 Este repositório mantém projetos independentes. O aplicativo em `site/` pertence à Belleland Closet. O modelo Aldenn Noivas fica em `modelo-noivas/`, com contatos da Aldenn e dados ilustrativos.
+
+## Nixo Studio
+
+Site de apresentação e demonstração importado do Sites, preservando o código original. [Nixo Studio 0.1.0](nixo-studio/README.md): prévia local, origem e instruções para publicação estática. Publicação externa e inclusão no portfólio ainda não executadas.
 
 ## Belleland Closet
 

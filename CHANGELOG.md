@@ -1,5 +1,10 @@
 # Histórico de versões
 
+## [0.88.0] - 2026-10-18
+
+- Nixo Studio 0.1.0: importação integral do site e da demonstração do Sites versão 21 em projeto independente.
+- Prévia estática local, documentação de origem, decisões e limites de publicação; site hospedado original preservado.
+
 ## [0.87.0] - 2026-10-06
 
 - FF Catálogo 0.2.2: rotação contínua a cada cinco segundos e botão WhatsApp no verde característico.
